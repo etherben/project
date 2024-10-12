@@ -1,13 +1,24 @@
 TODO: 
--finish project plan
+
 -research howto on:  best frameworks and databases to use(think overall capabilities, security implementatioin, performance, ui integration), how to allow uploading files to websites (also best framework for), converting data onto graphs and making them visually appealing.
--finish downloading/ installed necessary packages and frameworks.
+-
 -FIGURE OUT WHY GIT CANT CLONE TO LAPTOP!!!!!
 
 30/09 - 3/10
 
 Started project plan and researching
 risk/mitigation and timetable completed
+
+3/10 -11/10
+Had meeting with supervisor
+    - Main focus will be on security features and how i can show website is secure -- why would a customer risk info with no proof it will be kept safe
+    - All reports must be done, time allocation is okay.
+Project plan complete.
+
+12/10
+Created react front, next steps is to create a login page.
+
+
 
 
 
