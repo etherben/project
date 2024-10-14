@@ -19,6 +19,13 @@ Project plan complete.
 Created react front, next steps is to create a login page.
 
 
+14/10
+Created Title Bar and welcome message
+Chosen colour shceme is light to darker light blue, white background for tabs, grey/black for writing
+
+
+
+
 
 
 
