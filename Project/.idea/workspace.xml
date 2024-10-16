@@ -4,15 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="61043bac-9bbf-4f4c-a40b-d3bd18647a6b" name="Changes" comment="Added title Bar to front page">
-      <change afterPath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.jsx" afterDir="false" />
+    <list default="true" id="61043bac-9bbf-4f4c-a40b-d3bd18647a6b" name="Changes" comment="Started design for sign up and login tab">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/public/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/public/index.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/TitleBar.css" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/TitleBar/TitleBar.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/TitleBar.js" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/TitleBar/TitleBar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/index.css" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/index.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.css" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/LoginTab/LoginTab.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,26 +31,26 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
     <option name="UPDATE_TYPE" value="REBASE" />
   </component>
-  <component name="GitLabMergeRequestFiltersHistory"><![CDATA[{
-  "lastFilter": {
-    "state": "OPENED",
-    "assignee": {
-      "type": "org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue",
-      "username": "zlac163",
-      "fullname": "Etheridge Benjamin (2022) ZLAC163"
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;zlac163&quot;,
+      &quot;fullname&quot;: &quot;Etheridge Benjamin (2022) ZLAC163&quot;
     }
   }
-}]]></component>
-  <component name="GitLabMergeRequestsSettings"><![CDATA[{
-  "selectedUrlAndAccountId": {
-    "first": "https://gitlab.cim.rhul.ac.uk/zlac163/PROJECT.git",
-    "second": "42f920eb-bb94-4d08-a997-0c7235fce4b3"
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.cim.rhul.ac.uk/zlac163/PROJECT.git&quot;,
+    &quot;second&quot;: &quot;42f920eb-bb94-4d08-a997-0c7235fce4b3&quot;
   }
-}]]></component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "customColor": "",
-  "associatedIndex": 1
-}]]></component>
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 1
+}</component>
   <component name="ProjectId" id="2nQLWfJYhe3y1evVz6GoQYiCIMb" />
   <component name="ProjectLevelVcsManager">
     <ConfirmationsSetting value="2" id="Add" />
@@ -64,24 +59,24 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.Debug Application.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "login__page",
-    "kotlin-language-version-configured": "true",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.Debug Application.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;login__page&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\benet\Desktop\FYP\PROJECT\Project\pftracker\src\Components\TitleBar" />
@@ -126,7 +121,9 @@
       <option name="number" value="Default" />
       <option name="presentableId" value="Default" />
       <updated>1728900388624</updated>
-      <workItem from="1728900389968" duration="8164000" />
+      <workItem from="1728900389968" duration="8870000" />
+      <workItem from="1728982454087" duration="266000" />
+      <workItem from="1729103041773" duration="1463000" />
     </task>
     <task id="LOCAL-00003" summary="Added title Bar to front page">
       <option name="closed" value="true" />
@@ -136,7 +133,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728902723794</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Started design for sign up and login tab">
+      <option name="closed" value="true" />
+      <created>1728926985191</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1728926985191</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -157,6 +162,7 @@
     <MESSAGE value="Created React front end" />
     <MESSAGE value="Updated correct Plan pdf" />
     <MESSAGE value="Added title Bar to front page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added title Bar to front page" />
+    <MESSAGE value="Started design for sign up and login tab" />
+    <option name="LAST_COMMIT_MESSAGE" value="Started design for sign up and login tab" />
   </component>
 </project>

@@ -3,6 +3,8 @@
     flex-direction: column;
     margin: auto;
     margin-top: 200px;
+    margin-bottom: 200px;
+    width: 600px;
     background: white;  /*change colour*/
 }
 .header{
@@ -46,4 +48,11 @@
     outline: none;
     color: grey;
     font-size: 18px;
+}
+.submit-container{
+    display: flex;
+    margin-left:230px;
+    margin-top: 30px;
+    margin-bottom: 30px;
+    gap: 32px;
 }

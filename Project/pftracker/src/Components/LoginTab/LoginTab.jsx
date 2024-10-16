@@ -8,13 +8,13 @@ function LoginSignup(){
             </div>
             <div className="inputs">
                 <div className="input">
-                    <input type="Email"/>
+                    <input type="Email" placeholder = "Email"/>
+                </div>
+                <div className="input" >
+                    <input type="Username" placeholder = "Username"/>
                 </div>
                 <div className="input">
-                    <input type="Username"/>
-                </div>
-                <div className="input">
-                    <input type="Password"/>
+                    <input type="Password" placeholder = "password"/>
                 </div>
             </div>
             <div className="submit-container">
