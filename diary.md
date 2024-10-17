@@ -23,6 +23,12 @@ Created react front, next steps is to create a login page.
 Created Title Bar and welcome message
 Chosen colour shceme is light to darker light blue, white background for tabs, grey/black for writing
 
+16/10
+Finalised signup page design, need to start backend and create database for signup
+
+
+17/10
+Researching which servies to use, aswell as backend framework
 
 
 
