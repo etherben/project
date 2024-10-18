@@ -1,15 +1,17 @@
 import logo from './logo.svg';
 import './App.css';
 import TitleBar from "./Components/TitleBar/TitleBar";
-import LoginSignup from "./Components/LoginTab/LoginTab";
+import Signup from "./Components/SignUp/Signup";
+import Login from "./Components/Login/Login";
 import React from "react";
 
 function App() {
   return (
     <div>
-      <TitleBar />
+      <TitleBar/>
       <div>
-        <LoginSignup />
+        <Login/>
+
       </div>
     </div>
 
