@@ -30,6 +30,10 @@ Finalised signup page design, need to start backend and create database for sign
 17/10
 Researching which servies to use, aswell as backend framework
 
+18/10
+Created login form, logic to switch between login and signup. All set to create and store accounts.
+NEED TO FIX: Autofill background colour
+
 
 
 
