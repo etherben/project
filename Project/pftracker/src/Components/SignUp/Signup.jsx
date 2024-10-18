@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './Signup.css'
-const Signup = ({onSubmit}) => {
+const Signup = ({onSubmit, onSwitch}) => {
       const handleSubmit= ()=>{
           const email= document.getElementById("signup-email")
           const username= document.getElementById("signup-username")
@@ -26,7 +26,7 @@ const Signup = ({onSubmit}) => {
             <div className="submit-container">
                 <div className="submit">Sign Up</div>
             </div>
-            <div className="switchLogin">Already have an account? <span>Login</span>
+            <div className="switchLogin">Already have an account? <span onClick={onSwitch}>Login</span>
             </div>
         </div>
     )

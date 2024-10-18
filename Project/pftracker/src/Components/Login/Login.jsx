@@ -1,6 +1,6 @@
 import React, {useState} from 'react'
 import './Login.css'
-const Login = ({onSubmit}) => {
+const Login = ({onSubmit, onSwitch}) => {
     const handleSubmit= ()=>{
         const username= document.getElementById("login-username")
         const password= document.getElementById("login-password")
@@ -26,7 +26,7 @@ const Login = ({onSubmit}) => {
             <div className="submit-container">
                 <div className="submit">Login</div>
             </div>
-            <div className="switchLogin">Need an account? <span onClick={handleClick}>Sign Up</span>
+            <div className="switchLogin">Need an account? <span onClick={onSwitch}>Sign Up</span>
             </div>
         </div>
     )
