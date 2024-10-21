@@ -34,7 +34,9 @@ Researching which servies to use, aswell as backend framework
 Created login form, logic to switch between login and signup. All set to create and store accounts.
 NEED TO FIX: Autofill background colour
 
-
+21/10
+Created relation schema diagram for database
+Chosen spring boot for backend: why? - prefer to work in java, has built in support for REST apis, security and data access, can create custom API
 
 
 
