@@ -38,6 +38,9 @@ NEED TO FIX: Autofill background colour
 Created relation schema diagram for database
 Chosen spring boot for backend: why? - prefer to work in java, has built in support for REST apis, security and data access, can create custom API
 
+22/10
+Started on backend created spring boot maven project and sorted file structure
+
 
 
 
