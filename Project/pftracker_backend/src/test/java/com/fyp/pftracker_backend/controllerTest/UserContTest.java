@@ -12,8 +12,12 @@ import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMock
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.when;
 
 @WebMvcTest
 @AutoConfigureMockMvc
@@ -36,10 +40,33 @@ public class UserContTest {
    }
     @Test
     void testSignUpSuccess() throws Exception {
+        when(userService.saveUser(any(User.class))).thenReturn(user); //mock saveUser method
         ResponseEntity<User> response = userController.createUser(user);
 
         assertEquals(user, response.getBody());
         assertEquals(HttpStatus.CREATED, response.getStatusCode() );
+    }
+    @Test
+    void testSignUpMissing() throws Exception {
 
+       ResponseStatusException exception;
+       user.setUsername(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userController.createUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Username is required", exception.getReason());
+       user.setUsername("test");
+
+       user.setEmail(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userController.createUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Email is required", exception.getReason());
+       user.setEmail("test@test.com");
+
+
+       user.setPassword(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userController.createUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Password is required", exception.getReason());
+       user.setPassword("test");
     }
 }

@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import com.fyp.pftracker_backend.repository.UserRepo;
 @Service
 public class UserService {
-    @Autowired
+    //@Autowired
     private UserRepo loginuserrepo;
 
 
