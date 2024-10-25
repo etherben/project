@@ -43,21 +43,6 @@ public class UserServiceTest {
         user.setEmail("test@test.com");
         user.setUsername("test");
         user.setPassword("test");
-
-        invalidUserUsername = new User();
-        invalidUserUsername.setEmail("test@test.com");
-        invalidUserUsername.setUsername("");
-        invalidUserUsername.setPassword("test");
-
-        invalidUserEmail = new User();
-        invalidUserEmail.setEmail("");
-        invalidUserEmail.setUsername("test");
-        invalidUserEmail.setPassword("test");
-
-        invalidUserPassword = new User();
-        invalidUserPassword.setEmail("test@test.com");
-        invalidUserPassword.setUsername("test");
-        invalidUserPassword.setPassword("");
     }
 
 
