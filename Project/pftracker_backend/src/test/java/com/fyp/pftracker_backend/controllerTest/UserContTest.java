@@ -35,10 +35,10 @@ public class UserContTest {
        user = new User();
        user.setEmail("test@test.com");
        user.setUsername("test");
-       user.setPassword("test");
+       user.setPassword("test123");
    }
     @Test
-    void testSignUpSuccess() throws Exception {
+    void testSignUpSuccess(){
         when(userService.saveUser(any(User.class))).thenReturn(user); //mock saveUser method
         ResponseEntity<User> response = userController.createUser(user);
 
@@ -46,7 +46,7 @@ public class UserContTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode() );
     }
     @Test
-    void testSignUpMissing() throws Exception {
+    void testSignUpMissing(){
 
        ResponseStatusException exception;
        user.setUsername(null);
@@ -68,9 +68,8 @@ public class UserContTest {
         assertEquals("Password is required", exception.getReason());
        user.setPassword("test");
     }
-
     @Test
-    void testSignUpRuntimeError() throws Exception {
+    void testSignUpRuntimeError(){
         when(userService.saveUser(any(User.class))).thenThrow(new RuntimeException("Service error")); //mock saveUser throw
 
         ResponseEntity<User> response = userController.createUser(user);
@@ -78,6 +77,17 @@ public class UserContTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertNull(response.getBody());
     }
+    @Test
+    void loginSuccess(){
+    when(userService.loadUser("test","test123")).thenReturn(user);
+
+    ResponseEntity<String> response = userController.login(user);
+
+    assertEquals("Login successful", response.getBody());
+    assertEquals(HttpStatus.OK, response.getStatusCode());
+
+    }
+
 
 
 

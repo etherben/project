@@ -34,7 +34,22 @@ public class UserCont {
       }
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<String> login(@RequestBody User user) {
+        if (user.getUsername() == null || user.getUsername().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
+        }
+        if (user.getPassword() == null || user.getPassword().isEmpty()) {
+            throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is required");
+        }
 
+        User foundUser = userService.loadUser(user.getUsername(), user.getPassword());
+        if (foundUser != null) {
+            return ResponseEntity.ok("Login successful");
+        } else {
+            throw new ResponseStatusException(HttpStatus.UNAUTHORIZED, "Invalid username or password");
+        }
+    }
 
 }
 
