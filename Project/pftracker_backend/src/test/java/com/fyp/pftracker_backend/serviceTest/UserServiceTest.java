@@ -18,6 +18,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.mockito.junit.jupiter.MockitoExtension;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.server.ResponseStatusException;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
@@ -33,9 +35,6 @@ public class UserServiceTest {
     private UserService userService;
 
     private User user;
-    private User invalidUserUsername;
-    private User invalidUserEmail;
-    private User invalidUserPassword;
 
     @BeforeEach
     void setup() {
@@ -75,9 +74,32 @@ public class UserServiceTest {
 
         verify(userRepo, times(1)).save(any());
     }
+    @Test
+    void testInvalidDetails() {
+        ResponseStatusException exception;
+        user.setUsername(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userService.saveUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Username is required", exception.getReason());
+        verify(userRepo, never()).save(any()); //check repo save wasnt called
+        user.setUsername("test");
 
 
+        user.setEmail(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userService.saveUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Email is required", exception.getReason());
+        verify(userRepo, never()).save(any());
+        user.setEmail("test@test.com");
 
+
+        user.setPassword(null);
+        exception = assertThrows(ResponseStatusException.class, () -> userService.saveUser(user));
+        assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
+        assertEquals("Password is required", exception.getReason());
+        verify(userRepo, never()).save(any());
+        user.setPassword("test");
+    }
 
 
 }
