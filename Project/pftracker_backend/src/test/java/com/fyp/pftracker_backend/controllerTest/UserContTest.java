@@ -66,7 +66,7 @@ public class UserContTest {
         exception = assertThrows(ResponseStatusException.class, () -> userController.createUser(user));
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
         assertEquals("Password is required", exception.getReason());
-       user.setPassword("test");
+       user.setPassword("test123");
     }
     @Test
     void testSignUpRuntimeError(){
@@ -78,16 +78,25 @@ public class UserContTest {
         assertNull(response.getBody());
     }
     @Test
-    void loginSuccess(){
+    void testLoginSuccess(){
     when(userService.loadUser("test","test123")).thenReturn(user);
 
-    ResponseEntity<String> response = userController.login(user);
+    ResponseEntity<String> response = userController.loginUser(user);
 
     assertEquals("Login successful", response.getBody());
     assertEquals(HttpStatus.OK, response.getStatusCode());
 
     }
+    @Test
+    void testLoginUnauthorized(){
+        when(userService.loadUser("testfail","testfail123")).thenReturn(user);
 
+        ResponseStatusException exception;
+        exception = assertThrows(ResponseStatusException.class, () -> userController.loginUser(user));
+        assertEquals(HttpStatus.UNAUTHORIZED, exception.getStatusCode());
+        assertEquals("Invalid username or password", exception.getReason());
+
+    }
 
 
 

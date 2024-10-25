@@ -35,7 +35,7 @@ public class UserCont {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<String> login(@RequestBody User user) {
+    public ResponseEntity<String> loginUser(@RequestBody User user) {
         if (user.getUsername() == null || user.getUsername().isEmpty()) {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Username is required");
         }
