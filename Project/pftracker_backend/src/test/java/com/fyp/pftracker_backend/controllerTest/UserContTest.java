@@ -78,4 +78,7 @@ public class UserContTest {
         assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
         assertNull(response.getBody());
     }
+
+
+
 }

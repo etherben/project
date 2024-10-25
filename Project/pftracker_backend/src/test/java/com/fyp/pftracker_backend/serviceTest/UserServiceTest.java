@@ -21,6 +21,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
@@ -42,12 +44,12 @@ public class UserServiceTest {
         user = new User();
         user.setEmail("test@test.com");
         user.setUsername("test");
-        user.setPassword("test");
+        user.setPassword("test123");
     }
 
 
     @Test
-    void testValidUser() {
+    void testSignupValidUser() {
         when(userRepo.save(any())).thenReturn(user);
 
         User savedUser = userService.saveUser(user);
@@ -60,7 +62,7 @@ public class UserServiceTest {
         verify(userRepo, times(1)).save(any());
     }
     @Test
-    void testInvalidDetails() {
+    void testSignupInvalidUser() {
         ResponseStatusException exception;
         user.setUsername(null);
         exception = assertThrows(ResponseStatusException.class, () -> userService.saveUser(user));
@@ -83,7 +85,19 @@ public class UserServiceTest {
         assertEquals(HttpStatus.BAD_REQUEST, exception.getStatusCode());
         assertEquals("Password is required", exception.getReason());
         verify(userRepo, never()).save(any());
-        user.setPassword("test");
+        user.setPassword("test123");
+    }
+    @Test
+    void testLoginValidUser(){
+        when(userRepo.findByUsername("test")).thenReturn(Optional.of(user)); //mock found username
+        User result = userService.loadUser("test", "test123");
+        assertEquals(user, result);
+    }
+    @Test
+    void testLoginInvalidUser(){
+        when(userRepo.findByUsername("test")).thenReturn(Optional.of(user)); //mock found username
+        User result = userService.loadUser("test", "test1");
+        assertNull(result);
     }
 
 

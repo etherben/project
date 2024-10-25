@@ -7,10 +7,12 @@ import org.springframework.stereotype.Service;
 import com.fyp.pftracker_backend.repository.UserRepo;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.Optional;
+
 @Service
 public class UserService {
     //@Autowired
-    private UserRepo loginuserrepo;
+    private UserRepo userRepo;
 
 
     public  User saveUser(User user) {
@@ -25,7 +27,18 @@ public class UserService {
             throw new ResponseStatusException(HttpStatus.BAD_REQUEST, "Password is required");
         }
 
+        return userRepo.save(user);
+    }
 
-        return loginuserrepo.save(user);
+    public User loadUser(String username, String password) {
+        Optional<User> userOptional = userRepo.findByUsername(username);
+
+        if (userOptional.isPresent()) {
+            User user = userOptional.get();
+            if (user.getPassword().equals(password)) {
+                return user;
+            }
+        }
+        return null;
     }
 }
