@@ -1,5 +1,5 @@
 package com.fyp.pftracker_backend.controller;
-
+import org.springframework.web.bind.annotation.CrossOrigin;
 import com.fyp.pftracker_backend.model.User;
 import com.fyp.pftracker_backend.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +10,7 @@ import com.fyp.pftracker_backend.service.UserService;
 import org.springframework.web.server.ResponseStatusException;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/auth")
 public class UserCont {
     @Autowired
