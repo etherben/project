@@ -45,7 +45,13 @@ Not much done this week due to courseworks on other modules, Have linked backend
 After meeting with a professional software engineer, decided to restructure the project.
 front and back end will be ran from a docker container, eventually allowing for easy deployment, also keeping file structure to a professional standard.
 Changing from maven to gradel as it has better dependency management, more flexable and more dynamic.
+Using groovy not kotlin as its more compatable with gradel and java
 java source 21, react front still.
+
+Database will now be nosql and using mongoDB, primarily because data will not have many relationships, most relaationships will be formed around user.
+data storage structure will be more comparable to a file structure 
+
+FOCUS ON FUNCTIONALITY THIS TERM 
 
 
 
