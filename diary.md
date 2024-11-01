@@ -1,8 +1,5 @@
 TODO: 
-
--research howto on:  best frameworks and databases to use(think overall capabilities, security implementatioin, performance, ui integration), how to allow uploading files to websites (also best framework for), converting data onto graphs and making them visually appealing.
--
--FIGURE OUT WHY GIT CANT CLONE TO LAPTOP!!!!!
+how to allow uploading files to websites (also best framework for), converting data onto graphs and making them visually appealing.
 
 30/09 - 3/10
 
@@ -41,6 +38,14 @@ Chosen spring boot for backend: why? - prefer to work in java, has built in supp
 22/10
 Started on backend created spring boot maven project and sorted file structure
 
+23/10 - 31/10
+Not much done this week due to courseworks on other modules, Have linked backend and front end, allowing for use signup.
+
+1/10
+After meeting with a professional software engineer, decided to restructure the project.
+front and back end will be ran from a docker container, eventually allowing for easy deployment, also keeping file structure to a professional standard.
+Changing from maven to gradel as it has better dependency management, more flexable and more dynamic.
+java source 21, react front still.
 
 
 
