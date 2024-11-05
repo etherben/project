@@ -6,3 +6,9 @@ services:
       - "3000:80"
     volumes:
       - ./pftracker:/app
+  backend:
+    build: ./pftracker_backend
+    ports:
+      - "8080:81"
+    volumes:
+      - ./pftracker_backend:/fyp
