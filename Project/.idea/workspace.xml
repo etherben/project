@@ -5,7 +5,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61043bac-9bbf-4f4c-a40b-d3bd18647a6b" name="Changes" comment="Added logic to switch between login and signup forms">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/PROJECT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/FYP.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker/src/Components/SignUp/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/SignUp/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker_backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker_backend/Dockerfile" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -58,26 +67,26 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "JavaScript Debug.Debug Application.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "login__page",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/benet/Desktop/FYP/PROJECT",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_interpreter_path": "node",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;JavaScript Debug.Debug Application.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;login__page&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/FYP/PROJECT&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_interpreter_path&quot;: &quot;node&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\benet\Desktop\FYP\PROJECT\Project\pftracker\src\Components\Login" />
@@ -132,6 +141,7 @@
       <workItem from="1729593217559" duration="863000" />
       <workItem from="1730811759997" duration="21000" />
       <workItem from="1730811786849" duration="27000" />
+      <workItem from="1731161638706" duration="8000" />
     </task>
     <task id="LOCAL-00003" summary="Added title Bar to front page">
       <option name="closed" value="true" />

@@ -3,12 +3,20 @@ services:
   frontend:
     build: ./pftracker
     ports:
-      - "3000:80"
+      - "3000:3000"
     volumes:
       - ./pftracker:/app
+    command: npm start
   backend:
-    build: ./pftracker_backend
+    build:
+      context: ./pftracker_backend
+    network_mode: "host"
     ports:
-      - "8080:81"
+      - "8088:8088"
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/fyp
+      - SPRING_DATASOURCE_USERNAME=postgres
+      - SPRING_DATASOURCE_PASSWORD=Beanybob123
     volumes:
-      - ./pftracker_backend:/fyp
+      - ./pftracker_backend:/app
+    command: java -jar target/pftracker_backend-0.0.1-SNAPSHOT.jar

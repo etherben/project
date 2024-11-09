@@ -2,33 +2,23 @@ import React, {useState} from 'react'
 import './Signup.css'
 const Signup = ({onSubmit, onSwitch}) => {
 
-    const userData = {
-        username: document.getElementById("signup-username").value,
-        email: document.getElementById("signup-email").value,
-        password: document.getElementById("signup-password").value,
-    }
+    const [username, setUsername] = useState('')
+    const [email, setEmail] = useState('')
+    const [password, setPassword] = useState('')
+
 
 
               const handleSubmit= async (e)=> {
                   e.preventDefault();
 
-                      const response = await fetch('http://localhost:8088/auth/signup', {
-                          method: 'POST',
-                          headers: {
-                              'Content-Type': 'application/json',
-                          },
-                          body: JSON.stringify(userData),
-                      });
-                      if (response.ok) {
-                          const result = await response.json();
-                          console.log('User signed up successfully:', result);
-                          onSubmit(result); // Notify the parent component of the successful signup
-                          return;
-                      }else{
-                          const errorData = await response.json();
-                          console.error('Errpr response: ', errorData)
-                      }
-
+                  const userData = {
+                       email,username, password
+                  }
+                  try {
+                      await onSubmit(userData); // Pass userData to handleSignupSubmit
+                  } catch (error) {
+                      //console.error('Error during signup:', error);
+                  }
               };
     return(
         <div className="container">
@@ -38,13 +28,13 @@ const Signup = ({onSubmit, onSwitch}) => {
                 <form onSubmit={handleSubmit} className="inputs">
 
                     <div className="input">
-                        <input type="Email" id="signup-email" placeholder="Email"/>
+                        <input type="Email" id="signup-email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
                     </div>
                     <div className="input">
-                        <input type="Username" id="signup-username" placeholder="Username"/>
+                        <input type="Username" id="signup-username" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
                     </div>
                     <div className="input">
-                        <input type="Password" id="signup-password" placeholder="Password"/>
+                        <input type="Password" id="signup-password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
                     </div>
 
                     <div className="submit-container">
