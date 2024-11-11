@@ -1,16 +1,21 @@
 version: '3'
 services:
   frontend:
+
     build: ./pftracker
     ports:
       - "3000:3000"
     volumes:
       - ./pftracker:/app
+    depends_on:
+      - backend
     command: npm start
+
+
   backend:
     build:
       context: ./pftracker_backend
-    network_mode: "host"
+
     ports:
       - "8088:8088"
     environment:
