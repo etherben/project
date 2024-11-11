@@ -41,7 +41,7 @@ Started on backend created spring boot maven project and sorted file structure
 23/10 - 31/10
 Not much done this week due to courseworks on other modules, Have linked backend and front end, allowing for use signup.
 
-1/10
+1/11
 After meeting with a professional software engineer, decided to restructure the project.
 front and back end will be ran from a docker container, eventually allowing for easy deployment, also keeping file structure to a professional standard.
 Changing from maven to gradel as it has better dependency management, more flexable and more dynamic.
@@ -52,6 +52,23 @@ Database will now be nosql and using mongoDB, primarily because data will not ha
 data storage structure will be more comparable to a file structure 
 
 FOCUS ON FUNCTIONALITY THIS TERM 
+
+02/11-11/11
+Dockerised entire project and have it working from containers. 
+
+Researched further into using noSQL databse
+Things to consider/remember:
+why change? - most relationsships are only to user, structure more comparable to documents/file structure.
+              easier to visualise. 
+              better for unstructured data, such as data that will be applied to graphs.
+              can handle high throughput for when uploading bank statements. 
+              Easier to develop and maintain.
+              easier setup for docker for persistant data, more efficient resource useage (only to consider with large datasets)
+
+risks of changing- delay in workflow -- following feedback from report will take time from secuirty considerations 
+                   hardware constraints? can take up alot of ram with large datasets -- design schema so only relevant fields are loaded
+                   duplicate data? -- can be less resource intensive than creating multiple joins.
+
 
 
 
