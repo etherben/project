@@ -5,16 +5,13 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="61043bac-9bbf-4f4c-a40b-d3bd18647a6b" name="Changes" comment="Added logic to switch between login and signup forms">
-      <change beforePath="$PROJECT_DIR$/../.idea/PROJECT.iml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/FYP.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/modules.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/package-lock.json" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pftracker/src/Components/SignUp/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker/src/Components/SignUp/Signup.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pftracker_backend/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker_backend/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker_backend/src/main/java/com/fyp/pftracker_backend/model/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker_backend/src/main/java/com/fyp/pftracker_backend/model/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker_backend/src/main/java/com/fyp/pftracker_backend/repository/UserRepo.java" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker_backend/src/main/java/com/fyp/pftracker_backend/repository/UserRepo.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pftracker_backend/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/pftracker_backend/src/main/resources/application.properties" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -142,6 +139,8 @@
       <workItem from="1730811759997" duration="21000" />
       <workItem from="1730811786849" duration="27000" />
       <workItem from="1731161638706" duration="8000" />
+      <workItem from="1731515018058" duration="6000" />
+      <workItem from="1731518400559" duration="1000" />
     </task>
     <task id="LOCAL-00003" summary="Added title Bar to front page">
       <option name="closed" value="true" />

@@ -1,7 +1,6 @@
 version: '3'
 services:
   frontend:
-
     build: ./pftracker
     ports:
       - "3000:3000"
@@ -11,17 +10,34 @@ services:
       - backend
     command: npm start
 
-
   backend:
     build:
       context: ./pftracker_backend
-
+    depends_on:
+      - mongodb
     ports:
       - "8088:8088"
     environment:
-      - SPRING_DATASOURCE_URL=jdbc:postgresql://host.docker.internal:5432/fyp
-      - SPRING_DATASOURCE_USERNAME=postgres
-      - SPRING_DATASOURCE_PASSWORD=Beanybob123
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/fypdatabase
     volumes:
       - ./pftracker_backend:/app
-    command: java -jar target/pftracker_backend-0.0.1-SNAPSHOT.jar
+    command: java -jar build/libs/pftracker_backend-0.0.1-SNAPSHOT.jar
+    networks:
+      - app-network
+
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # This is where data is stored persistently`
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:  # Declare the volume here
+    driver: local  # Use local driver (default)
+
+networks:
+  app-network:
+    driver: bridge
