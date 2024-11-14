@@ -27,4 +27,13 @@ public class UserController {
         return userService.getUsers();
     }
 
+    @PostMapping("/login")
+    public ResponseEntity<User> loginUser(@RequestParam String username, @RequestParam String password) {
+        User user = userService.loginUser(username, password);
+        if (user != null) {
+            return new ResponseEntity<>(user, HttpStatus.OK);
+        }
+        return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
+    }
+
 }
