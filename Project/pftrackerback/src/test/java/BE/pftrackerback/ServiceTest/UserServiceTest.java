@@ -32,6 +32,7 @@ public class UserServiceTest {
         assertEquals("testPassword", createdUser.getPassword());
         assertEquals("testEmail", createdUser.getEmail());
     }
+
     @Test
     public void testGetUsers() {
         //given
