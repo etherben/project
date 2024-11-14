@@ -16,8 +16,11 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNull;
 import static org.mockito.Mockito.when;
 
 @SpringBootTest
@@ -56,6 +59,19 @@ public class UserControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode()); // Check if the status is 201 Created
 
     }
+    @Test
+    public void testGetUsers(){
+        //given
+        User user1 = new User("test1", "password1", "testemail1");
+        User user2 = new User("test2", "password2", "testemail2");
+
+        List<User> users = Arrays.asList(user1, user2);
+        when(userService.getUsers()).thenReturn(users);
+
+        List<User> result = userController.getAllUsers();
+
+        assertEquals(users, result);
+    }
 
     @Test
     public void testLoginAdmin(){
@@ -75,10 +91,35 @@ public class UserControllerTest {
         when(userService.loginUser(user.getUsername(), user.getPassword())).thenReturn(user);
         //when
         ResponseEntity<User> response = userController.loginUser(user.getUsername(), user.getPassword());
-
+        //then
         assertEquals(user, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
+
+    @Test
+    public void testLoginUserFail(){
+        //given(correct username wrong password)
+        String username = "test";
+        String password = "wrongPassword";
+        //mock return of null for wrong password
+        when(userService.loginUser(username, password)).thenReturn(null);
+        //when
+        ResponseEntity<User> response = userController.loginUser(username, password);
+        //then
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertNull(response.getBody());
+
+        //given (wrong username correct password)
+        username = "wrongUsername";
+        password = "test123";
+        when(userService.loginUser(username, password)).thenReturn(null);
+        //when
+        ResponseEntity<User> response2 = userController.loginUser(username, password);
+        //then
+        assertEquals(HttpStatus.UNAUTHORIZED, response2.getStatusCode());
+        assertNull(response2.getBody());
+    }
+
 
 }
 
