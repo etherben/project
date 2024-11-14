@@ -7,12 +7,11 @@ import BE.pftrackerback.Service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
-import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
-
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -28,7 +27,7 @@ public class UserControllerTest {
     User user;
     @Autowired
 
-    @Mock
+    @MockBean
     private UserService userService;
 
     @InjectMocks
@@ -57,5 +56,29 @@ public class UserControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode()); // Check if the status is 201 Created
 
     }
+
+    @Test
+    public void testLoginAdmin(){
+        User admin = new User("admin", "password", "adminemail");
+        when(userService.loginUser(admin.getUsername(), admin.getPassword())).thenReturn(admin);
+        //when
+        ResponseEntity<User> response = userController.loginUser("admin", "password");
+
+        //then checks admin is there
+        assertEquals(admin, response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+    @Test
+    public void testLoginUser(){
+        //given
+        when(userService.loginUser(user.getUsername(), user.getPassword())).thenReturn(user);
+        //when
+        ResponseEntity<User> response = userController.loginUser(user.getUsername(), user.getPassword());
+
+        assertEquals(user, response.getBody());
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
 }
 

@@ -38,19 +38,51 @@ public class UserServiceTest {
     @Test
     public void testGetUsers() {
         //given
-        userService.createUser("testUsername1", "testPassword1", "testEmail1");
+
         userService.createUser("testUsername2", "testPassword2", "testEmail2");
         //when
         List<User> users = userService.getUsers();
         //then
         assertNotNull(users);
         assertEquals(2, users.size());
-        assertEquals("testUsername1", users.getFirst().getUsername());
-        assertEquals("testPassword1", users.get(0).getPassword());
-        assertEquals("testEmail1", users.get(0).getEmail());
+        assertEquals("admin", users.getFirst().getUsername());
+        assertEquals("password", users.get(0).getPassword());
+        assertEquals("adminemail", users.get(0).getEmail());
         assertEquals("testUsername2", users.get(1).getUsername());
         assertEquals("testPassword2", users.get(1).getPassword());
         assertEquals("testEmail2", users.get(1).getEmail());
 
+    }
+    @Test
+    public void loginAdmin(){
+        //testing hard coded user (admin) hence don't need given
+
+        //when
+        User correctUser = userService.loginUser("admin", "password");
+
+        assertNotNull(correctUser);
+        assertEquals("admin", correctUser.getUsername());
+        assertEquals("password", correctUser.getPassword());
+
+    }
+
+    @Test
+    public void loginUserSuccess(){
+         userService.createUser("testUsername", "testPassword", "testEmail");
+
+        User user = userService.loginUser("testUsername", "testPassword");
+
+        assertNotNull(user);
+        assertEquals("testUsername", user.getUsername());
+        assertEquals("testPassword", user.getPassword());
+
+    }
+    @Test
+    public void loginUserFail(){
+        userService.createUser("testUsername", "testPassword", "testEmail");
+
+        User user = userService.loginUser("testUsername", "testPasswordWrong");
+
+        assertNull(user);
     }
 }
