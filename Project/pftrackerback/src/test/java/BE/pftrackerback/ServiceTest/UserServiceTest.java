@@ -1,0 +1,56 @@
+package BE.pftrackerback.ServiceTest;
+
+import BE.pftrackerback.Model.User;
+import BE.pftrackerback.Service.UserService;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class UserServiceTest {
+
+    private UserService userService;
+
+    @BeforeEach
+    public void setUp() {
+        userService = new UserService();
+    }
+
+    @Test
+    public void testCreateUser() {
+        //Test for correct creation of user in service
+
+        //given
+        String username = "testUsername";
+        String password = "testPassword";
+        String email = "testEmail";
+        //when
+        User createdUser = userService.createUser(username, password, email);
+        //then
+        assertNotNull(createdUser);
+        assertEquals("testUsername", createdUser.getUsername());
+        assertEquals("testPassword", createdUser.getPassword());
+        assertEquals("testEmail", createdUser.getEmail());
+    }
+
+    @Test
+    public void testGetUsers() {
+        //given
+        userService.createUser("testUsername1", "testPassword1", "testEmail1");
+        userService.createUser("testUsername2", "testPassword2", "testEmail2");
+        //when
+        List<User> users = userService.getUsers();
+        //then
+        assertNotNull(users);
+        assertEquals(2, users.size());
+        assertEquals("testUsername1", users.getFirst().getUsername());
+        assertEquals("testPassword1", users.get(0).getPassword());
+        assertEquals("testEmail1", users.get(0).getEmail());
+        assertEquals("testUsername2", users.get(1).getUsername());
+        assertEquals("testPassword2", users.get(1).getPassword());
+        assertEquals("testEmail2", users.get(1).getEmail());
+
+    }
+}
