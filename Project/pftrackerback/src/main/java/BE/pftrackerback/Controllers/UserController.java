@@ -19,11 +19,15 @@ public class UserController {
     @PostMapping("/create")
     public ResponseEntity<User> createUser(@RequestBody User user) {
         User createdUser =  userService.createUser(user.getUsername(),user.getPassword(), user.getEmail());
-        return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        if (createdUser != null) {
+            return new ResponseEntity<>(createdUser, HttpStatus.CREATED);
+        }
+        return new ResponseEntity<>(null, HttpStatus.UNAUTHORIZED);
     }
 
     @GetMapping("/")
     public List<User> getAllUsers() {
+
         return userService.getUsers();
     }
 

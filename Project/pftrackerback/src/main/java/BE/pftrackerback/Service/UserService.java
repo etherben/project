@@ -4,6 +4,7 @@ import BE.pftrackerback.Model.User;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 public class UserService {
@@ -17,6 +18,17 @@ public class UserService {
     }
 
     public User createUser(String username, String password, String email) {
+        //check that username and email don't already exist
+        for (User user : users) {
+            if (user.getUsername().equals(username)) {
+                return null;  // Return null if username already exists
+            }
+            if (user.getEmail().equals(email)) {
+                return null;  // Return null if email already exists
+            }
+        }
+
+        //add user and return user
         User user = new User(username, password, email);
         users.add(user);
         return user;
