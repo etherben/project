@@ -24,6 +24,7 @@
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
         <entry key="$PROJECT_DIR$/../.." value="Backend_Create/Login_Validation" />
+        <entry key="$PROJECT_DIR$/.." value="frontdocker" />
       </map>
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -116,6 +117,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dockerfile for backend" />
-    <option name="LAST_COMMIT_MESSAGE" value="dockerfile for backend" />
+    <MESSAGE value="dockerfile for front end" />
+    <option name="LAST_COMMIT_MESSAGE" value="dockerfile for front end" />
   </component>
 </project>
