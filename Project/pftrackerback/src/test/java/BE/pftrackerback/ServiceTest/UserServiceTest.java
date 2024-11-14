@@ -33,7 +33,7 @@ public class UserServiceTest {
         assertEquals("testEmail", createdUser.getEmail());
     }
     @Test
-    public void testCreateUserDuplicateUser() {
+    public void testExsitingUser() {
         //given (create first user)
         userService.createUser("testUsername", "testPassword", "testEmail");
         //when (create second user with same details

@@ -60,8 +60,17 @@ public class UserControllerTest {
 
     }
 
+    @Test
+    public void testExistingUser(){
+        //given (mocking null return of user service)
+        when(userService.createUser(user.getUsername(), user.getPassword(), user.getEmail())).thenReturn(null);
+        //when
+        ResponseEntity<User> response = userController.createUser(user);
+        //then
+        assertEquals(HttpStatus.UNAUTHORIZED, response.getStatusCode());
+        assertNull(response.getBody());
 
-
+    }
     @Test
     public void testGetUsers(){
         //given
