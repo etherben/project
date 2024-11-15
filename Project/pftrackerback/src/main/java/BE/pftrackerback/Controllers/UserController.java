@@ -1,5 +1,6 @@
 package BE.pftrackerback.Controllers;
 
+import org.springframework.web.bind.annotation.CrossOrigin;
 import BE.pftrackerback.Model.User;
 import BE.pftrackerback.Service.UserService;
 import  org.springframework.beans.factory.annotation.Autowired;
@@ -10,9 +11,10 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
+@CrossOrigin (origins = "http://localhost:3000")
 @RequestMapping("/users")
-public class UserController {
 
+public class UserController {
     @Autowired
     private UserService userService;
 
@@ -28,8 +30,8 @@ public class UserController {
     }
 
     @PostMapping("/login")
-    public ResponseEntity<User> loginUser(@RequestParam String username, @RequestParam String password) {
-        User user = userService.loginUser(username, password);
+    public ResponseEntity<User> loginUser(@RequestBody User user) {
+         user = userService.loginUser(user.getUsername(), user.getPassword());
         if (user != null) {
             return new ResponseEntity<>(user, HttpStatus.OK);
         }

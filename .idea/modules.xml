@@ -2,7 +2,12 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+<<<<<<< HEAD
       <module fileurl="file://$PROJECT_DIR$/.idea/PROJECT.iml" filepath="$PROJECT_DIR$/.idea/PROJECT.iml" />
+=======
+      <module fileurl="file://$PROJECT_DIR$/.idea/Project.iml" filepath="$PROJECT_DIR$/.idea/Project.iml" />
+      <module fileurl="file://$PROJECT_DIR$/pftracker.iml" filepath="$PROJECT_DIR$/pftracker.iml" />
+>>>>>>> a820b56759a5cb3de3c3873d6d662a973cf76c9d
     </modules>
   </component>
 </project>
