@@ -4,17 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="fixing remote connection issue">
-      <change afterPath="$PROJECT_DIR$/src/Components/Login/Login.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/Login/Login.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.jsx" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.test.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Same sign up form as previously written, with testing">
+      <change afterPath="$PROJECT_DIR$/src/Components/Login/Login.test.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -76,6 +69,7 @@
     "node.js.selected.package.eslint": "(autodetect)",
     "node.js.selected.package.tslint": "(autodetect)",
     "nodejs_package_manager_path": "npm",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
     "vue.rearranger.settings.migration": "true"
   }
 }]]></component>
@@ -100,7 +94,7 @@
       <workItem from="1731612644419" duration="5000" />
       <workItem from="1731612667983" duration="28000" />
       <workItem from="1731613158496" duration="843000" />
-      <workItem from="1731665595298" duration="1427000" />
+      <workItem from="1731665595298" duration="1765000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -118,7 +112,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731614391306</updated>
     </task>
-    <option name="localTasksCounter" value="3" />
+    <task id="LOCAL-00003" summary="Same sign up form as previously written, with testing">
+      <option name="closed" value="true" />
+      <created>1731667100033</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731667100033</updated>
+    </task>
+    <option name="localTasksCounter" value="4" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -139,6 +141,7 @@
     <MESSAGE value="dockerfile for backend" />
     <MESSAGE value="dockerfile for front end" />
     <MESSAGE value="fixing remote connection issue" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixing remote connection issue" />
+    <MESSAGE value="Same sign up form as previously written, with testing" />
+    <option name="LAST_COMMIT_MESSAGE" value="Same sign up form as previously written, with testing" />
   </component>
 </project>

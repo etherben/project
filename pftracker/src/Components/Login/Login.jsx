@@ -24,7 +24,7 @@ const Login = ({onSubmit, onSwitch}) => {
                 </div>
             </div>
             <div className="submit-container">
-                <div className="submit">Login</div>
+                <button className="submit">Login</button>
             </div>
             <div className="switchLogin">Need an account? <span onClick={onSwitch}>Sign Up</span>
             </div>
