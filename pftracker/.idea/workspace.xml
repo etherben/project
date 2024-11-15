@@ -4,10 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Same sign up form as previously written, with testing">
-      <change afterPath="$PROJECT_DIR$/src/Components/Login/Login.test.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Login form renders properly with tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -94,7 +95,7 @@
       <workItem from="1731612644419" duration="5000" />
       <workItem from="1731612667983" duration="28000" />
       <workItem from="1731613158496" duration="843000" />
-      <workItem from="1731665595298" duration="1765000" />
+      <workItem from="1731665595298" duration="2608000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -120,7 +121,15 @@
       <option name="project" value="LOCAL" />
       <updated>1731667100033</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Login form renders properly with tests">
+      <option name="closed" value="true" />
+      <created>1731667429238</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731667429238</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -142,6 +151,7 @@
     <MESSAGE value="dockerfile for front end" />
     <MESSAGE value="fixing remote connection issue" />
     <MESSAGE value="Same sign up form as previously written, with testing" />
-    <option name="LAST_COMMIT_MESSAGE" value="Same sign up form as previously written, with testing" />
+    <MESSAGE value="Login form renders properly with tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login form renders properly with tests" />
   </component>
 </project>

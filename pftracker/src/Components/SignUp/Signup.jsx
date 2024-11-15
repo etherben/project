@@ -26,12 +26,17 @@ const Signup = ({onSubmit, onSwitch}) => {
                 <div className="text">Sign Up</div>
             </div>
             <form onSubmit={handleSubmit} className="inputs">
-
                 <div className="input">
-                    <input type="Email" id="signup-email" placeholder="Email" onChange={(e) => setEmail(e.target.value)}/>
+                    <input type="Email"
+                           id="signup-email"
+                           placeholder="Email"
+                           onChange={(e) => setEmail(e.target.value)}/>
                 </div>
                 <div className="input">
-                    <input type="Username" id="signup-username" placeholder="Username" onChange={(e) => setUsername(e.target.value)}/>
+                    <input type="Username"
+                           id="signup-username"
+                           placeholder="Username"
+                           onChange={(e) => setUsername(e.target.value)}/>
                 </div>
                 <div className="input">
                     <input type="Password" id="signup-password" placeholder="Password" onChange={(e) => setPassword(e.target.value)}/>
@@ -41,7 +46,8 @@ const Signup = ({onSubmit, onSwitch}) => {
                     <button type="submit" className="submit">Sign Up</button>
                 </div>
             </form>
-            <div className="switchLogin">Already have an account? <span onClick={onSwitch}>Login</span>
+            <div className="switchLogin">
+                Already have an account? <span onClick={onSwitch}>Login</span>
             </div>
         </div>
     )}
