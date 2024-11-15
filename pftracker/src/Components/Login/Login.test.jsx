@@ -32,16 +32,15 @@ test('calls the onSubmit with the correct data on form submission', () => {
     const mockSubmit = jest.fn();
     render(<Login onSwitch={jest.fn()} onSubmit={mockSubmit} />);
 
-    const usernameInput = screen.getByPlaceholderText(/username/i);
-    const passwordInput = screen.getByPlaceholderText(/password/i);
-    const submitButton = screen.getByRole('button', { name: /login/i });
     //when
-    fireEvent.change(usernameInput, { target: { value: 'test' } });
-    fireEvent.change(passwordInput, { target: { value: 'password' } });
-    fireEvent.click(submitButton);
+    fireEvent.change(screen.getByPlaceholderText(/username/i), { target: { value: 'test' } });
+    fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'password' } });
+    fireEvent.click(screen.getByRole('button', { name: /login/i }));
     //then
     expect(mockSubmit).toHaveBeenCalledWith({
-        username: 'test',
-        password: 'password',
+
+            username: 'test',
+            password: 'password',
+
     });
 });

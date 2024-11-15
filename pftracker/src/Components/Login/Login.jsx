@@ -7,6 +7,7 @@ const Login = ({onSubmit, onSwitch}) => {
     const handleSubmit= async(e)=>{
         e.preventDefault()
 
+
         try{
             await onSubmit({username, password})
         }catch (error){

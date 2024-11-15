@@ -9,34 +9,54 @@ function App() {
     setSignup((prev) => !prev);
   }
 
-  const handleSignupSubmit = async (userData) => {
+  const handleSignupSubmit = async (userSignupData) => {
     try {
       const response = await fetch('http://localhost:8080/auth/signup', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
-        body: JSON.stringify(userData),
+        body: JSON.stringify(userSignupData),
       });
+
       if (!response.ok) {
-        throw new Error(`HTTP error! Status: ${response.status}`);
+        // Handle the response error
+        const errorData = await response.json(); // use json() to parse error body
+        throw new Error(`API Error: ${response.status} - ${JSON.stringify(errorData)}`);
       }
+
+
       const result = await response.json();
       console.log('User signed up successfully:', result);
     } catch (error) {
-      console.error('Error during signup:', error);
+      console.error(error);
     }
   };
-
+  const handleLoginSubmit = async (userLoginData) =>{
+    try {
+      const response = await fetch('http://localhost:8080/auth/login', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(userLoginData),
+      });
+      if (!response.ok){
+        throw new Error(`HTTP error status: ${response.status}`);
+      }
+      const result = await  response.json();
+      console.log('Successful ', result)
+    }catch (error){
+      console.error(error)
+    }
+    }
   return (
-
-
       <div>
         <div>
           {isSignup?(
               <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit}/>
           ):(
-              <Login onSwitch={toggleSignup}/>
+              <Login onSwitch={toggleSignup} onSubmit={handleLoginSubmit}/>
           )
           }
         </div>
