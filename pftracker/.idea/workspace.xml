@@ -4,10 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="dockerfile for backend">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/Dockerfile" afterDir="false" />
-    </list>
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Login form sends correct data onSubmit" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -17,6 +14,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
+        <option value="CSS File" />
+        <option value="JSX File" />
       </list>
     </option>
   </component>
@@ -57,14 +56,16 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FrontUserConnection&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/project/PROJECT/Project/pftrackerback&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/project/PROJECT/Project&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -89,6 +90,8 @@
       <workItem from="1731612644419" duration="5000" />
       <workItem from="1731612667983" duration="28000" />
       <workItem from="1731613158496" duration="843000" />
+      <workItem from="1731665595298" duration="8349000" />
+      <workItem from="1731678668515" duration="6000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -98,7 +101,47 @@
       <option name="project" value="LOCAL" />
       <updated>1731611753058</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="fixing remote connection issue">
+      <option name="closed" value="true" />
+      <created>1731614391306</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1731614391306</updated>
+    </task>
+    <task id="LOCAL-00003" summary="Same sign up form as previously written, with testing">
+      <option name="closed" value="true" />
+      <created>1731667100033</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1731667100033</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Login form renders properly with tests">
+      <option name="closed" value="true" />
+      <created>1731667429238</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1731667429238</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Login form sends correct data onSubmit">
+      <option name="closed" value="true" />
+      <created>1731668257409</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1731668257409</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Login form sends correct data onSubmit">
+      <option name="closed" value="true" />
+      <created>1731676148479</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1731676148479</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -118,6 +161,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="dockerfile for backend" />
     <MESSAGE value="dockerfile for front end" />
-    <option name="LAST_COMMIT_MESSAGE" value="dockerfile for front end" />
+    <MESSAGE value="fixing remote connection issue" />
+    <MESSAGE value="Same sign up form as previously written, with testing" />
+    <MESSAGE value="Login form renders properly with tests" />
+    <MESSAGE value="Login form sends correct data onSubmit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Login form sends correct data onSubmit" />
   </component>
 </project>
