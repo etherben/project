@@ -11,7 +11,7 @@ function App() {
 
   const handleSignupSubmit = async (userSignupData) => {
     try {
-      const response = await fetch('http://localhost:8080/auth/signup', {
+      const response = await fetch('http://localhost:8080/users/create', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -34,7 +34,7 @@ function App() {
   };
   const handleLoginSubmit = async (userLoginData) =>{
     try {
-      const response = await fetch('http://localhost:8080/auth/login', {
+      const response = await fetch('http://localhost:8080/users/login', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',

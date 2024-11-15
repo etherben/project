@@ -62,7 +62,7 @@ public class UserControllerTest {
         User admin = new User("admin", "password", "adminemail");
         when(userService.loginUser(admin.getUsername(), admin.getPassword())).thenReturn(admin);
         //when
-        ResponseEntity<User> response = userController.loginUser("admin", "password");
+        ResponseEntity<User> response = userController.loginUser(admin);
 
         //then checks admin is there
         assertEquals(admin, response.getBody());
@@ -74,7 +74,7 @@ public class UserControllerTest {
         //given
         when(userService.loginUser(user.getUsername(), user.getPassword())).thenReturn(user);
         //when
-        ResponseEntity<User> response = userController.loginUser(user.getUsername(), user.getPassword());
+        ResponseEntity<User> response = userController.loginUser(user);
 
         assertEquals(user, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
