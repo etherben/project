@@ -70,6 +70,8 @@ risks of changing- delay in workflow -- following feedback from report will take
                    duplicate data? -- can be less resource intensive than creating multiple joins.
 
 
+11/11 - 18/11
+Sucessfully swapped over to nosql database, improved testing quality and file structure is significantly neater
 
 
 
