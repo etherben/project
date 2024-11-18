@@ -46,7 +46,7 @@ public class UserControllerTest {
     @Test
     public void testCreateUser(){
         //given (mocking the userService to return)
-       when(userService.createUser(user.getUsername(), user.getPassword(), user.getEmail())).thenReturn(user);
+       when(userService.createUser(user)).thenReturn(user);
 
        //when (send post request to create new user
         ResponseEntity<User> response = userController.createUser(user);
