@@ -11,30 +11,30 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
-import static org.mockito.Mockito.*;
-
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class UserServiceTest {
+
     @Autowired
     private UserService userService;
 
     @MockBean
-    private UserRepo userRepo; // Changed to userRepo
+    private UserRepo userRepo;
 
     private User user;
 
     @BeforeEach
     public void setUp() {
+        // Initialize mocks
         MockitoAnnotations.openMocks(this);
 
-
+        // Create test user
         user = new User();
         user.setUsername("test");
         user.setPassword("test123");
@@ -50,7 +50,7 @@ public class UserServiceTest {
         User createdUser = userService.createUser(user);
 
         // Then
-        assertNotNull(createdUser, "Created user should not be null");
+        assertNotNull(createdUser);
         assertEquals("test", createdUser.getUsername());
         assertEquals("test123", createdUser.getPassword());
         assertEquals("test@test.com", createdUser.getEmail());
@@ -76,15 +76,12 @@ public class UserServiceTest {
         List<User> users = userService.getUsers();
 
         // Then
-        assertNotNull(users, "Users list should not be null");
-        assertEquals(2, users.size(), "Users list should contain 2 users");
-
-        // Verify details of first user
+        assertNotNull(users);
+        assertEquals(2, users.size());
         assertEquals("test", users.get(0).getUsername());
         assertEquals("test123", users.get(0).getPassword());
         assertEquals("test@test.com", users.get(0).getEmail());
 
-        // Verify details of second user
         assertEquals("testUsername2", users.get(1).getUsername());
         assertEquals("testPassword2", users.get(1).getPassword());
         assertEquals("testEmail2", users.get(1).getEmail());
@@ -92,36 +89,16 @@ public class UserServiceTest {
         verify(userRepo, times(1)).findAll();
     }
 
-    /*
-    @Test
-    public void testLoginAdmin() {
-        // Given
-        when(userRepo.findByUsername("admin"))
-                .thenReturn(Optional.of(new User("admin", "password", "adminemail")));
-
-        // When
-        User admin = userService.loginUser("admin", "password");
-
-        // Then
-        assertNotNull(admin, "Admin login should return a user");
-        assertEquals("admin", admin.getUsername());
-        assertEquals("password", admin.getPassword());
-
-        verify(userRepo, times(1)).findByUsernameAndPassword("admin", "password");
-    }
-    */
-
     @Test
     public void testLoginUserSuccess() {
         // Given
-        when(userRepo.findByUsername("test"))
-                .thenReturn(Optional.of(user));
+        when(userRepo.findByUsername("test")).thenReturn(Optional.of(user));
 
         // When
         User loggedInUser = userService.loginUser("test", "test123");
 
         // Then
-        assertNotNull(loggedInUser, "User login should succeed with correct credentials");
+        assertNotNull(loggedInUser);
         assertEquals("test", loggedInUser.getUsername());
         assertEquals("test123", loggedInUser.getPassword());
 
@@ -131,14 +108,13 @@ public class UserServiceTest {
     @Test
     public void testLoginUserFail() {
         // Given
-        when(userRepo.findByUsername("test"))
-                .thenReturn(Optional.empty());
+        when(userRepo.findByUsername("test")).thenReturn(Optional.empty());
 
         // When
         User loggedInUser = userService.loginUser("test", "wrongPassword");
 
         // Then
-        assertNull(loggedInUser, "User login should fail with incorrect credentials");
+        assertNull(loggedInUser);
 
         verify(userRepo, times(1)).findByUsername("test");
     }
