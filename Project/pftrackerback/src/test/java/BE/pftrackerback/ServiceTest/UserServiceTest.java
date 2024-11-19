@@ -78,7 +78,7 @@ public class UserServiceTest {
         // Then
         assertNotNull(users);
         assertEquals(2, users.size());
-        assertEquals("test", users.get(0).getUsername());
+        assertEquals("test", users.getFirst().getUsername());
         assertEquals("test123", users.get(0).getPassword());
         assertEquals("test@test.com", users.get(0).getEmail());
 
