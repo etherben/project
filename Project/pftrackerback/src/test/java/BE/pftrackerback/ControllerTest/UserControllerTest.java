@@ -10,6 +10,7 @@ import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
@@ -20,17 +21,15 @@ import org.springframework.http.ResponseEntity;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
 public class UserControllerTest {
 
     User user;
-    @Autowired
 
     @MockBean
     private UserService userService;
 
-    @InjectMocks
+    @Autowired
     private UserController userController;
 
     @BeforeEach

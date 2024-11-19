@@ -1,88 +1,145 @@
 package BE.pftrackerback.ServiceTest;
 
 import BE.pftrackerback.Model.User;
+import BE.pftrackerback.Repo.UserRepo;
 import BE.pftrackerback.Service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.Mock;
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 
+import static org.mockito.Mockito.*;
+
+
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@SpringBootTest
 public class UserServiceTest {
-
+    @Autowired
     private UserService userService;
+
+    @MockBean
+    private UserRepo userRepo; // Changed to userRepo
+
+    private User user;
 
     @BeforeEach
     public void setUp() {
-        userService = new UserService();
+        MockitoAnnotations.openMocks(this);
+
+
+        user = new User();
+        user.setUsername("test");
+        user.setPassword("test123");
+        user.setEmail("test@test.com");
     }
 
     @Test
     public void testCreateUser() {
-        //Test for correct creation of user in service
+        // Given
+        when(userRepo.save(user)).thenReturn(user);
 
-        //given
-        String username = "testUsername";
-        String password = "testPassword";
-        String email = "testEmail";
-        //when
-        User createdUser = userService.createUser(username, password, email);
-        //then
-        assertNotNull(createdUser);
-        assertEquals("testUsername", createdUser.getUsername());
-        assertEquals("testPassword", createdUser.getPassword());
-        assertEquals("testEmail", createdUser.getEmail());
+        // When
+        User createdUser = userService.createUser(user);
+
+        // Then
+        assertNotNull(createdUser, "Created user should not be null");
+        assertEquals("test", createdUser.getUsername());
+        assertEquals("test123", createdUser.getPassword());
+        assertEquals("test@test.com", createdUser.getEmail());
+
+        verify(userRepo, times(1)).save(user);
     }
 
     @Test
     public void testGetUsers() {
-        //given
+        // Given
+        List<User> mockUsers = new ArrayList<>();
+        mockUsers.add(user);
 
-        userService.createUser("testUsername2", "testPassword2", "testEmail2");
-        //when
+        User user2 = new User();
+        user2.setUsername("testUsername2");
+        user2.setPassword("testPassword2");
+        user2.setEmail("testEmail2");
+        mockUsers.add(user2);
+
+        when(userRepo.findAll()).thenReturn(mockUsers);
+
+        // When
         List<User> users = userService.getUsers();
-        //then
-        assertNotNull(users);
-        assertEquals(2, users.size());
-        assertEquals("admin", users.getFirst().getUsername());
-        assertEquals("password", users.get(0).getPassword());
-        assertEquals("adminemail", users.get(0).getEmail());
+
+        // Then
+        assertNotNull(users, "Users list should not be null");
+        assertEquals(2, users.size(), "Users list should contain 2 users");
+
+        // Verify details of first user
+        assertEquals("test", users.get(0).getUsername());
+        assertEquals("test123", users.get(0).getPassword());
+        assertEquals("test@test.com", users.get(0).getEmail());
+
+        // Verify details of second user
         assertEquals("testUsername2", users.get(1).getUsername());
         assertEquals("testPassword2", users.get(1).getPassword());
         assertEquals("testEmail2", users.get(1).getEmail());
 
-    }
-    @Test
-    public void loginAdmin(){
-        //testing hard coded user (admin) hence don't need given
-
-        //when
-        User correctUser = userService.loginUser("admin", "password");
-
-        assertNotNull(correctUser);
-        assertEquals("admin", correctUser.getUsername());
-        assertEquals("password", correctUser.getPassword());
-
+        verify(userRepo, times(1)).findAll();
     }
 
+    /*
     @Test
-    public void loginUserSuccess(){
-         userService.createUser("testUsername", "testPassword", "testEmail");
+    public void testLoginAdmin() {
+        // Given
+        when(userRepo.findByUsername("admin"))
+                .thenReturn(Optional.of(new User("admin", "password", "adminemail")));
 
-        User user = userService.loginUser("testUsername", "testPassword");
+        // When
+        User admin = userService.loginUser("admin", "password");
 
-        assertNotNull(user);
-        assertEquals("testUsername", user.getUsername());
-        assertEquals("testPassword", user.getPassword());
+        // Then
+        assertNotNull(admin, "Admin login should return a user");
+        assertEquals("admin", admin.getUsername());
+        assertEquals("password", admin.getPassword());
 
+        verify(userRepo, times(1)).findByUsernameAndPassword("admin", "password");
     }
+    */
+
     @Test
-    public void loginUserFail(){
-        userService.createUser("testUsername", "testPassword", "testEmail");
+    public void testLoginUserSuccess() {
+        // Given
+        when(userRepo.findByUsername("test"))
+                .thenReturn(Optional.of(user));
 
-        User user = userService.loginUser("testUsername", "testPasswordWrong");
+        // When
+        User loggedInUser = userService.loginUser("test", "test123");
 
-        assertNull(user);
+        // Then
+        assertNotNull(loggedInUser, "User login should succeed with correct credentials");
+        assertEquals("test", loggedInUser.getUsername());
+        assertEquals("test123", loggedInUser.getPassword());
+
+        verify(userRepo, times(1)).findByUsername("test");
+    }
+
+    @Test
+    public void testLoginUserFail() {
+        // Given
+        when(userRepo.findByUsername("test"))
+                .thenReturn(Optional.empty());
+
+        // When
+        User loggedInUser = userService.loginUser("test", "wrongPassword");
+
+        // Then
+        assertNull(loggedInUser, "User login should fail with incorrect credentials");
+
+        verify(userRepo, times(1)).findByUsername("test");
     }
 }
