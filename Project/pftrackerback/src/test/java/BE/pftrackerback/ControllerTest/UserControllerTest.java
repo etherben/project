@@ -1,84 +1,74 @@
 package BE.pftrackerback.ControllerTest;
 
-
 import BE.pftrackerback.Controllers.UserController;
 import BE.pftrackerback.Model.User;
 import BE.pftrackerback.Service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
-
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.Mockito.when;
 
-@SpringBootTest
-@AutoConfigureMockMvc
+@WebMvcTest(UserController.class)
 public class UserControllerTest {
 
-    User user;
-    @Autowired
+    private User user;
 
     @MockBean
     private UserService userService;
 
-    @InjectMocks
+    @Autowired
     private UserController userController;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        user = new User();
-
-        user.setUsername("test");
-        user.setPassword("test123");
-        user.setEmail("test@test.com");
+        user = new User("test", "test123", "test@test.com");
     }
 
     @Test
-    public void testCreateUser(){
-        //given (mocking the userService to return)
-       when(userService.createUser(user.getUsername(), user.getPassword(), user.getEmail())).thenReturn(user);
+    public void testCreateUser() {
+        // Given
+        when(userService.createUser(user)).thenReturn(user);
 
-       //when (send post request to create new user
+        // When
         ResponseEntity<User> response = userController.createUser(user);
 
-        //Then
-        assertEquals(user, response.getBody()); // Check if the returned user matches the input user
-        assertEquals(HttpStatus.CREATED, response.getStatusCode()); // Check if the status is 201 Created
-
+        // Then
+        assertEquals(user, response.getBody());
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
     }
 
     @Test
-    public void testLoginAdmin(){
+    public void testLoginAdmin() {
+        // Given
         User admin = new User("admin", "password", "adminemail");
         when(userService.loginUser(admin.getUsername(), admin.getPassword())).thenReturn(admin);
-        //when
+
+        // When
         ResponseEntity<User> response = userController.loginUser(admin);
 
-        //then checks admin is there
+        // Then
         assertEquals(admin, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
     @Test
-    public void testLoginUser(){
-        //given
+    public void testLoginUser() {
+        // Given
         when(userService.loginUser(user.getUsername(), user.getPassword())).thenReturn(user);
-        //when
+
+        // When
         ResponseEntity<User> response = userController.loginUser(user);
 
+        // Then
         assertEquals(user, response.getBody());
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
-
 }
-

@@ -20,6 +20,19 @@ services:
     networks:
       - app-network
 
+  mongodb:
+    image: mongo:latest
+    ports:
+      - "27017:27017"
+    volumes:
+      - mongo-data:/data/db  # This is where data is stored persistently`
+    networks:
+      - app-network
+
+volumes:
+  mongo-data:
+    driver: local
+
 networks:
   app-network:  # Define the network so that both services can communicate
     driver: bridge
