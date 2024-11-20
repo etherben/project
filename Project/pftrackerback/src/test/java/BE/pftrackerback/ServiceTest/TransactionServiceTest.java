@@ -190,8 +190,12 @@ public class TransactionServiceTest {
         assertNotNull(lines);
         assertTrue(lines.size() > 0, "File should contain at least one line");
 
-        String expectedLine = "user1,10/10/2024,100.0";
+        String expectedLine = "id1,10/10/2024,100.0";
         assertEquals(expectedLine, lines.get(0));
+        expectedLine = "id2,11/11/2024,200.0";
+        assertEquals(expectedLine, lines.get(1));
+        expectedLine = "id3,12/12/2024,300.0";
+        assertEquals(expectedLine, lines.get(2));
     }
 }
 
