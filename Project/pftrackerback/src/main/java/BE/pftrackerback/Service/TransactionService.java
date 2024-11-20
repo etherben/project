@@ -70,6 +70,7 @@ public class TransactionService {
             String line;
             while ((line = readFile.readLine()) != null) {
                 lines.add(line); //add each line to list
+                transactions.add(parseTransaction(line));
             }
         }
         return lines;
