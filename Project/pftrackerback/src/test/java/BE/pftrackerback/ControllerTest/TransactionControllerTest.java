@@ -13,7 +13,9 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -122,5 +124,24 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Transaction amount must be greater than 0", response.getBody());
 
+    }
+
+    @Test
+    public void testGetAllTransactions() {
+        // Given
+        List<Transaction> transactionList = new ArrayList<>();
+        transactionList.add(transaction);
+        transactionList.add(transaction2);
+        when(transactionService.getTransactions()).thenReturn(transactionList);
+
+        // When
+        ResponseEntity<List<Transaction>> response = transactionController.getAllTransactions();
+
+        // Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertNotNull(response.getBody());
+        assertEquals(2, response.getBody().size());
+        assertEquals(transaction, response.getBody().get(0));
+        assertEquals(transaction2, response.getBody().get(1));
     }
 }
