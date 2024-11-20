@@ -15,17 +15,18 @@ public class TransactionService {
     public List<Transaction> getTransactions() {
         return transactions;
     }
+
     public Transaction addTransaction(Transaction transaction) {
+
         if (transaction.getId() == null) {
             throw new IllegalArgumentException("Transaction ID cannot be null");
-        }
-        if (transaction.getTransactionDate() == null) {
+        } else if (transaction.getTransactionDate() == null){
             throw new IllegalArgumentException("Transaction date cannot be null");
-        }
-        if (transaction.getAmount() <= 0) {
+        } else if (transaction.getAmount() <= 0){
             throw new IllegalArgumentException("Transaction amount must be greater than 0");
+        }else{
+            transactions.add(transaction);
+            return transaction;
         }
-        transactions.add(transaction);
-        return transaction;
     }
 }

@@ -20,9 +20,12 @@ public class TransactionController {
     public ResponseEntity<String> addTransaction(@RequestBody Transaction transaction) {
         try {
             transactionService.addTransaction(transaction);
-            return ResponseEntity.status(HttpStatus.CREATED).body("Transaction added successfully");
-        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.CREATED).body("Created");
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        }catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add transaction");
         }
+
     }
 }

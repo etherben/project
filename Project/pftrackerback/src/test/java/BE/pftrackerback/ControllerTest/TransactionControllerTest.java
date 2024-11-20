@@ -15,8 +15,7 @@ import org.springframework.http.ResponseEntity;
 
 import java.util.Date;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
 
@@ -25,6 +24,7 @@ public class TransactionControllerTest {
 
     private Transaction transaction;
     private Transaction transaction2;
+    private Transaction invalidTransaction;
 
     @Autowired
     private TransactionController transactionController;
@@ -48,6 +48,8 @@ public class TransactionControllerTest {
         transaction2.setAmount(50.0);
 
 
+
+
     }
     @Test
     public void testAddTransaction() {
@@ -59,7 +61,66 @@ public class TransactionControllerTest {
 
         // Then
         assertNotNull(response.getBody());
-        assertEquals("Transaction added successfully", response.getBody());
+        assertEquals("Created", response.getBody());
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
+    }
+
+    @Test
+    public void testAddTransactionWithInvalidId() {
+        invalidTransaction = new Transaction();
+        invalidTransaction.setId(null); // Invalid ID
+        invalidTransaction.setTransactionDate(new Date());
+        invalidTransaction.setAmount(100.0);
+
+        // Given Mock the TransactionService to throw an IllegalArgumentException
+        when(transactionService.addTransaction(any(Transaction.class)))
+                .thenThrow(new IllegalArgumentException("Transaction ID cannot be null"));
+
+        // When
+        ResponseEntity<String> response = transactionController.addTransaction(invalidTransaction);
+
+        // Then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Transaction ID cannot be null", response.getBody());
+    }
+    @Test
+    public void testAddTransactionWithInvalidDate() {
+        // Given
+        invalidTransaction = new Transaction();
+        invalidTransaction.setId("test123");
+        invalidTransaction.setTransactionDate(null); // Invalid date
+        invalidTransaction.setAmount(100.0);
+
+
+        when(transactionService.addTransaction(any(Transaction.class)))
+                .thenThrow(new IllegalArgumentException("Transaction date cannot be null"));
+
+        // When
+        ResponseEntity<String> response = transactionController.addTransaction(invalidTransaction);
+
+        // Then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Transaction date cannot be null", response.getBody());
+    }
+
+    @Test
+    public void testAddTransactionWithInvalidAmount() {
+        // Given
+        invalidTransaction = new Transaction();
+        invalidTransaction.setId("test123");
+        invalidTransaction.setTransactionDate(new Date());
+        invalidTransaction.setAmount(-10.0); // Invalid amount
+
+
+        when(transactionService.addTransaction(any(Transaction.class)))
+                .thenThrow(new IllegalArgumentException("Transaction amount must be greater than 0"));
+
+        // When
+        ResponseEntity<String> response = transactionController.addTransaction(invalidTransaction);
+
+        // Then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Transaction amount must be greater than 0", response.getBody());
+
     }
 }
