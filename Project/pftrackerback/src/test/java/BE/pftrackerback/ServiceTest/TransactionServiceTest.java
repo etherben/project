@@ -7,7 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.util.ResourceUtils;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
@@ -174,6 +178,20 @@ public class TransactionServiceTest {
         assertEquals(10, transaction.getTransactionDate().getMonth()); // Correctly parsed Details put into transaction
         assertEquals(15, transaction.getTransactionDate().getDate());
     }
+    @Test
+    public void testParseFile() throws IOException {
+        //Given Use mock file for testing in test/resources
+        File file = ResourceUtils.getFile("classpath:mockTransactionsFile.csv");
 
+        //When
+        List<String> lines = transactionService.parseFile(file);
 
+        //Then
+        assertNotNull(lines);
+        assertTrue(lines.size() > 0, "File should contain at least one line");
+
+        String expectedLine = "user1,10/10/2024,100.0";
+        assertEquals(expectedLine, lines.get(0));
+    }
 }
+

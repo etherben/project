@@ -3,6 +3,7 @@ package BE.pftrackerback.Service;
 import BE.pftrackerback.Model.Transaction;
 import org.springframework.stereotype.Service;
 
+import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -61,5 +62,16 @@ public class TransactionService {
         transaction.setAmount(amount);
 
         return transaction;
+    }
+
+    public List<String> parseFile(File file) throws IOException {
+        List<String> lines = new ArrayList<>();
+        try (BufferedReader readFile = new BufferedReader(new FileReader(file))) {
+            String line;
+            while ((line = readFile.readLine()) != null) {
+                lines.add(line); //add each line to list
+            }
+        }
+        return lines;
     }
 }
