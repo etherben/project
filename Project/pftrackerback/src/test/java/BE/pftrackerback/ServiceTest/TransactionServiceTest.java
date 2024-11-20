@@ -145,4 +145,20 @@ public class TransactionServiceTest {
         assertEquals(2024, ParsedDate.getYear() + 1900); //needed as want it stored correctly
 
     }
+    @Test
+    public void testInvalidDateParsing() {
+        // Given
+        String dateStr = "31/02/2024"; // Invalid date
+        // When & then
+        assertThrows(IllegalArgumentException.class, () -> transactionService.parseDate(dateStr));
+    }
+    @Test
+    public void testInvalidDateFormat() {
+        // Given
+        String dateStr = "2024-05-15";
+
+        // When & then
+        assertThrows(IllegalArgumentException.class, () -> transactionService.parseDate(dateStr));
+    }
+
 }
