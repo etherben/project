@@ -8,6 +8,7 @@ import org.mockito.Mock;
 
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.text.ParseException;
 import java.util.Date;
 import java.util.List;
 
@@ -128,5 +129,20 @@ public class TransactionServiceTest {
         // Then
         assertNotNull(transactions, "Transactions list should not be null");
         assertTrue(transactions.isEmpty(), "Transactions list should be empty when no transactions are added");
+    }
+
+    @Test
+    public void testDateParsing() throws ParseException {
+        //Given
+        String dateStr = "15/11/2024";
+
+        //When
+        Date ParsedDate = transactionService.parseDate(dateStr);
+
+        //Then
+        assertEquals(15, ParsedDate.getDate());
+        assertEquals(10, ParsedDate.getMonth()); //Keep in mind jan is month 0. Dec is month 11
+        assertEquals(2024, ParsedDate.getYear() + 1900); //needed as want it stored correctly
+
     }
 }

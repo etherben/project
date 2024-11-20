@@ -113,7 +113,6 @@ public class TransactionControllerTest {
         invalidTransaction.setTransactionDate(new Date());
         invalidTransaction.setAmount(-10.0); // Invalid amount
 
-
         when(transactionService.addTransaction(any(Transaction.class)))
                 .thenThrow(new IllegalArgumentException("Transaction amount must be greater than 0"));
 
