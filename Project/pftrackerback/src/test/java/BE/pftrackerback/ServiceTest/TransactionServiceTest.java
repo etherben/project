@@ -155,10 +155,25 @@ public class TransactionServiceTest {
     @Test
     public void testInvalidDateFormat() {
         // Given
-        String dateStr = "2024-05-15";
-
+        String dateStr = "2024-11-15";
         // When & then
         assertThrows(IllegalArgumentException.class, () -> transactionService.parseDate(dateStr));
     }
+    @Test
+    public void testParseTransaction() {
+        // Given (what each line will be parsed into)
+        String line = "user1,15/11/2024,100.0";
+
+        // When
+        Transaction transaction = transactionService.parseTransaction(line);
+
+        // Then
+        assertEquals("user1", transaction.getId());
+        assertEquals(100.0, transaction.getAmount());
+        assertEquals(2024, transaction.getTransactionDate().getYear() + 1900);
+        assertEquals(10, transaction.getTransactionDate().getMonth()); // Correctly parsed Details put into transaction
+        assertEquals(15, transaction.getTransactionDate().getDate());
+    }
+
 
 }

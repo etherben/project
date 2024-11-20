@@ -40,4 +40,26 @@ public class TransactionService {
         }
 
     }
+
+    public Transaction parseTransaction(String line) {
+        String[] parts = line.split(",");  // should spit into 3 parts, splits at commas
+        if (parts.length != 3) {
+            throw new IllegalArgumentException("Invalid transaction format");
+        }
+
+        String id = parts[0].trim();  // cuts off each part and places into respective form
+        String dateStr = parts[1].trim();
+        double amount = Double.parseDouble(parts[2].trim());
+
+
+        Date transactionDate = parseDate(dateStr); // parse date to correct format
+
+        // Create and return the Transaction object
+        Transaction transaction = new Transaction();
+        transaction.setId(id);
+        transaction.setTransactionDate(transactionDate);
+        transaction.setAmount(amount);
+
+        return transaction;
+    }
 }
