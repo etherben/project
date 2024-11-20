@@ -120,4 +120,13 @@ public class TransactionServiceTest {
                 () -> transactionService.addTransaction(transaction),
                 "Expected  to throw an IllegalArgument for negative amount");
     }
+    @Test
+    public void testGetTransactionsEmpty() {
+        // When
+        List<Transaction> transactions = transactionService.getTransactions();
+
+        // Then
+        assertNotNull(transactions, "Transactions list should not be null");
+        assertTrue(transactions.isEmpty(), "Transactions list should be empty when no transactions are added");
+    }
 }
