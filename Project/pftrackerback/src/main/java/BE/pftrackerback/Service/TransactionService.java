@@ -10,6 +10,7 @@ import java.util.List;
 public class TransactionService {
 
     private List<Transaction> transactions = new ArrayList<>();
+
     public List<Transaction> getTransactions() {
         return transactions;
     }
