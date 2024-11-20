@@ -86,10 +86,38 @@ public class TransactionServiceTest {
 
         // When
         transactionService.addTransaction(transaction);
-        transactionService.addTransaction(transaction); // Add the same transaction
+        transactionService.addTransaction(transaction); // Adding the same transaction
 
         // Then
         List<Transaction> transactions = transactionService.getTransactions();
         assertEquals(2, transactions.size()); // Allow duplicates as could be some in transactions
+    }
+
+    @Test
+    public void testAddTransactionWithNullFields() {
+        // Given
+        Transaction transaction = new Transaction();
+        transaction.setId(null); // Null user ID
+        transaction.setTransactionDate(null); // Null date
+        transaction.setAmount(0);
+
+        // When & Then
+        assertThrows(IllegalArgumentException.class,
+                () -> transactionService.addTransaction(transaction),
+                "Expected to throw an IllegalArgument for null fields");
+    }
+
+    @Test
+    public void testAddTransactionWithNegativeAmount() {
+        // Given
+        Transaction transaction = new Transaction();
+        transaction.setId("user1");
+        transaction.setTransactionDate(new Date());
+        transaction.setAmount(-50.0); // Invalid negative amount
+
+        // When & Then
+        assertThrows(IllegalArgumentException.class,
+                () -> transactionService.addTransaction(transaction),
+                "Expected  to throw an IllegalArgument for negative amount");
     }
 }
