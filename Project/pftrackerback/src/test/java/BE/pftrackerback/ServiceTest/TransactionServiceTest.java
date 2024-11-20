@@ -76,4 +76,20 @@ public class TransactionServiceTest {
         assertNotNull(transactions); // Ensure list is not null
         assertTrue(transactions.isEmpty()); // But is empty
     }
+    @Test
+    public void testAddDuplicateTransaction() {
+        // Given
+        Transaction transaction = new Transaction();
+        transaction.setId("user1");
+        transaction.setTransactionDate(new Date());
+        transaction.setAmount(100.0);
+
+        // When
+        transactionService.addTransaction(transaction);
+        transactionService.addTransaction(transaction); // Add the same transaction
+
+        // Then
+        List<Transaction> transactions = transactionService.getTransactions();
+        assertEquals(2, transactions.size()); // Allow duplicates as could be some in transactions
+    }
 }
