@@ -14,7 +14,7 @@ import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 
 import java.io.IOException;
-import java.text.ParseException;
+
 import java.util.Date;
 import java.util.List;
 
@@ -47,7 +47,7 @@ public class TransactionServiceTest {
         List<Transaction> transactions = transactionService.getTransactions();
         assertNotNull(transactions);
         assertEquals(1, transactions.size());
-        assertEquals("user1", transactions.get(0).getId());
+        assertEquals("user1", transactions.getFirst().getId());
     }
 
     @Test

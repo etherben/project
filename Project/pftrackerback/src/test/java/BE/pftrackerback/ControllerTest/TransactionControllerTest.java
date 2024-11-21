@@ -40,9 +40,6 @@ public class TransactionControllerTest {
     @Autowired
     private TransactionController transactionController;
 
-    @Autowired
-    private MockMvc mockMvc;
-
     @MockBean
     private TransactionService transactionService;
 
