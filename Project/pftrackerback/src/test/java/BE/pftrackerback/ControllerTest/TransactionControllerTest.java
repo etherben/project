@@ -11,14 +11,26 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.mock.web.MockMultipartFile;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.util.ResourceUtils;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
+import static org.springframework.test.web.client.match.MockRestRequestMatchers.content;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.multipart;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 
 @WebMvcTest(TransactionController.class)
@@ -30,6 +42,9 @@ public class TransactionControllerTest {
 
     @Autowired
     private TransactionController transactionController;
+
+    @Autowired
+    private MockMvc mockMvc;
 
     @MockBean
     private TransactionService transactionService;
@@ -143,4 +158,28 @@ public class TransactionControllerTest {
         assertEquals(transaction, response.getBody().get(0));
         assertEquals(transaction2, response.getBody().get(1));
     }
+    @Test
+    public void testAddBulkTransaction_Success() throws Exception {
+        //Given
+        MockMultipartFile file = new MockMultipartFile(            //had to change to multipartfile
+                "file", // The name of the file field
+                "mockTransactionsFile.csv", // Original filename
+                "text/csv", // File type
+                new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
+        );
+        List<Transaction> mockResponse = new ArrayList<>();
+        mockResponse.add(transaction);
+        mockResponse.add(transaction2);
+        when(transactionService.parseFile(any(MultipartFile.class))).thenReturn(mockResponse);
+
+        //when
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+
+        //then
+        assertEquals(HttpStatus.CREATED, response.getStatusCode());
+        assertEquals("Created", response.getBody());
+        assertNotNull(response.getBody());
+
+    }
+
 }

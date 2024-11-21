@@ -7,9 +7,11 @@ import org.junit.jupiter.api.Test;
 import org.mockito.Mock;
 
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.text.ParseException;
@@ -181,21 +183,21 @@ public class TransactionServiceTest {
     @Test
     public void testParseFile() throws IOException {
         //Given Use mock file for testing in test/resources
-        File file = ResourceUtils.getFile("classpath:mockTransactionsFile.csv");
-
+        MockMultipartFile file = new MockMultipartFile(            //had to change to multipartfile
+                "file", // The name of the file field
+                "mockTransactionsFile.csv", //filename
+                "text/csv", // File type
+                new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
+        );
         //When
-        List<String> lines = transactionService.parseFile(file);
+        List<Transaction> lines = transactionService.parseFile(file);
 
         //Then
         assertNotNull(lines);
-        assertTrue(lines.size() > 0, "File should contain at least one line");
-
-        String expectedLine = "id1,10/10/2024,100.0";
-        assertEquals(expectedLine, lines.get(0));
-        expectedLine = "id2,11/11/2024,200.0";
-        assertEquals(expectedLine, lines.get(1));
-        expectedLine = "id3,12/12/2024,300.0";
-        assertEquals(expectedLine, lines.get(2));
+        assertFalse(lines.isEmpty(), "File should contain at least one line");
+        assertEquals("id1", lines.get(0).getId());
+        assertEquals("id2", lines.get(1).getId());
+        assertEquals("id3", lines.get(2).getId());
 
 
     }

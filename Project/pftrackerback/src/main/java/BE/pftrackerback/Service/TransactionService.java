@@ -2,6 +2,7 @@ package BE.pftrackerback.Service;
 
 import BE.pftrackerback.Model.Transaction;
 import org.springframework.stereotype.Service;
+import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
@@ -64,13 +65,13 @@ public class TransactionService {
         return transaction;
     }
 
-    public List<String> parseFile(File file) throws IOException {
-        List<String> lines = new ArrayList<>();
-        try (BufferedReader readFile = new BufferedReader(new FileReader(file))) {
+    public List<Transaction> parseFile(MultipartFile file) throws IOException {
+        List<Transaction> lines = new ArrayList<>();
+        try (BufferedReader readFile = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             String line;
             while ((line = readFile.readLine()) != null) {
-                lines.add(line); //add each line to list
-                transactions.add(parseTransaction(line));
+                transactions.add(parseTransaction(line)); // adds each line as transaction to main list
+                lines.add(transactions.getLast()); // adds last created transaction to its own list to send back to controller
             }
         }
         return lines;
