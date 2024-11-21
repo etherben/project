@@ -10,9 +10,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 
-import java.io.File;
+
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
+
 import java.io.IOException;
 import java.text.ParseException;
 import java.util.Date;
@@ -24,7 +24,7 @@ import static org.junit.jupiter.api.Assertions.*;
 public class TransactionServiceTest {
     @Mock
     private TransactionService transactionService;
-    private Transaction transaction;
+
 
     @BeforeEach
     public void setUp() {
@@ -138,7 +138,7 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void testDateParsing() throws ParseException {
+    public void testDateParsing() {
         //Given
         String dateStr = "15/11/2024";
 
