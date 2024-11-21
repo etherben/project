@@ -190,7 +190,7 @@ public class TransactionControllerTest {
         ResponseEntity<String> response = transactionController.addBulkTransaction(file);
 
         // Then
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Invalid file format. Not CSV", response.getBody());
     }
 
