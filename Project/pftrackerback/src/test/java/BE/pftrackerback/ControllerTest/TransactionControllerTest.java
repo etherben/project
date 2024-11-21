@@ -14,7 +14,7 @@ import org.springframework.http.HttpStatus;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.mock.web.MockMultipartFile;
-import org.springframework.test.web.servlet.MockMvc;
+
 import org.springframework.util.ResourceUtils;
 import org.springframework.web.multipart.MultipartFile;
 
