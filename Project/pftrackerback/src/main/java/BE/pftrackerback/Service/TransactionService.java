@@ -5,6 +5,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -32,7 +33,7 @@ public class TransactionService {
         }
     }
 
-    public Date parseDate(String dateStr) {
+    public Date parseDate(String dateStr) throws IllegalArgumentException{
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);  // Disallow non-existent date parsing such as 32/13/2024
         try{
@@ -43,7 +44,7 @@ public class TransactionService {
 
     }
 
-    public Transaction parseTransaction(String line) {
+    public Transaction parseTransaction(String line) throws IllegalArgumentException{
         String[] parts = line.split(",");  // should spit into 3 parts, splits at commas
         if (parts.length != 3) {
             throw new IllegalArgumentException("Invalid transaction format");
@@ -65,7 +66,10 @@ public class TransactionService {
         return transaction;
     }
 
-    public List<Transaction> parseFile(MultipartFile file) throws IOException {
+    public List<Transaction> parseFile(MultipartFile file) throws IOException, IllegalArgumentException{
+        if (!file.getContentType().equals("text/csv")) {
+            throw new IllegalArgumentException("Invalid file format. Not CSV");  //check filetype before processing
+        }
         List<Transaction> lines = new ArrayList<>();
         try (BufferedReader readFile = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             String line;
@@ -73,6 +77,8 @@ public class TransactionService {
                 transactions.add(parseTransaction(line)); // adds each line as transaction to main list
                 lines.add(transactions.getLast()); // adds last created transaction to its own list to send back to controller
             }
+        }catch (IOException e){
+            throw new IllegalArgumentException("File could not be read");
         }
         return lines;
     }

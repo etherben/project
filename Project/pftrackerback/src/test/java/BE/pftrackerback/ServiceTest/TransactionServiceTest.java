@@ -13,6 +13,7 @@ import org.springframework.util.ResourceUtils;
 
 import java.io.FileInputStream;
 
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 import java.util.Date;
@@ -125,7 +126,7 @@ public class TransactionServiceTest {
         // When & Then
         assertThrows(IllegalArgumentException.class,
                 () -> transactionService.addTransaction(transaction),
-                "Expected  to throw an IllegalArgument for negative amount");
+                "Expected to throw an IllegalArgument for negative amount");
     }
     @Test
     public void testGetTransactionsEmpty() {
@@ -198,8 +199,18 @@ public class TransactionServiceTest {
         assertEquals("id1", lines.get(0).getId());
         assertEquals("id2", lines.get(1).getId());
         assertEquals("id3", lines.get(2).getId());
+    }
 
+    @Test
+    public void testParseFileFormatFail() throws IOException {
+        MockMultipartFile file = new MockMultipartFile(
+                "file", // The name of the file field
+                "mockTransactionsFile.txt", // Invalid file extension
+                "text/plain", // File type (not CSV)
+                new FileInputStream("src/test/resources/mockTransactionsFile.txt") // File content
+        );
 
+        assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file), "Invalid file format. Not CSV");
     }
 }
 

@@ -153,7 +153,7 @@ public class TransactionControllerTest {
         assertEquals(transaction2, response.getBody().get(1));
     }
     @Test
-    public void testAddBulkTransaction_Success() throws Exception {
+    public void testAddBulkTransactionSuccess() throws Exception {
         //Given
         MockMultipartFile file = new MockMultipartFile(            //had to change to multipartfile
                 "file", // The name of the file field
@@ -173,7 +173,25 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
         assertEquals("Created", response.getBody());
         assertNotNull(response.getBody());
+    }
 
+    @Test
+    public void testAddBulkTransactionInvalidFileType() throws Exception {
+        // Given (txt file)
+        MockMultipartFile file = new MockMultipartFile(
+                "file",
+                "invalidFile.txt",
+                "text/plain",
+                "Some text content".getBytes() //rand content
+        );
+        when(transactionService.parseFile(any(MultipartFile.class))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
+
+        // When
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+
+        // Then
+        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+        assertEquals("Invalid file format. Not CSV", response.getBody());
     }
 
 }
