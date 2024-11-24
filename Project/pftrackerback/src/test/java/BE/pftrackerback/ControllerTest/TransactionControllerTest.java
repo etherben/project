@@ -161,13 +161,13 @@ public class TransactionControllerTest {
                 "text/csv", // File type
                 new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
         );
+        String userId = "userId123";
         List<Transaction> mockResponse = new ArrayList<>();
         mockResponse.add(transaction);
         mockResponse.add(transaction2);
-        when(transactionService.parseFile(any(MultipartFile.class))).thenReturn(mockResponse);
-
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenReturn(mockResponse); //eq matches arguement rather than passing raw value
         //when
-        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
 
         //then
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -184,10 +184,11 @@ public class TransactionControllerTest {
                 "text/plain",
                 "Some text content".getBytes() //rand content
         );
-        when(transactionService.parseFile(any(MultipartFile.class))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
+        String userId = "userId123";
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
 
         // When
-        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
 
         // Then
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());

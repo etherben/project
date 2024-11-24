@@ -66,7 +66,7 @@ public class TransactionService {
         return transaction;
     }
 
-    public List<Transaction> parseFile(MultipartFile file) throws IOException, IllegalArgumentException{
+    public List<Transaction> parseFile(MultipartFile file, String userId) throws IOException, IllegalArgumentException{
         if (!file.getContentType().equals("text/csv")) {
             throw new IllegalArgumentException("Invalid file format. Not CSV");  //check filetype before processing
         }
@@ -74,7 +74,9 @@ public class TransactionService {
         try (BufferedReader readFile = new BufferedReader(new InputStreamReader(file.getInputStream()))) {
             String line;
             while ((line = readFile.readLine()) != null) {
-                transactions.add(parseTransaction(line)); // adds each line as transaction to main list
+                Transaction currentTransaction  = parseTransaction(line);
+                currentTransaction.setUserId(userId); // sets user id for each transaction that came with file
+                transactions.add(currentTransaction);
                 lines.add(transactions.getLast()); // adds last created transaction to its own list to send back to controller
             }
         }catch (IOException e){

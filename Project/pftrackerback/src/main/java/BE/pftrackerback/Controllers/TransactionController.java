@@ -31,10 +31,12 @@ public class TransactionController {
         }
     }
     @PostMapping("/bulk")
-    public ResponseEntity<String> addBulkTransaction(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> addBulkTransaction(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("userId") String userId) {
         try {
             // Pass the file to the service for processing
-            transactionService.parseFile(file);
+            transactionService.parseFile(file, userId);
             return ResponseEntity.status(HttpStatus.CREATED).body("Created");
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing file: " + e.getMessage());

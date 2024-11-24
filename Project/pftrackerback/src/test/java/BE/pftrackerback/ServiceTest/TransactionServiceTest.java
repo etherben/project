@@ -186,8 +186,9 @@ public class TransactionServiceTest {
                 "text/csv", // File type
                 new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
         );
+        String userId = "userId123";
         //When
-        List<Transaction> lines = transactionService.parseFile(file);
+        List<Transaction> lines = transactionService.parseFile(file, userId);
 
         //Then
         assertNotNull(lines);
@@ -205,8 +206,9 @@ public class TransactionServiceTest {
                 "text/plain", // File type (not CSV)
                 new FileInputStream("src/test/resources/mockTransactionsFile.txt") // File content
         );
+        String userId = "userId123";
 
-        assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file), "Invalid file format. Not CSV");
+        assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file, userId), "Invalid file format. Not CSV");
     }
 }
 
