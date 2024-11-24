@@ -1,6 +1,8 @@
 package BE.pftrackerback.Service;
 
 import BE.pftrackerback.Model.Transaction;
+import BE.pftrackerback.Repo.TransactionRepo;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -16,12 +18,15 @@ public class TransactionService {
 
     private List<Transaction> transactions = new ArrayList<>();
 
+    @Autowired
+    private TransactionRepo transactionRepo;
+
     public List<Transaction> getTransactions() {
         return transactions;
     }
 
     public Transaction addTransaction(Transaction transaction) {
-        if (transaction.getId() == null) {
+        if (transaction.getUserId() == null) {
             throw new IllegalArgumentException("Transaction ID cannot be null");
         } else if (transaction.getTransactionDate() == null){
             throw new IllegalArgumentException("Transaction date cannot be null");
@@ -46,20 +51,19 @@ public class TransactionService {
 
     public Transaction parseTransaction(String line) throws IllegalArgumentException{
         String[] parts = line.split(",");  // should spit into 3 parts, splits at commas
-        if (parts.length != 3) {
+        if (parts.length != 2) {
             throw new IllegalArgumentException("Invalid transaction format");
         }
 
-        String id = parts[0].trim();  // cuts off each part and places into respective form
-        String dateStr = parts[1].trim();
-        double amount = Double.parseDouble(parts[2].trim());
+
+        String dateStr = parts[0].trim();
+        double amount = Double.parseDouble(parts[1].trim());
 
 
         Date transactionDate = parseDate(dateStr); // parse date to correct format
 
         // Create and return the Transaction object
         Transaction transaction = new Transaction();
-        transaction.setId(id);
         transaction.setTransactionDate(transactionDate);
         transaction.setAmount(amount);
 
@@ -83,5 +87,14 @@ public class TransactionService {
             throw new IllegalArgumentException("File could not be read");
         }
         return lines;
+    }
+
+    public List<Transaction> persistTransaction(){
+        //saves the list of transactions to hte transaction repo
+        try {
+           return transactionRepo.saveAll(transactions);
+        } catch(Exception e) {
+            throw new IllegalArgumentException("Transaction could not be saved");
+        }
     }
 }

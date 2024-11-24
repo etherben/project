@@ -1,30 +1,50 @@
 package BE.pftrackerback.ServiceTest;
 
 import BE.pftrackerback.Model.Transaction;
+import BE.pftrackerback.Repo.TransactionRepo;
 import BE.pftrackerback.Service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import org.mockito.MockitoAnnotations;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
 
+import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyList;
+import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Switch.CaseOperator.when;
 
 @SpringBootTest
 public class TransactionServiceTest {
-    @Mock
+
+
+    @Autowired
     private TransactionService transactionService;
+    @MockBean
+    private TransactionRepo transactionRepo;
+
+    private List<Transaction> transactions;
 
 
     @BeforeEach
     public void setUp() {
+        MockitoAnnotations.openMocks(this);
+        transactions = new ArrayList<>();
+
         // Create a new instance for each test to reset state
         transactionService = new TransactionService();
     }
@@ -33,7 +53,7 @@ public class TransactionServiceTest {
     public void testAddTransaction() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
 
@@ -44,19 +64,19 @@ public class TransactionServiceTest {
         List<Transaction> transactions = transactionService.getTransactions();
         assertNotNull(transactions);
         assertEquals(1, transactions.size());
-        assertEquals("user1", transactions.getFirst().getId());
+        assertEquals("user1", transactions.getFirst().getUserId());
     }
 
     @Test
     public void testMultipleTransactions() {
         // Given
         Transaction transaction1 = new Transaction();
-        transaction1.setId("user1");
+        transaction1.setUserId("user1");
         transaction1.setTransactionDate(new Date());
         transaction1.setAmount(100.0);
 
         Transaction transaction2 = new Transaction();
-        transaction2.setId("user2");
+        transaction2.setUserId("user2");
         transaction2.setTransactionDate(new Date());
         transaction2.setAmount(75.0);
 
@@ -68,8 +88,8 @@ public class TransactionServiceTest {
         List<Transaction> transactions = transactionService.getTransactions();
         assertNotNull(transactions);
         assertEquals(2, transactions.size());
-        assertEquals("user1", transactions.get(0).getId()); //
-        assertEquals("user2", transactions.get(1).getId());
+        assertEquals("user1", transactions.get(0).getUserId()); //
+        assertEquals("user2", transactions.get(1).getUserId());
     }
     @Test
     public void testNoTransactions() {
@@ -84,7 +104,7 @@ public class TransactionServiceTest {
     public void testAddDuplicateTransaction() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
 
@@ -101,7 +121,7 @@ public class TransactionServiceTest {
     public void testAddTransactionWithNullFields() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId(null); // Null user ID
+        transaction.setUserId(null); // Null user ID
         transaction.setTransactionDate(null); // Null date
         transaction.setAmount(0);
 
@@ -115,7 +135,7 @@ public class TransactionServiceTest {
     public void testAddTransactionWithNegativeAmount() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(-50.0); // Invalid negative amount
 
@@ -165,13 +185,14 @@ public class TransactionServiceTest {
     @Test
     public void testParseTransaction() {
         // Given (what each line will be parsed into)
-        String line = "user1,15/11/2024,100.0";
+        String line ="15/11/2024,100.0";
+
 
         // When
         Transaction transaction = transactionService.parseTransaction(line);
-
+        transaction.setUserId("user1");
         // Then
-        assertEquals("user1", transaction.getId());
+        assertEquals("user1", transaction.getUserId());
         assertEquals(100.0, transaction.getAmount());
         assertEquals(2024, transaction.getTransactionDate().getYear() + 1900);
         assertEquals(10, transaction.getTransactionDate().getMonth()); // Correctly parsed Details put into transaction
@@ -190,12 +211,13 @@ public class TransactionServiceTest {
         //When
         List<Transaction> lines = transactionService.parseFile(file, userId);
 
+
         //Then
         assertNotNull(lines);
         assertFalse(lines.isEmpty(), "File should contain at least one line");
-        assertEquals("id1", lines.get(0).getId());
-        assertEquals("id2", lines.get(1).getId());
-        assertEquals("id3", lines.get(2).getId());
+        assertEquals(100, lines.get(0).getAmount());
+        assertEquals(200, lines.get(1).getAmount());
+        assertEquals(300, lines.get(2).getAmount());
     }
 
     @Test

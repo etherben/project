@@ -46,6 +46,14 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add transactions");
         }
     }
+    @PostMapping("/save")
+    public ResponseEntity<String> saveTransaction() {
+        try{transactionService.persistTransaction();
+            return ResponseEntity.status(HttpStatus.CREATED).body("Saved");
+        }catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
     @GetMapping
     public ResponseEntity<List<Transaction>> getAllTransactions() {
