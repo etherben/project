@@ -9,6 +9,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
 
+import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -32,10 +33,10 @@ import static org.springframework.data.mongodb.core.aggregation.ConditionalOpera
 public class TransactionServiceTest {
 
 
-    @Autowired
-    private TransactionService transactionService;
-    @MockBean
+    @Mock
     private TransactionRepo transactionRepo;
+    @InjectMocks
+    private TransactionService transactionService;
 
     private List<Transaction> transactions;
 
@@ -45,8 +46,7 @@ public class TransactionServiceTest {
         MockitoAnnotations.openMocks(this);
         transactions = new ArrayList<>();
 
-        // Create a new instance for each test to reset state
-        transactionService = new TransactionService();
+
     }
 
     @Test
@@ -222,15 +222,69 @@ public class TransactionServiceTest {
 
     @Test
     public void testParseFileFormatFail() throws IOException {
+        //Given
         MockMultipartFile file = new MockMultipartFile(
-                "file", // The name of the file field
+                "file",
                 "mockTransactionsFile.txt", // Invalid file extension
-                "text/plain", // File type (not CSV)
-                new FileInputStream("src/test/resources/mockTransactionsFile.txt") // File content
+                "text/plain",
+                new FileInputStream("src/test/resources/mockTransactionsFile.txt")
         );
         String userId = "userId123";
 
         assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file, userId), "Invalid file format. Not CSV");
+    }
+
+    @Test
+    public void getAllTransactions() {
+        //Given
+        String userId = "user1";
+        Transaction transaction1 = new Transaction();
+        transaction1.setUserId(userId);
+        transaction1.setTransactionDate(new Date());
+        transaction1.setAmount(100.0);
+        Transaction transaction2 = new Transaction();
+        transaction2.setUserId(userId);
+        transaction2.setTransactionDate(new Date());
+        transaction2.setAmount(200.0);
+
+        List<Transaction> mockTransaction = new ArrayList<>();
+        mockTransaction.add(transaction1);  // creating mock of return from repo
+        mockTransaction.add(transaction2);
+
+        Mockito.when(transactionRepo.findByUserId(userId)).thenReturn(mockTransaction);
+
+        //When
+        System.out.println(transactionRepo.findByUserId(userId));
+        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
+
+        //Then
+        assertNotNull(transactions);
+        assertEquals(2, transactions.size());
+        assertEquals(transaction1, transactions.get(0));  //list is correct
+        assertEquals(transaction2, transactions.get(1));
+
+    }
+
+    @Test
+    public void getAllTransactions_InvalidUserId() {
+        //Just checking for the throw, dont need to mock a transaction list
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.getTransactionsByUserId("");
+        });
+        assertEquals("User id is null or empty", exception.getMessage());
+    }
+    @Test
+    public void testGetTransactionsByUserId_NoTransactions() {
+        //Given
+        String userId = "user123";
+        Mockito.when(transactionRepo.findByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found"));
+        //When
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.getTransactionsByUserId(userId);
+        });
+        //Then
+        assertEquals("No transactions found", exception.getMessage());
     }
 }
 

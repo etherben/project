@@ -17,12 +17,24 @@ import java.util.List;
 public class TransactionService {
 
     private List<Transaction> transactions = new ArrayList<>();
-
-    @Autowired
     private TransactionRepo transactionRepo;
 
-    public List<Transaction> getTransactions() {
-        return transactions;
+    @Autowired
+    public TransactionService(TransactionRepo transactionRepo) {
+        this.transactionRepo = transactionRepo;
+    }
+
+    public List<Transaction> getTransactions(){return transactions;}
+    public List<Transaction> getTransactionsByUserId(String userId) {
+        if (userId == null || userId.isEmpty()) {
+            throw new IllegalArgumentException("User id is null or empty");
+        }
+        // Try to retrieve transactions from the repo
+        try{
+           return transactionRepo.findByUserId(userId);
+        } catch (Exception e) {
+            throw new IllegalArgumentException("No transactions found");
+        }
     }
 
     public Transaction addTransaction(Transaction transaction) {

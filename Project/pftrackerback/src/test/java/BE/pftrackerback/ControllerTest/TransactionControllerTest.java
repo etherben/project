@@ -59,9 +59,8 @@ public class TransactionControllerTest {
         transaction2.setAmount(50.0);
 
 
-
-
     }
+
     @Test
     public void testAddTransaction() {
         // Given
@@ -94,6 +93,7 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Transaction ID cannot be null", response.getBody());
     }
+
     @Test
     public void testAddTransactionWithInvalidDate() {
         // Given
@@ -152,6 +152,7 @@ public class TransactionControllerTest {
         assertEquals(transaction, response.getBody().get(0));
         assertEquals(transaction2, response.getBody().get(1));
     }
+
     @Test
     public void testAddBulkTransactionSuccess() throws Exception {
         //Given
@@ -195,4 +196,42 @@ public class TransactionControllerTest {
         assertEquals("Invalid file format. Not CSV", response.getBody());
     }
 
+    @Test
+    public void testGetTransactions() {
+        //Given
+        String userId = "userId123";
+        List<Transaction> mockTransactions = new ArrayList<>();
+        mockTransactions.add(transaction);
+        mockTransactions.add(transaction2);
+        when(transactionService.getTransactionsByUserId("userId123")).thenReturn(mockTransactions);
+
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+
+        //Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockTransactions, response.getBody());
+
+    }
+
+    @Test
+    public void testGetTransactionNoTransactionsFound() {
+        //Given
+        String userId = "userId123";
+        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found for the user id " + userId));
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+        //Then
+        assertEquals("No transactions found for the user id " + userId, response.getBody());
+    }
+    @Test
+    public void testGetTransactonRuntimeException() {
+        //Given
+        String userId = "userId123";
+        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new RuntimeException("Runtime error: (Message)"));
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+        //Then
+        assertEquals("Runtime error: (Message)", response.getBody());
+    }
 }

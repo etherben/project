@@ -60,4 +60,16 @@ public class TransactionController {
         List<Transaction> transactions = transactionService.getTransactions();
         return ResponseEntity.ok(transactions);
     }
+
+    @GetMapping("getTransactions")
+    public ResponseEntity<?> getTransactionsByUserId(@PathVariable String userId) {
+        try{
+        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
+            return ResponseEntity.ok(transactions);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 }
