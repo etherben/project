@@ -1,8 +1,12 @@
 import {fireEvent, render, screen, waitFor} from '@testing-library/react';
+import {act} from 'react';
 import App from './App';
 import Login from "./Components/Login/Login";
 
 beforeEach(() => {
+  sessionStorage.clear();
+
+
   global.fetch = jest.fn(() =>
       Promise.resolve({})
   );
@@ -46,7 +50,7 @@ test('calls handleSignupSubmit with correct data', async () => {
   //then
   //Wait for fetch call
   await waitFor(() => {
-    expect(fetch).toHaveBeenCalledWith('http://localhost:8080/auth/signup',
+    expect(fetch).toHaveBeenCalledWith('http://localhost:8080/users/create',
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
@@ -89,4 +93,27 @@ test('loads userId from sessionStorage from mount', () => {
 
   // then
   expect(screen.getByText(/Welcome, User ID: 12345/i)).toBeInTheDocument(); // Ensure it's displayed
+});
+test('stores userId in sessionStorage after successful login', async () => {
+  // given
+  global.fetch.mockResolvedValueOnce({
+    ok: true,
+    json: async () => ({ userId: '67890' }),
+  });
+
+  render(<App />);  // Render the App instead of just Login
+
+  // when
+  fireEvent.click(screen.getByText(/login/i));
+  fireEvent.change(screen.getByPlaceholderText(/username/i), { target: { value: 'test' } });
+  fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'password' } });
+  fireEvent.click(screen.getByRole('button', { name: /login/i }));
+
+  // then
+  await waitFor(() => {
+    // Ensure that the welcome message is displayed after login
+    expect(screen.getByText(/Welcome, User ID: 67890/i)).toBeInTheDocument();
+    // Check that sessionStorage contains the correct userId
+    expect(sessionStorage.getItem('userId')).toBe('67890');
+  });
 });

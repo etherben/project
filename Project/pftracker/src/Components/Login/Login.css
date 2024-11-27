@@ -1,14 +1,32 @@
-.container{
+/* Ensure body and html take up full height */
+html, body {
+    height: 100%;
+    margin: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Gradient background for the whole page */
+body {
+    background: linear-gradient(to bottom, #5ba0ff, #587bff); /* Light blue to darker blue gradient */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container styling */
+.container {
     border-radius: 25px;
     display: flex;
     flex-direction: column;
     margin: auto;
-    margin-top: 50px;
-    margin-bottom: 200px;
     width: 600px;
-    background: white;  /*change colour*/
+    background: white;  /* White background for the form container */
+    padding: 20px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
-.header{
+
+/* Header section of the container */
+.header {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -17,21 +35,22 @@
     margin-top: 30px;
 }
 
-.text{
+/* Text styling for the header */
+.text {
     color: #587bff;
     font-size: 32px;
     font-weight: bold;
 }
 
-.inputs{
+/* Form inputs styling */
+.inputs {
     display: flex;
     flex-direction: column;
     margin-top: 64px;
     gap: 32px;
-
 }
 
-.input{
+.input {
     display: flex;
     align-items: center;
     margin: auto;
@@ -41,7 +60,7 @@
     border-radius: 6px;
 }
 
-.input input{
+.input input {
     height: 50px;
     width: 400px;
     background: transparent;
@@ -50,12 +69,15 @@
     color: grey;
     font-size: 18px;
 }
-.submit-container{
+
+/* Submit button container */
+.submit-container {
     display: flex;
     margin: 32px auto;
     gap: 32px;
 }
-.submit{
+
+.submit {
     border-radius: 25px;
     display: flex;
     justify-content: center;
@@ -68,8 +90,9 @@
     font-weight: 700;
     cursor: pointer;
 }
-.switchLogin{
 
+/* Switch login text */
+.switchLogin {
     padding-left: 64px;
     margin-top: 12px;
     margin-bottom: 24px;
@@ -78,7 +101,7 @@
     font-size: 18px;
 }
 
-.switchLogin span{
+.switchLogin span {
     color: #5ba0ff;
     cursor: pointer;
 }
