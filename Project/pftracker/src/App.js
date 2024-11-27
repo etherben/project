@@ -5,7 +5,7 @@ import React, { useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
-  const [isSignup, setSignup] = useState(true);
+  const [isSignup, setSignup] = useState("boogle");
   const toggleSignup = () => {
     setSignup(prev => !prev);
   };
@@ -18,7 +18,10 @@ function App() {
     if (storedUserId) {
       setUserId(storedUserId);
     }
+
   }, []);
+
+
 
   const handleSignupSubmit = async (userSignupData) => {
     try {

@@ -1,0 +1,90 @@
+/* General Styling */
+.main-container {
+    height: 100vh;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+}
+
+.welcome-message {
+    margin-bottom: 20px;
+    font-size: 24px;
+}
+
+/* Content Layout */
+.content {
+    display: flex;
+    flex-grow: 1;
+}
+
+/* Left Section: Inputs */
+.leftside {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.section {
+    background-color: #fbfbff;
+    color: #222222;
+    padding: 40px;
+    border-radius: 8px;
+}
+
+.input-box {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+}
+
+.drag-drop-area {
+    height: 100px;
+    border: 2px dashed #ccc;
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #bbb;
+    margin-bottom: 10px;
+}
+
+.drag-drop-area:hover {
+    background-color: #555;
+}
+
+.submit-btn {
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.submit-btn:hover {
+    background-color: #0056b3;
+}
+
+/* Right Section: Transfers */
+.rightside {
+    flex: 2;
+    background-color: #fbfbff;
+    color: #222222;
+    margin-left: 20px;
+    padding: 15px;
+    border-radius: 8px;
+}
+
+.transaction-list {
+    background-color: #b8b2bc;
+    color: #222222;
+    padding: 10px;
+    border-radius: 4px;
+}
