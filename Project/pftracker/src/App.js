@@ -5,14 +5,14 @@ import React, { useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
-  const [isSignup, setSignup] = useState("boogle");
+  const [isSignup, setSignup] = useState(null);
   const toggleSignup = () => {
     setSignup(prev => !prev);
   };
 
   const [userId, setUserId] = useState(null);
 
-  // Load userId from sessionStorage on mount
+  // Load userId from sessionStorage on mountk
   useEffect(() => {
     const storedUserId = sessionStorage.getItem('id');
     if (storedUserId) {
@@ -35,6 +35,7 @@ function App() {
       }
       const result = await response.json();
       console.log('User signed up:', result);
+
     } catch (error) {
       console.error('Error:', error);
     }
@@ -59,10 +60,44 @@ function App() {
     }
   };
 
+  const handleSingleTransactionSubmit = async(transaction) =>{
+    console.log("Submitting transaction:", transaction);
+    try{
+      const response = await fetch('http://localhost:8080/transactions', {
+        method : 'POST',
+        headers:{'Content-Type' : 'application/json'},
+        body :JSON.stringify(transaction),
+      });
+       if (!response.ok){
+        throw new Error('Transaction submittion failed');
+       }
+       const result = await response.text();
+       console.log('Transaction successful:', result);
+      }catch (error){
+      console.error(error);
+    }
+
+    //instant saving for now
+    try{
+      const response = await fetch('http://localhost:8080/transactions/save', {
+        method : 'POST',
+        headers:{'Content-Type' : 'application/json'},
+        //empty body to save
+      });
+      if (!response.ok){
+        throw new Error('Transaction submittion failed');
+      }
+      const result = await response.text();
+      console.log('Transaction successful:', result);
+    }catch (error){
+      console.error(error);
+    }
+  };
+
   return (
       <div>
         {userId ? (
-            <MainPage userId={userId} />
+            <MainPage userId={userId} onSubmit={handleSingleTransactionSubmit} />
         ) : isSignup ? (
             <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit} />
         ) : (
