@@ -14,7 +14,7 @@ function App() {
 
   // Load userId from sessionStorage on mount
   useEffect(() => {
-    const storedUserId = sessionStorage.getItem('userId');
+    const storedUserId = sessionStorage.getItem('id');
     if (storedUserId) {
       setUserId(storedUserId);
     }
@@ -48,8 +48,8 @@ function App() {
         throw new Error('Login failed');
       }
       const result = await response.json();
-      setUserId(result.userId);
-      sessionStorage.setItem('userId', result.userId);
+      setUserId(result.id);
+      sessionStorage.setItem('id', result.id);
       console.log('Login successful:', result);
     } catch (error) {
       console.error('Error:', error);
