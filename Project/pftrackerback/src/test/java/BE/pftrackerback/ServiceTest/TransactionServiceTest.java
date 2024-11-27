@@ -5,29 +5,19 @@ import BE.pftrackerback.Repo.TransactionRepo;
 import BE.pftrackerback.Service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
-
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
 import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
-
-import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.Optional;
-
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.anyList;
-import static org.springframework.data.mongodb.core.aggregation.ConditionalOperators.Switch.CaseOperator.when;
 
 @SpringBootTest
 public class TransactionServiceTest {
@@ -38,15 +28,9 @@ public class TransactionServiceTest {
     @InjectMocks
     private TransactionService transactionService;
 
-    private List<Transaction> transactions;
-
-
     @BeforeEach
     public void setUp() {
         MockitoAnnotations.openMocks(this);
-        transactions = new ArrayList<>();
-
-
     }
 
     @Test
@@ -201,7 +185,7 @@ public class TransactionServiceTest {
     @Test
     public void testParseFile() throws IOException {
         //Given Use mock file for testing in test/resources
-        MockMultipartFile file = new MockMultipartFile(            //had to change to multipartfile
+        MockMultipartFile file = new MockMultipartFile(            //had to change to MultipartFile
                 "file", // The name of the file field
                 "mockTransactionsFile.csv", //filename
                 "text/csv", // File type
@@ -267,7 +251,7 @@ public class TransactionServiceTest {
 
     @Test
     public void getAllTransactions_InvalidUserId() {
-        //Just checking for the throw, dont need to mock a transaction list
+        //Just checking for the throw, don't need to mock a transaction list
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
             transactionService.getTransactionsByUserId("");
         });
