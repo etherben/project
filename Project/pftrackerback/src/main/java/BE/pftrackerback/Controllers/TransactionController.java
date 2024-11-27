@@ -31,10 +31,12 @@ public class TransactionController {
         }
     }
     @PostMapping("/bulk")
-    public ResponseEntity<String> addBulkTransaction(@RequestParam("file") MultipartFile file) {
+    public ResponseEntity<String> addBulkTransaction(
+            @RequestParam("file") MultipartFile file,
+            @RequestParam("userId") String userId) {
         try {
             // Pass the file to the service for processing
-            transactionService.parseFile(file);
+            transactionService.parseFile(file, userId);
             return ResponseEntity.status(HttpStatus.CREATED).body("Created");
         } catch (IOException e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Error processing file: " + e.getMessage());
@@ -44,10 +46,30 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body("Failed to add transactions");
         }
     }
+    @PostMapping("/save")
+    public ResponseEntity<String> saveTransaction() {
+        try{transactionService.persistTransaction();
+            return ResponseEntity.status(HttpStatus.CREATED).body("Saved");
+        }catch (Exception e) {
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
 
     @GetMapping
     public ResponseEntity<List<Transaction>> getAllTransactions() {
         List<Transaction> transactions = transactionService.getTransactions();
         return ResponseEntity.ok(transactions);
+    }
+
+    @GetMapping("getTransactions")
+    public ResponseEntity<?> getTransactionsByUserId(@PathVariable String userId) {
+        try{
+        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
+            return ResponseEntity.ok(transactions);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
     }
 }

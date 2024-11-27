@@ -59,9 +59,8 @@ public class TransactionControllerTest {
         transaction2.setAmount(50.0);
 
 
-
-
     }
+
     @Test
     public void testAddTransaction() {
         // Given
@@ -94,6 +93,7 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Transaction ID cannot be null", response.getBody());
     }
+
     @Test
     public void testAddTransactionWithInvalidDate() {
         // Given
@@ -152,6 +152,7 @@ public class TransactionControllerTest {
         assertEquals(transaction, response.getBody().get(0));
         assertEquals(transaction2, response.getBody().get(1));
     }
+
     @Test
     public void testAddBulkTransactionSuccess() throws Exception {
         //Given
@@ -161,13 +162,13 @@ public class TransactionControllerTest {
                 "text/csv", // File type
                 new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
         );
+        String userId = "userId123";
         List<Transaction> mockResponse = new ArrayList<>();
         mockResponse.add(transaction);
         mockResponse.add(transaction2);
-        when(transactionService.parseFile(any(MultipartFile.class))).thenReturn(mockResponse);
-
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenReturn(mockResponse); //eq matches arguement rather than passing raw value
         //when
-        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
 
         //then
         assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -184,14 +185,53 @@ public class TransactionControllerTest {
                 "text/plain",
                 "Some text content".getBytes() //rand content
         );
-        when(transactionService.parseFile(any(MultipartFile.class))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
+        String userId = "userId123";
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
 
         // When
-        ResponseEntity<String> response = transactionController.addBulkTransaction(file);
+        ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
 
         // Then
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
         assertEquals("Invalid file format. Not CSV", response.getBody());
     }
 
+    @Test
+    public void testGetTransactions() {
+        //Given
+        String userId = "userId123";
+        List<Transaction> mockTransactions = new ArrayList<>();
+        mockTransactions.add(transaction);
+        mockTransactions.add(transaction2);
+        when(transactionService.getTransactionsByUserId("userId123")).thenReturn(mockTransactions);
+
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+
+        //Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        assertEquals(mockTransactions, response.getBody());
+
+    }
+
+    @Test
+    public void testGetTransactionNoTransactionsFound() {
+        //Given
+        String userId = "userId123";
+        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found for the user id " + userId));
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+        //Then
+        assertEquals("No transactions found for the user id " + userId, response.getBody());
+    }
+    @Test
+    public void testGetTransactonRuntimeException() {
+        //Given
+        String userId = "userId123";
+        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new RuntimeException("Runtime error: (Message)"));
+        //When
+        ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
+        //Then
+        assertEquals("Runtime error: (Message)", response.getBody());
+    }
 }

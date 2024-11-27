@@ -1,39 +1,43 @@
 package BE.pftrackerback.ServiceTest;
 
 import BE.pftrackerback.Model.Transaction;
+import BE.pftrackerback.Repo.TransactionRepo;
 import BE.pftrackerback.Service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.mockito.InjectMocks;
 import org.mockito.Mock;
-
+import org.mockito.Mockito;
+import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
-
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
 public class TransactionServiceTest {
-    @Mock
-    private TransactionService transactionService;
 
+
+    @Mock
+    private TransactionRepo transactionRepo;
+    @InjectMocks
+    private TransactionService transactionService;
 
     @BeforeEach
     public void setUp() {
-        // Create a new instance for each test to reset state
-        transactionService = new TransactionService();
+        MockitoAnnotations.openMocks(this);
     }
 
     @Test
     public void testAddTransaction() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
 
@@ -44,19 +48,19 @@ public class TransactionServiceTest {
         List<Transaction> transactions = transactionService.getTransactions();
         assertNotNull(transactions);
         assertEquals(1, transactions.size());
-        assertEquals("user1", transactions.getFirst().getId());
+        assertEquals("user1", transactions.getFirst().getUserId());
     }
 
     @Test
     public void testMultipleTransactions() {
         // Given
         Transaction transaction1 = new Transaction();
-        transaction1.setId("user1");
+        transaction1.setUserId("user1");
         transaction1.setTransactionDate(new Date());
         transaction1.setAmount(100.0);
 
         Transaction transaction2 = new Transaction();
-        transaction2.setId("user2");
+        transaction2.setUserId("user2");
         transaction2.setTransactionDate(new Date());
         transaction2.setAmount(75.0);
 
@@ -68,8 +72,8 @@ public class TransactionServiceTest {
         List<Transaction> transactions = transactionService.getTransactions();
         assertNotNull(transactions);
         assertEquals(2, transactions.size());
-        assertEquals("user1", transactions.get(0).getId()); //
-        assertEquals("user2", transactions.get(1).getId());
+        assertEquals("user1", transactions.get(0).getUserId()); //
+        assertEquals("user2", transactions.get(1).getUserId());
     }
     @Test
     public void testNoTransactions() {
@@ -84,7 +88,7 @@ public class TransactionServiceTest {
     public void testAddDuplicateTransaction() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
 
@@ -101,7 +105,7 @@ public class TransactionServiceTest {
     public void testAddTransactionWithNullFields() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId(null); // Null user ID
+        transaction.setUserId(null); // Null user ID
         transaction.setTransactionDate(null); // Null date
         transaction.setAmount(0);
 
@@ -115,7 +119,7 @@ public class TransactionServiceTest {
     public void testAddTransactionWithNegativeAmount() {
         // Given
         Transaction transaction = new Transaction();
-        transaction.setId("user1");
+        transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(-50.0); // Invalid negative amount
 
@@ -165,13 +169,14 @@ public class TransactionServiceTest {
     @Test
     public void testParseTransaction() {
         // Given (what each line will be parsed into)
-        String line = "user1,15/11/2024,100.0";
+        String line ="15/11/2024,100.0";
+
 
         // When
         Transaction transaction = transactionService.parseTransaction(line);
-
+        transaction.setUserId("user1");
         // Then
-        assertEquals("user1", transaction.getId());
+        assertEquals("user1", transaction.getUserId());
         assertEquals(100.0, transaction.getAmount());
         assertEquals(2024, transaction.getTransactionDate().getYear() + 1900);
         assertEquals(10, transaction.getTransactionDate().getMonth()); // Correctly parsed Details put into transaction
@@ -180,33 +185,90 @@ public class TransactionServiceTest {
     @Test
     public void testParseFile() throws IOException {
         //Given Use mock file for testing in test/resources
-        MockMultipartFile file = new MockMultipartFile(            //had to change to multipartfile
+        MockMultipartFile file = new MockMultipartFile(            //had to change to MultipartFile
                 "file", // The name of the file field
                 "mockTransactionsFile.csv", //filename
                 "text/csv", // File type
                 new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
         );
+        String userId = "userId123";
         //When
-        List<Transaction> lines = transactionService.parseFile(file);
+        List<Transaction> lines = transactionService.parseFile(file, userId);
+
 
         //Then
         assertNotNull(lines);
         assertFalse(lines.isEmpty(), "File should contain at least one line");
-        assertEquals("id1", lines.get(0).getId());
-        assertEquals("id2", lines.get(1).getId());
-        assertEquals("id3", lines.get(2).getId());
+        assertEquals(100, lines.get(0).getAmount());
+        assertEquals(200, lines.get(1).getAmount());
+        assertEquals(300, lines.get(2).getAmount());
     }
 
     @Test
     public void testParseFileFormatFail() throws IOException {
+        //Given
         MockMultipartFile file = new MockMultipartFile(
-                "file", // The name of the file field
+                "file",
                 "mockTransactionsFile.txt", // Invalid file extension
-                "text/plain", // File type (not CSV)
-                new FileInputStream("src/test/resources/mockTransactionsFile.txt") // File content
+                "text/plain",
+                new FileInputStream("src/test/resources/mockTransactionsFile.txt")
         );
+        String userId = "userId123";
 
-        assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file), "Invalid file format. Not CSV");
+        assertThrows(IllegalArgumentException.class, () -> transactionService.parseFile(file, userId), "Invalid file format. Not CSV");
+    }
+
+    @Test
+    public void getAllTransactions() {
+        //Given
+        String userId = "user1";
+        Transaction transaction1 = new Transaction();
+        transaction1.setUserId(userId);
+        transaction1.setTransactionDate(new Date());
+        transaction1.setAmount(100.0);
+        Transaction transaction2 = new Transaction();
+        transaction2.setUserId(userId);
+        transaction2.setTransactionDate(new Date());
+        transaction2.setAmount(200.0);
+
+        List<Transaction> mockTransaction = new ArrayList<>();
+        mockTransaction.add(transaction1);  // creating mock of return from repo
+        mockTransaction.add(transaction2);
+
+        Mockito.when(transactionRepo.findByUserId(userId)).thenReturn(mockTransaction);
+
+        //When
+        System.out.println(transactionRepo.findByUserId(userId));
+        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
+
+        //Then
+        assertNotNull(transactions);
+        assertEquals(2, transactions.size());
+        assertEquals(transaction1, transactions.get(0));  //list is correct
+        assertEquals(transaction2, transactions.get(1));
+
+    }
+
+    @Test
+    public void getAllTransactions_InvalidUserId() {
+        //Just checking for the throw, don't need to mock a transaction list
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.getTransactionsByUserId("");
+        });
+        assertEquals("User id is null or empty", exception.getMessage());
+    }
+    @Test
+    public void testGetTransactionsByUserId_NoTransactions() {
+        //Given
+        String userId = "user123";
+        Mockito.when(transactionRepo.findByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found"));
+        //When
+
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.getTransactionsByUserId(userId);
+        });
+        //Then
+        assertEquals("No transactions found", exception.getMessage());
     }
 }
 
