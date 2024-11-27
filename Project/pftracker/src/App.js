@@ -1,13 +1,24 @@
 import './App.css';
 import Signup from "./Components/SignUp/Signup";
 import Login from "./Components/Login/Login";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 
 function App() {
   const[isSignup, setSignup] = useState(true)
   const toggleSignup=() =>{
     setSignup((prev) => !prev);
   }
+  const [userId, setUserId] = useState(null);
+
+  // Load userId from sessionStorage from mounting
+  useEffect(() => {
+    const storedUserId = sessionStorage.getItem('userId');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
+
+
 
   const handleSignupSubmit = async (userSignupData) => {
     try {
@@ -52,12 +63,16 @@ function App() {
     }
   return (
       <div>
+
         <div>
-          {isSignup?(
+          {userId ? (
+              <h1>Welcome, User ID: {userId}</h1>
+          ): isSignup ? (
               <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit}/>
           ):(
               <Login onSwitch={toggleSignup} onSubmit={handleLoginSubmit}/>
           )
+
           }
         </div>
       </div>

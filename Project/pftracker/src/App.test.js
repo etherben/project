@@ -79,3 +79,14 @@ test('calls handleLoginSubmit with correct data', async () => {
     });
   });
 });
+
+test('loads userId from sessionStorage from mount', () => {
+  // given
+  sessionStorage.setItem('userId', '12345'); // Mock a stored userId
+
+  // when
+  render(<App />);
+
+  // then
+  expect(screen.getByText(/Welcome, User ID: 12345/i)).toBeInTheDocument(); // Ensure it's displayed
+});
