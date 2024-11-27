@@ -73,6 +73,10 @@ risks of changing- delay in workflow -- following feedback from report will take
 11/11 - 18/11
 Sucessfully swapped over to nosql database, improved testing quality and file structure is significantly neater
 
+19/11 - 27/11
+Created endpoints for submitting transactions, submitting files and retreiving transactions based on userId
+Things to consider - in db I didnt Embed transactions into user document as one user can have thousands of transactions. This allows for scalability.
+Escpecially with 16mb document limit. 
 
 
 
