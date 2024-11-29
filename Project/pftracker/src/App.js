@@ -74,22 +74,7 @@ function App() {
       }catch (error){
       console.error(error);
     }
-
-    //instant saving for now
-    try{
-      const response = await fetch('http://localhost:8080/transactions/save', {
-        method : 'POST',
-        headers:{'Content-Type' : 'application/json'},
-        //empty body to save
-      });
-      if (!response.ok){
-        throw new Error('Transaction submittion failed');
-      }
-      const result = await response.text();
-      console.log('Transaction successful:', result);
-    }catch (error){
-      console.error(error);
-    }
+    await saveTransactions()
   };
 
   const handleFileTransactionSubmit = async (file) =>{
@@ -110,20 +95,23 @@ function App() {
     } catch (error) {
       console.error('Error uploading file:', error);
     }
-    //instant save for now
-    try{
+   await saveTransactions()
+  };
+
+  const saveTransactions = async () => {
+    try {
       const response = await fetch('http://localhost:8080/transactions/save', {
-        method : 'POST',
-        headers:{'Content-Type' : 'application/json'},
-        //empty body as already sent
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        // Empty body for save
       });
-      if (!response.ok){
-        throw new Error('Transaction submition failed');
+      if (!response.ok) {
+        throw new Error('Transaction saving failed');
       }
       const result = await response.text();
-      console.log('Transaction successful:', result);
-    }catch (error){
-      console.error(error);
+      console.log('Transactions saved successfully:', result);
+    } catch (error) {
+      console.error('Error saving transactions:', error);
     }
   };
 
