@@ -21,8 +21,6 @@ function App() {
 
   }, []);
 
-
-
   const handleSignupSubmit = async (userSignupData) => {
     try {
       const response = await fetch('http://localhost:8080/users/create', {
@@ -94,10 +92,45 @@ function App() {
     }
   };
 
+  const handleFileTransactionSubmit = async (file) =>{
+    console.log("Submitting file", file)
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('userId', userId)
+    try {
+      const response = await fetch('http://localhost:8080/transactions/bulk', {
+        method: 'POST',
+        body: formData,
+      });
+      if (!response.ok) {
+        throw new Error('Failed to upload file');
+      }
+      const result = await response.text();
+      console.log('File uploaded successfully:', result);
+    } catch (error) {
+      console.error('Error uploading file:', error);
+    }
+    //instant save for now
+    try{
+      const response = await fetch('http://localhost:8080/transactions/save', {
+        method : 'POST',
+        headers:{'Content-Type' : 'application/json'},
+        //empty body as already sent
+      });
+      if (!response.ok){
+        throw new Error('Transaction submition failed');
+      }
+      const result = await response.text();
+      console.log('Transaction successful:', result);
+    }catch (error){
+      console.error(error);
+    }
+  };
+
   return (
       <div>
         {userId ? (
-            <MainPage userId={userId} onSubmit={handleSingleTransactionSubmit} />
+            <MainPage userId={userId} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit} />
         ) : isSignup ? (
             <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit} />
         ) : (

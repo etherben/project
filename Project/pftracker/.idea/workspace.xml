@@ -4,10 +4,14 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="User can submit file, updates database as separate transactions">
+      <change beforePath="$PROJECT_DIR$/.idea/pftracker.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/pftracker.iml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -20,6 +24,8 @@
         <option value="Dockerfile" />
         <option value="CSS File" />
         <option value="JSX File" />
+        <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
@@ -61,33 +67,35 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontMainPage&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.App.test.js.executor": "Run",
+    "Jest.Signup.test.jsx.executor": "Run",
+    "Jest.loads userId from sessionStorage from mount.executor": "Run",
+    "Jest.renders the Signup form initially.executor": "Debug",
+    "Jest.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.switches to Login form when link is clicked.executor": "Run",
+    "Node.js.App.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "FrontMainPage",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager" selected="Node.js.App.js">
+}]]></component>
+  <component name="RunManager" selected="Jest.App.test.js">
     <configuration name="App.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
@@ -97,7 +105,16 @@
       <test-file value="$PROJECT_DIR$/src/App.test.js" />
       <method v="2" />
     </configuration>
-    <configuration name="loads userId from sessionStorage from mount" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="Signup.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/Components/SignUp/Signup.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="renders the Signup form initially" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
@@ -105,7 +122,7 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/src/App.test.js" />
       <test-names>
-        <test-name value="loads userId from sessionStorage from mount" />
+        <test-name value="renders the Signup form initially" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -121,28 +138,16 @@
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="switches to Login form when link is clicked" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
-      <node-interpreter value="project" />
-      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
-      <working-dir value="$PROJECT_DIR$" />
-      <envs />
-      <scope-kind value="TEST" />
-      <test-file value="$PROJECT_DIR$/src/App.test.js" />
-      <test-names>
-        <test-name value="switches to Login form when link is clicked" />
-      </test-names>
-      <method v="2" />
-    </configuration>
     <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/App.js" working-dir="$PROJECT_DIR$/src">
       <method v="2" />
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Node.js.App.js" />
         <item itemvalue="Jest.App.test.js" />
+        <item itemvalue="Jest.renders the Signup form initially" />
+        <item itemvalue="Jest.Signup.test.jsx" />
+        <item itemvalue="Node.js.App.js" />
         <item itemvalue="Jest.stores userId in sessionStorage after successful login" />
-        <item itemvalue="Jest.switches to Login form when link is clicked" />
-        <item itemvalue="Jest.loads userId from sessionStorage from mount" />
       </list>
     </recent_temporary>
   </component>
@@ -176,7 +181,10 @@
       <workItem from="1732726335971" duration="316000" />
       <workItem from="1732726907116" duration="747000" />
       <workItem from="1732729893596" duration="519000" />
-      <workItem from="1732730679577" duration="30000" />
+      <workItem from="1732730679577" duration="667000" />
+      <workItem from="1732792770295" duration="473000" />
+      <workItem from="1732876525091" duration="1382000" />
+      <workItem from="1732877946687" duration="8802000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -258,7 +266,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732723089608</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="User can submit single transaction">
+      <option name="closed" value="true" />
+      <created>1732730732225</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732730732225</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -302,6 +318,8 @@
     <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
     <MESSAGE value="once logged in, userid is saved and directs to empty mainpage" />
     <MESSAGE value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
-    <option name="LAST_COMMIT_MESSAGE" value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
+    <MESSAGE value="User can submit single transaction" />
+    <MESSAGE value="User can submit file, updates database as separate transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="User can submit file, updates database as separate transactions" />
   </component>
 </project>

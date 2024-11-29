@@ -1,55 +1,89 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import './MainPage.css';
 
-const MainPage = ({ userId, onSubmit }) => {
+const MainPage = ({ userId, onSingleSubmit, onFileSubmit }) => {
+    const [amount, setAmount] = useState('');
+    const [TransactionDate, setDate] = useState('');
+    const [selectedFile, setSelectedFile] = useState(null);
+    const [fileStatus, setFileStatus] = useState('');
 
-        const[amount, setAmount] = useState('');
-        const[TransactionDate, setDate]= useState('')
+    const handleManualSubmit = async (e) => {
+        e.preventDefault();
+        try {
+            await onSingleSubmit({ userId, amount, TransactionDate });
+            setAmount('');
+            setDate(''); // Reset fields
+        } catch (error) {
+            console.error('Error submitting transaction:', error);
+        }
+    };
 
-        const handleSubmit= async(e)=>{
-            e.preventDefault()
-            try{
-                await onSubmit({userId, amount, TransactionDate})
-                setAmount('')
-                setDate('') // reset fields
-            }catch (error){
-                console.error(error)
-            }
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            setSelectedFile(file);
+            setFileStatus(`File selected: ${file.name}`);
+        }
+    };
+
+    const handleFileSubmit = async () => {
+        if (!selectedFile) {
+            setFileStatus('Please select a file to upload.');
+            return;
         }
 
+        try {
+            await onFileSubmit(selectedFile); // Call the function passed from App.js
+            setFileStatus('File uploaded successfully.');
+            setSelectedFile(null); // Reset file input
+        } catch (error) {
+            console.error('Error uploading file:', error);
+            setFileStatus('Error uploading file.');
+        }
+    };
 
     return (
         <div className="main-container">
             <h1 className="welcome-message">Welcome, User ID: {userId}</h1>
             <div className="content">
                 <div className="leftside">
+                    {/* Manual input */}
                     <div className="ManualInput">
                         <h2>Manual Input</h2>
-                        <form onSubmit={handleSubmit}>
+                        <form onSubmit={handleManualSubmit}>
                             <input
                                 type="text"
                                 placeholder="Transaction Date"
                                 className="input-box"
-                                onChange={(e) => setDate(e.target.value)}/>
+                                value={TransactionDate}
+                                onChange={(e) => setDate(e.target.value)}
+                            />
                             <input
                                 type="number"
                                 placeholder="Transaction Amount"
                                 className="input-box"
-                                onChange={(e) => setAmount(e.target.value)}/>
+                                value={amount}
+                                onChange={(e) => setAmount(e.target.value)}
+                            />
                             <button type="submit" className="submit-btn">Submit Transaction</button>
-                            </form>
-                        </div>
+                        </form>
+                    </div>
+                    {/* File input */}
                     <div className="FileInput">
                         <h2>Upload CSV</h2>
-                        <div className="drag-drop-area">
-                            Drag and drop your CSV file here
-                        </div>
-                        <button className="submit-btn">Submit CSV</button>
-
+                        <input type="file"
+                            accept=".csv"
+                            className="file-input"
+                            onChange={handleFileChange}
+                        />
+                        <button onClick={handleFileSubmit} className="submit-btn">
+                            Submit CSV
+                        </button>
+                        <p>{fileStatus}</p>
                     </div>
                 </div>
 
-
+                {/* Transactions side */}
                 <div className="rightside">
                     <h2>Transactions</h2>
                     <div className="transaction-list">
