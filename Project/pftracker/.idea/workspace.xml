@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Transactions are fetched and loaded when initially loading mainpage">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="formatted transactions to display properly">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -29,7 +27,7 @@
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="FrontMainPageCreation" />
+        <entry key="$PROJECT_DIR$/../.." value="main" />
         <entry key="$PROJECT_DIR$/.." value="frontdocker" />
       </map>
     </option>
@@ -74,7 +72,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontMainPage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;AddMerchantParam&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -182,7 +180,8 @@
       <workItem from="1732792770295" duration="473000" />
       <workItem from="1732876525091" duration="1382000" />
       <workItem from="1732877946687" duration="9752000" />
-      <workItem from="1733052270396" duration="6258000" />
+      <workItem from="1733052270396" duration="8674000" />
+      <workItem from="1733079838983" duration="235000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -288,7 +287,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733052338812</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL-00014" summary="formatted transactions to display properly">
+      <option name="closed" value="true" />
+      <created>1733076598461</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1733076598461</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -335,6 +342,7 @@
     <MESSAGE value="User can submit single transaction" />
     <MESSAGE value="User can submit file, updates database as separate transactions" />
     <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Transactions are fetched and loaded when initially loading mainpage" />
+    <MESSAGE value="formatted transactions to display properly" />
+    <option name="LAST_COMMIT_MESSAGE" value="formatted transactions to display properly" />
   </component>
 </project>
