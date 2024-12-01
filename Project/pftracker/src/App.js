@@ -136,7 +136,7 @@ function App() {
   return (
       <div>
         {userId ? (
-            <MainPage userId={userId} transactions={transactions} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit} />
+            <MainPage userId={userId} transactions={transactions} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit}  handleFetchTransactions={handleFetchTransactions}/>
         ) : isSignup ? (
             <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit} />
         ) : (

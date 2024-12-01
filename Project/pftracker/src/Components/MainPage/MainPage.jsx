@@ -89,17 +89,26 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                 <div className="rightside">
                     <h2>Transactions</h2>
                     <div className="transaction-list">
+                        {/* Header Row */}
+                        <div className="transaction-header">
+                            <span className="header-item">Transaction Date</span>
+                            <span className="separator">|</span>
+                            <span className="header-item">Transaction Amount</span>
+                        </div>
+
+                        {/* Transactions Rows */}
                         {transactions.length === 0 ? (
                             <p>No transactions to show yet.</p>
                         ) : (
-                            <ul>
-                                {transactions.map((transaction) => (
-                                    <li key={transaction.id}>
-                                        <p><strong>Date:</strong> {transaction.TransactionDate}</p>
-                                        <p><strong>Amount:</strong> {transaction.amount}</p>
-                                    </li>
-                                ))}
-                            </ul>
+                            transactions.map((transaction) => {
+                                return (
+                                    <div key={transaction.id} className="transaction-row">
+                                        <span className="transaction-date">{transaction.TransactionDate}</span>
+                                        <span className="separator">|</span>
+                                        <span className="transaction-amount">{transaction.amount}</span>
+                                    </div>
+                                );
+                            })
                         )}
                     </div>
                 </div>

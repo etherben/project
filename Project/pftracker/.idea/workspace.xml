@@ -7,8 +7,8 @@
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Transactions are fetched and loaded when initially loading mainpage">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../pftrackerback/src/main/java/BE/pftrackerback/Controllers/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../pftrackerback/src/main/java/BE/pftrackerback/Controllers/TransactionController.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -182,7 +182,7 @@
       <workItem from="1732792770295" duration="473000" />
       <workItem from="1732876525091" duration="1382000" />
       <workItem from="1732877946687" duration="9752000" />
-      <workItem from="1733052270396" duration="64000" />
+      <workItem from="1733052270396" duration="6258000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -280,7 +280,15 @@
       <option name="project" value="LOCAL" />
       <updated>1732895449815</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="Transactions are fetched and loaded when initially loading mainpage">
+      <option name="closed" value="true" />
+      <created>1733052338812</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733052338812</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -326,6 +334,7 @@
     <MESSAGE value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
     <MESSAGE value="User can submit single transaction" />
     <MESSAGE value="User can submit file, updates database as separate transactions" />
-    <option name="LAST_COMMIT_MESSAGE" value="User can submit file, updates database as separate transactions" />
+    <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transactions are fetched and loaded when initially loading mainpage" />
   </component>
 </project>

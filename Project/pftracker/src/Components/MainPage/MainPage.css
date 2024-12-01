@@ -1,4 +1,3 @@
-/* General Styling */
 .main-container {
     height: 100vh;
     color: white;
@@ -12,13 +11,11 @@
     font-size: 24px;
 }
 
-/* Content Layout */
 .content {
     display: flex;
     flex-grow: 1;
 }
 
-/* Left Section: Inputs */
 .leftside {
     flex: 1;
     display: flex;
@@ -72,7 +69,6 @@
     background-color: #0056b3;
 }
 
-/* Right Section: Transfers */
 .rightside {
     flex: 2;
     background-color: #fbfbff;
@@ -83,8 +79,38 @@
 }
 
 .transaction-list {
-    background-color: #b8b2bc;
+    background-color: #fff;
     color: #222222;
-    padding: 10px;
-    border-radius: 4px;
+    padding: 20px;
+    border-radius: 8px;
+    margin-top: 20px;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: space-between;
+    font-weight: bold;
+    padding: 10px 0;
+    border-bottom: 2px solid #333;
+    background-color: #f4f4f4;
+}
+
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 0;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction-date {
+    font-weight: normal;
+}
+
+.separator {
+    margin: 0 10px;
+}
+
+.transaction-amount {
+    font-weight: normal;
+
 }
