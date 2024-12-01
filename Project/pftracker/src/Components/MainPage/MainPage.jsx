@@ -6,13 +6,13 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const [TransactionDate, setDate] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileStatus, setFileStatus] = useState('');
+    const [merchant,setMerchant] = useState("")
 
 
     const handleManualSubmit = async (e) => {
         e.preventDefault();
         try {
-            await onSingleSubmit({ userId, amount, TransactionDate});
-
+            await onSingleSubmit({ userId, amount, TransactionDate, merchant});
             setAmount('');
             setDate('');
             handleFetchTransactions(userId);
@@ -67,6 +67,13 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                                 value={amount}
                                 onChange={(e) => setAmount(e.target.value)}
                             />
+                            <input
+                                type="text"
+                                placeholder="Merchant Name"
+                                className="input-box"
+                                value={merchant} // Merchant input field
+                                onChange={(e) => setMerchant(e.target.value)}
+                            />
                             <button type="submit" className="submit-btn">Submit Transaction</button>
                         </form>
                     </div>
@@ -74,9 +81,9 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                     <div className="FileInput">
                         <h2>Upload CSV</h2>
                         <input type="file"
-                            accept=".csv"
-                            className="file-input"
-                            onChange={handleFileChange}
+                               accept=".csv"
+                               className="file-input"
+                               onChange={handleFileChange}
                         />
                         <button onClick={handleFileSubmit} className="submit-btn">
                             Submit CSV
@@ -91,9 +98,11 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                     <div className="transaction-list">
                         {/* Header Row */}
                         <div className="transaction-header">
-                            <span className="header-item">Transaction Date</span>
+                            <span className="header-item">Date</span>
                             <span className="separator">|</span>
-                            <span className="header-item">Transaction Amount</span>
+                            <span className="header-item">Merchant</span>
+                            <span className="separator">|</span>
+                            <span className="header-item">Amount</span>
                         </div>
 
                         {/* Transactions Rows */}
@@ -104,6 +113,8 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                                 return (
                                     <div key={transaction.id} className="transaction-row">
                                         <span className="transaction-date">{transaction.TransactionDate}</span>
+                                        <span className="separator">|</span>
+                                        <span className="header-item">{transaction.merchant}</span>
                                         <span className="separator">|</span>
                                         <span className="transaction-amount">{transaction.amount}</span>
                                     </div>
