@@ -44,6 +44,8 @@ public class TransactionService {
             throw new IllegalArgumentException("Transaction date cannot be null");
         } else if (transaction.getAmount() <= 0){
             throw new IllegalArgumentException("Transaction amount must be greater than 0");
+        }else if (transaction.getMerchant() == null){
+            throw new IllegalArgumentException("Transaction merchant cannot be null");
         }else{
             transactions.add(transaction);
             return transaction;
@@ -63,13 +65,15 @@ public class TransactionService {
 
     public Transaction parseTransaction(String line) throws IllegalArgumentException{
         String[] parts = line.split(",");  // should spit into 3 parts, splits at commas
-        if (parts.length != 2) {
+        if (parts.length != 3) {
             throw new IllegalArgumentException("Invalid transaction format");
         }
 
 
         String dateStr = parts[0].trim();
-        double amount = Double.parseDouble(parts[1].trim());
+        String merchant = parts[1].trim();
+        double amount = Double.parseDouble(parts[2].trim());
+
 
 
         Date transactionDate = parseDate(dateStr); // parse date to correct format
@@ -78,6 +82,7 @@ public class TransactionService {
         Transaction transaction = new Transaction();
         transaction.setTransactionDate(transactionDate);
         transaction.setAmount(amount);
+        transaction.setMerchant(merchant);
 
         return transaction;
     }

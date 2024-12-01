@@ -17,7 +17,7 @@ public class Transaction {
     @JsonFormat(pattern = "dd/MM/yyyy") //convert the json string into date format
     private Date TransactionDate;
     private double amount;
-   // private String merchant;
+    private String merchant;
 
     public String getUserId() {
         return userId;
@@ -27,14 +27,14 @@ public class Transaction {
         this.userId = userId;
     }
 
-    /*public String getMerchant() {
+    public String getMerchant() {
         return merchant;
     }
 
     public void setMerchant(String merchant) {
         this.merchant = merchant;
     }
-*/
+
     public double getAmount() {
         return amount;
     }

@@ -40,6 +40,7 @@ public class TransactionServiceTest {
         transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
+        transaction.setMerchant("TestMer");
 
         // When
         transactionService.addTransaction(transaction);
@@ -58,11 +59,13 @@ public class TransactionServiceTest {
         transaction1.setUserId("user1");
         transaction1.setTransactionDate(new Date());
         transaction1.setAmount(100.0);
+        transaction1.setMerchant("TestMer");
 
         Transaction transaction2 = new Transaction();
         transaction2.setUserId("user2");
         transaction2.setTransactionDate(new Date());
         transaction2.setAmount(75.0);
+        transaction2.setMerchant("TestMer2");
 
         // When
         transactionService.addTransaction(transaction1);
@@ -91,6 +94,7 @@ public class TransactionServiceTest {
         transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(100.0);
+        transaction.setMerchant("TestMer");
 
         // When
         transactionService.addTransaction(transaction);
@@ -108,6 +112,7 @@ public class TransactionServiceTest {
         transaction.setUserId(null); // Null user ID
         transaction.setTransactionDate(null); // Null date
         transaction.setAmount(0);
+        transaction.setMerchant(null);
 
         // When & Then
         assertThrows(IllegalArgumentException.class,
@@ -122,6 +127,7 @@ public class TransactionServiceTest {
         transaction.setUserId("user1");
         transaction.setTransactionDate(new Date());
         transaction.setAmount(-50.0); // Invalid negative amount
+        transaction.setMerchant("TestMer");
 
         // When & Then
         assertThrows(IllegalArgumentException.class,
@@ -169,7 +175,7 @@ public class TransactionServiceTest {
     @Test
     public void testParseTransaction() {
         // Given (what each line will be parsed into)
-        String line ="15/11/2024,100.0";
+        String line ="15/11/2024,TestMer,100.0";
 
 
         // When
@@ -178,6 +184,7 @@ public class TransactionServiceTest {
         // Then
         assertEquals("user1", transaction.getUserId());
         assertEquals(100.0, transaction.getAmount());
+        assertEquals("TestMer", transaction.getMerchant());
         assertEquals(2024, transaction.getTransactionDate().getYear() + 1900);
         assertEquals(10, transaction.getTransactionDate().getMonth()); // Correctly parsed Details put into transaction
         assertEquals(15, transaction.getTransactionDate().getDate());
@@ -226,10 +233,12 @@ public class TransactionServiceTest {
         transaction1.setUserId(userId);
         transaction1.setTransactionDate(new Date());
         transaction1.setAmount(100.0);
+        transaction1.setMerchant("TestMer");
         Transaction transaction2 = new Transaction();
         transaction2.setUserId(userId);
         transaction2.setTransactionDate(new Date());
         transaction2.setAmount(200.0);
+        transaction2.setMerchant("TestMer2");
 
         List<Transaction> mockTransaction = new ArrayList<>();
         mockTransaction.add(transaction1);  // creating mock of return from repo
