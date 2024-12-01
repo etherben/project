@@ -4,7 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Login form sends correct data onSubmit" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Transactions are fetched and loaded when initially loading mainpage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -16,17 +21,19 @@
         <option value="Dockerfile" />
         <option value="CSS File" />
         <option value="JSX File" />
+        <option value="Class" />
+        <option value="JavaScript File" />
       </list>
     </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_BRANCH_BY_REPOSITORY">
       <map>
-        <entry key="$PROJECT_DIR$/../.." value="Backend_Create/Login_Validation" />
+        <entry key="$PROJECT_DIR$/../.." value="FrontMainPageCreation" />
         <entry key="$PROJECT_DIR$/.." value="frontdocker" />
       </map>
     </option>
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../.." />
   </component>
   <component name="GitLabMergeRequestFiltersHistory">{
   &quot;lastFilter&quot;: {
@@ -44,6 +51,10 @@
     &quot;second&quot;: &quot;42f920eb-bb94-4d08-a997-0c7235fce4b3&quot;
   }
 }</component>
+  <component name="KubernetesApiPersistence">{}</component>
+  <component name="KubernetesApiProvider">{
+  &quot;isMigrated&quot;: true
+}</component>
   <component name="ProjectColorInfo">{
   &quot;associatedIndex&quot;: 6
 }</component>
@@ -55,20 +66,88 @@
   </component>
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
+    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Signup.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.renders the Signup form initially.executor&quot;: &quot;Debug&quot;,
+    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;FrontUserConnection&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;FrontMainPage&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/project/PROJECT/Project&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
     &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
+  <component name="RunManager" selected="Jest.App.test.js">
+    <configuration name="App.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/App.test.js" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Signup.test.jsx" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST_FILE" />
+      <test-file value="$PROJECT_DIR$/src/Components/SignUp/Signup.test.jsx" />
+      <method v="2" />
+    </configuration>
+    <configuration name="renders the Signup form initially" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/App.test.js" />
+      <test-names>
+        <test-name value="renders the Signup form initially" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="stores userId in sessionStorage after successful login" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+      <node-interpreter value="project" />
+      <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
+      <working-dir value="$PROJECT_DIR$" />
+      <envs />
+      <scope-kind value="TEST" />
+      <test-file value="$PROJECT_DIR$/src/App.test.js" />
+      <test-names>
+        <test-name value="stores userId in sessionStorage after successful login" />
+      </test-names>
+      <method v="2" />
+    </configuration>
+    <configuration name="App.js" type="NodeJSConfigurationType" temporary="true" nameIsGenerated="true" path-to-js-file="$PROJECT_DIR$/src/App.js" working-dir="$PROJECT_DIR$/src">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Jest.App.test.js" />
+        <item itemvalue="Jest.renders the Signup form initially" />
+        <item itemvalue="Jest.Signup.test.jsx" />
+        <item itemvalue="Node.js.App.js" />
+        <item itemvalue="Jest.stores userId in sessionStorage after successful login" />
+      </list>
+    </recent_temporary>
+  </component>
   <component name="SharedIndexes">
     <attachedChunks>
       <set>
@@ -92,6 +171,18 @@
       <workItem from="1731613158496" duration="843000" />
       <workItem from="1731665595298" duration="8349000" />
       <workItem from="1731678668515" duration="6000" />
+      <workItem from="1732701761618" duration="1586000" />
+      <workItem from="1732703400057" duration="8940000" />
+      <workItem from="1732712787720" duration="8031000" />
+      <workItem from="1732725416149" duration="147000" />
+      <workItem from="1732726335971" duration="316000" />
+      <workItem from="1732726907116" duration="747000" />
+      <workItem from="1732729893596" duration="519000" />
+      <workItem from="1732730679577" duration="667000" />
+      <workItem from="1732792770295" duration="473000" />
+      <workItem from="1732876525091" duration="1382000" />
+      <workItem from="1732877946687" duration="9752000" />
+      <workItem from="1733052270396" duration="6258000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -141,7 +232,63 @@
       <option name="project" value="LOCAL" />
       <updated>1731676148479</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Upon mounting, create userId to be stored throughout the session">
+      <option name="closed" value="true" />
+      <created>1732703652484</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1732703652484</updated>
+    </task>
+    <task id="LOCAL-00008" summary="once logged in, userid is saved and directs to empty mainpage">
+      <option name="closed" value="true" />
+      <created>1732712829042</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1732712829042</updated>
+    </task>
+    <task id="LOCAL-00009" summary="once logged in, userid is saved and directs to empty mainpage">
+      <option name="closed" value="true" />
+      <created>1732714382382</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1732714382382</updated>
+    </task>
+    <task id="LOCAL-00010" summary="Created basic mainpage with sections for uploading and loading transactions. No functionality yet.">
+      <option name="closed" value="true" />
+      <created>1732723089608</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1732723089608</updated>
+    </task>
+    <task id="LOCAL-00011" summary="User can submit single transaction">
+      <option name="closed" value="true" />
+      <created>1732730732225</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1732730732225</updated>
+    </task>
+    <task id="LOCAL-00012" summary="User can submit file, updates database as separate transactions">
+      <option name="closed" value="true" />
+      <created>1732895449815</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1732895449815</updated>
+    </task>
+    <task id="LOCAL-00013" summary="Transactions are fetched and loaded when initially loading mainpage">
+      <option name="closed" value="true" />
+      <created>1733052338812</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1733052338812</updated>
+    </task>
+    <option name="localTasksCounter" value="14" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -152,19 +299,42 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="FILTERS">
+                <map>
+                  <entry key="branch">
+                    <value>
+                      <list>
+                        <option value="FrontMainPage" />
+                      </list>
+                    </value>
+                  </entry>
+                </map>
+              </option>
+            </State>
           </value>
         </entry>
       </map>
     </option>
   </component>
   <component name="VcsManagerConfiguration">
+    <ignored-roots>
+      <path value="$PROJECT_DIR$/.." />
+    </ignored-roots>
     <MESSAGE value="dockerfile for backend" />
     <MESSAGE value="dockerfile for front end" />
     <MESSAGE value="fixing remote connection issue" />
     <MESSAGE value="Same sign up form as previously written, with testing" />
     <MESSAGE value="Login form renders properly with tests" />
     <MESSAGE value="Login form sends correct data onSubmit" />
-    <option name="LAST_COMMIT_MESSAGE" value="Login form sends correct data onSubmit" />
+    <MESSAGE value="Update file diary.md" />
+    <MESSAGE value="Create user Id" />
+    <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
+    <MESSAGE value="once logged in, userid is saved and directs to empty mainpage" />
+    <MESSAGE value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
+    <MESSAGE value="User can submit single transaction" />
+    <MESSAGE value="User can submit file, updates database as separate transactions" />
+    <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Transactions are fetched and loaded when initially loading mainpage" />
   </component>
 </project>
