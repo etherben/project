@@ -63,7 +63,7 @@ public class TransactionController {
         return ResponseEntity.ok(transactions);
     }
 
-    @GetMapping("getTransactions")
+    @GetMapping("/{userId}")
     public ResponseEntity<?> getTransactionsByUserId(@PathVariable String userId) {
         try{
         List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);

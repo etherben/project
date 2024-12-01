@@ -1,18 +1,21 @@
-import React, { useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import './MainPage.css';
 
-const MainPage = ({ userId, onSingleSubmit, onFileSubmit }) => {
+const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFetchTransactions}) => {
     const [amount, setAmount] = useState('');
     const [TransactionDate, setDate] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileStatus, setFileStatus] = useState('');
 
+
     const handleManualSubmit = async (e) => {
         e.preventDefault();
         try {
-            await onSingleSubmit({ userId, amount, TransactionDate });
+            await onSingleSubmit({ userId, amount, TransactionDate});
+
             setAmount('');
-            setDate(''); // Reset fields
+            setDate('');
+            handleFetchTransactions(userId);
         } catch (error) {
             console.error('Error submitting transaction:', error);
         }
@@ -31,17 +34,16 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit }) => {
             setFileStatus('Please select a file to upload.');
             return;
         }
-
         try {
-            await onFileSubmit(selectedFile); // Call the function passed from App.js
+            await onFileSubmit(selectedFile);
             setFileStatus('File uploaded successfully.');
-            setSelectedFile(null); // Reset file input
+            setSelectedFile(null);
+            handleFetchTransactions(userId);
         } catch (error) {
             console.error('Error uploading file:', error);
             setFileStatus('Error uploading file.');
         }
     };
-
     return (
         <div className="main-container">
             <h1 className="welcome-message">Welcome, User ID: {userId}</h1>
@@ -87,7 +89,18 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit }) => {
                 <div className="rightside">
                     <h2>Transactions</h2>
                     <div className="transaction-list">
-                        <p>No transactions to show yet.</p>
+                        {transactions.length === 0 ? (
+                            <p>No transactions to show yet.</p>
+                        ) : (
+                            <ul>
+                                {transactions.map((transaction) => (
+                                    <li key={transaction.id}>
+                                        <p><strong>Date:</strong> {transaction.TransactionDate}</p>
+                                        <p><strong>Amount:</strong> {transaction.amount}</p>
+                                    </li>
+                                ))}
+                            </ul>
+                        )}
                     </div>
                 </div>
             </div>

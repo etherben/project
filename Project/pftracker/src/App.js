@@ -9,17 +9,35 @@ function App() {
   const toggleSignup = () => {
     setSignup(prev => !prev);
   };
-
   const [userId, setUserId] = useState(null);
+  const [transactions, setTransactions] = useState([]);
 
   // Load userId from sessionStorage on mountk
-  useEffect(() => {
-    const storedUserId = sessionStorage.getItem('id');
-    if (storedUserId) {
-      setUserId(storedUserId);
-    }
+  const handleFetchTransactions = async (userId) => {
+    try {
+      const response = await fetch(`http://localhost:8080/transactions/${userId}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
 
-  }, []);
+      if (!response.ok) {
+        throw new Error('Failed to retrieve transactions');
+      }
+
+      const transactionsData = await response.json();
+      console.log('Transactions fetched successfully:', transactionsData);
+
+      // Update state with the fetched transactions
+      setTransactions(transactionsData);
+    } catch (error) {
+      console.error('Error fetching transactions:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleFetchTransactions(userId);
+  }, [userId]); //fetch when userid cahnges
+
 
   const handleSignupSubmit = async (userSignupData) => {
     try {
@@ -118,7 +136,7 @@ function App() {
   return (
       <div>
         {userId ? (
-            <MainPage userId={userId} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit} />
+            <MainPage userId={userId} transactions={transactions} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit} />
         ) : isSignup ? (
             <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit} />
         ) : (
