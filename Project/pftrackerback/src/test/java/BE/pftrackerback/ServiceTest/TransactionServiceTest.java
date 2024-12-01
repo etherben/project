@@ -279,5 +279,20 @@ public class TransactionServiceTest {
         //Then
         assertEquals("No transactions found", exception.getMessage());
     }
+    @Test
+    public void testNullMerchant(){
+        // Given
+        Transaction transaction = new Transaction();
+        transaction.setUserId("test123");
+        transaction.setTransactionDate(new Date());
+        transaction.setAmount(100.0);
+        transaction.setMerchant(null);
+
+        // When & Then
+        assertThrows(IllegalArgumentException.class,
+                () -> transactionService.addTransaction(transaction),
+                "Expected to throw an IllegalArgument for null fields");
+    }
 }
+
 
