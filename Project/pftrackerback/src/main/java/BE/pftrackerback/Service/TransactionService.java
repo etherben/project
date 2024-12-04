@@ -3,6 +3,7 @@ package BE.pftrackerback.Service;
 import BE.pftrackerback.Model.Transaction;
 import BE.pftrackerback.Repo.TransactionRepo;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -30,11 +31,12 @@ public class TransactionService {
             throw new IllegalArgumentException("User id is null or empty");
         }
         // Try to retrieve transactions from the repo
-        try{
-           return transactionRepo.findByUserId(userId);
-        } catch (Exception e) {
+
+           List<Transaction> list = transactionRepo.findByUserId(userId, Sort.by(Sort.Direction.DESC, "TransactionDate"));
+        if (list.isEmpty()) {
             throw new IllegalArgumentException("No transactions found");
         }
+        return list;
     }
 
     public Transaction addTransaction(Transaction transaction) {
@@ -109,9 +111,11 @@ public class TransactionService {
     public List<Transaction> persistTransaction(){
         //saves the list of transactions to hte transaction repo
         try {
-           return transactionRepo.saveAll(transactions);
+            List<Transaction> savedTransactions = transactionRepo.saveAll(transactions);
+            transactions.clear();
+            return savedTransactions;
         } catch(Exception e) {
-            throw new IllegalArgumentException("Transaction could not be saved");
+            throw new IllegalArgumentException("Transactions could not be saved");
         }
     }
 }
