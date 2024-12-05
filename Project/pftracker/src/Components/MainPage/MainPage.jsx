@@ -73,19 +73,40 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         const totals = monthlyData.map(item => item.total);
 
         const chartSettings = {
+            title: {
+                text: 'Monthly Transaction Expenditure',
+                textStyle: {
+                    color: '#000000', // title text black
+                    fontSize: 18,
+                },
+            },
             xAxis: {
                 type: 'category',
                 data: months,
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000', // label text color
+                    },
+                },
             },
             yAxis: {
                 type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000', // label text color
+                    },
+                },
             },
-            series: [{
-                data: totals,
-                type: 'line',
-            }],
+            series: [
+                {
+                    data: totals,
+                    type: 'line',
+                    lineStyle: {
+                        color: 'black', // Line color
+                    },
+                },
+            ],
         };
-
         chart.setOption(chartSettings);
     }, [monthlyData]);
 
@@ -140,7 +161,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
 
                     {/* Chart Section */}
                     <div className="chart-container">
-                        <div ref={chartRef} style={{height: '400px'}}></div>
+                        <div ref={chartRef} style={{width:'600px', height: '600px'}}></div>
                     </div>
                 </div>
 
