@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import * as echarts from 'echarts';
 import './MainPage.css';
 
 const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFetchTransactions}) => {
@@ -50,10 +51,12 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
             const [day, month, year] = transaction.TransactionDate.split('/');
             const date = new Date(`${year}-${month}-${day}`); // Convert to yyyy-mm-dd format for it not to get confused with object
             const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`  // Gets month and year of transaction
-            if (!amounts[monthAndYear]) {
-                amounts[monthAndYear] = 0; // for initializing that month/year  if it doesnt already exist
+                                                                                        // +1 on month becuase .date() obj starts at 0 = jan for some reason
+            if (!amounts[monthAndYear]) {  // if doesnt exist
+                amounts[monthAndYear] = 0; // initialize that month/year
             }
-            amounts[monthAndYear] += parseFloat(transaction.amount);                    // +1 on month becuase .date() obj starts at 0 = jan for some reason
+
+            amounts[monthAndYear] += parseFloat(transaction.amount);
             return amounts;
         }, {}); // start it as empty object
         return Object.entries(monthlyTotal).map(([month, total]) => ({month,total})); //create array of object with {month,total}
@@ -61,6 +64,30 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
 
     const monthlyData = aggregateTransactions(transactions);
 
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+        const chart = echarts.init(chartRef.current);
+
+        const months = monthlyData.map(item => item.month);
+        const totals = monthlyData.map(item => item.total);
+
+        const chartSettings = {
+            xAxis: {
+                type: 'category',
+                data: months,
+            },
+            yAxis: {
+                type: 'value',
+            },
+            series: [{
+                data: totals,
+                type: 'line',
+            }],
+        };
+
+        chart.setOption(chartSettings);
+    }, [monthlyData]);
 
 
     return  (
@@ -111,16 +138,9 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                         <p>{fileStatus}</p>
                     </div>
 
-                    {/* Aggregated Section */}
-                    <div className="aggregated-data">
-                        <h2>Monthly Aggregated Transactions</h2>
-                        <ul>
-                            {monthlyData.map(({ month, total }) => (
-                                <li key={month}>
-                                    <strong>{month}:</strong> £{total.toFixed(2)}
-                                </li>
-                            ))}
-                        </ul>
+                    {/* Chart Section */}
+                    <div className="chart-container">
+                        <div ref={chartRef} style={{height: '400px'}}></div>
                     </div>
                 </div>
 

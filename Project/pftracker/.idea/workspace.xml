@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Function to parse date from string, ready to sort.">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Changed to just show aggregated list on the mainpage.Ready to translate into graph.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Graphs/Graph.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Graphs/Graph.jsx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -186,7 +186,7 @@
       <workItem from="1733079838983" duration="576000" />
       <workItem from="1733349624506" duration="124000" />
       <workItem from="1733350509368" duration="1414000" />
-      <workItem from="1733399487680" duration="4009000" />
+      <workItem from="1733399487680" duration="6975000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -324,7 +324,15 @@
       <option name="project" value="LOCAL" />
       <updated>1733351092360</updated>
     </task>
-    <option name="localTasksCounter" value="18" />
+    <task id="LOCAL-00018" summary="Changed to just show aggregated list on the mainpage.Ready to translate into graph.">
+      <option name="closed" value="true" />
+      <created>1733410314215</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733410314215</updated>
+    </task>
+    <option name="localTasksCounter" value="19" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -375,6 +383,7 @@
     <MESSAGE value="Added merchant param to front including in transaction list and adding transactions" />
     <MESSAGE value="Front end file creating for graph" />
     <MESSAGE value="Function to parse date from string, ready to sort." />
-    <option name="LAST_COMMIT_MESSAGE" value="Function to parse date from string, ready to sort." />
+    <MESSAGE value="Changed to just show aggregated list on the mainpage.Ready to translate into graph." />
+    <option name="LAST_COMMIT_MESSAGE" value="Changed to just show aggregated list on the mainpage.Ready to translate into graph." />
   </component>
 </project>
