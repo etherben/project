@@ -44,7 +44,26 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
             setFileStatus('Error uploading file.');
         }
     };
-    return (
+
+    const aggregateTransactions = (transactions) => {
+        const monthlyTotal = transactions.reduce((amounts, transaction) => {
+            const [day, month, year] = transaction.TransactionDate.split('/');
+            const date = new Date(`${year}-${month}-${day}`); // Convert to yyyy-mm-dd format for it not to get confused with object
+            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`  // Gets month and year of transaction
+            if (!amounts[monthAndYear]) {
+                amounts[monthAndYear] = 0; // for initializing that month/year  if it doesnt already exist
+            }
+            amounts[monthAndYear] += parseFloat(transaction.amount);                    // +1 on month becuase .date() obj starts at 0 = jan for some reason
+            return amounts;
+        }, {}); // start it as empty object
+        return Object.entries(monthlyTotal).map(([month, total]) => ({month,total})); //create array of object with {month,total}
+    }                                                                                                          //and map to list on document
+
+    const monthlyData = aggregateTransactions(transactions);
+
+
+
+    return  (
         <div className="main-container">
             <h1 className="welcome-message">Welcome, User ID: {userId}</h1>
             <div className="content">
@@ -71,7 +90,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                                 type="text"
                                 placeholder="Merchant Name"
                                 className="input-box"
-                                value={merchant} // Merchant input field
+                                value={merchant}
                                 onChange={(e) => setMerchant(e.target.value)}
                             />
                             <button type="submit" className="submit-btn">Submit Transaction</button>
@@ -80,15 +99,28 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                     {/* File input */}
                     <div className="FileInput">
                         <h2>Upload CSV</h2>
-                        <input type="file"
-                               accept=".csv"
-                               className="file-input"
-                               onChange={handleFileChange}
+                        <input
+                            type="file"
+                            accept=".csv"
+                            className="file-input"
+                            onChange={handleFileChange}
                         />
                         <button onClick={handleFileSubmit} className="submit-btn">
                             Submit CSV
                         </button>
                         <p>{fileStatus}</p>
+                    </div>
+
+                    {/* Aggregated Section */}
+                    <div className="aggregated-data">
+                        <h2>Monthly Aggregated Transactions</h2>
+                        <ul>
+                            {monthlyData.map(({ month, total }) => (
+                                <li key={month}>
+                                    <strong>{month}:</strong> £{total.toFixed(2)}
+                                </li>
+                            ))}
+                        </ul>
                     </div>
                 </div>
 
@@ -109,17 +141,15 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                         {transactions.length === 0 ? (
                             <p>No transactions to show yet.</p>
                         ) : (
-                            transactions.map((transaction) => {
-                                return (
-                                    <div key={transaction.id} className="transaction-row">
-                                        <span className="transaction-date">{transaction.TransactionDate}</span>
-                                        <span className="separator">|</span>
-                                        <span className="header-item">{transaction.merchant}</span>
-                                        <span className="separator">|</span>
-                                        <span className="transaction-amount">{transaction.amount}</span>
-                                    </div>
-                                );
-                            })
+                            transactions.map((transaction) => (
+                                <div key={transaction.id} className="transaction-row">
+                                    <span className="transaction-date">{transaction.TransactionDate}</span>
+                                    <span className="separator">|</span>
+                                    <span className="header-item">{transaction.merchant}</span>
+                                    <span className="separator">|</span>
+                                    <span className="transaction-amount">{transaction.amount}</span>
+                                </div>
+                            ))
                         )}
                     </div>
                 </div>
@@ -127,5 +157,6 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         </div>
     );
 };
+
 
 export default MainPage;
