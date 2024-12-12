@@ -13,7 +13,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const handleManualSubmit = async (e) => {
         e.preventDefault();
         try {
-            await onSingleSubmit({ userId, amount, TransactionDate, merchant});
+            await onSingleSubmit({ userId, amount, TransactionDate, merchant});     // call for user to manually add single transaction
             setAmount('');
             setDate('');
             handleFetchTransactions(userId);
@@ -26,7 +26,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         const file = e.target.files[0];
         if (file) {
             setSelectedFile(file);
-            setFileStatus(`File selected: ${file.name}`);
+            setFileStatus(`File selected: ${file.name}`);      // when file update happens
         }
     };
 
@@ -37,7 +37,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         }
         try {
             await onFileSubmit(selectedFile);
-            setFileStatus('File uploaded successfully.');
+            setFileStatus('File uploaded successfully.');      //call the api for file submission
             setSelectedFile(null);
             handleFetchTransactions(userId);
         } catch (error) {
@@ -67,9 +67,10 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const chartRef = useRef(null);
 
     useEffect(() => {
-        const chart = echarts.init(chartRef.current);
+        const chart = echarts.init(chartRef.current)     // will constantly try to update graph, even when shouldnt exist yet.
+                                                                        //will show errors on log, but not affect the application
 
-        const months = monthlyData.map(item => item.month);
+        const months = monthlyData.map(item => item.month);          //maps data to basic graph
         const totals = monthlyData.map(item => item.total);
 
         const chartSettings = {
@@ -106,7 +107,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                     },
                 },
             ],
-        };
+        };//Echarts graph settings
         chart.setOption(chartSettings);
     }, [monthlyData]);
 

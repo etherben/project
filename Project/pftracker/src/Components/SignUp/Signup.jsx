@@ -17,6 +17,7 @@ const Signup = ({onSubmit, onSwitch}) => {
         try {
             await onSubmit(userData); // Pass userData to handleSignupSubmit
         } catch (error) {
+
             console.error('Error during signup:', error);
         }
     };

@@ -1,6 +1,7 @@
 import { render, screen, fireEvent} from '@testing-library/react';
 import Signup from './Signup';
 
+
 test('switches to login form', () => {
     //given
     const mockSwitch = jest.fn();
@@ -52,6 +53,8 @@ test('onSubmit called with user data when submitted', () => {
     });
 });
 
+
+/*This test is meant to log an API ERROR in console, test will still pass however*/
 
 test('API call fail on form submission', async () => {
     //given
