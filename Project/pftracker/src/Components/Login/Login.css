@@ -1,17 +1,3 @@
-/* Ensure body and html take up full height */
-html, body {
-    height: 100%;
-    margin: 0;
-    font-family: Arial, sans-serif;
-}
-
-/* Gradient background for the whole page */
-body {
-    background: linear-gradient(to bottom, #5ba0ff, #587bff); /* Light blue to darker blue gradient */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 /* Container styling */
 .container {
@@ -22,7 +8,7 @@ body {
     width: 600px;
     background: white;  /* White background for the form container */
     padding: 20px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    box-shadow: 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
 }
 
 /* Header section of the container */

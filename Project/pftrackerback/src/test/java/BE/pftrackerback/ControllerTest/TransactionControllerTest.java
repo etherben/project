@@ -166,7 +166,8 @@ public class TransactionControllerTest {
         List<Transaction> mockResponse = new ArrayList<>();
         mockResponse.add(transaction);
         mockResponse.add(transaction2);
-        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenReturn(mockResponse); //eq matches arguement rather than passing raw value
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId)))
+                .thenReturn(mockResponse); //eq matches arguement rather than passing raw value
         //when
         ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
 
@@ -186,7 +187,8 @@ public class TransactionControllerTest {
                 "Some text content".getBytes() //rand content
         );
         String userId = "userId123";
-        when(transactionService.parseFile(any(MultipartFile.class), eq(userId))).thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
+        when(transactionService.parseFile(any(MultipartFile.class), eq(userId)))
+                .thenThrow(new IllegalArgumentException("Invalid file format. Not CSV"));
 
         // When
         ResponseEntity<String> response = transactionController.addBulkTransaction(file, userId);
@@ -203,7 +205,8 @@ public class TransactionControllerTest {
         List<Transaction> mockTransactions = new ArrayList<>();
         mockTransactions.add(transaction);
         mockTransactions.add(transaction2);
-        when(transactionService.getTransactionsByUserId("userId123")).thenReturn(mockTransactions);
+        when(transactionService.getTransactionsByUserId("userId123"))
+                .thenReturn(mockTransactions);
 
         //When
         ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
@@ -218,17 +221,19 @@ public class TransactionControllerTest {
     public void testGetTransactionNoTransactionsFound() {
         //Given
         String userId = "userId123";
-        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found for the user id " + userId));
+        when(transactionService.getTransactionsByUserId(userId))
+                .thenThrow(new IllegalArgumentException("No transactions found for the user id " + userId));
         //When
         ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
         //Then
         assertEquals("No transactions found for the user id " + userId, response.getBody());
     }
     @Test
-    public void testGetTransactonRuntimeException() {
+    public void testGetTransactionRuntimeException() {
         //Given
         String userId = "userId123";
-        when(transactionService.getTransactionsByUserId(userId)).thenThrow(new RuntimeException("Runtime error: (Message)"));
+        when(transactionService.getTransactionsByUserId(userId))
+                .thenThrow(new RuntimeException("Runtime error: (Message)"));
         //When
         ResponseEntity<?> response = transactionController.getTransactionsByUserId(userId);
         //Then

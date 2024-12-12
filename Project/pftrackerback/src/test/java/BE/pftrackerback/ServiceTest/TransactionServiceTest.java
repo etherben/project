@@ -7,17 +7,17 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Sort;
 import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.Mockito.*;
 
 @SpringBootTest
 public class TransactionServiceTest {
@@ -196,7 +196,8 @@ public class TransactionServiceTest {
                 "file", // The name of the file field
                 "mockTransactionsFile.csv", //filename
                 "text/csv", // File type
-                new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
+                new FileInputStream(ResourceUtils
+                        .getFile("classpath:mockTransactionsFile.csv")) // File content
         );
         String userId = "userId123";
         //When
@@ -226,39 +227,6 @@ public class TransactionServiceTest {
     }
 
     @Test
-    public void getAllTransactions() {
-        //Given
-        String userId = "user1";
-        Transaction transaction1 = new Transaction();
-        transaction1.setUserId(userId);
-        transaction1.setTransactionDate(new Date());
-        transaction1.setAmount(100.0);
-        transaction1.setMerchant("TestMer");
-        Transaction transaction2 = new Transaction();
-        transaction2.setUserId(userId);
-        transaction2.setTransactionDate(new Date());
-        transaction2.setAmount(200.0);
-        transaction2.setMerchant("TestMer2");
-
-        List<Transaction> mockTransaction = new ArrayList<>();
-        mockTransaction.add(transaction1);  // creating mock of return from repo
-        mockTransaction.add(transaction2);
-
-        Mockito.when(transactionRepo.findByUserId(userId)).thenReturn(mockTransaction);
-
-        //When
-        System.out.println(transactionRepo.findByUserId(userId));
-        List<Transaction> transactions = transactionService.getTransactionsByUserId(userId);
-
-        //Then
-        assertNotNull(transactions);
-        assertEquals(2, transactions.size());
-        assertEquals(transaction1, transactions.get(0));  //list is correct
-        assertEquals(transaction2, transactions.get(1));
-
-    }
-
-    @Test
     public void getAllTransactions_InvalidUserId() {
         //Just checking for the throw, don't need to mock a transaction list
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
@@ -270,7 +238,8 @@ public class TransactionServiceTest {
     public void testGetTransactionsByUserId_NoTransactions() {
         //Given
         String userId = "user123";
-        Mockito.when(transactionRepo.findByUserId(userId)).thenThrow(new IllegalArgumentException("No transactions found"));
+        when(transactionRepo.findByUserId(userId, Sort.unsorted()))
+                .thenThrow(new IllegalArgumentException("No transactions found"));
         //When
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {

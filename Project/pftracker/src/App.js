@@ -5,17 +5,18 @@ import React, { useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
-  const [isSignup, setSignup] = useState(null);
+  const [isSignup, setSignup] = useState(true);
   const toggleSignup = () => {
     setSignup(prev => !prev);
   };
   const [userId, setUserId] = useState(null);
   const [transactions, setTransactions] = useState([]);
 
-  // Load userId from sessionStorage on mountk
+  // Load userId from sessionStorage on mount
+  //will call fetch transactions at any point to check for new ones
   const handleFetchTransactions = async (userId) => {
     try {
-      const response = await fetch(`http://localhost:8080/transactions/${userId}`, {
+      const response = await fetch(`http://localhost:8080/transactions/${userId}`, {  //the api call to backend with userid
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -33,15 +34,15 @@ function App() {
       console.error('Error fetching transactions:', error);
     }
   };
-
   useEffect(() => {
-    handleFetchTransactions(userId);
-  }, [userId]); //fetch when userid cahnges
-
+    if (userId) { // Only fetch transactions if userId is not null
+      handleFetchTransactions(userId);
+    }
+  }, [userId]); // Only trigger when userId changes
 
   const handleSignupSubmit = async (userSignupData) => {
     try {
-      const response = await fetch('http://localhost:8080/users/create', {
+      const response = await fetch('http://localhost:8080/users/create', {  //calls signup backend functions
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userSignupData),
@@ -51,10 +52,11 @@ function App() {
       }
       const result = await response.json();
       console.log('User signed up:', result);
-
+      setUserId(result.id); //update userid
     } catch (error) {
-      console.error('Error:', error);
+      //console.error('Error:', error);
     }
+
   };
 
   const handleLoginSubmit = async (userLoginData) => {
@@ -72,8 +74,8 @@ function App() {
       sessionStorage.setItem('id', result.id);
       console.log('Login successful:', result);
     } catch (error) {
-      console.error('Error:', error);
-    }
+    console.error('Error:', error);
+  }
   };
 
   const handleSingleTransactionSubmit = async(transaction) =>{

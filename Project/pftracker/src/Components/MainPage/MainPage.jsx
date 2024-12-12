@@ -1,4 +1,5 @@
-import React, {useState} from 'react';
+import React, {useState, useRef, useEffect} from 'react';
+import * as echarts from 'echarts';
 import './MainPage.css';
 
 const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFetchTransactions}) => {
@@ -12,7 +13,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const handleManualSubmit = async (e) => {
         e.preventDefault();
         try {
-            await onSingleSubmit({ userId, amount, TransactionDate, merchant});
+            await onSingleSubmit({ userId, amount, TransactionDate, merchant});     // call for user to manually add single transaction
             setAmount('');
             setDate('');
             handleFetchTransactions(userId);
@@ -25,7 +26,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         const file = e.target.files[0];
         if (file) {
             setSelectedFile(file);
-            setFileStatus(`File selected: ${file.name}`);
+            setFileStatus(`File selected: ${file.name}`);      // when file update happens
         }
     };
 
@@ -36,7 +37,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         }
         try {
             await onFileSubmit(selectedFile);
-            setFileStatus('File uploaded successfully.');
+            setFileStatus('File uploaded successfully.');      //call the api for file submission
             setSelectedFile(null);
             handleFetchTransactions(userId);
         } catch (error) {
@@ -44,7 +45,74 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
             setFileStatus('Error uploading file.');
         }
     };
-    return (
+
+    const aggregateTransactions = (transactions) => {
+        const monthlyTotal = transactions.reduce((amounts, transaction) => {
+            const [day, month, year] = transaction.TransactionDate.split('/');
+            const date = new Date(`${year}-${month}-${day}`); // Convert to yyyy-mm-dd format for it not to get confused with object
+            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`  // Gets month and year of transaction
+                                                                                        // +1 on month becuase .date() obj starts at 0 = jan for some reason
+            if (!amounts[monthAndYear]) {  // if doesnt exist
+                amounts[monthAndYear] = 0; // initialize that month/year
+            }
+
+            amounts[monthAndYear] += parseFloat(transaction.amount);
+            return amounts;
+        }, {}); // start it as empty object
+        return Object.entries(monthlyTotal).map(([month, total]) => ({month,total})); //create array of object with {month,total}
+    }                                                                                                          //and map to list on document
+
+    const monthlyData = aggregateTransactions(transactions);
+
+    const chartRef = useRef(null);
+
+    useEffect(() => {
+        const chart = echarts.init(chartRef.current)     // will constantly try to update graph, even when shouldnt exist yet.
+                                                                        //will show errors on log, but not affect the application
+
+        const months = monthlyData.map(item => item.month);          //maps data to basic graph
+        const totals = monthlyData.map(item => item.total);
+
+        const chartSettings = {
+            title: {
+                text: 'Monthly Transaction Expenditure',
+                textStyle: {
+                    color: '#000000', // title text black
+                    fontSize: 18,
+                },
+            },
+            xAxis: {
+                type: 'category',
+                data: months,
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000', // label text color
+                    },
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000', // label text color
+                    },
+                },
+            },
+            series: [
+                {
+                    data: totals,
+                    type: 'line',
+                    lineStyle: {
+                        color: 'black', // Line color
+                    },
+                },
+            ],
+        };//Echarts graph settings
+        chart.setOption(chartSettings);
+    }, [monthlyData]);
+
+
+    return  (
         <div className="main-container">
             <h1 className="welcome-message">Welcome, User ID: {userId}</h1>
             <div className="content">
@@ -71,7 +139,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                                 type="text"
                                 placeholder="Merchant Name"
                                 className="input-box"
-                                value={merchant} // Merchant input field
+                                value={merchant}
                                 onChange={(e) => setMerchant(e.target.value)}
                             />
                             <button type="submit" className="submit-btn">Submit Transaction</button>
@@ -80,15 +148,21 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                     {/* File input */}
                     <div className="FileInput">
                         <h2>Upload CSV</h2>
-                        <input type="file"
-                               accept=".csv"
-                               className="file-input"
-                               onChange={handleFileChange}
+                        <input
+                            type="file"
+                            accept=".csv"
+                            className="file-input"
+                            onChange={handleFileChange}
                         />
                         <button onClick={handleFileSubmit} className="submit-btn">
                             Submit CSV
                         </button>
                         <p>{fileStatus}</p>
+                    </div>
+
+                    {/* Chart Section */}
+                    <div className="chart-container">
+                        <div ref={chartRef} style={{width:'600px', height: '600px'}}></div>
                     </div>
                 </div>
 
@@ -109,17 +183,15 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
                         {transactions.length === 0 ? (
                             <p>No transactions to show yet.</p>
                         ) : (
-                            transactions.map((transaction) => {
-                                return (
-                                    <div key={transaction.id} className="transaction-row">
-                                        <span className="transaction-date">{transaction.TransactionDate}</span>
-                                        <span className="separator">|</span>
-                                        <span className="header-item">{transaction.merchant}</span>
-                                        <span className="separator">|</span>
-                                        <span className="transaction-amount">{transaction.amount}</span>
-                                    </div>
-                                );
-                            })
+                            transactions.map((transaction) => (
+                                <div key={transaction.id} className="transaction-row">
+                                    <span className="transaction-date">{transaction.TransactionDate}</span>
+                                    <span className="separator">|</span>
+                                    <span className="header-item">{transaction.merchant}</span>
+                                    <span className="separator">|</span>
+                                    <span className="transaction-amount">{transaction.amount}</span>
+                                </div>
+                            ))
                         )}
                     </div>
                 </div>
@@ -127,5 +199,6 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
         </div>
     );
 };
+
 
 export default MainPage;

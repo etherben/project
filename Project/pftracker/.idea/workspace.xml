@@ -4,9 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="formatted transactions to display properly">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Test updates. Aswell as refactoring.">
+      <change afterPath="$PROJECT_DIR$/../InterimMockTransactions.csv" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../package.json" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.test.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp/Signup.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp/Signup.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.test.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/setupTests.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/setupTests.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -17,8 +28,8 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="CSS File" />
         <option value="JSX File" />
+        <option value="CSS File" />
         <option value="Class" />
         <option value="JavaScript File" />
       </list>
@@ -62,34 +73,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Signup.test.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders the Signup form initially.executor&quot;: &quot;Debug&quot;,
-    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;AddMerchantParam&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.App.test.js.executor": "Run",
+    "Jest.MainPage.test.jsx.executor": "Run",
+    "Jest.Signup.test.jsx.executor": "Run",
+    "Jest.loads userId from sessionStorage from mount.executor": "Run",
+    "Jest.renders MainPage with mock userId and transactions.executor": "Run",
+    "Jest.renders the Signup form initially.executor": "Run",
+    "Jest.should handle error when file upload fails.executor": "Run",
+    "Jest.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.switches to Login form when link is clicked.executor": "Run",
+    "Node.js.App.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "GraphInterface",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Jest.App.test.js">
     <configuration name="App.test.js" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -109,7 +123,7 @@
       <test-file value="$PROJECT_DIR$/src/Components/SignUp/Signup.test.jsx" />
       <method v="2" />
     </configuration>
-    <configuration name="renders the Signup form initially" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="renders MainPage with mock userId and transactions" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
@@ -117,11 +131,11 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/src/App.test.js" />
       <test-names>
-        <test-name value="renders the Signup form initially" />
+        <test-name value="renders MainPage with mock userId and transactions" />
       </test-names>
       <method v="2" />
     </configuration>
-    <configuration name="stores userId in sessionStorage after successful login" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
+    <configuration name="should handle error when file upload fails" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
       <jest-package value="$PROJECT_DIR$/node_modules/react-scripts" />
       <working-dir value="$PROJECT_DIR$" />
@@ -129,7 +143,7 @@
       <scope-kind value="TEST" />
       <test-file value="$PROJECT_DIR$/src/App.test.js" />
       <test-names>
-        <test-name value="stores userId in sessionStorage after successful login" />
+        <test-name value="should handle error when file upload fails" />
       </test-names>
       <method v="2" />
     </configuration>
@@ -139,10 +153,10 @@
     <recent_temporary>
       <list>
         <item itemvalue="Jest.App.test.js" />
-        <item itemvalue="Jest.renders the Signup form initially" />
         <item itemvalue="Jest.Signup.test.jsx" />
+        <item itemvalue="Jest.should handle error when file upload fails" />
+        <item itemvalue="Jest.renders MainPage with mock userId and transactions" />
         <item itemvalue="Node.js.App.js" />
-        <item itemvalue="Jest.stores userId in sessionStorage after successful login" />
       </list>
     </recent_temporary>
   </component>
@@ -181,7 +195,13 @@
       <workItem from="1732876525091" duration="1382000" />
       <workItem from="1732877946687" duration="9752000" />
       <workItem from="1733052270396" duration="8674000" />
-      <workItem from="1733079838983" duration="235000" />
+      <workItem from="1733079838983" duration="576000" />
+      <workItem from="1733349624506" duration="124000" />
+      <workItem from="1733350509368" duration="1414000" />
+      <workItem from="1733399487680" duration="11199000" />
+      <workItem from="1733417719490" duration="1357000" />
+      <workItem from="1733775427713" duration="610000" />
+      <workItem from="1734004194259" duration="11670000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -295,15 +315,73 @@
       <option name="project" value="LOCAL" />
       <updated>1733076598461</updated>
     </task>
-    <option name="localTasksCounter" value="15" />
+    <task id="LOCAL-00015" summary="Added merchant param to front including in transaction list and adding transactions">
+      <option name="closed" value="true" />
+      <created>1733080254905</created>
+      <option name="number" value="00015" />
+      <option name="presentableId" value="LOCAL-00015" />
+      <option name="project" value="LOCAL" />
+      <updated>1733080254905</updated>
+    </task>
+    <task id="LOCAL-00016" summary="Front end file creating for graph">
+      <option name="closed" value="true" />
+      <created>1733350800063</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1733350800063</updated>
+    </task>
+    <task id="LOCAL-00017" summary="Function to parse date from string, ready to sort.">
+      <option name="closed" value="true" />
+      <created>1733351092360</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1733351092360</updated>
+    </task>
+    <task id="LOCAL-00018" summary="Changed to just show aggregated list on the mainpage.Ready to translate into graph.">
+      <option name="closed" value="true" />
+      <created>1733410314215</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1733410314215</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Replaced list with basic line chart">
+      <option name="closed" value="true" />
+      <created>1733413322740</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1733413322740</updated>
+    </task>
+    <task id="LOCAL-00020" summary="changing stylesheets to fit containers properly">
+      <option name="closed" value="true" />
+      <created>1733423457933</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1733423457933</updated>
+    </task>
+    <option name="localTasksCounter" value="21" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="9128b711-43c2-4ec2-af79-9f212b8c0d97" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
+        <entry key="9128b711-43c2-4ec2-af79-9f212b8c0d97">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -343,6 +421,13 @@
     <MESSAGE value="User can submit file, updates database as separate transactions" />
     <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
     <MESSAGE value="formatted transactions to display properly" />
-    <option name="LAST_COMMIT_MESSAGE" value="formatted transactions to display properly" />
+    <MESSAGE value="Added merchant param to front including in transaction list and adding transactions" />
+    <MESSAGE value="Front end file creating for graph" />
+    <MESSAGE value="Function to parse date from string, ready to sort." />
+    <MESSAGE value="Changed to just show aggregated list on the mainpage.Ready to translate into graph." />
+    <MESSAGE value="Replaced list with basic line chart" />
+    <MESSAGE value="changing stylesheets to fit containers properly" />
+    <MESSAGE value="Test updates. Aswell as refactoring." />
+    <option name="LAST_COMMIT_MESSAGE" value="Test updates. Aswell as refactoring." />
   </component>
 </project>
