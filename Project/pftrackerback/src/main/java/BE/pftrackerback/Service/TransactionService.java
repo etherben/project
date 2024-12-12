@@ -30,8 +30,8 @@ public class TransactionService {
         if (userId == null || userId.isEmpty()) {
             throw new IllegalArgumentException("User id is null or empty");
         }
-        // Try to retrieve transactions from the repo
-
+        // Try to retrieve transactions from the repo in descending  order of date
+        // This is what will return to front to show on transaction list
            List<Transaction> list = transactionRepo.findByUserId(userId, Sort.by(Sort.Direction.DESC, "TransactionDate"));
         if (list.isEmpty()) {
             throw new IllegalArgumentException("No transactions found");
@@ -56,7 +56,7 @@ public class TransactionService {
 
     public Date parseDate(String dateStr) throws IllegalArgumentException{
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        dateFormat.setLenient(false);  // Disallow non-existent date parsing such as 32/13/2024
+        dateFormat.setLenient(false);  // Disallow non-existent dates such as 32/13/2024
         try{
             return dateFormat.parse(dateStr);
         }catch(Exception e){
@@ -71,12 +71,9 @@ public class TransactionService {
             throw new IllegalArgumentException("Invalid transaction format");
         }
 
-
-        String dateStr = parts[0].trim();
-        String merchant = parts[1].trim();
+        String dateStr = parts[0].trim();    //format of file have to be date,merchant,amount
+        String merchant = parts[1].trim();         //may need to change when using actual bank statements
         double amount = Double.parseDouble(parts[2].trim());
-
-
 
         Date transactionDate = parseDate(dateStr); // parse date to correct format
 
@@ -98,9 +95,9 @@ public class TransactionService {
             String line;
             while ((line = readFile.readLine()) != null) {
                 Transaction currentTransaction  = parseTransaction(line);
-                currentTransaction.setUserId(userId); // sets user id for each transaction that came with file
+                currentTransaction.setUserId(userId); // Sets user id for each transaction that came with file
                 transactions.add(currentTransaction);
-                lines.add(transactions.getLast()); // adds last created transaction to its own list to send back to controller
+                lines.add(transactions.getLast()); // Adds last created transaction to its own list to send back to controller
             }
         }catch (IOException e){
             throw new IllegalArgumentException("File could not be read");
@@ -109,10 +106,10 @@ public class TransactionService {
     }
 
     public List<Transaction> persistTransaction(){
-        //saves the list of transactions to hte transaction repo
+        //saves the list of transactions to te transaction repo
         try {
             List<Transaction> savedTransactions = transactionRepo.saveAll(transactions);
-            transactions.clear();
+            transactions.clear();  //clears buffer once saved
             return savedTransactions;
         } catch(Exception e) {
             throw new IllegalArgumentException("Transactions could not be saved");

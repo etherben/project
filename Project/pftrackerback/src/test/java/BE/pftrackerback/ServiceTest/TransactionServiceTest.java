@@ -7,7 +7,6 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
 import org.mockito.Mock;
-import org.mockito.Mockito;
 import org.mockito.MockitoAnnotations;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Sort;
@@ -15,7 +14,6 @@ import org.springframework.mock.web.MockMultipartFile;
 import org.springframework.util.ResourceUtils;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
@@ -198,7 +196,8 @@ public class TransactionServiceTest {
                 "file", // The name of the file field
                 "mockTransactionsFile.csv", //filename
                 "text/csv", // File type
-                new FileInputStream(ResourceUtils.getFile("classpath:mockTransactionsFile.csv")) // File content
+                new FileInputStream(ResourceUtils
+                        .getFile("classpath:mockTransactionsFile.csv")) // File content
         );
         String userId = "userId123";
         //When
@@ -239,7 +238,8 @@ public class TransactionServiceTest {
     public void testGetTransactionsByUserId_NoTransactions() {
         //Given
         String userId = "user123";
-        when(transactionRepo.findByUserId(userId, Sort.unsorted())).thenThrow(new IllegalArgumentException("No transactions found"));
+        when(transactionRepo.findByUserId(userId, Sort.unsorted()))
+                .thenThrow(new IllegalArgumentException("No transactions found"));
         //When
 
         IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
