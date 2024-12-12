@@ -105,12 +105,11 @@ public class TransactionService {
         return lines;
     }
 
-    public List<Transaction> persistTransaction(){
+    public void persistTransaction(){
         //saves the list of transactions to te transaction repo
         try {
             List<Transaction> savedTransactions = transactionRepo.saveAll(transactions);
             transactions.clear();  //clears buffer once saved
-            return savedTransactions;
         } catch(Exception e) {
             throw new IllegalArgumentException("Transactions could not be saved");
         }
