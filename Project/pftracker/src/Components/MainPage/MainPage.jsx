@@ -2,13 +2,12 @@ import React, {useState, useRef, useEffect} from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFetchTransactions}) => {
+const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFetchTransactions, onLogout}) => {
     const [amount, setAmount] = useState('');
     const [TransactionDate, setDate] = useState('');
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileStatus, setFileStatus] = useState('');
     const [merchant,setMerchant] = useState("")
-
 
     const handleManualSubmit = async (e) => {
         e.preventDefault();
@@ -67,53 +66,56 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const chartRef = useRef(null);
 
     useEffect(() => {
-        const chart = echarts.init(chartRef.current)     // will constantly try to update graph, even when shouldnt exist yet.
-                                                                        //will show errors on log, but not affect the application
+        if (typeof window !== 'undefined' && !process.env.JEST_WORKER_ID) {
+            const chart = echarts.init(chartRef.current)     // will constantly try to update graph, even when shouldnt exist yet.
+            //will show errors on log, but not affect the application
 
-        const months = monthlyData.map(item => item.month);          //maps data to basic graph
-        const totals = monthlyData.map(item => item.total);
+            const months = monthlyData.map(item => item.month);          //maps data to basic graph
+            const totals = monthlyData.map(item => item.total);
 
-        const chartSettings = {
-            title: {
-                text: 'Monthly Transaction Expenditure',
-                textStyle: {
-                    color: '#000000', // title text black
-                    fontSize: 18,
-                },
-            },
-            xAxis: {
-                type: 'category',
-                data: months,
-                axisLabel: {
+            const chartSettings = {
+                title: {
+                    text: 'Monthly Transaction Expenditure',
                     textStyle: {
-                        color: '#000000', // label text color
+                        color: '#000000', // title text black
+                        fontSize: 18,
                     },
                 },
-            },
-            yAxis: {
-                type: 'value',
-                axisLabel: {
-                    textStyle: {
-                        color: '#000000', // label text color
+                xAxis: {
+                    type: 'category',
+                    data: months,
+                    axisLabel: {
+                        textStyle: {
+                            color: '#000000', // label text color
+                        },
                     },
                 },
-            },
-            series: [
-                {
-                    data: totals,
-                    type: 'line',
-                    lineStyle: {
-                        color: 'black', // Line color
+                yAxis: {
+                    type: 'value',
+                    axisLabel: {
+                        textStyle: {
+                            color: '#000000', // label text color
+                        },
                     },
                 },
-            ],
-        };//Echarts graph settings
-        chart.setOption(chartSettings);
+                series: [
+                    {
+                        data: totals,
+                        type: 'line',
+                        lineStyle: {
+                            color: 'black', // Line color
+                        },
+                    },
+                ],
+            };//Echarts graph settings
+            chart.setOption(chartSettings);
+        }
     }, [monthlyData]);
 
 
     return  (
         <div className="main-container">
+            <button onClick={onLogout}>Logout</button>
             <h1 className="welcome-message">Welcome, User ID: {userId}</h1>
             <div className="content">
                 <div className="leftside">

@@ -5,15 +5,10 @@ import MainPage from './MainPage';
 
 
 
-/*
-To Note: The tests below are commented due to a change in the package.json, causing the MainPage to not render in tests
-Unfortunatly this couldn't be resolved before the interim due date.
- */
-
 
 describe('MainPage Component', () => {
     test('renders the MainPage fully', () => {
-        /*
+
         //Given
         const userId = 123; // Mock id
 
@@ -38,6 +33,6 @@ describe('MainPage Component', () => {
         //Check transaction section
         expect(screen.getByText('Transaction')).toBeInTheDocument();
         expect(screen.getByText('No transactions to show yet.')).toBeInTheDocument();
-        */
+
     });
 });

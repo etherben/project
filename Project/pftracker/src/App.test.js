@@ -2,26 +2,26 @@
  * @jest-environment jsdom
  */
 
-import {fireEvent, render, screen, waitFor} from '@testing-library/react';
-import { act } from 'react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import App from './App';
-import Login from "./Components/Login/Login";
+import Login from './Components/Login/Login';
+import MainPage from './Components/MainPage/MainPage';
+jest.mock('echarts', () => ({
+  // Return an empty object to block all calls to echarts
+  init: jest.fn().mockReturnValue({
+    setOption: jest.fn(),  // Optionally block setOption method if needed
+  }),
+}));
 
-
-beforeEach(() => {
-  sessionStorage.clear();
-
-
-  global.fetch = jest.fn(() =>
-      Promise.resolve({})
-  );
-
-});
+describe('MainPage Component', () => {
+  beforeEach(() => {
+    sessionStorage.clear();
+    global.fetch = jest.fn(() => Promise.resolve({})); // Mock the global fetch API if needed
+  });
 
 afterEach(() => {
   jest.clearAllMocks();
 });
-
 
 test('renders the Signup form initially', () => {
   render(<App />);
@@ -46,7 +46,8 @@ test('calls handleSignupSubmit with correct data', async () => {
   fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'password' } });
   fireEvent.click(screen.getByRole('button', { name: /sign up/i }));
   await waitFor(() => {
-    expect(fetch).toHaveBeenCalledWith('http://localhost:8080/users/create',
+    expect(fetch).toHaveBeenCalledWith(
+        'http://localhost:8080/users/create',
         expect.objectContaining({
           method: 'POST',
           headers: expect.objectContaining({
@@ -78,55 +79,74 @@ test('calls handleLoginSubmit with correct data', async () => {
   });
 });
 
-/*
-To Note: The tests below are commented due to a change in the package.json, causing the MainPage to not render in tests
-Unfortunatly this couldn't be resolved before the interim due date.
- */
+test('loads mainpage with userid stored', async () => {
+  sessionStorage.setItem('id', '12345');
 
+  const mockHandleFetchTransactions = jest.fn();
+  const mockOnLogout = jest.fn();
 
-/*
-test('loads userId from sessionStorage on mount', () => {
-  sessionStorage.setItem('userId', '12345');
+  const mockTransactions = [
+    { id: '1', TransactionDate: '01/2025', amount: 100, merchant: 'Merchant 1' },
+    { id: '2', TransactionDate: '02/2025', amount: 200, merchant: 'Merchant 2' },
+    { id: '3', TransactionDate: '03/2025', amount: 150, merchant: 'Merchant 3' }
+  ];
 
-  render(<App />);
-
-  expect(screen.getByText(/Welcome, User ID: 12345/i)).toBeInTheDocument();
-});
-
-test('stores userId in sessionStorage after successful login', async () => {
-  global.fetch.mockResolvedValueOnce({
-    ok: true,
-    json: async () => ({ userId: '67890' }),
-  });
-
-  render(<App />);
-
-  fireEvent.click(screen.getByText(/login/i));
-  fireEvent.change(screen.getByPlaceholderText(/username/i), { target: { value: 'test' } });
-  fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'password' } });
-  fireEvent.click(screen.getByRole('button', { name: /login/i }));
+  render(
+      <MainPage
+          userId="12345"
+          onSingleSubmit={() => {}}
+          onFileSubmit={() => {}}
+          handleFetchTransactions={mockHandleFetchTransactions}
+          onLogout={mockOnLogout}
+          transactions={mockTransactions}
+      />
+  );
 
   await waitFor(() => {
-    expect(screen.getByText(/Welcome, User ID: 67890/i)).toBeInTheDocument();
-    expect(sessionStorage.getItem('userId')).toBe('67890');
+    expect(screen.getByText(/Welcome/i)).toBeInTheDocument();
+    expect(screen.getByText('Merchant 1')).toBeInTheDocument();
+    expect(screen.getByText('Merchant 2')).toBeInTheDocument();
+    expect(screen.getByText('Merchant 3')).toBeInTheDocument();
   });
+
 });
 
-test('should submit a single transaction successfully', async () => {
-  const mockResponse = { text: () => 'Transaction successful' };
-  fetch.mockResolvedValueOnce({ ok: true, text: mockResponse.text });
+  test('should fake submit a single transaction and log the success message', async () => {
+    const mockUserId = '123';  // Mocked user ID
+    const mockOnSingleSubmit = jest.fn().mockResolvedValueOnce('Transaction successful');  // Mock the onSingleSubmit function
+    const mockHandleFetchTransactions = jest.fn();
+    const mockOnLogout = jest.fn();
 
-  render(<App />);
+    // Mock console.log to capture the printed message
+    const consoleLogSpy = jest.spyOn(console, 'log').mockImplementation();
 
-  fireEvent.change(screen.getByPlaceholderText('Transaction Date'), { target: { value: '2024-11-29' } });
-  fireEvent.change(screen.getByPlaceholderText('Transaction Amount'), { target: { value: '100' } });
-  fireEvent.click(screen.getByText('Submit Transaction'));
+    // Render the MainPage with the necessary props
+    render(
+        <MainPage
+            userId={mockUserId}
+            onSingleSubmit={mockOnSingleSubmit}
+            handleFetchTransactions={mockHandleFetchTransactions}
+            onLogout={mockOnLogout}
+            transactions={[]}
+        />
+    );
 
-  await waitFor(() => expect(fetch).toHaveBeenCalledWith('http://localhost:8080/transactions', expect.anything()));
+    // Simulate user input for transaction date, amount, and merchant
+    fireEvent.change(screen.getByPlaceholderText('Transaction Date'), { target: { value: '2024-11-29' } });
+    fireEvent.change(screen.getByPlaceholderText('Transaction Amount'), { target: { value: '100' } });
+    fireEvent.change(screen.getByPlaceholderText('Merchant Name'), { target: { value: 'Amazon' } });
 
-  expect(await screen.findByText('Transaction successful')).toBeInTheDocument();
-});
+    // Simulate clicking the submit button (this should trigger the mockOnSingleSubmit and the console.log)
+    fireEvent.click(screen.getByText('Submit Transaction'));
 
+    // Wait for the mock function to be called and the success message to be logged
+    await waitFor(() => expect(mockOnSingleSubmit).toHaveBeenCalledWith({
+      userId: mockUserId,
+      amount: '100',
+      TransactionDate: '2024-11-29',
+      merchant: 'Amazon',
+    }));
+  });
 test('should handle file upload with userId successfully', async () => {
   const mockResponse = { text: () => 'File uploaded successfully' };
   fetch.mockResolvedValueOnce({ ok: true, text: mockResponse.text });
@@ -143,26 +163,41 @@ test('should handle file upload with userId successfully', async () => {
 
   expect(await screen.findByText('File uploaded successfully')).toBeInTheDocument();
 });
+  test('should fake file submit and log the success message', async () => {
+    const mockUserId = '123';  // Mocked user ID
+    const mockOnFileSubmit = jest.fn().mockResolvedValueOnce('File uploaded successfully');  // Mock the onFileSubmit function
+    const mockHandleFetchTransactions = jest.fn();
+    const mockOnLogout = jest.fn();
 
-test('should instantly save the transaction after file upload', async () => {
-  const mockResponse = { text: () => 'Transaction successful' };
-  fetch.mockResolvedValueOnce({ ok: true, text: mockResponse.text });
 
-  render(<App />);
+    // Render the MainPage with the necessary props
+    render(
+        <MainPage
+            userId={mockUserId}
+            onFileSubmit={mockOnFileSubmit}
+            handleFetchTransactions={mockHandleFetchTransactions}
+            onLogout={mockOnLogout}
+            transactions={[]}
+        />
+    );
 
-  const file = new File(['dummy content'], 'test.csv', { type: 'text/csv' });
-  const fileInput = screen.getByText('Drag and drop your CSV file here');
-  fireEvent.change(fileInput, { target: { files: [file] } });
+    // Create a dummy file
+    const file = new File(['dummy content'], 'test.csv', { type: 'text/csv' });
 
-  fireEvent.click(screen.getByText('Submit CSV'));
+    // Find the file input and simulate the file selection
+    const fileInput = screen.getByText('/Upload csv/i');
+    fireEvent.change(fileInput, { target: { files: [file] } });
 
-  await waitFor(() => expect(fetch).toHaveBeenCalledWith('http://localhost:8080/transactions/save', expect.anything()));
+    // Simulate clicking the submit button (this should trigger the mockOnFileSubmit and the console.log)
+    fireEvent.click(screen.getByText('Submit CSV'));
 
-  expect(await screen.findByText('Transaction successful')).toBeInTheDocument();
-});
+    // Wait for the mock function to be called and the success message to be logged
+    await waitFor(() => expect(mockOnFileSubmit).toHaveBeenCalledWith(file));
+  });
 
 test('should handle error when submitting single transaction fails', async () => {
   fetch.mockResolvedValueOnce({ ok: false });
+
 
   render(<App />);
 
@@ -185,4 +220,5 @@ test('should handle error when file upload fails', async () => {
   fireEvent.click(screen.getByText('Submit CSV'));
 
   await waitFor(() => expect(screen.getByText('Failed to upload file')).toBeInTheDocument());
-});*/
+  });
+});

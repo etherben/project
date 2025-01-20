@@ -5,12 +5,25 @@ import React, { useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
+  const [userId, setUserId] = useState(null);
   const [isSignup, setSignup] = useState(true);
+  const [transactions, setTransactions] = useState([]);
+  useEffect(() => {
+    const storedUserId = sessionStorage.getItem('id');
+    if (storedUserId) {
+      setUserId(storedUserId);
+    }
+  }, []);
   const toggleSignup = () => {
     setSignup(prev => !prev);
   };
-  const [userId, setUserId] = useState(null);
-  const [transactions, setTransactions] = useState([]);
+
+  const handleLogout = () => {
+    setUserId(null);
+    setTransactions([]);
+    sessionStorage.removeItem('id')
+    console.log("Logged out Successfully");
+  }
 
   // Load userId from sessionStorage on mount
   //will call fetch transactions at any point to check for new ones
@@ -138,7 +151,12 @@ function App() {
   return (
       <div>
         {userId ? (
-            <MainPage userId={userId} transactions={transactions} onSingleSubmit={handleSingleTransactionSubmit} onFileSubmit={handleFileTransactionSubmit}  handleFetchTransactions={handleFetchTransactions}/>
+            <MainPage userId={userId}
+                      transactions={transactions}
+                      onSingleSubmit={handleSingleTransactionSubmit}
+                      onFileSubmit={handleFileTransactionSubmit}
+                      handleFetchTransactions={handleFetchTransactions}
+                      onLogout={handleLogout}/>
         ) : isSignup ? (
             <Signup onSwitch={toggleSignup} onSubmit={handleSignupSubmit} />
         ) : (
