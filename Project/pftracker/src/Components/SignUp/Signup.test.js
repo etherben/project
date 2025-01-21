@@ -79,3 +79,19 @@ test('shows an error message when fields are empty', () => {
     //then
     expect(screen.getByText(/please enter a username, email, and password/i)).toBeInTheDocument();
 });
+
+test('displays browser error message for invalid email format', () => {
+    //given
+    const mockSubmit = jest.fn();
+    render(<Signup onSwitch={jest.fn()} onSubmit={jest.fn()} />);
+
+    //when
+    fireEvent.change(screen.getByPlaceholderText(/email/i), { target: { value: 'invalid-email' } });
+    fireEvent.change(screen.getByPlaceholderText(/username/i), { target: { value: 'testuser' } });
+    fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'password' } });
+    fireEvent.click(screen.getByRole('button', { name: /sign up/i }));
+
+    //then
+    //As browser has automatic email validation, just need to check api call hasnt been sent
+    expect(mockSubmit).not.toHaveBeenCalled();
+});

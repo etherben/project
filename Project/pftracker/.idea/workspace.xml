@@ -4,7 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Signup Error message for empty inputs">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp/Signup.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.test.js" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +223,7 @@
       <workItem from="1734017012653" duration="114000" />
       <workItem from="1734020002179" duration="2000" />
       <workItem from="1737385534701" duration="9879000" />
-      <workItem from="1737469606451" duration="3823000" />
+      <workItem from="1737469606451" duration="4910000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -422,7 +425,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737473384185</updated>
     </task>
-    <option name="localTasksCounter" value="26" />
+    <task id="LOCAL-00026" summary="Signup Error message for empty inputs">
+      <option name="closed" value="true" />
+      <created>1737473750988</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1737473750988</updated>
+    </task>
+    <option name="localTasksCounter" value="27" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -465,7 +476,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="dockerfile for front end" />
     <MESSAGE value="fixing remote connection issue" />
     <MESSAGE value="Same sign up form as previously written, with testing" />
     <MESSAGE value="Login form renders properly with tests" />
@@ -490,6 +500,7 @@
     <MESSAGE value="Restructured Test suite for App.jsx" />
     <MESSAGE value="Restructured Test suite and added validation tests for Empty Details" />
     <MESSAGE value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
+    <MESSAGE value="Signup Error message for empty inputs" />
+    <option name="LAST_COMMIT_MESSAGE" value="Signup Error message for empty inputs" />
   </component>
 </project>
