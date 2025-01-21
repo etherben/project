@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Restructured Test suite and added validation tests for Empty Details">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.test.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.test.js" afterDir="false" />
-    </list>
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -224,7 +220,7 @@
       <workItem from="1734017012653" duration="114000" />
       <workItem from="1734020002179" duration="2000" />
       <workItem from="1737385534701" duration="9879000" />
-      <workItem from="1737469606451" duration="3487000" />
+      <workItem from="1737469606451" duration="3823000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -418,7 +414,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737472401600</updated>
     </task>
-    <option name="localTasksCounter" value="25" />
+    <task id="LOCAL-00025" summary="Added Error message display when login api call fails, also test to check signup renders onSwtich">
+      <option name="closed" value="true" />
+      <created>1737473384185</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1737473384185</updated>
+    </task>
+    <option name="localTasksCounter" value="26" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -461,7 +465,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="dockerfile for backend" />
     <MESSAGE value="dockerfile for front end" />
     <MESSAGE value="fixing remote connection issue" />
     <MESSAGE value="Same sign up form as previously written, with testing" />
@@ -486,6 +489,7 @@
     <MESSAGE value="Added basic logout button to create a cyclical structure. Fixed tests to accomidate." />
     <MESSAGE value="Restructured Test suite for App.jsx" />
     <MESSAGE value="Restructured Test suite and added validation tests for Empty Details" />
-    <option name="LAST_COMMIT_MESSAGE" value="Restructured Test suite and added validation tests for Empty Details" />
+    <MESSAGE value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
   </component>
 </project>

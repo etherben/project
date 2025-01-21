@@ -68,3 +68,14 @@ test('API call fail on form submission', async () => {
     //then
     expect(mockSubmit).toHaveBeenCalled();
 });
+
+test('shows an error message when fields are empty', () => {
+    //given
+    render(<Signup onSwitch={jest.fn()} onSubmit={jest.fn()} />);
+
+    //when
+    fireEvent.click(screen.getByRole('button', { name: /sign up/i }));
+
+    //then
+    expect(screen.getByText(/please enter a username, email, and password/i)).toBeInTheDocument();
+});

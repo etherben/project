@@ -5,11 +5,18 @@ const Signup = ({onSubmit, onSwitch}) => {
     const [username, setUsername] = useState('')
     const [email, setEmail] = useState('')
     const [password, setPassword] = useState('')
+    const [error, setError] = useState('')
 
 
 
     const handleSubmit= async (e)=> {
         e.preventDefault();
+
+        if (!username || !email || !password) {
+            setError('Please enter a username, email, and password');
+            return;
+        }
+
 
         const userData = {
             email,username, password
@@ -25,6 +32,7 @@ const Signup = ({onSubmit, onSwitch}) => {
         <div className="container">
             <div className="header">
                 <div className="text">Sign Up</div>
+                {error && <div className="error-message">{error}</div>}
             </div>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="input">
