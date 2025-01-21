@@ -1,5 +1,6 @@
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import Login from './Login';
+import Signup from "../SignUp/Signup";
 
 test('renders the Login form correctly ', () => {
     //given
@@ -55,4 +56,34 @@ test('should not submit form if username or password is empty', () => {
     //then
     expect(mockSubmit).not.toHaveBeenCalled();
     expect(screen.getByText(/please enter a username and password/i)).toBeInTheDocument();
+});
+test('displays error message when login fails', async () => {
+    const consoleErrorMock = jest.spyOn(console, 'error').mockImplementation(() => {});
+
+    // given
+    const mockSubmit = jest.fn().mockRejectedValue(new Error('Login failed'));
+    render(<Login onSwitch={jest.fn()} onSubmit={mockSubmit} />);
+
+    // when
+    fireEvent.change(screen.getByPlaceholderText(/username/i), { target: { value: 'test' } });
+    fireEvent.change(screen.getByPlaceholderText(/password/i), { target: { value: 'wrongpassword' } });
+    fireEvent.click(screen.getByRole('button', { name: /login/i }));
+
+    // then
+    await waitFor(() => expect(screen.getByText('Login failed')).toBeInTheDocument());
+    expect(consoleErrorMock).toHaveBeenCalledWith(new Error('Login failed'));
+
+    consoleErrorMock.mockRestore();
+});
+test('renders the Signup form correctly', () => {
+    // given
+    render(<Signup onSwitch={jest.fn()} onSubmit={jest.fn()} />);
+
+    // when (renders it)
+    // then
+    expect(screen.getByPlaceholderText(/Username/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Email/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/Password/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /sign up/i })).toBeInTheDocument();
+    expect(screen.getByText(/Already have an account\?/i)).toBeInTheDocument();
 });

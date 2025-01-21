@@ -17,6 +17,7 @@ const Login = ({onSubmit, onSwitch}) => {
         try{
             await onSubmit({username, password})
         }catch (error){
+            setError(error.message)
             console.error(error)
         }
     }
