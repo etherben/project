@@ -44,3 +44,15 @@ test('calls the onSubmit with the correct data on form submission', () => {
 
     });
 });
+test('should not submit form if username or password is empty', () => {
+    //given
+    const mockSubmit = jest.fn();
+    render(<Login onSwitch={jest.fn()} onSubmit={mockSubmit} />);
+
+    //when (submitting with empty fields)
+    fireEvent.click(screen.getByRole('button', { name: /login/i }));
+
+    //then
+    expect(mockSubmit).not.toHaveBeenCalled();
+    expect(screen.getByText(/please enter a username and password/i)).toBeInTheDocument();
+});

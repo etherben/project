@@ -3,9 +3,15 @@ import './Login.css'
 const Login = ({onSubmit, onSwitch}) => {
     const[username, setUsername] = useState('');
     const[password, setPassword]= useState('')
+    const [error, setError] = useState('');
 
     const handleSubmit= async(e)=>{
         e.preventDefault()
+
+        if (!username || !password) {
+            setError('Please enter a username and password');
+            return; // Prevent form submission if either are empty
+        }
 
 
         try{
@@ -19,6 +25,7 @@ const Login = ({onSubmit, onSwitch}) => {
         <div className="container">
             <div className="header">
                 <div className="text">Login</div>
+                {error && <div className="error">{error}</div>} //displays error message below title
             </div>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="input">
