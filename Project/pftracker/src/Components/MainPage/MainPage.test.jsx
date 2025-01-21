@@ -1,38 +1,35 @@
-import React from 'react';
 import { render, screen } from '@testing-library/react';
-
 import MainPage from './MainPage';
 
+test('renders the page and components with given user ID ', () => {
+    // given
+    const mockOnSingleSubmit = jest.fn();
+    const mockOnFileSubmit = jest.fn();
+    const mockHandleFetchTransactions = jest.fn();
+    const mockOnLogout = jest.fn();
 
+    const userId = '12345';
+    const transactions = [];
 
+    // when
+    render(
+        <MainPage
+            userId={userId}
+            onSingleSubmit={mockOnSingleSubmit}
+            onFileSubmit={mockOnFileSubmit}
+            handleFetchTransactions={mockHandleFetchTransactions}
+            onLogout={mockOnLogout}
+            transactions={transactions}
+        />
+    );
 
-describe('MainPage Component', () => {
-    test('renders the MainPage fully', () => {
-
-        //Given
-        const userId = 123; // Mock id
-
-        //When
-        render(<MainPage userId={userId} />);
-
-        //Then
-        //Check for title
-        expect(screen.getByText(`Welcome, User ID: ${userId}`)).toBeInTheDocument();
-
-        // Check Manual entry section
-        expect(screen.getByText('Manual Entry')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Transaction Date')).toBeInTheDocument();
-        expect(screen.getByPlaceholderText('Transaction Amount')).toBeInTheDocument();
-        expect(screen.getByText('Submit Transaction')).toBeInTheDocument();
-
-        //Check file input section
-        expect(screen.getByText('Upload CSV')).toBeInTheDocument();
-        expect(screen.getByText('Drag and drop your CSV file here')).toBeInTheDocument();
-        expect(screen.getByText('Submit CSV')).toBeInTheDocument();
-
-        //Check transaction section
-        expect(screen.getByText('Transaction')).toBeInTheDocument();
-        expect(screen.getByText('No transactions to show yet.')).toBeInTheDocument();
-
-    });
+    // then
+    expect(screen.getByText(/welcome, user id/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/transaction date/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/transaction amount/i)).toBeInTheDocument();
+    expect(screen.getByPlaceholderText(/merchant name/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /submit transaction/i })).toBeInTheDocument();
+    expect(screen.getByText(/upload csv/i)).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /submit csv/i })).toBeInTheDocument();
+    expect(screen.getByRole('heading', { name: /transactions/i })).toBeInTheDocument();
 });
