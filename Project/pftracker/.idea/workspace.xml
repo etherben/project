@@ -4,7 +4,11 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Signup test to check no Submit on false email" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Redid mainpage render test to accomidate changes">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -220,7 +224,8 @@
       <workItem from="1734017012653" duration="114000" />
       <workItem from="1734020002179" duration="2000" />
       <workItem from="1737385534701" duration="9879000" />
-      <workItem from="1737469606451" duration="5245000" />
+      <workItem from="1737469606451" duration="10721000" />
+      <workItem from="1737537738185" duration="6163000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -438,7 +443,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737474731699</updated>
     </task>
-    <option name="localTasksCounter" value="28" />
+    <task id="LOCAL-00028" summary="Redid mainpage render test to accomidate changes">
+      <option name="closed" value="true" />
+      <created>1737475167683</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1737475167683</updated>
+    </task>
+    <option name="localTasksCounter" value="29" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -481,7 +494,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Same sign up form as previously written, with testing" />
     <MESSAGE value="Login form renders properly with tests" />
     <MESSAGE value="Login form sends correct data onSubmit" />
     <MESSAGE value="Update file diary.md" />
@@ -506,6 +518,7 @@
     <MESSAGE value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
     <MESSAGE value="Signup Error message for empty inputs" />
     <MESSAGE value="Signup test to check no Submit on false email" />
-    <option name="LAST_COMMIT_MESSAGE" value="Signup test to check no Submit on false email" />
+    <MESSAGE value="Redid mainpage render test to accomidate changes" />
+    <option name="LAST_COMMIT_MESSAGE" value="Redid mainpage render test to accomidate changes" />
   </component>
 </project>

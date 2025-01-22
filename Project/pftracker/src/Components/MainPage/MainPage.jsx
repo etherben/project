@@ -8,9 +8,14 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
     const [selectedFile, setSelectedFile] = useState(null);
     const [fileStatus, setFileStatus] = useState('');
     const [merchant,setMerchant] = useState("")
+    const [errorMessage, setErrorMessage] = useState('');
 
     const handleManualSubmit = async (e) => {
         e.preventDefault();
+        if (!amount || !TransactionDate || !merchant) {
+            setErrorMessage('Input correct details');
+            return; // Exit the function if validation fails
+        }
         try {
             await onSingleSubmit({ userId, amount, TransactionDate, merchant});     // call for user to manually add single transaction
             setAmount('');
