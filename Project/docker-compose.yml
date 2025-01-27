@@ -1,31 +1,53 @@
 version: '3'
 services:
+  # Frontend Service
   frontend:
     build:
-      context: ./pftracker
+      context: ./frontend
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_BACKEND_URL=http://backend:8080
+      - REACT_APP_USER_SERVICE_URL=http://user-service:8081
+      - REACT_APP_TRANSACTION_SERVICE_URL=http://transaction-service:8082
     depends_on:
-      - backend
+      - user-service
+      - transaction-service
     networks:
       - app-network
 
-  backend:
+  # User Service
+  user-service:
     build:
-      context: ./pftrackerback
+      context: ./backServices/user-service
     ports:
-      - "8080:8080"
+      - "8081:8081"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/userdb
+    depends_on:
+      - mongodb
     networks:
       - app-network
 
+  # Transaction Service
+  transaction-service:
+    build:
+      context: ./backServices/transaction-service
+    ports:
+      - "8082:8082"
+    environment:
+      - SPRING_DATA_MONGODB_URI=mongodb://mongodb:27017/transactiondb
+    depends_on:
+      - mongodb
+    networks:
+      - app-network
+
+  # MongoDB Database
   mongodb:
     image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db  # This is where data is stored persistently`
+      - mongo-data:/data/db
     networks:
       - app-network
 
@@ -34,5 +56,5 @@ volumes:
     driver: local
 
 networks:
-  app-network:  # Define the network so that both services can communicate
+  app-network:  # Shared network for all services
     driver: bridge
