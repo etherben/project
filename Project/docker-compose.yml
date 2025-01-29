@@ -6,17 +6,28 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - REACT_APP_BACKEND_URL=http://backend:8080
+      - REACT_APP_USER_URL=http://user-service:8080
+      - REACT_APP_TRANSACTION_URL=http://transaction-service:8081
     depends_on:
-      - backend
+      - user-service
+      - transaction-service
     networks:
       - app-network
 
-  backend:
+  user-service:
     build:
-      context: ./pftrackerback
+      context: ./backServices/user-service
     ports:
       - "8080:8080"
+    networks:
+      - app-network
+
+
+  transaction-service:
+    build:
+      context: ./backServices/transaction-service
+    ports:
+      - "8081:8081"
     networks:
       - app-network
 

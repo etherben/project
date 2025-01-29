@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Redid mainpage render test to accomidate changes">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Creating new services with dockerfiles">
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -84,7 +89,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Cyclical__Structure&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;MicroService__Split&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -225,7 +230,18 @@
       <workItem from="1734020002179" duration="2000" />
       <workItem from="1737385534701" duration="9879000" />
       <workItem from="1737469606451" duration="10721000" />
-      <workItem from="1737537738185" duration="6163000" />
+      <workItem from="1737537738185" duration="6704000" />
+      <workItem from="1737907759642" duration="1126000" />
+      <workItem from="1737971574369" duration="237000" />
+      <workItem from="1737971997843" duration="1124000" />
+      <workItem from="1737974327236" duration="1828000" />
+      <workItem from="1737977093364" duration="2164000" />
+      <workItem from="1737979834139" duration="3777000" />
+      <workItem from="1738147410472" duration="663000" />
+      <workItem from="1738148555606" duration="84000" />
+      <workItem from="1738148958478" duration="196000" />
+      <workItem from="1738149271199" duration="1537000" />
+      <workItem from="1738150954180" duration="1592000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -451,25 +467,31 @@
       <option name="project" value="LOCAL" />
       <updated>1737475167683</updated>
     </task>
-    <option name="localTasksCounter" value="29" />
+    <task id="LOCAL-00029" summary="Added tests from old app.test.js to MainPage.test.jsx">
+      <option name="closed" value="true" />
+      <created>1737564632035</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1737564632035</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Creating new services with dockerfiles">
+      <option name="closed" value="true" />
+      <created>1737971748779</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1737971748779</updated>
+    </task>
+    <option name="localTasksCounter" value="31" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="9128b711-43c2-4ec2-af79-9f212b8c0d97" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
-        <entry key="9128b711-43c2-4ec2-af79-9f212b8c0d97">
-          <value>
-            <State />
-          </value>
-        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -494,8 +516,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Login form renders properly with tests" />
-    <MESSAGE value="Login form sends correct data onSubmit" />
     <MESSAGE value="Update file diary.md" />
     <MESSAGE value="Create user Id" />
     <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
@@ -519,6 +539,8 @@
     <MESSAGE value="Signup Error message for empty inputs" />
     <MESSAGE value="Signup test to check no Submit on false email" />
     <MESSAGE value="Redid mainpage render test to accomidate changes" />
-    <option name="LAST_COMMIT_MESSAGE" value="Redid mainpage render test to accomidate changes" />
+    <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
+    <MESSAGE value="Creating new services with dockerfiles" />
+    <option name="LAST_COMMIT_MESSAGE" value="Creating new services with dockerfiles" />
   </component>
 </project>
