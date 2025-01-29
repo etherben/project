@@ -1,4 +1,3 @@
-
 # Start from an OpenJDK image
 FROM openjdk:21-jdk-slim
 
@@ -11,16 +10,19 @@ RUN apt-get update && \
     ln -s /opt/gradle/bin/gradle /usr/bin/gradle && \
     rm gradle-8.4-bin.zip
 
-
+# Set the working directory
 WORKDIR /app
 
+# Copy the entire project into the container
 COPY . .
-
 
 RUN gradle build --no-daemon
 
+EXPOSE 8080
 
-EXPOSE 8082
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "build/libs/user-service-0.0.1-SNAPSHOT.jar"]
 
 
-ENTRYPOINT ["java", "-jar", "build/libs/*-0.0.1-SNAPSHOT.jar"]
+
+

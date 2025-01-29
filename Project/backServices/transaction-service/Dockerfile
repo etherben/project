@@ -1,4 +1,3 @@
-
 # Start from an OpenJDK image
 FROM openjdk:21-jdk-slim
 
@@ -14,13 +13,18 @@ RUN apt-get update && \
 
 WORKDIR /app
 
+
 COPY . .
 
 
 RUN gradle build --no-daemon
 
 
+
 EXPOSE 8081
 
+# Run the JAR file
+ENTRYPOINT ["java", "-jar", "build/libs/transaction-service-0.0.1-SNAPSHOT.jar"]
 
-ENTRYPOINT ["java", "-jar", "build/libs/*-0.0.1-SNAPSHOT.jar"]
+
+

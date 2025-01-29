@@ -1,13 +1,14 @@
 import './App.css';
 import Signup from "./Components/SignUp/Signup";
 import Login from "./Components/Login/Login";
-import React, { useEffect, useState } from "react";
+import React, {useCallback, useEffect, useState} from "react";
 import MainPage from "./Components/MainPage/MainPage";
 
 function App() {
   const [userId, setUserId] = useState(null);
   const [isSignup, setSignup] = useState(true);
   const [transactions, setTransactions] = useState([]);
+
   useEffect(() => {
     const storedUserId = sessionStorage.getItem('id');
     if (storedUserId) {
@@ -27,9 +28,9 @@ function App() {
 
   // Load userId from sessionStorage on mount
   //will call fetch transactions at any point to check for new ones
-  const handleFetchTransactions = async (userId) => {
+  const handleFetchTransactions = useCallback(async (userId) => {
     try {
-      const response = await fetch(`http://localhost:8080/transactions/${userId}`, {  //the api call to backend with userid
+      const response = await fetch(`http://localhost:8081/transactions/${userId}`, {  // the API call to backend with userId
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
@@ -46,16 +47,17 @@ function App() {
     } catch (error) {
       console.error('Error fetching transactions:', error);
     }
-  };
+  }, []);
+
   useEffect(() => {
-    if (userId) { // Only fetch transactions if userId is not null
+    if (userId) {
       handleFetchTransactions(userId);
     }
-  }, [userId]); // Only trigger when userId changes
+  }, [userId, handleFetchTransactions]);
 
   const handleSignupSubmit = async (userSignupData) => {
     try {
-      const response = await fetch('http://localhost:8080/users/create', {  //calls signup backend functions
+      const response = await fetch(`http://localhost:8080/users/create`, {  //calls signup backend functions
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userSignupData),
@@ -74,7 +76,7 @@ function App() {
 
   const handleLoginSubmit = async (userLoginData) => {
     try {
-      const response = await fetch('http://localhost:8080/users/login', {
+      const response = await fetch(`http://localhost:8080/users/login`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userLoginData),
@@ -94,7 +96,7 @@ function App() {
   const handleSingleTransactionSubmit = async(transaction) =>{
     console.log("Submitting transaction:", transaction);
     try{
-      const response = await fetch('http://localhost:8080/transactions', {
+      const response = await fetch(`http://localhost:8081/transactions`, {
         method : 'POST',
         headers:{'Content-Type' : 'application/json'},
         body :JSON.stringify(transaction),
@@ -116,7 +118,7 @@ function App() {
     formData.append('file', file);
     formData.append('userId', userId)
     try {
-      const response = await fetch('http://localhost:8080/transactions/bulk', {
+      const response = await fetch(`http://localhost:8081/transactions/bulk`, {
         method: 'POST',
         body: formData,
       });
@@ -133,7 +135,7 @@ function App() {
 
   const saveTransactions = async () => {
     try {
-      const response = await fetch('http://localhost:8080/transactions/save', {
+      const response = await fetch(`http://localhost:8081/transactions/save`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         // Empty body for save

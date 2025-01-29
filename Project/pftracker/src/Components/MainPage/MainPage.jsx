@@ -55,7 +55,7 @@ const MainPage = ({ userId, onSingleSubmit, onFileSubmit, transactions, handleFe
             const [day, month, year] = transaction.TransactionDate.split('/');
             const date = new Date(`${year}-${month}-${day}`); // Convert to yyyy-mm-dd format for it not to get confused with object
             const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`  // Gets month and year of transaction
-                                                                                        // +1 on month becuase .date() obj starts at 0 = jan for some reason
+            // +1 on month becuase .date() obj starts at 0 = jan for some reason
             if (!amounts[monthAndYear]) {  // if doesnt exist
                 amounts[monthAndYear] = 0; // initialize that month/year
             }
