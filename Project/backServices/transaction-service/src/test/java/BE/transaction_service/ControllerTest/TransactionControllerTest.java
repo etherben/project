@@ -1,8 +1,8 @@
-package BE.pftrackerback.ControllerTest;
+package BE.transaction_service.ControllerTest;
 
-import BE.pftrackerback.Controllers.TransactionController;
-import BE.pftrackerback.Model.Transaction;
-import BE.pftrackerback.Service.TransactionService;
+import BE.transaction_service.Controller.TransactionController;
+import BE.transaction_service.Model.Transaction;
+import BE.transaction_service.Service.TransactionService;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

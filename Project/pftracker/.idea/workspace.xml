@@ -4,15 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Creating new services with dockerfiles">
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Updated dockerfiles to handle multiple services.">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -241,7 +234,8 @@
       <workItem from="1738148555606" duration="84000" />
       <workItem from="1738148958478" duration="196000" />
       <workItem from="1738149271199" duration="1537000" />
-      <workItem from="1738150954180" duration="1592000" />
+      <workItem from="1738150954180" duration="2850000" />
+      <workItem from="1738241046130" duration="66000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -483,7 +477,15 @@
       <option name="project" value="LOCAL" />
       <updated>1737971748779</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Updated dockerfiles to handle multiple services.">
+      <option name="closed" value="true" />
+      <created>1738152580950</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1738152580950</updated>
+    </task>
+    <option name="localTasksCounter" value="32" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,7 +518,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Update file diary.md" />
     <MESSAGE value="Create user Id" />
     <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
     <MESSAGE value="once logged in, userid is saved and directs to empty mainpage" />
@@ -541,6 +542,7 @@
     <MESSAGE value="Redid mainpage render test to accomidate changes" />
     <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
     <MESSAGE value="Creating new services with dockerfiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating new services with dockerfiles" />
+    <MESSAGE value="Updated dockerfiles to handle multiple services." />
+    <option name="LAST_COMMIT_MESSAGE" value="Updated dockerfiles to handle multiple services." />
   </component>
 </project>

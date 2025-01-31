@@ -1,8 +1,8 @@
-package BE.pftrackerback.ServiceTest;
+package BE.transaction_service.ServiceTest;
 
-import BE.pftrackerback.Model.Transaction;
-import BE.pftrackerback.Repo.TransactionRepo;
-import BE.pftrackerback.Service.TransactionService;
+import BE.transaction_service.Model.Transaction;
+import BE.transaction_service.Repo.TransactionRepo;
+import BE.transaction_service.Service.TransactionService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
