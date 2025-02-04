@@ -1,4 +1,4 @@
-package BE.pftrackerback.ControllerTest;
+package BE.user_service.ControllerTest;
 
 import BE.pftrackerback.Controllers.UserController;
 import BE.pftrackerback.Model.User;

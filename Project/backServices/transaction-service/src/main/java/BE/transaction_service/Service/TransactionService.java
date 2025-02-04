@@ -183,6 +183,14 @@ public class TransactionService {
         }
     }
 
+    public void deleteSingle(String transactionId) {
+        try {
+            transactionRepo.deleteById(transactionId);
+        }catch (Exception e) {
+            throw new IllegalArgumentException("Transaction could not be deleted");
+        }
+    }
+
 
 
 }

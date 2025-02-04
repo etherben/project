@@ -262,6 +262,17 @@ public class TransactionServiceTest {
                 () -> transactionService.addTransaction(transaction),
                 "Expected to throw an IllegalArgument for null fields");
     }
+    @Test void testDeleteSingle(){
+        // Given
+        String transactionId = "test123";
+        doNothing().when(transactionRepo).deleteById(transactionId);
+
+        // When
+        transactionService.deleteSingle(transactionId);
+
+        // Then
+        verify(transactionRepo, times(1)).deleteById(transactionId);
+    }
 }
 
 
