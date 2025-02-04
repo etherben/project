@@ -123,4 +123,14 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
     }
+
+    @DeleteMapping("/{transactionId}")
+    public ResponseEntity<String> deleteSingleTransaction(@PathVariable String transactionId) {
+        try {
+            transactionService.deleteSingle(transactionId);  // Call the service method to delete the transaction
+            return new ResponseEntity<>("Transaction deleted successfully", HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>("Transaction could not be deleted: " + e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
 }

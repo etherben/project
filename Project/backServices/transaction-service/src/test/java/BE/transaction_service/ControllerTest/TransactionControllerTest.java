@@ -240,5 +240,20 @@ public class TransactionControllerTest {
         assertEquals("Runtime error: (Message)", response.getBody());
     }
 
+    @Test
+    public void testDeleteSingleTransaction() {
+        // Given
+        String transactionId = "validId";
+        doNothing().when(transactionService).deleteSingle(transactionId);
+
+        // When
+        ResponseEntity<String> response = transactionController.deleteSingleTransaction(transactionId);
+
+        // Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+    }
+
+
+
 
 }
