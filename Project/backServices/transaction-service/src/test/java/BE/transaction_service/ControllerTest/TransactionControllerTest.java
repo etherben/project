@@ -228,6 +228,7 @@ public class TransactionControllerTest {
         //Then
         assertEquals("No transactions found for the user id " + userId, response.getBody());
     }
+
     @Test
     public void testGetTransactionRuntimeException() {
         //Given
@@ -253,7 +254,17 @@ public class TransactionControllerTest {
         assertEquals(HttpStatus.OK, response.getStatusCode());
     }
 
+    @Test
+    public void testDeleteSingleTransaction_BadRequest() {
+        // Given
+        String transactionId = "invalidTransactionId";
+        doThrow(new IllegalArgumentException("Transaction could not be deleted")).when(transactionService).deleteSingle(transactionId);
 
+        // When
+        ResponseEntity<?> response = transactionController.deleteSingleTransaction(transactionId);
 
-
+        // Then
+        assertEquals("Transaction could not be deleted", response.getBody());
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+    }
 }

@@ -273,6 +273,19 @@ public class TransactionServiceTest {
         // Then
         verify(transactionRepo, times(1)).deleteById(transactionId);
     }
+
+    @Test
+    public void testDeleteSingle_BadRequest() {
+        // Given
+        String invalidTransactionId = "invalidTransactionId";
+        doThrow(new RuntimeException("Errorlol")).when(transactionRepo).deleteById(invalidTransactionId);
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.deleteSingle(invalidTransactionId);
+        });
+        assertEquals("Transaction could not be deleted", exception.getMessage());
+    }
 }
 
 
