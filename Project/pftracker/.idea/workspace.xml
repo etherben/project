@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Updated dockerfiles to handle multiple services.">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Basic Transaction page to navigate to">
+      <change beforePath="$PROJECT_DIR$/../backServices/user-service/src/test/java/BE/user_service/ControllerTest/UserControllerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/src/test/java/BE/user_service/ControllerTest/UserControllerTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -16,10 +21,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="JSX File" />
-        <option value="CSS File" />
         <option value="Class" />
         <option value="JavaScript File" />
+        <option value="JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -82,7 +87,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;MicroService__Split&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;transactions-CRUD&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -236,6 +241,9 @@
       <workItem from="1738149271199" duration="1537000" />
       <workItem from="1738150954180" duration="2850000" />
       <workItem from="1738241046130" duration="66000" />
+      <workItem from="1738748977450" duration="1105000" />
+      <workItem from="1738750124673" duration="6000" />
+      <workItem from="1738750522743" duration="165000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -485,7 +493,15 @@
       <option name="project" value="LOCAL" />
       <updated>1738152580950</updated>
     </task>
-    <option name="localTasksCounter" value="32" />
+    <task id="LOCAL-00032" summary="Basic Transaction page to navigate to">
+      <option name="closed" value="true" />
+      <created>1738749806909</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1738749806909</updated>
+    </task>
+    <option name="localTasksCounter" value="33" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -518,7 +534,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Create user Id" />
     <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
     <MESSAGE value="once logged in, userid is saved and directs to empty mainpage" />
     <MESSAGE value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
@@ -543,6 +558,7 @@
     <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
     <MESSAGE value="Creating new services with dockerfiles" />
     <MESSAGE value="Updated dockerfiles to handle multiple services." />
-    <option name="LAST_COMMIT_MESSAGE" value="Updated dockerfiles to handle multiple services." />
+    <MESSAGE value="Basic Transaction page to navigate to" />
+    <option name="LAST_COMMIT_MESSAGE" value="Basic Transaction page to navigate to" />
   </component>
 </project>
