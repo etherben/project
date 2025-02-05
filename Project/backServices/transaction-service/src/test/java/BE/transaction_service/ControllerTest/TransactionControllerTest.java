@@ -267,4 +267,55 @@ public class TransactionControllerTest {
         assertEquals("Transaction could not be deleted", response.getBody());
         assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
     }
+
+    @Test
+    public void testUpdateTransaction_Success() {
+        // Given
+        String transactionId = "123";
+        Transaction updatedTransaction = new Transaction();
+        updatedTransaction.setAmount(150.0);
+        updatedTransaction.setMerchant("NewMerchant");
+        Date newDate = new Date();
+        updatedTransaction.setTransactionDate(newDate);
+
+        Transaction returnedTransaction = new Transaction();
+        returnedTransaction.setId(transactionId);
+        returnedTransaction.setAmount(150.0);
+        returnedTransaction.setMerchant("NewMerchant");
+        returnedTransaction.setTransactionDate(newDate);
+
+        when(transactionService.updateTransaction(eq(transactionId), any(Transaction.class)))
+                .thenReturn(returnedTransaction);
+
+        // When
+        ResponseEntity<?> response = transactionController.updateTransaction(transactionId, updatedTransaction);
+
+        // Then
+        assertEquals(HttpStatus.OK, response.getStatusCode());
+        Transaction responseBody = (Transaction) response.getBody();
+        assertEquals(150.0, responseBody.getAmount());
+        assertEquals("NewMerchant", responseBody.getMerchant());
+        assertEquals(newDate, responseBody.getTransactionDate());
+    }
+
+    @Test
+    public void testUpdateTransaction_Error() {
+        // Given
+        String transactionId = "invalidId";
+        Transaction updatedTransaction = new Transaction();
+        updatedTransaction.setAmount(150.0);
+        updatedTransaction.setMerchant("NewMerchant");
+        updatedTransaction.setTransactionDate(new Date());
+
+        when(transactionService.updateTransaction(eq(transactionId), any(Transaction.class)))
+                .thenThrow(new IllegalArgumentException("Transaction not found"));
+
+        // When
+        ResponseEntity<?> response = transactionController.updateTransaction(transactionId, updatedTransaction);
+
+        // Then
+        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
+        assertEquals("Transaction not found", response.getBody());
+    }
+
 }
