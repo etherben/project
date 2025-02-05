@@ -1,0 +1,43 @@
+.transaction-page {
+    padding: 20px;
+    min-height: 100vh;
+}
+
+.back-btn {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    font-size: 16px;
+}
+
+.back-btn:hover {
+    background-color: #0056b3;
+}
+
+.transaction-table {
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+}
+
+.table-header,
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px;
+    border-bottom: 1px solid #ddd;
+}
+
+.table-header {
+    font-weight: bold;
+    background-color: #f1f1f1;
+}
+
+.transaction-row:last-child {
+    border-bottom: none;
+}
