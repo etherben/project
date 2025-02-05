@@ -1,8 +1,8 @@
 package BE.user_service.ControllerTest;
 
-import BE.pftrackerback.Controllers.UserController;
-import BE.pftrackerback.Model.User;
-import BE.pftrackerback.Service.UserService;
+import BE.user_service.Controller.UserController;
+import BE.user_service.Model.User;
+import BE.user_service.Service.UserService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.MockitoAnnotations;
