@@ -16,6 +16,8 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
+
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
 
@@ -285,6 +287,53 @@ public class TransactionServiceTest {
             transactionService.deleteSingle(invalidTransactionId);
         });
         assertEquals("Transaction could not be deleted", exception.getMessage());
+    }
+
+    @Test
+    public void testUpdateTransaction_Success() {
+        // Given
+        String transactionId = "123";
+        Transaction existingTransaction = new Transaction();
+        existingTransaction.setId(transactionId);
+        existingTransaction.setMerchant("OldMerchant");
+        existingTransaction.setAmount(100.0);
+        Date oldDate = new Date();
+        existingTransaction.setTransactionDate(oldDate);
+
+        Transaction updatedTransaction = new Transaction();
+        updatedTransaction.setAmount(150.0);
+        updatedTransaction.setMerchant("NewMerchant");
+        Date newDate = new Date(oldDate.getTime() + 100000);
+        updatedTransaction.setTransactionDate(newDate);
+
+        when(transactionRepo.findById(transactionId)).thenReturn(Optional.of(existingTransaction));
+        when(transactionRepo.save(existingTransaction)).thenReturn(existingTransaction);
+
+        // When
+        Transaction result = transactionService.updateTransaction(transactionId, updatedTransaction);
+
+        // Then
+        assertEquals(150.0, result.getAmount());
+        assertEquals("NewMerchant", result.getMerchant());
+        assertEquals(newDate, result.getTransactionDate());
+    }
+
+    @Test
+    public void testUpdateTransaction_TransactionNotFound() {
+        // Given
+        String transactionId = "nonExistingId";
+        Transaction updatedTransaction = new Transaction();
+        updatedTransaction.setAmount(150.0);
+        updatedTransaction.setMerchant("NewMerchant");
+        updatedTransaction.setTransactionDate(new Date());
+
+        when(transactionRepo.findById(transactionId)).thenReturn(Optional.empty());
+
+        // When & Then
+        IllegalArgumentException exception = assertThrows(IllegalArgumentException.class, () -> {
+            transactionService.updateTransaction(transactionId, updatedTransaction);
+        });
+        assertEquals("Transaction not found", exception.getMessage());
     }
 }
 

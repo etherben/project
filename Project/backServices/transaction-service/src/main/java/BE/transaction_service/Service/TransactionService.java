@@ -191,6 +191,23 @@ public class TransactionService {
         }
     }
 
+    public Transaction updateTransaction(String transactionId, Transaction updatedTransaction) {
+        Transaction existingTransaction = transactionRepo.findById(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+
+        if (updatedTransaction.getAmount() > 0) {
+            existingTransaction.setAmount(updatedTransaction.getAmount());
+        }
+        if (updatedTransaction.getMerchant() != null) {
+            existingTransaction.setMerchant(updatedTransaction.getMerchant());
+        }
+        if (updatedTransaction.getTransactionDate() != null) {
+            existingTransaction.setTransactionDate(updatedTransaction.getTransactionDate());
+        }
+
+        return transactionRepo.save(existingTransaction);
+    }
+
 
 
 }
