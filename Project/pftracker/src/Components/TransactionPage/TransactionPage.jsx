@@ -3,11 +3,13 @@ import './TransactionPage.css';
 
 const TransactionPage = ({ transactions, onBack }) => {
     return (
-        <div className="transaction-page">
-            <button className="back-btn" onClick={onBack}>← Back</button>
-            <h2>All Transactions</h2>
-            <div className="transaction-table">
-                <div className="table-header">
+        <div className="transaction-container">
+            <div className="transaction-header">
+                <button onClick={onBack} className="back-button">Back</button>
+                <button className="add-transaction-btn">Add Transaction</button>
+            </div>
+            <div className="transaction-list">
+            <div className="transaction-row" style={{ fontWeight: 'bold', borderBottom: '2px solid #000' }}>
                     <span>Date</span>
                     <span>Merchant</span>
                     <span>Amount</span>
@@ -15,11 +17,11 @@ const TransactionPage = ({ transactions, onBack }) => {
                 {transactions.length === 0 ? (
                     <p>No transactions available.</p>
                 ) : (
-                    transactions.map(transaction => (
+                    transactions.map((transaction) => (
                         <div key={transaction.id} className="transaction-row">
                             <span>{transaction.TransactionDate}</span>
                             <span>{transaction.merchant}</span>
-                            <span>{transaction.amount}</span>
+                            <span>${transaction.amount}</span>
                         </div>
                     ))
                 )}

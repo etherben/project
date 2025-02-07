@@ -1,6 +1,7 @@
 .main-container {
     background-color: #5ba0ff;
     min-height: 150vh;
+    min-width: 1200px;
     padding: 20px;
 }
 
