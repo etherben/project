@@ -84,6 +84,11 @@ Setup plan for second term, establish goals and research ideas on how to progres
 20/01 - 26/01
 Establish microservice architecture, separating backend into services and establishing communication between them
 
+27/01 - 02/02
+Created transaction page, cleared up mainpage and linked pages.
+
+03/02 - 09/02
+Not much done this week, basic bug fixing and test building.
 
 
 
