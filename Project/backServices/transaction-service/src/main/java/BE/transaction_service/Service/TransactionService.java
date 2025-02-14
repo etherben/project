@@ -126,11 +126,11 @@ public class TransactionService {
         String merchant = parts[1].trim(); // The merchant part
         double amount = Double.parseDouble(parts[2].trim()); // The amount part
 
-        Date transactionDate = parseDate(dateStr); // Parse the date string
+        Date TransactionDate = parseDate(dateStr); // Parse the date string
 
         // Create and return the Transaction object
         Transaction transaction = new Transaction();
-        transaction.setTransactionDate(transactionDate);
+        transaction.setTransactionDate(TransactionDate);
         transaction.setAmount(amount);
         transaction.setMerchant(merchant);
 

@@ -26,7 +26,7 @@ const Login = ({onSubmit, onSwitch}) => {
         <div className="container">
             <div className="header">
                 <div className="text">Login</div>
-                {error && <div className="error">{error}</div>} //displays error message below title
+                {error && <div className="error">{error}</div>}
             </div>
             <form onSubmit={handleSubmit} className="inputs">
                 <div className="input">
