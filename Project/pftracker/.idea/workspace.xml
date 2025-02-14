@@ -5,11 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Updated frontend to link to the transaction page, MainPage will only show most recent transactions and summary graph now.">
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/Login/Login.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/Login/Login.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -252,6 +250,7 @@
       <workItem from="1739532710117" duration="204000" />
       <workItem from="1739533318668" duration="264000" />
       <workItem from="1739534177384" duration="23000" />
+      <workItem from="1739537313750" duration="2603000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
