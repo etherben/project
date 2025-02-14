@@ -65,3 +65,11 @@ body {
     cursor: pointer;
     margin-top: 20px; /* Adds space above the button */
 }
+
+.back-button{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
