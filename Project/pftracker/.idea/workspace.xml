@@ -4,9 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Spacing for transaction page">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Repositioned back button">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -250,6 +251,10 @@
       <workItem from="1739533318668" duration="264000" />
       <workItem from="1739534177384" duration="23000" />
       <workItem from="1739537313750" duration="3759000" />
+      <workItem from="1739541499483" duration="3890000" />
+      <workItem from="1739627059413" duration="5921000" />
+      <workItem from="1739725574879" duration="2627000" />
+      <workItem from="1739798981685" duration="377000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -531,7 +536,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739540077377</updated>
     </task>
-    <option name="localTasksCounter" value="36" />
+    <task id="LOCAL-00036" summary="Repositioned back button">
+      <option name="closed" value="true" />
+      <created>1739541518968</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1739541518968</updated>
+    </task>
+    <option name="localTasksCounter" value="37" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -564,7 +577,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="User can submit single transaction" />
     <MESSAGE value="User can submit file, updates database as separate transactions" />
     <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
     <MESSAGE value="formatted transactions to display properly" />
@@ -589,6 +601,7 @@
     <MESSAGE value="Fixed userControllerTests to call updated backend" />
     <MESSAGE value="Updated frontend to link to the transaction page, MainPage will only show most recent transactions and summary graph now." />
     <MESSAGE value="Spacing for transaction page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Spacing for transaction page" />
+    <MESSAGE value="Repositioned back button" />
+    <option name="LAST_COMMIT_MESSAGE" value="Repositioned back button" />
   </component>
 </project>

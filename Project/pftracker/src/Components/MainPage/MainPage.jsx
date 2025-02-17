@@ -1,22 +1,76 @@
-import React, { useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
 const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
     const chartRef = useRef(null);
+
     const last10Transactions = transactions.slice(-10);
+
+    const aggregateTransactions = (transactions) => {
+        const monthlyTotal = transactions.reduce((amounts, transaction) => {
+            const [day, month, year] = transaction.TransactionDate.split('/');
+            const date = new Date(`${year}-${month}-${day}`);
+            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`
+
+            if (!amounts[monthAndYear]) {
+                amounts[monthAndYear] = 0;
+            }
+
+            amounts[monthAndYear] += parseFloat(transaction.amount);
+            return amounts;
+        }, {});
+
+        return Object.entries(monthlyTotal).map(([month, total]) => ({month, total}));
+    };
+
+    const monthlyData = aggregateTransactions(transactions);
 
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
-        const option = {
-            title: { text: 'Monthly Transaction Expenditure' },
-            xAxis: { type: 'category', data: ['Jan', 'Feb', 'Mar'] },
-            yAxis: { type: 'value' },
-            series: [{ data: [150, 200, 100], type: 'line' }]
+
+        const months = monthlyData.map(item => item.month);
+        const totals = monthlyData.map(item => item.total);
+
+        const chartSettings = {
+            title: {
+                text: 'Monthly Transaction Expenditure',
+                textStyle: {
+                    color: '#000000',
+                    fontSize: 18,
+                },
+            },
+            xAxis: {
+                type: 'category',
+                data: months,
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000',
+                    },
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000',
+                    },
+                },
+            },
+            series: [
+                {
+                    data: totals,
+                    type: 'line',
+                    lineStyle: {
+                        color: 'black',
+                    },
+                },
+            ],
         };
-        chart.setOption(option);
+
+        chart.setOption(chartSettings);
         return () => chart.dispose();
-    }, []);
+    }, [monthlyData]);
 
     return (
         <div className="main-container">
@@ -26,9 +80,8 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
             </div>
             <div className="content">
                 <div className="leftside">
-
                     <div className="transaction-list">
-                        {last10Transactions.length === 0 ? (
+                        {transactions.length === 0 ? (
                             <p>No transactions yet.</p>
                         ) : (
                             last10Transactions.map(transaction => (
@@ -42,7 +95,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                 </div>
                 <div className="rightside">
                     <div className="chart-container">
-                        <div ref={chartRef}></div>
+                        <div ref={chartRef} style={{width: '600px', height: '400px'}}></div>
                     </div>
                 </div>
             </div>
