@@ -9,8 +9,9 @@ function App() {
   const [userId, setUserId] = useState(null);
   const [isSignup, setSignup] = useState(true);
   const [transactions, setTransactions] = useState([]);
+  const [transactionsToAdd, setTransactionsToAdd] = useState([]);
   const [showTransactionPage, setShowTransactionPage] = useState(false);
-
+//use effect for user id
   useEffect(() => {
     const storedUserId = sessionStorage.getItem('id');
     if (storedUserId) {
@@ -29,6 +30,29 @@ function App() {
     console.log("Logged out Successfully");
   };
 
+ //Function to get buffered transactions User hasnt yet saved
+  const handleFetchBufferedTransactions = async (transactionsToAdd) =>{
+    try {
+      const response = await fetch(`http://localhost:8081/transactions`, {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to retrieve transactions');
+      }
+
+      const transactionsData = await response.json();
+      console.log('Transactions fetched successfully:', transactionsData);
+      setTransactionsToAdd(transactionsData);
+    }catch (error) {
+      console.error('Error fetching transactions:', error);
+    }
+  }
+
+
+
+// This is for getting all transactions from user in DATABASE
   const handleFetchTransactions = useCallback(async (userId) => {
     try {
       const response = await fetch(`http://localhost:8081/transactions/${userId}`, {
@@ -49,6 +73,7 @@ function App() {
     }
   }, []);
 
+  //To keep the All transactions list updated
   useEffect(() => {
     if (userId) {
       handleFetchTransactions(userId);
@@ -92,6 +117,8 @@ function App() {
     }
   };
 
+
+  //IMPOPRTANT
   const handleSingleTransactionSubmit = async (transaction) => {
     console.log("Submitting transaction:", transaction);
     try {
@@ -108,9 +135,11 @@ function App() {
     } catch (error) {
       console.error(error);
     }
-    await saveTransactions();
+   // await saveTransactions();
   };
 
+
+  //HERE WE GO
   const handleFileTransactionSubmit = async (file) => {
     console.log("Submitting file", file);
     const formData = new FormData();
@@ -129,9 +158,10 @@ function App() {
     } catch (error) {
       console.error('Error uploading file:', error);
     }
-    await saveTransactions();
+   // await saveTransactions();   We dont want to call this while transactions are in buffer
   };
 
+  //Save the transactions once user confirms in add transactions
   const saveTransactions = async () => {
     try {
       const response = await fetch(`http://localhost:8081/transactions/save`, {
@@ -148,11 +178,20 @@ function App() {
     }
   };
 
+
   return (
       <div>
         {userId ? (
             showTransactionPage ? (
-                <TransactionPage transactions={transactions} onBack={() => setShowTransactionPage(false)} />
+                <TransactionPage
+                    userId={userId}
+                    transactions={transactions} // All of users transactions
+                    transactionsToAdd ={transactionsToAdd} //Buffered transaction list to add
+                    onFileSubmit={handleFileTransactionSubmit}
+                    handleFetchTransactions={handleFetchTransactions}
+                    handleFetchBufferedTransactions={handleFetchBufferedTransactions}
+                    saveTransactions = {saveTransactions}
+                    onBack={() => setShowTransactionPage(false)} />
             ) : (
                 <MainPage
                     userId={userId}

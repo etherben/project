@@ -92,9 +92,9 @@ public class TransactionController {
     }
 
     /**
-     * Endpoint to retrieve all transactions.
+     * Endpoint to retrieve all buffered transactions.
      * <p>
-     * Returns a list of all transactions stored in the system.
+     * Returns a list of all transactions stored in the buffer.
      *
      * @return a {@link ResponseEntity} containing the list of all transactions and HTTP status code {@code 200 OK}.
      */
