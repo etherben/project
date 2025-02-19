@@ -173,6 +173,7 @@ function App() {
       }
       const result = await response.text();
       console.log('Transactions saved successfully:', result);
+      setTransactionsToAdd([])
     } catch (error) {
       console.error('Error saving transactions:', error);
     }

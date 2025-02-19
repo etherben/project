@@ -22,7 +22,7 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
             try {
                 await onFileSubmit(file);    //send file to backend
                 handleFetchBufferedTransactions();    // gets buffered transactions and adds to transactionsToAdd list
-                console.log('Big Sucess is nice')
+                console.log('Big Success is nice')
             } catch (error) {
                 console.error('Error uploading file:', error);
             }
@@ -36,6 +36,7 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
         try{
             await saveTransactions();
             handleFetchTransactions(userId);
+
         } catch (error){
             console.error('Error saving transactions')
         }
@@ -80,7 +81,6 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <h2>Transactions to be Added</h2>
-
                         {/* Action Buttons */}
                         <div className="modal-buttons">
                             <button onClick={triggerFileInput}>Add File</button>

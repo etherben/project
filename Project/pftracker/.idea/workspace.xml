@@ -4,11 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Graph back in place for mainpage">
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Model/Transaction.java" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Added save file option to transaction page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -266,7 +265,8 @@
       <workItem from="1739883613994" duration="382000" />
       <workItem from="1739884127442" duration="817000" />
       <workItem from="1739884986480" duration="791000" />
-      <workItem from="1739886246244" duration="463000" />
+      <workItem from="1739886246244" duration="4377000" />
+      <workItem from="1739959586788" duration="1862000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -564,7 +564,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739799560424</updated>
     </task>
-    <option name="localTasksCounter" value="38" />
+    <task id="LOCAL-00038" summary="Added save file option to transaction page">
+      <option name="closed" value="true" />
+      <created>1739887132441</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1739887132441</updated>
+    </task>
+    <option name="localTasksCounter" value="39" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -597,7 +605,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
     <MESSAGE value="formatted transactions to display properly" />
     <MESSAGE value="Added merchant param to front including in transaction list and adding transactions" />
     <MESSAGE value="Front end file creating for graph" />
@@ -622,6 +629,7 @@
     <MESSAGE value="Spacing for transaction page" />
     <MESSAGE value="Repositioned back button" />
     <MESSAGE value="Graph back in place for mainpage" />
-    <option name="LAST_COMMIT_MESSAGE" value="Graph back in place for mainpage" />
+    <MESSAGE value="Added save file option to transaction page" />
+    <option name="LAST_COMMIT_MESSAGE" value="Added save file option to transaction page" />
   </component>
 </project>
