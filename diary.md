@@ -90,6 +90,11 @@ Created transaction page, cleared up mainpage and linked pages.
 03/02 - 09/02
 Not much done this week, basic bug fixing and test building.
 
+09/02- 21/02
+Research into Machine Learning algorithm to automatically categorise transactions, might not be doable in timeframe
+Redesign and building of transactionpage to handle file submits
+
+
 
 
 
