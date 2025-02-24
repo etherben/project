@@ -189,6 +189,7 @@ function App() {
                     transactions={transactions} // All of users transactions
                     transactionsToAdd ={transactionsToAdd} //Buffered transaction list to add
                     onFileSubmit={handleFileTransactionSubmit}
+                    onSingleSubmit={handleSingleTransactionSubmit}
                     handleFetchTransactions={handleFetchTransactions}
                     handleFetchBufferedTransactions={handleFetchBufferedTransactions}
                     saveTransactions = {saveTransactions}

@@ -1,9 +1,10 @@
 import React, {useRef, useState} from 'react';
 import './TransactionPage.css';
 
-const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFileSubmit, handleFetchTransactions, handleFetchBufferedTransactions,saveTransactions}) => {
+const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onSingleSubmit, onFileSubmit, handleFetchTransactions, handleFetchBufferedTransactions, saveTransactions}) => {
     const [addTranModal, setTranModalOpen] = useState(false);
-    const [selectedFile, setSelectedFile] = useState(null)
+    const [manualTranModal, setManualTranModalOpen] = useState(false);
+    const [newTransaction, setNewTransaction] = useState({ userId, TransactionDate: '', merchant: '', amount: '' });
     const fileInputRef = useRef(null);
 
     const triggerFileInput = () => {
@@ -20,8 +21,8 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
     const handleFileUpload = async (file) => {
         if (file) {
             try {
-                await onFileSubmit(file);    //send file to backend
-                handleFetchBufferedTransactions();    // gets buffered transactions and adds to transactionsToAdd list
+                await onFileSubmit(file);
+                handleFetchBufferedTransactions();
                 console.log('Big Success is nice')
             } catch (error) {
                 console.error('Error uploading file:', error);
@@ -29,15 +30,11 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
         }
     };
 
-
-    // WILL WANT A FUNCTION THAT SAVES BUFFERED TRANSACTION THEN CALLS HANDLE FETCH, SO TRANSACTION LIST UPDATES
-
     const addTransactions = async () => {
-        try{
+        try {
             await saveTransactions();
             handleFetchTransactions(userId);
-
-        } catch (error){
+        } catch (error) {
             console.error('Error saving transactions')
         }
     }
@@ -50,6 +47,40 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
         setTranModalOpen(false);
     };
 
+    const handleOpenManualModal = () => {
+        setManualTranModalOpen(true);
+    };
+
+    const handleCloseManualModal = () => {
+        setManualTranModalOpen(false);
+    };
+
+    const handleManualInputChange = (e) => {
+        const { name, value } = e.target;
+        setNewTransaction((prev) => ({ ...prev, [name]: value }));
+    };
+
+    const handleAddManualTransaction = async () => {
+        const dateParts = newTransaction.TransactionDate.split('-');
+        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
+        const amount = parseFloat(newTransaction.amount);
+        // Update the transaction with the formatted date and double amount
+        const transactionToSubmit = {
+            ...newTransaction,
+            TransactionDate: formattedDate,
+            amount: amount
+        };
+        try {
+            await onSingleSubmit(transactionToSubmit);
+            handleFetchBufferedTransactions();
+            console.log('CONFUSION')
+        } catch (error) {
+            console.error('Error manual transaction:', error);
+        }
+
+        setNewTransaction({TransactionDate: '', merchant: '', amount: ''});
+        handleCloseManualModal();
+    };
 
     return (
         <div className="transaction-container">
@@ -76,12 +107,10 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
                 )}
             </div>
 
-            {/* Add Transaction Section */}
             {addTranModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
                         <h2>Transactions to be Added</h2>
-                        {/* Action Buttons */}
                         <div className="modal-buttons">
                             <button onClick={triggerFileInput}>Add File</button>
                             <input
@@ -90,9 +119,9 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
                                 className="file-input"
-                                style={{display: 'none'}}  // Hides the input element
+                                style={{display: 'none'}}
                             />
-                            <button className="manual-input-btn">Manual Input</button>
+                            <button className="manual-input-btn" onClick={handleOpenManualModal}>Manual Input</button>
                         </div>
 
                         <div className="transaction-list">
@@ -104,7 +133,7 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
                             {transactionsToAdd.length === 0 ? (
                                 <p>No transactions ready to add.</p>
                             ) : (
-                                transactionsToAdd.map((transaction, index) => ( //need index as transactions wont have id yet
+                                transactionsToAdd.map((transaction, index) => (
                                     <div key={index} className="transaction-row">
                                         <span>{transaction.TransactionDate}</span>
                                         <span>{transaction.merchant}</span>
@@ -116,8 +145,38 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onFil
                         <button onClick={addTransactions} className="save-transactions-btn">
                             Save Transactions
                         </button>
-
                         <button onClick={handleCloseModal} className="close-modal-btn">Close</button>
+                    </div>
+                </div>
+            )}
+
+            {manualTranModal && (
+                <div className="modal-overlay">
+                    <div className="modal-content">
+                        <h2>Enter Transaction Details</h2>
+                        <input
+                            type="date"
+                            name="TransactionDate"
+                            placeholder="dd/mm/yyyy"
+                            value={newTransaction.TransactionDate}
+                            onChange={handleManualInputChange}
+                        />
+                        <input
+                            type="text"
+                            name="merchant"
+                            placeholder="Merchant"
+                            value={newTransaction.merchant}
+                            onChange={handleManualInputChange}
+                        />
+                        <input
+                            type="number"
+                            name="amount"
+                            placeholder="Amount"
+                            value={newTransaction.amount}
+                            onChange={handleManualInputChange}
+                        />
+                        <button onClick={handleAddManualTransaction}>Add Transaction</button>
+                        <button onClick={handleCloseManualModal}>Cancel</button>
                     </div>
                 </div>
             )}

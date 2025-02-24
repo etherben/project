@@ -51,6 +51,7 @@ body {
 }
 
 .transaction-row span {
+    padding: 20px;
     flex: 1; /* Makes each column take equal width */
     text-align: left; /* Align text to the left */
 }

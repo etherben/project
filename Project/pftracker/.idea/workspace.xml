@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Added save file option to transaction page">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears">
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
@@ -266,7 +267,14 @@
       <workItem from="1739884127442" duration="817000" />
       <workItem from="1739884986480" duration="791000" />
       <workItem from="1739886246244" duration="4377000" />
-      <workItem from="1739959586788" duration="1862000" />
+      <workItem from="1739959586788" duration="3121000" />
+      <workItem from="1740047088671" duration="2019000" />
+      <workItem from="1740398974870" duration="5516000" />
+      <workItem from="1740406699161" duration="75000" />
+      <workItem from="1740407134826" duration="23000" />
+      <workItem from="1740407213487" duration="560000" />
+      <workItem from="1740408207947" duration="327000" />
+      <workItem from="1740409235318" duration="37000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -572,7 +580,15 @@
       <option name="project" value="LOCAL" />
       <updated>1739887132441</updated>
     </task>
-    <option name="localTasksCounter" value="39" />
+    <task id="LOCAL-00039" summary="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears">
+      <option name="closed" value="true" />
+      <created>1739961996555</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1739961996555</updated>
+    </task>
+    <option name="localTasksCounter" value="40" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -605,7 +621,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="formatted transactions to display properly" />
     <MESSAGE value="Added merchant param to front including in transaction list and adding transactions" />
     <MESSAGE value="Front end file creating for graph" />
     <MESSAGE value="Function to parse date from string, ready to sort." />
@@ -630,6 +645,7 @@
     <MESSAGE value="Repositioned back button" />
     <MESSAGE value="Graph back in place for mainpage" />
     <MESSAGE value="Added save file option to transaction page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added save file option to transaction page" />
+    <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
+    <option name="LAST_COMMIT_MESSAGE" value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
   </component>
 </project>

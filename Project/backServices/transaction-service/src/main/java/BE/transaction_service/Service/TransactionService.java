@@ -78,9 +78,7 @@ public class TransactionService {
      * @throws IllegalArgumentException if any required field of the transaction is invalid.
      */
     public Transaction addTransaction(Transaction transaction) {
-        if (transaction.getUserId() == null) {
-            throw new IllegalArgumentException("Transaction user ID cannot be null");
-        } else if (transaction.getTransactionDate() == null) {
+        if (transaction.getTransactionDate() == null) {
             throw new IllegalArgumentException("Transaction date cannot be null");
         } else if (transaction.getAmount() <= 0) {
             throw new IllegalArgumentException("Transaction amount must be greater than 0");
