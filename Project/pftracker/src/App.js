@@ -179,6 +179,21 @@ function App() {
     }
   };
 
+  const deleteTransaction = async (transactionId) => {
+    try {
+      const response = await fetch(`http://localhost:8081/transactions/${transactionId}`, {
+        method: "DELETE",
+        headers: {"Content-Type": "application/json"},
+      });
+      if (!response.ok) {
+        throw new Error("Failed to delete transaction");
+      }
+      console.log('Deleted Transaction')
+    }catch (error){
+      console.error(error)
+    }
+  };
+
 
   return (
       <div>
@@ -193,6 +208,7 @@ function App() {
                     handleFetchTransactions={handleFetchTransactions}
                     handleFetchBufferedTransactions={handleFetchBufferedTransactions}
                     saveTransactions = {saveTransactions}
+                    handleDeleteTransaction={deleteTransaction}
                     onBack={() => setShowTransactionPage(false)} />
             ) : (
                 <MainPage

@@ -1,7 +1,7 @@
 import React, {useRef, useState} from 'react';
 import './TransactionPage.css';
 
-const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onSingleSubmit, onFileSubmit, handleFetchTransactions, handleFetchBufferedTransactions, saveTransactions}) => {
+const TransactionPage = ({userId, transactions, handleDeleteTransaction, transactionsToAdd, onBack, onSingleSubmit, onFileSubmit, handleFetchTransactions, handleFetchBufferedTransactions, saveTransactions}) => {
     const [addTranModal, setTranModalOpen] = useState(false);
     const [manualTranModal, setManualTranModalOpen] = useState(false);
     const [newTransaction, setNewTransaction] = useState({ userId, TransactionDate: '', merchant: '', amount: '' });
@@ -81,6 +81,15 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onSin
         setNewTransaction({TransactionDate: '', merchant: '', amount: ''});
         handleCloseManualModal();
     };
+    const onDeleteTransaction = async (transactionId) =>{
+        try {
+            await handleDeleteTransaction(transactionId)
+            handleFetchTransactions(userId)
+        } catch (error){
+            console.error('Error Deleting:', error)
+        }
+
+    }
 
     return (
         <div className="transaction-container">
@@ -102,6 +111,9 @@ const TransactionPage = ({userId, transactions, transactionsToAdd, onBack, onSin
                             <span>{transaction.TransactionDate}</span>
                             <span>{transaction.merchant}</span>
                             <span>${transaction.amount}</span>
+                            <span><button className="delete-btn"
+                                          onClick ={ () =>onDeleteTransaction(transaction.id)}
+                            >Delete</button></span>
                         </div>
                     ))
                 )}
