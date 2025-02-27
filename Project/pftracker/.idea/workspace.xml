@@ -4,7 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Added manual transaction to transaction page">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Users can manually delete transactions">
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
@@ -275,7 +276,11 @@
       <workItem from="1740409235318" duration="3102000" />
       <workItem from="1740582024416" duration="2564000" />
       <workItem from="1740584660363" duration="1192000" />
-      <workItem from="1740586017592" duration="320000" />
+      <workItem from="1740586017592" duration="2117000" />
+      <workItem from="1740588410026" duration="2959000" />
+      <workItem from="1740649241075" duration="403000" />
+      <workItem from="1740649889515" duration="387000" />
+      <workItem from="1740650335524" duration="179000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -597,7 +602,15 @@
       <option name="project" value="LOCAL" />
       <updated>1740414061109</updated>
     </task>
-    <option name="localTasksCounter" value="41" />
+    <task id="LOCAL-00041" summary="Users can manually delete transactions">
+      <option name="closed" value="true" />
+      <created>1740586394711</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1740586394711</updated>
+    </task>
+    <option name="localTasksCounter" value="42" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -630,7 +643,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Front end file creating for graph" />
     <MESSAGE value="Function to parse date from string, ready to sort." />
     <MESSAGE value="Changed to just show aggregated list on the mainpage.Ready to translate into graph." />
     <MESSAGE value="Replaced list with basic line chart" />
@@ -655,6 +667,7 @@
     <MESSAGE value="Added save file option to transaction page" />
     <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
     <MESSAGE value="Added manual transaction to transaction page" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added manual transaction to transaction page" />
+    <MESSAGE value="Users can manually delete transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Users can manually delete transactions" />
   </component>
 </project>

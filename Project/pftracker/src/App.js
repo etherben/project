@@ -31,7 +31,7 @@ function App() {
   };
 
  //Function to get buffered transactions User hasnt yet saved
-  const handleFetchBufferedTransactions = async (transactionsToAdd) =>{
+  const handleFetchBufferedTransactions = async () =>{
     try {
       const response = await fetch(`http://localhost:8081/transactions`, {
         method: 'GET',
@@ -193,6 +193,21 @@ function App() {
       console.error(error)
     }
   };
+  const handleEditTransaction = async (transactionId, updatedTransaction) => {
+    try {
+      const response = await fetch(`http://localhost:8081/transactions/${transactionId}`, {
+        method: 'PUT',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(updatedTransaction),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to edit transaction');
+      }
+      console.log('Transaction updated successfully');
+    } catch (error) {
+      console.error('Error editing transaction:', error);
+    }
+  };
 
 
   return (
@@ -209,6 +224,7 @@ function App() {
                     handleFetchBufferedTransactions={handleFetchBufferedTransactions}
                     saveTransactions = {saveTransactions}
                     handleDeleteTransaction={deleteTransaction}
+                    onEditTransaction={handleEditTransaction}
                     onBack={() => setShowTransactionPage(false)} />
             ) : (
                 <MainPage

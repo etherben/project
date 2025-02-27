@@ -133,10 +133,10 @@ public class TransactionController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
-    @PutMapping("/transactions/{id}")
-    public ResponseEntity<?> updateTransaction(@PathVariable String id, @RequestBody Transaction updatedTransaction) {
+    @PutMapping("/{transactionId}")
+    public ResponseEntity<?> updateTransaction(@PathVariable String transactionId, @RequestBody Transaction updatedTransaction) {
         try {
-            Transaction transaction = transactionService.updateTransaction(id, updatedTransaction);
+            Transaction transaction = transactionService.updateTransaction(transactionId, updatedTransaction);
             return ResponseEntity.ok(transaction);
         } catch (IllegalArgumentException e) {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
