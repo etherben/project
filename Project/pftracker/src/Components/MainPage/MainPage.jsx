@@ -11,7 +11,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
         const monthlyTotal = transactions.reduce((amounts, transaction) => {
             const [day, month, year] = transaction.TransactionDate.split('/');
             const date = new Date(`${year}-${month}-${day}`);
-            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`
+            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
             if (!amounts[monthAndYear]) {
                 amounts[monthAndYear] = 0;
@@ -21,7 +21,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
             return amounts;
         }, {});
 
-        return Object.entries(monthlyTotal).map(([month, total]) => ({month, total}));
+        return Object.entries(monthlyTotal).map(([month, total]) => ({ month, total }));
     };
 
     const monthlyData = aggregateTransactions(transactions);
@@ -86,7 +86,10 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                         ) : (
                             last10Transactions.map(transaction => (
                                 <div key={transaction.id} className="transaction-row">
-                                    <span>{transaction.TransactionDate}</span> | <span>{transaction.merchant}</span> | <span>{transaction.amount}</span>
+                                    <span>{transaction.TransactionDate}</span> |
+                                    <span>{transaction.merchant}</span> |
+                                    <span>{transaction.amount}</span> |
+                                    <span>{transaction.category}</span>
                                 </div>
                             ))
                         )}
@@ -95,7 +98,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                 </div>
                 <div className="rightside">
                     <div className="chart-container">
-                        <div ref={chartRef} style={{width: '600px', height: '400px'}}></div>
+                        <div ref={chartRef} style={{ width: '600px', height: '400px' }}></div>
                     </div>
                 </div>
             </div>

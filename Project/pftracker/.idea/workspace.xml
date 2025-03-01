@@ -5,9 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Fixing previous git commit issues, mainpage should now be upto date">
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Model/Transaction.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Model/Transaction.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/test/java/BE/transaction_service/ServiceTest/TransactionServiceTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/test/java/BE/transaction_service/ServiceTest/TransactionServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/test/resources/mockTransactionsFile.csv" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/test/resources/mockTransactionsFile.csv" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../diary.md" beforeDir="false" afterPath="$PROJECT_DIR$/../../diary.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -63,45 +65,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.loads mainpage with userid stored.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should fake file submit and log the success message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should fake submit a single transaction and log the success message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should submit a single transaction successfully.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage.test.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Signup.test.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.calls handleLoginSubmit with correct data.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders MainPage with mock userId and transactions.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders the Signup form initially.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.should handle error when file upload fails.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;!19 on transactions-CRUD&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.App.test.js.executor": "Run",
+    "Jest.MainPage Component.loads mainpage with userid stored.executor": "Run",
+    "Jest.MainPage Component.loads userId from sessionStorage on mount.executor": "Run",
+    "Jest.MainPage Component.should fake file submit and log the success message.executor": "Run",
+    "Jest.MainPage Component.should fake submit a single transaction and log the success message.executor": "Run",
+    "Jest.MainPage Component.should submit a single transaction successfully.executor": "Run",
+    "Jest.MainPage Component.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.MainPage.test.jsx.executor": "Run",
+    "Jest.Signup.test.jsx.executor": "Run",
+    "Jest.calls handleLoginSubmit with correct data.executor": "Run",
+    "Jest.loads userId from sessionStorage from mount.executor": "Run",
+    "Jest.loads userId from sessionStorage on mount.executor": "Run",
+    "Jest.renders MainPage with mock userId and transactions.executor": "Run",
+    "Jest.renders the Signup form initially.executor": "Run",
+    "Jest.should handle error when file upload fails.executor": "Run",
+    "Jest.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.switches to Login form when link is clicked.executor": "Run",
+    "Node.js.App.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "CategoryParameter",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Jest.MainPage Component.should fake file submit and log the success message">
     <configuration name="MainPage Component.loads mainpage with userid stored" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -281,7 +283,7 @@
       <workItem from="1740649889515" duration="387000" />
       <workItem from="1740650335524" duration="179000" />
       <workItem from="1740650817658" duration="604000" />
-      <workItem from="1740826797986" duration="1187000" />
+      <workItem from="1740826797986" duration="2381000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
