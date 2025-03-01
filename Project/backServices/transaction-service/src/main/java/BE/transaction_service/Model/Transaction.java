@@ -114,7 +114,7 @@ public class Transaction {
      * @param transactionDate the transaction date.
      */
     public void setTransactionDate(Date transactionDate) {
-        TransactionDate = transactionDate;
+        this.TransactionDate = transactionDate;
     }
 
     /**

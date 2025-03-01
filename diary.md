@@ -78,22 +78,6 @@ Created endpoints for submitting transactions, submitting files and retreiving t
 Things to consider - in db I didnt Embed transactions into user document as one user can have thousands of transactions. This allows for scalability.
 Escpecially with 16mb document limit. 
 
-13/01 - 19/01
-Setup plan for second term, establish goals and research ideas on how to progress
-
-20/01 - 26/01
-Establish microservice architecture, separating backend into services and establishing communication between them
-
-27/01 - 02/02
-Created transaction page, cleared up mainpage and linked pages.
-
-03/02 - 09/02
-Not much done this week, basic bug fixing and test building.
-
-09/02- 21/02
-Research into Machine Learning algorithm to automatically categorise transactions, might not be doable in timeframe
-Redesign and building of transactionpage to handle file submits
-
 
 
 
