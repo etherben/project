@@ -10,7 +10,7 @@ import java.util.Date;
  * Represents a financial transaction linked to a user in the system.
  * <p>
  * This class is mapped to the "transactions" collection in MongoDB.
- * Each transaction has user ID, transaction date, merchant and amount. In that oder
+ * Each transaction has user ID, transaction date, merchant, amount, and category.
  */
 
 @Document(collection = "transactions")
@@ -44,6 +44,11 @@ public class Transaction {
      * The merchant or vendor of the transaction.
      */
     private String merchant;
+
+    /**
+     * The category of the transaction.
+     */
+    private String category;
 
     /**
      * Retrieves the userid of the user linked with the transaction.
@@ -133,5 +138,23 @@ public class Transaction {
      */
     public void setId(String id) {
         this.id = id;
+    }
+
+    /**
+     * Retrieves the category of the transaction.
+     *
+     * @return the transaction category.
+     */
+    public String getCategory() {
+        return category;
+    }
+
+    /**
+     * Sets the category of the transaction.
+     *
+     * @param category the transaction category.
+     */
+    public void setCategory(String category) {
+        this.category = category;
     }
 }
