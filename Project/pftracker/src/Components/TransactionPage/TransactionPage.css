@@ -1,0 +1,115 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Ensures content starts at the top */
+    align-items: center; /* Centers content horizontally */
+    height: 100vh; /* Full viewport height */
+
+    background-color: #5ba0ff;
+}
+
+.transaction-container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    max-width: 2400px; /* Set a max width */
+    min-width: 1200px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-right: 20px;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 10;
+}
+
+.transaction-header {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.transaction-list {
+    width: 100%;
+    max-height: 500px;
+    overflow-y: auto;
+    padding: 20px;
+    margin-right: 20px;
+    background: #f5f5f5;
+    border-radius: 8px;
+}
+
+.transaction-row {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+}
+
+.transaction-row span {
+    padding: 20px;
+    flex: 1; /* Makes each column take equal width */
+    text-align: left; /* Align text to the left */
+}
+
+.add-transaction-btn {
+    padding: 10px 20px;
+    font-size: 16px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 20px; /* Adds space above the button */
+}
+
+.back-button{
+    position: absolute;
+    left: 20px;
+    top: 20px;
+    padding: 10px 20px;
+    cursor: pointer;
+}
+
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 20; /* Modal on top of transaction container */
+}
+
+.modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+    z-index: 30; /* Ensure modal content stays above overlay */
+}
+
+.modal-buttons {
+    display: flex;
+    gap: 10px;
+}
+
+.file-input {
+    display: none; /* Hide file input */
+}
+
+.save-transactions-btn, .close-modal-btn {
+    padding: 10px 20px;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

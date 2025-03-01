@@ -92,9 +92,9 @@ public class TransactionController {
     }
 
     /**
-     * Endpoint to retrieve all transactions.
+     * Endpoint to retrieve all buffered transactions.
      * <p>
-     * Returns a list of all transactions stored in the system.
+     * Returns a list of all transactions stored in the buffer.
      *
      * @return a {@link ResponseEntity} containing the list of all transactions and HTTP status code {@code 200 OK}.
      */
@@ -121,6 +121,25 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+    }
+
+    @DeleteMapping("/{transactionId}")
+    public ResponseEntity<String> deleteSingleTransaction(@PathVariable String transactionId) {
+        try {
+            transactionService.deleteSingle(transactionId);  // Call the service method to delete the transaction
+            return new ResponseEntity<>("Transaction deleted successfully", HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+    }
+    @PutMapping("/{transactionId}")
+    public ResponseEntity<?> updateTransaction(@PathVariable String transactionId, @RequestBody Transaction updatedTransaction) {
+        try {
+            Transaction transaction = transactionService.updateTransaction(transactionId, updatedTransaction);
+            return ResponseEntity.ok(transaction);
+        } catch (IllegalArgumentException e) {
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(e.getMessage());
         }
     }
 }

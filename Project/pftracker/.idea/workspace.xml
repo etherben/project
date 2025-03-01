@@ -4,16 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Creating new services with dockerfiles">
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/Dockerfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/user-service/src/main/resources/application.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
-    </list>
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Users can manually edit transactions" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -23,10 +14,10 @@
     <option name="RECENT_TEMPLATES">
       <list>
         <option value="Dockerfile" />
-        <option value="JSX File" />
-        <option value="CSS File" />
         <option value="Class" />
         <option value="JavaScript File" />
+        <option value="JSX File" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -68,45 +59,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.loads mainpage with userid stored.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should fake file submit and log the success message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should fake submit a single transaction and log the success message.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.should submit a single transaction successfully.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage Component.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.MainPage.test.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.Signup.test.jsx.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.calls handleLoginSubmit with correct data.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders MainPage with mock userId and transactions.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.renders the Signup form initially.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.should handle error when file upload fails.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
-    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
-    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;MicroService__Split&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Jest.App.test.js.executor": "Run",
+    "Jest.MainPage Component.loads mainpage with userid stored.executor": "Run",
+    "Jest.MainPage Component.loads userId from sessionStorage on mount.executor": "Run",
+    "Jest.MainPage Component.should fake file submit and log the success message.executor": "Run",
+    "Jest.MainPage Component.should fake submit a single transaction and log the success message.executor": "Run",
+    "Jest.MainPage Component.should submit a single transaction successfully.executor": "Run",
+    "Jest.MainPage Component.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.MainPage.test.jsx.executor": "Run",
+    "Jest.Signup.test.jsx.executor": "Run",
+    "Jest.calls handleLoginSubmit with correct data.executor": "Run",
+    "Jest.loads userId from sessionStorage from mount.executor": "Run",
+    "Jest.loads userId from sessionStorage on mount.executor": "Run",
+    "Jest.renders MainPage with mock userId and transactions.executor": "Run",
+    "Jest.renders the Signup form initially.executor": "Run",
+    "Jest.should handle error when file upload fails.executor": "Run",
+    "Jest.stores userId in sessionStorage after successful login.executor": "Run",
+    "Jest.switches to Login form when link is clicked.executor": "Run",
+    "Node.js.App.js.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "!19 on transactions-CRUD",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs.jest.jest_package": "C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Libraries",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.2",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager" selected="Jest.MainPage Component.should fake file submit and log the success message">
     <configuration name="MainPage Component.loads mainpage with userid stored" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -241,7 +232,51 @@
       <workItem from="1738148555606" duration="84000" />
       <workItem from="1738148958478" duration="196000" />
       <workItem from="1738149271199" duration="1537000" />
-      <workItem from="1738150954180" duration="1592000" />
+      <workItem from="1738150954180" duration="2850000" />
+      <workItem from="1738241046130" duration="66000" />
+      <workItem from="1738748977450" duration="1105000" />
+      <workItem from="1738750124673" duration="6000" />
+      <workItem from="1738750522743" duration="3885000" />
+      <workItem from="1738926137165" duration="420000" />
+      <workItem from="1738926809182" duration="7509000" />
+      <workItem from="1739125398390" duration="194000" />
+      <workItem from="1739125662156" duration="546000" />
+      <workItem from="1739126470626" duration="6000" />
+      <workItem from="1739532350284" duration="87000" />
+      <workItem from="1739532710117" duration="204000" />
+      <workItem from="1739533318668" duration="264000" />
+      <workItem from="1739534177384" duration="23000" />
+      <workItem from="1739537313750" duration="3759000" />
+      <workItem from="1739541499483" duration="3890000" />
+      <workItem from="1739627059413" duration="5921000" />
+      <workItem from="1739725574879" duration="2627000" />
+      <workItem from="1739798981685" duration="3477000" />
+      <workItem from="1739802706192" duration="6545000" />
+      <workItem from="1739875523934" duration="2908000" />
+      <workItem from="1739878502580" duration="9000" />
+      <workItem from="1739878518684" duration="1302000" />
+      <workItem from="1739879870313" duration="346000" />
+      <workItem from="1739880449196" duration="1175000" />
+      <workItem from="1739883613994" duration="382000" />
+      <workItem from="1739884127442" duration="817000" />
+      <workItem from="1739884986480" duration="791000" />
+      <workItem from="1739886246244" duration="4377000" />
+      <workItem from="1739959586788" duration="3121000" />
+      <workItem from="1740047088671" duration="2019000" />
+      <workItem from="1740398974870" duration="5516000" />
+      <workItem from="1740406699161" duration="75000" />
+      <workItem from="1740407134826" duration="23000" />
+      <workItem from="1740407213487" duration="560000" />
+      <workItem from="1740408207947" duration="327000" />
+      <workItem from="1740409235318" duration="3102000" />
+      <workItem from="1740582024416" duration="2564000" />
+      <workItem from="1740584660363" duration="1192000" />
+      <workItem from="1740586017592" duration="2117000" />
+      <workItem from="1740588410026" duration="2959000" />
+      <workItem from="1740649241075" duration="403000" />
+      <workItem from="1740649889515" duration="387000" />
+      <workItem from="1740650335524" duration="179000" />
+      <workItem from="1740650817658" duration="604000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -483,7 +518,103 @@
       <option name="project" value="LOCAL" />
       <updated>1737971748779</updated>
     </task>
-    <option name="localTasksCounter" value="31" />
+    <task id="LOCAL-00031" summary="Updated dockerfiles to handle multiple services.">
+      <option name="closed" value="true" />
+      <created>1738152580950</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1738152580950</updated>
+    </task>
+    <task id="LOCAL-00032" summary="Basic Transaction page to navigate to">
+      <option name="closed" value="true" />
+      <created>1738749806909</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1738749806909</updated>
+    </task>
+    <task id="LOCAL-00033" summary="Fixed userControllerTests to call updated backend">
+      <option name="closed" value="true" />
+      <created>1738750917989</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1738750917989</updated>
+    </task>
+    <task id="LOCAL-00034" summary="Updated frontend to link to the transaction page, MainPage will only show most recent transactions and summary graph now.">
+      <option name="closed" value="true" />
+      <created>1738750974480</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1738750974480</updated>
+    </task>
+    <task id="LOCAL-00035" summary="Spacing for transaction page">
+      <option name="closed" value="true" />
+      <created>1739540077377</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1739540077377</updated>
+    </task>
+    <task id="LOCAL-00036" summary="Repositioned back button">
+      <option name="closed" value="true" />
+      <created>1739541518968</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1739541518968</updated>
+    </task>
+    <task id="LOCAL-00037" summary="Graph back in place for mainpage">
+      <option name="closed" value="true" />
+      <created>1739799560424</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1739799560424</updated>
+    </task>
+    <task id="LOCAL-00038" summary="Added save file option to transaction page">
+      <option name="closed" value="true" />
+      <created>1739887132441</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1739887132441</updated>
+    </task>
+    <task id="LOCAL-00039" summary="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears">
+      <option name="closed" value="true" />
+      <created>1739961996555</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1739961996555</updated>
+    </task>
+    <task id="LOCAL-00040" summary="Added manual transaction to transaction page">
+      <option name="closed" value="true" />
+      <created>1740414061109</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1740414061109</updated>
+    </task>
+    <task id="LOCAL-00041" summary="Users can manually delete transactions">
+      <option name="closed" value="true" />
+      <created>1740586394711</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1740586394711</updated>
+    </task>
+    <task id="LOCAL-00042" summary="Users can manually edit transactions">
+      <option name="closed" value="true" />
+      <created>1740650959355</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1740650959355</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -516,18 +647,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Update file diary.md" />
-    <MESSAGE value="Create user Id" />
-    <MESSAGE value="Upon mounting, create userId to be stored throughout the session" />
-    <MESSAGE value="once logged in, userid is saved and directs to empty mainpage" />
-    <MESSAGE value="Created basic mainpage with sections for uploading and loading transactions. No functionality yet." />
-    <MESSAGE value="User can submit single transaction" />
-    <MESSAGE value="User can submit file, updates database as separate transactions" />
-    <MESSAGE value="Transactions are fetched and loaded when initially loading mainpage" />
-    <MESSAGE value="formatted transactions to display properly" />
-    <MESSAGE value="Added merchant param to front including in transaction list and adding transactions" />
-    <MESSAGE value="Front end file creating for graph" />
-    <MESSAGE value="Function to parse date from string, ready to sort." />
     <MESSAGE value="Changed to just show aggregated list on the mainpage.Ready to translate into graph." />
     <MESSAGE value="Replaced list with basic line chart" />
     <MESSAGE value="changing stylesheets to fit containers properly" />
@@ -541,6 +660,18 @@
     <MESSAGE value="Redid mainpage render test to accomidate changes" />
     <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
     <MESSAGE value="Creating new services with dockerfiles" />
-    <option name="LAST_COMMIT_MESSAGE" value="Creating new services with dockerfiles" />
+    <MESSAGE value="Updated dockerfiles to handle multiple services." />
+    <MESSAGE value="Basic Transaction page to navigate to" />
+    <MESSAGE value="Fixed userControllerTests to call updated backend" />
+    <MESSAGE value="Updated frontend to link to the transaction page, MainPage will only show most recent transactions and summary graph now." />
+    <MESSAGE value="Spacing for transaction page" />
+    <MESSAGE value="Repositioned back button" />
+    <MESSAGE value="Graph back in place for mainpage" />
+    <MESSAGE value="Added save file option to transaction page" />
+    <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
+    <MESSAGE value="Added manual transaction to transaction page" />
+    <MESSAGE value="Users can manually delete transactions" />
+    <MESSAGE value="Users can manually edit transactions" />
+    <option name="LAST_COMMIT_MESSAGE" value="Users can manually edit transactions" />
   </component>
 </project>

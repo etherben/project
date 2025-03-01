@@ -78,9 +78,7 @@ public class TransactionService {
      * @throws IllegalArgumentException if any required field of the transaction is invalid.
      */
     public Transaction addTransaction(Transaction transaction) {
-        if (transaction.getUserId() == null) {
-            throw new IllegalArgumentException("Transaction user ID cannot be null");
-        } else if (transaction.getTransactionDate() == null) {
+        if (transaction.getTransactionDate() == null) {
             throw new IllegalArgumentException("Transaction date cannot be null");
         } else if (transaction.getAmount() <= 0) {
             throw new IllegalArgumentException("Transaction amount must be greater than 0");
@@ -126,11 +124,11 @@ public class TransactionService {
         String merchant = parts[1].trim(); // The merchant part
         double amount = Double.parseDouble(parts[2].trim()); // The amount part
 
-        Date transactionDate = parseDate(dateStr); // Parse the date string
+        Date TransactionDate = parseDate(dateStr); // Parse the date string
 
         // Create and return the Transaction object
         Transaction transaction = new Transaction();
-        transaction.setTransactionDate(transactionDate);
+        transaction.setTransactionDate(TransactionDate);
         transaction.setAmount(amount);
         transaction.setMerchant(merchant);
 
@@ -182,4 +180,32 @@ public class TransactionService {
             throw new IllegalArgumentException("Transactions could not be saved");
         }
     }
+
+    public void deleteSingle(String transactionId) {
+        try {
+            transactionRepo.deleteById(transactionId);
+        }catch (Exception e) {
+            throw new IllegalArgumentException("Transaction could not be deleted");
+        }
+    }
+
+    public Transaction updateTransaction(String transactionId, Transaction updatedTransaction) {
+        Transaction existingTransaction = transactionRepo.findById(transactionId)
+                .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
+
+        if (updatedTransaction.getAmount() > 0) {
+            existingTransaction.setAmount(updatedTransaction.getAmount());
+        }
+        if (updatedTransaction.getMerchant() != null) {
+            existingTransaction.setMerchant(updatedTransaction.getMerchant());
+        }
+        if (updatedTransaction.getTransactionDate() != null) {
+            existingTransaction.setTransactionDate(updatedTransaction.getTransactionDate());
+        }
+
+        return transactionRepo.save(existingTransaction);
+    }
+
+
+
 }
