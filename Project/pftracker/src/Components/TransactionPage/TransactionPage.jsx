@@ -1,21 +1,33 @@
-import React, {useRef, useState} from 'react';
+import React, { useRef, useState } from 'react';
 import './TransactionPage.css';
 
-const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteTransaction, transactionsToAdd, onBack, onSingleSubmit, onFileSubmit, handleFetchTransactions, handleFetchBufferedTransactions, saveTransactions}) => {
+const TransactionPage = ({
+                             userId,
+                             transactions,
+                             onEditTransaction,
+                             handleDeleteTransaction,
+                             transactionsToAdd,
+                             onBack,
+                             onSingleSubmit,
+                             onFileSubmit,
+                             handleFetchTransactions,
+                             handleFetchBufferedTransactions,
+                             saveTransactions
+                         }) => {
     const [addTranModal, setTranModalOpen] = useState(false);
     const [manualTranModal, setManualTranModalOpen] = useState(false);
     const [editTranModal, setEditTranModal] = useState(false);
-    const [newTransaction, setNewTransaction] = useState({ userId, TransactionDate: '', merchant: '', amount: '' });
+    const [newTransaction, setNewTransaction] = useState({ userId, TransactionDate: '', merchant: '', amount: '', category: '' });
     const fileInputRef = useRef(null);
 
     const triggerFileInput = () => {
         fileInputRef.current.click();
-    }
+    };
 
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            handleFileUpload(file)
+            handleFileUpload(file);
         }
     };
 
@@ -24,7 +36,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
             try {
                 await onFileSubmit(file);
                 handleFetchBufferedTransactions();
-                console.log('Big Success is nice')
+                console.log('Big Success is nice');
             } catch (error) {
                 console.error('Error uploading file:', error);
             }
@@ -36,9 +48,9 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
             await saveTransactions();
             handleFetchTransactions(userId);
         } catch (error) {
-            console.error('Error saving transactions')
+            console.error('Error saving transactions');
         }
-    }
+    };
 
     const handleOpenModal = () => {
         setTranModalOpen(true);
@@ -69,39 +81,42 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
         const dateParts = newTransaction.TransactionDate.split('-');
         const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
         const amount = parseFloat(newTransaction.amount);
-        // Update the transaction with the formatted date and double amount
         const transactionToSubmit = {
             ...newTransaction,
             TransactionDate: formattedDate,
             amount: amount
         };
+
         try {
             await onSingleSubmit(transactionToSubmit);
             handleFetchBufferedTransactions();
-            console.log('CONFUSION')
+            console.log('CONFUSION');
         } catch (error) {
             console.error('Error manual transaction:', error);
         }
 
-        setNewTransaction({TransactionDate: '', merchant: '', amount: ''});
+        setNewTransaction({ TransactionDate: '', merchant: '', amount: '', category: '' });
         handleCloseManualModal();
     };
-    const onDeleteTransaction = async (transactionId) =>{
+
+    const onDeleteTransaction = async (transactionId) => {
         try {
-            await handleDeleteTransaction(transactionId)
-            handleFetchTransactions(userId)
-        } catch (error){
-            console.error('Error Deleting:', error)
+            await handleDeleteTransaction(transactionId);
+            handleFetchTransactions(userId);
+        } catch (error) {
+            console.error('Error Deleting:', error);
         }
     };
+
     const handleEditTransaction = (transaction) => {
         setNewTransaction({
             id: transaction.id,
             TransactionDate: transaction.TransactionDate,
             merchant: transaction.merchant,
             amount: transaction.amount,
+            category: transaction.category || ''  // Make sure category is included
         });
-        setEditTranModal(true); // Open the Edit Modal
+        setEditTranModal(true);
     };
 
     const handleEditSubmit = async () => {
@@ -116,15 +131,12 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
         try {
             await onEditTransaction(newTransaction.id, updatedTransaction);
             handleFetchTransactions(userId); // Fetch updated transactions after edit
-            setNewTransaction({ TransactionDate: '', merchant: '', amount: '' });
+            setNewTransaction({ TransactionDate: '', merchant: '', amount: '', category: '' });
             setEditTranModal(false);
         } catch (error) {
             console.error('Error editing transaction:', error);
         }
     };
-
-
-
 
     return (
         <div className="transaction-container">
@@ -137,6 +149,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                     <span>Date</span>
                     <span>Merchant</span>
                     <span>Amount</span>
+                    <span>Category</span> {/* Add Category header */}
                 </div>
                 {transactions.length === 0 ? (
                     <p>No transactions available.</p>
@@ -146,6 +159,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                             <span>{transaction.TransactionDate}</span>
                             <span>{transaction.merchant}</span>
                             <span>${transaction.amount}</span>
+                            <span>{transaction.category}</span> {/* Display Category */}
                             <span><button className="edit-btn" onClick={() => handleEditTransaction(transaction)}>Edit</button></span>
                             <span><button className="delete-btn" onClick={() => onDeleteTransaction(transaction.id)}>Delete</button></span>
                         </div>
@@ -153,6 +167,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                 )}
             </div>
 
+            {/* Modal for Adding Transactions */}
             {addTranModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -165,7 +180,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
                                 className="file-input"
-                                style={{display: 'none'}}
+                                style={{ display: 'none' }}
                             />
                             <button className="manual-input-btn" onClick={handleOpenManualModal}>Manual Input</button>
                         </div>
@@ -175,6 +190,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                                 <span>Date</span>
                                 <span>Merchant</span>
                                 <span>Amount</span>
+                                <span>Category</span> {/* Add Category header */}
                             </div>
                             {transactionsToAdd.length === 0 ? (
                                 <p>No transactions ready to add.</p>
@@ -184,6 +200,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                                         <span>{transaction.TransactionDate}</span>
                                         <span>{transaction.merchant}</span>
                                         <span>${transaction.amount}</span>
+                                        <span>{transaction.category}</span> {/* Display Category */}
                                     </div>
                                 ))
                             )}
@@ -196,6 +213,7 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                 </div>
             )}
 
+            {/* Modal for Manual Transaction Input */}
             {manualTranModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -221,11 +239,20 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
+                        <input
+                            type="text"
+                            name="category"
+                            placeholder="Category"
+                            value={newTransaction.category}
+                            onChange={handleManualInputChange}
+                        /> {/* Add Category input */}
                         <button onClick={handleAddManualTransaction}>Add Transaction</button>
                         <button onClick={handleCloseManualModal}>Cancel</button>
                     </div>
                 </div>
             )}
+
+            {/* Modal for Editing Transaction */}
             {editTranModal && (
                 <div className="modal-overlay">
                     <div className="modal-content">
@@ -248,12 +275,17 @@ const TransactionPage = ({userId, transactions, onEditTransaction, handleDeleteT
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
+                        <input
+                            type="text"
+                            name="category"
+                            value={newTransaction.category}
+                            onChange={handleManualInputChange}
+                        /> {/* Add Category input */}
                         <button onClick={handleEditSubmit}>Save Changes</button>
                         <button onClick={handleCloseEditModal}>Cancel</button>
                     </div>
                 </div>
             )}
-
         </div>
     );
 };
