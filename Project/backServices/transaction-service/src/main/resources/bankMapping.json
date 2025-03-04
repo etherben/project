@@ -1,0 +1,29 @@
+{
+  "bank_mappings": [
+    {
+      "bank_name": "Starling",
+      "column_mappings": {
+        "Date": "TransactionDate",
+        "Counter Party": "merchant",
+        "Amount (GBP)": "amount",
+        "Spending Category": "category"
+      },
+      "ignore_columns": [
+        "Balance (GBP)",
+        "Notes",
+        "Reference",
+        "Type"
+      ]
+    },
+    {
+      "bank_name": "HSBC",
+      "column_mappings": {
+        "Date": "TransactionDate",
+        "Counter Party": "Merchant",
+        "Amount (GBP)": "Amount",
+        "Spending Category": "Category"
+      },
+      "ignore_columns": []
+    }
+  ]
+}
