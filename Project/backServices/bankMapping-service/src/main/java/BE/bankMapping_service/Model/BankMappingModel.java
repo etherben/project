@@ -1,22 +1,19 @@
 package BE.bankMapping_service.Model;
 
-
 import java.util.List;
-import java.util.Map;
 
 public class BankMappingModel {
-
     private String bankName;
-    private Map<String, String> columnMappings;
-    private List<String> ignoredColumns;
+    private List<String> wantedColumns;
+    private List<String> nonWantedColumns;
 
-    public BankMappingModel(String bankName, Map<String, String> columnMappings, List<String> ignoredColumns) {
+    public BankMappingModel(String bankName, List<String> wantedColumns, List<String> nonWantedColumns) {
         this.bankName = bankName;
-        this.columnMappings = columnMappings;
-        this.ignoredColumns = ignoredColumns;
+        this.wantedColumns = wantedColumns;
+        this.nonWantedColumns = nonWantedColumns;
     }
 
-
+    // Getter and Setter for bankName
     public String getBankName() {
         return bankName;
     }
@@ -25,19 +22,21 @@ public class BankMappingModel {
         this.bankName = bankName;
     }
 
-    public Map<String, String> getColumnMappings() {
-        return columnMappings;
+    // Getter and Setter for wantedColumns
+    public List<String> getWantedColumns() {
+        return wantedColumns;
     }
 
-    public void setColumnMappings(Map<String, String> columnMappings) {
-        this.columnMappings = columnMappings;
+    public void setWantedColumns(List<String> wantedColumns) {
+        this.wantedColumns = wantedColumns;
     }
 
-    public List<String> getIgnoredColumns() {
-        return ignoredColumns;
+    // Getter and Setter for nonWantedColumns
+    public List<String> getNonWantedColumns() {
+        return nonWantedColumns;
     }
 
-    public void setIgnoredColumns(List<String> ignoredColumns) {
-        this.ignoredColumns = ignoredColumns;
+    public void setNonWantedColumns(List<String> nonWantedColumns) {
+        this.nonWantedColumns = nonWantedColumns;
     }
 }
