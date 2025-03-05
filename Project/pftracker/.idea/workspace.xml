@@ -5,7 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Fixing previous git commit issues, mainpage should now be upto date">
+      <change beforePath="$PROJECT_DIR$/../docker-compose.yml" beforeDir="false" afterPath="$PROJECT_DIR$/../docker-compose.yml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,7 @@
     "Jest.switches to Login form when link is clicked.executor": "Run",
     "Node.js.App.js.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "CategoryParameter",
+    "git-widget-placeholder": "BankMapping",
     "kotlin-language-version-configured": "true",
     "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
     "list.type.of.created.stylesheet": "CSS",
@@ -280,6 +282,7 @@
       <workItem from="1740650335524" duration="179000" />
       <workItem from="1740650817658" duration="604000" />
       <workItem from="1740826797986" duration="8501000" />
+      <workItem from="1741170845385" duration="1140000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />

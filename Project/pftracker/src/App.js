@@ -143,17 +143,36 @@ function App() {
   const handleFileTransactionSubmit = async (file) => {
     console.log("Submitting file", file);
     const formData = new FormData();
-    formData.append('file', file);
-    formData.append('userId', userId);
+    formData.append('csv_file', file);
+    formData.append('bank_name', 'Starling');   //Starling is only one mapped currently
     try {
-      const response = await fetch(`http://localhost:8081/transactions/bulk`, {
+      const mappingResponse = await fetch(`http://localhost:5000/map-bank-statement`, {
         method: 'POST',
-        body: formData,
+        body: formData,            //Send to mapping
       });
-      if (!response.ok) {
-        throw new Error('Failed to upload file');
+      if (!mappingResponse.ok) {
+        throw new Error('Failed to Map file');
       }
-      const result = await response.text();
+
+      const formattedCSVBlob = await mappingResponse.blob();  //Recieve from mapping
+      const formattedCSVFile = new File([formattedCSVBlob], "transactions.csv", {
+        type: 'text/csv',  //change back to correct type
+      });
+
+      const transactionFormData = new FormData();
+      transactionFormData.append('file', formattedCSVFile);  //Create form of formatted data
+      transactionFormData.append('userId', userId);
+
+      const transactionResponse = await fetch('http://localhost:8081/transactions/bulk', {
+        method: 'POST',
+        body: transactionFormData,
+      });
+
+
+      if (!transactionResponse.ok) {
+        throw new Error('Failed to upload formatted CSV to the transaction service');
+      }
+      const result = await transactionResponse.text();
       console.log('File uploaded successfully:', result);
     } catch (error) {
       console.error('Error uploading file:', error);

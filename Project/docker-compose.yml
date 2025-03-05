@@ -8,9 +8,11 @@ services:
     environment:
       - REACT_APP_USER_URL=http://user-service:8080
       - REACT_APP_TRANSACTION_URL=http://transaction-service:8081
+      - REACT_APP_BANK_MAPPING_URL=http://bank-mapping-service:5000  # URL for the Python service
     depends_on:
       - user-service
       - transaction-service
+      - bank-mapping-service  # Add dependency for bank-mapping service
     networks:
       - app-network
 
@@ -22,7 +24,6 @@ services:
     networks:
       - app-network
 
-
   transaction-service:
     build:
       context: ./backServices/transaction-service
@@ -31,12 +32,20 @@ services:
     networks:
       - app-network
 
+  bank-mapping-service:
+    build:
+      context: ./backServices/bank-mapping-service  # Adjust the path based on where your bank-mapping service is
+    ports:
+      - "5000:5000"  # Expose port 5000 for the Python Flask service
+    networks:
+      - app-network
+
   mongodb:
     image: mongo:latest
     ports:
       - "27017:27017"
     volumes:
-      - mongo-data:/data/db  # This is where data is stored persistently`
+      - mongo-data:/data/db
     networks:
       - app-network
 
@@ -45,5 +54,5 @@ volumes:
     driver: local
 
 networks:
-  app-network:  # Define the network so that both services can communicate
+  app-network:
     driver: bridge
