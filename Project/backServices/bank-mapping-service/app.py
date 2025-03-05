@@ -9,7 +9,7 @@ CORS(app)
 
 bank_mappings = {
     "BankA": {"Date": "TransactionDate", "Merchant": "Merchant", "Amount": "Amount"},
-    "BankB": {"TransDate": "TransactionDate", "Vendor": "Merchant", "Amount": "Amount"},
+    "BankB": {"TransDate": "TransactionDate", "Vendor": "Merchant", "Amount": "Amount"},  //Test banks
     "Starling": {"Date": "TransactionDate", "Counter Party": "Merchant", "Amount (GBP)": "Amount", "Spending Category": "Category"}
 }
 
@@ -25,12 +25,17 @@ def map_bank_statement():
     csv_data = io.BytesIO(csv_file.read())
     dataFrame = pd.read_csv(csv_data)
 
+
     mapping = bank_mappings.get(bank_name)
 
     if mapping:
 
         dataFrame = dataFrame.rename(columns=mapping)  #Renames wanted columns as banks call them different names
         dataFrame = dataFrame[['TransactionDate', 'Merchant', 'Amount', 'Category']] #Filters out unwanted columns
+
+        dataFrame.loc[dataFrame['Amount'] > 0, 'Category'] = 'Income'  #Positive is categoried as Income
+        dataFrame.loc[dataFrame['Amount'] < 0, 'Amount'] = dataFrame['Amount'].abs() #Negative is Turned to positive
+
 
         # Convert back to CSV format
         output = io.BytesIO()
