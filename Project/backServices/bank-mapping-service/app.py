@@ -35,7 +35,7 @@ def map_bank_statement():
 
         dataFrame.loc[dataFrame['Amount'] > 0, 'Category'] = 'Income'  #Positive is categoried as Income
         dataFrame.loc[dataFrame['Amount'] < 0, 'Amount'] = dataFrame['Amount'].abs() #Negative is Turned to positive
-
+        dataFrame['Amount'] = dataFrame['Amount'].apply(lambda x: "{:.2f}".format(x))  #Ensures 0's for pennies
 
         # Convert back to CSV format
         output = io.BytesIO()
