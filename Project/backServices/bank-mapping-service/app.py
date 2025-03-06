@@ -20,7 +20,7 @@ bank_mappings = {
 def get_category(merchant_name):
 
     try:
-        response = requests.get(f"http://localhost:8081/transactions/category/{merchant_name}")
+        response = requests.get(f"http://transaction-service:8081/transactions/category/{merchant_name}")
         if response.status_code == 200:
             return response.json().get("category", "General")  # Fallback to "General" if no category found
         else:
