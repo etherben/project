@@ -9,9 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TransactionService {
@@ -141,4 +139,40 @@ public class TransactionService {
 
         return transactionRepo.save(existingTransaction);
     }
+
+    public String getMostPopularCategoryForMerchant(String Merchant) {
+        // Get transactions for this merchant
+        List<Transaction> merchantTransactions = transactionRepo.findByMerchant(Merchant);
+
+        if (merchantTransactions.isEmpty()) {
+            return "General"; // Default category if no transactions found
+        }
+
+        // Create a map to count category occurrences
+        Map<String, Integer> categoryCounts = new HashMap<>();
+
+        // Count occurrences of each category
+        for (Transaction transaction : merchantTransactions) {
+            String category = transaction.getCategory();
+            categoryCounts.put(category, categoryCounts.getOrDefault(category, 0) + 1);
+        }
+
+        String currentHighest = "";
+        int highestCount = 0;
+        for (String key: categoryCounts.keySet()) {
+            if (categoryCounts.get(key) > highestCount) {
+                currentHighest = key;
+                highestCount = categoryCounts.get(key);
+            }
+        }
+
+        // Return the most popular category, or "General" if none found
+        return highestCount > 0 ? currentHighest : "General";
+    }
+
+
+
+
+
+
 }

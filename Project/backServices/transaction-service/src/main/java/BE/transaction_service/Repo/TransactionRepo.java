@@ -24,5 +24,6 @@ public interface TransactionRepo extends MongoRepository<Transaction, String> {
       * @return a list of transactions for the specified user, sorted according to the provided criteria.
       */
      List<Transaction> findByUserId(String userId, Sort sort);
+     List<Transaction> findByMerchant(String merchant);
 
 }
