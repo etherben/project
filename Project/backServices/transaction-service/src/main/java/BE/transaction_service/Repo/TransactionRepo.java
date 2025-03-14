@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,5 +26,13 @@ public interface TransactionRepo extends MongoRepository<Transaction, String> {
       */
      List<Transaction> findByUserId(String userId, Sort sort);
      List<Transaction> findByMerchant(String merchant);
+     List<Transaction> findByUserIdAndCategoryOrderByDateAsc(String userId, String category);  // Named like this as mongo repo will auto infer the query based on method name
+     List<Transaction> findByUserIdAndMerchantOrderByDateAsc(String userId, String merchant);  // pretty dope
+     List<Transaction> findByUserIdAndDateBetweenOrderByDateAsc(String userId, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndMerchantAndDateBetweenOrderByDateAsc(String userId, String merchant, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndCategoryAndDateBetweenOrderByDateAsc(String userId, String category, Date startDate, Date endDate);
+
+
+     
 
 }
