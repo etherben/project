@@ -9,9 +9,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.*;
 import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Service
 public class TransactionService {
@@ -141,4 +139,46 @@ public class TransactionService {
 
         return transactionRepo.save(existingTransaction);
     }
+
+    public String getMostPopularCategoryForMerchant(String merchant) {
+        // Get transactions for this merchant
+        merchant = merchant.trim();
+        List<Transaction> merchantTransactions = transactionRepo.findByMerchant(merchant);
+
+        if (merchantTransactions.isEmpty()) {
+            System.out.println("No transactions found for merchant: " + merchant);
+           return "General"; // Default category if no transactions found
+        }
+
+        System.out.println("Found " + merchantTransactions.size() + " transactions for merchant: " + merchant);
+
+        // Create a map to count category occurrences
+        Map<String, Integer> categoryCounts = new HashMap<>();
+
+        // Count occurrences of each category
+        for (Transaction transaction : merchantTransactions) {
+            String category = transaction.getCategory();
+            System.out.println("Merchant: " + merchant + ", Category: " + category); // Log merchant and category
+            categoryCounts.put(category, categoryCounts.getOrDefault(category, 0) + 1);
+        }
+
+        // Log category counts
+        System.out.println("Category counts: " + categoryCounts);
+
+        String currentHighest = "";
+        int highestCount = 0;
+        for (String key : categoryCounts.keySet()) {
+            if (categoryCounts.get(key) > highestCount) {
+                currentHighest = key;
+                highestCount = categoryCounts.get(key);
+            }
+        }
+
+        // Return the most popular category, or "General" if none found
+        System.out.println("Most popular category for merchant " + merchant + ": " + currentHighest);
+        return currentHighest;
+    }
+
+
+
 }
