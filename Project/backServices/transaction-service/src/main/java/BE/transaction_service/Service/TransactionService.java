@@ -179,6 +179,31 @@ public class TransactionService {
         return currentHighest;
     }
 
+    public List<Transaction> filterTransactions(
+            String userId,
+            String merchant,
+            String category,
+            Date startDate,
+            Date endDate
+    ) {
+        if (merchant != null && startDate != null && endDate != null) {
+            return transactionRepo.findByUserIdAndMerchantAndDateBetweenOrderByDateDesc(
+                    userId, merchant, startDate, endDate);
+        } else if (category != null && startDate != null && endDate != null) {
+            return transactionRepo.findByUserIdAndCategoryAndDateBetweenOrderByDateDesc(
+                    userId, category, startDate, endDate);
+        } else if (merchant != null) {
+            return transactionRepo.findByUserIdAndMerchantOrderByDateDesc(userId, merchant);
+        } else if (category != null) {
+            return transactionRepo.findByUserIdAndCategoryOrderByDateDesc(userId, category);
+        } else if (startDate != null && endDate != null) {
+            return transactionRepo.findByUserIdAndDateBetweenOrderByDateDesc(userId, startDate, endDate);
+        }else{
+            return getTransactionsByUserId(userId); // will be desc
+        }
+    }
+
+
 
 
 }
