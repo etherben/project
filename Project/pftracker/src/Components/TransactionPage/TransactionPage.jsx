@@ -239,13 +239,18 @@ const TransactionPage = ({
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
-                        <input
-                            type="text"
+                        <select
                             name="category"
-                            placeholder="Category"
                             value={newTransaction.category}
                             onChange={handleManualInputChange}
-                        /> {/* Add Category input */}
+                        >
+                            <option value="">Select Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Vehicle">Vehicle</option>
+                        </select>
                         <button onClick={handleAddManualTransaction}>Add Transaction</button>
                         <button onClick={handleCloseManualModal}>Cancel</button>
                     </div>
@@ -275,12 +280,20 @@ const TransactionPage = ({
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
-                        <input
-                            type="text"
+                        <select
                             name="category"
                             value={newTransaction.category}
                             onChange={handleManualInputChange}
-                        /> {/* Add Category input */}
+                            required
+                        >
+                            <option value="">Select Category</option>
+                            <option value="Food">Food</option>
+                            <option value="Entertainment">Entertainment</option>
+                            <option value="Shopping">Shopping</option>
+                            <option value="Bills">Bills</option>
+                            <option value="Vehicle">Vehicle</option>
+                        </select>
+
                         <button onClick={handleEditSubmit}>Save Changes</button>
                         <button onClick={handleCloseEditModal}>Cancel</button>
                     </div>

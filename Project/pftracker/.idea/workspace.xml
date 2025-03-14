@@ -5,8 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Fixing previous git commit issues, mainpage should now be upto date">
-      <change beforePath="$PROJECT_DIR$/../backServices/bank-mapping-service/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/bank-mapping-service/app.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -284,6 +284,11 @@
       <workItem from="1741170845385" duration="1140000" />
       <workItem from="1741253786511" duration="10000" />
       <workItem from="1741261809768" duration="106000" />
+      <workItem from="1741262022814" duration="1604000" />
+      <workItem from="1741628445444" duration="4683000" />
+      <workItem from="1741777629810" duration="3648000" />
+      <workItem from="1741876896676" duration="3668000" />
+      <workItem from="1741940872131" duration="949000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
