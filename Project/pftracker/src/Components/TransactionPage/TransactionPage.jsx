@@ -70,7 +70,14 @@ const TransactionPage = ({
 
     const handleManualInputChange = (e) => {
         const { name, value } = e.target;
-        setNewTransaction((prev) => ({ ...prev, [name]: value }));
+        if (name === "TransactionDate") {
+            //convert date to correct format
+            const dateParts = value.split('-');
+            const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
+            setNewTransaction((prev) => ({ ...prev, [name]: formattedDate }));
+        } else {
+            setNewTransaction((prev) => ({ ...prev, [name]: value }));
+        }
     };
 
     const handleCloseEditModal = () => {
@@ -78,12 +85,12 @@ const TransactionPage = ({
     };
 
     const handleAddManualTransaction = async () => {
-        const dateParts = newTransaction.TransactionDate.split('-');
-        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
+        //const dateParts = newTransaction.TransactionDate.split('-');
+        //const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
         const amount = parseFloat(newTransaction.amount);
         const transactionToSubmit = {
             ...newTransaction,
-            TransactionDate: formattedDate,
+           // TransactionDate: formattedDate,
             amount: amount
         };
 
@@ -120,11 +127,10 @@ const TransactionPage = ({
     };
 
     const handleEditSubmit = async () => {
-        const dateParts = newTransaction.TransactionDate.split('-');
-        const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
+        //converts date in change now
         const updatedTransaction = {
             ...newTransaction,
-            TransactionDate: formattedDate,
+
             amount: parseFloat(newTransaction.amount),
         };
 
@@ -138,6 +144,10 @@ const TransactionPage = ({
         }
     };
 
+    const formatDateForInput = (date) => {
+        const dateParts = date.split('/');
+        return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Convert back to yyyy-mm-dd for edit
+    };
     return (
         <div className="transaction-container">
             <div className="transaction-header">
@@ -222,7 +232,7 @@ const TransactionPage = ({
                             type="date"
                             name="TransactionDate"
                             placeholder="dd/mm/yyyy"
-                            value={newTransaction.TransactionDate}
+                            value={formatDateForInput(newTransaction.TransactionDate)} // make sure formatted as yyyy-mm-dd for dropdown box
                             onChange={handleManualInputChange}
                         />
                         <input
@@ -265,7 +275,7 @@ const TransactionPage = ({
                         <input
                             type="date"
                             name="TransactionDate"
-                            value={newTransaction.TransactionDate}
+                            value={formatDateForInput(newTransaction.TransactionDate)}
                             onChange={handleManualInputChange}
                         />
                         <input
