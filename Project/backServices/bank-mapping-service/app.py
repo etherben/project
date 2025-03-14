@@ -21,13 +21,17 @@ def get_category(merchant_name):
 
     try:
         response = requests.get(f"http://transaction-service:8081/transactions/category/{merchant_name}")
+        print(f"Status code: {response.status_code}")
         if response.status_code == 200:
-            return response.json().get("category", "General")  # Fallback to "General" if no category found
+            category = response.text.strip()
+            print(f"Category for {merchant_name}: {category}")
+            return category
         else:
-            return "General"  # Fallback category
+            # If there was an error  print the message
+            print(f"Error: Received status code {response.status_code}. Response: {response.text}")
     except Exception as e:
         print(f"Error fetching category for {merchant_name}: {e}")
-        return "General"  # Fallback category
+
 
         #call backend api that will search every existing transaction with merchant name, and return most common category
 
@@ -56,6 +60,7 @@ def map_bank_statement():
             merchant_name = row['Merchant']
             category = get_category(merchant_name)
             dataFrame.at[index, 'Category'] = category
+
 
         dataFrame.loc[dataFrame['Amount'] > 0, 'Category'] = 'Income'  #Positive is categoried as Income
         dataFrame.loc[dataFrame['Amount'] < 0, 'Amount'] = dataFrame['Amount'].abs() #Negative is Turned to positive

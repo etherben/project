@@ -144,8 +144,15 @@ public class TransactionController {
     }
 
     @GetMapping("/category/{Merchant}")
-    public String getMostPopularCategoryForMerchant(@PathVariable String Merchant) {
-        return transactionService.getMostPopularCategoryForMerchant(Merchant);
+    public ResponseEntity<String> getMostPopularCategoryForMerchant(@PathVariable String Merchant) {
+
+        try {
+            String category = transactionService.getMostPopularCategoryForMerchant(Merchant);
+            return ResponseEntity.ok(category);
+        } catch (Exception e) {
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
+        }
+
     }
 
 
