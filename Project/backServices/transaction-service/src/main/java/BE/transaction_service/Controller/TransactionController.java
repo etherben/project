@@ -162,11 +162,16 @@ public class TransactionController {
             @RequestParam("userId") String userId,
             @RequestParam(required = false) String merchant,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
-            @RequestParam(required = false)
-            @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate
+            @RequestParam(required = false)  @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
+            @RequestParam(required = false)  @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate
+
     ) {
+        System.out.println("Received userId: " + userId);
+        System.out.println("Received merchant: " + merchant);
+        System.out.println("Received category: " + category);
+        System.out.println("Received startDate: " + startDate);
+        System.out.println("Received endDate: " + endDate);
+
         return transactionService.filterTransactions(userId, merchant, category, startDate, endDate);
     }
 

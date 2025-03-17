@@ -26,13 +26,14 @@ public interface TransactionRepo extends MongoRepository<Transaction, String> {
       */
      List<Transaction> findByUserId(String userId, Sort sort);
      List<Transaction> findByMerchant(String merchant);
-     List<Transaction> findByUserIdAndCategoryOrderByDateDesc(String userId, String category);  // Named like this as mongo repo will auto infer the query based on method name
-     List<Transaction> findByUserIdAndMerchantOrderByDateDesc(String userId, String merchant);  // pretty dope
-     List<Transaction> findByUserIdAndDateBetweenOrderByDateDesc(String userId, Date startDate, Date endDate);
-     List<Transaction> findByUserIdAndMerchantAndDateBetweenOrderByDateDesc(String userId, String merchant, Date startDate, Date endDate);
-     List<Transaction> findByUserIdAndCategoryAndDateBetweenOrderByDateDesc(String userId, String category, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndCategoryOrderByTransactionDateDesc(String userId, String category);
+     List<Transaction> findByUserIdAndMerchantOrderByTransactionDateDesc(String userId, String merchant);
+     List<Transaction> findByUserIdAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndMerchantAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, String merchant, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndCategoryAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, String category, Date startDate, Date endDate);
 
 
-     
+
+
 
 }

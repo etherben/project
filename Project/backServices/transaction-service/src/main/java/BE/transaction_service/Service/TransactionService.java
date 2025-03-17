@@ -73,10 +73,10 @@ public class TransactionService {
         double amount = Double.parseDouble(parts[2].trim());
         String category = parts[3].trim();
 
-        Date TransactionDate = parseDate(dateStr);
+        Date transactionDate = parseDate(dateStr);
 
         Transaction transaction = new Transaction();
-        transaction.setTransactionDate(TransactionDate);
+        transaction.setTransactionDate(transactionDate);
         transaction.setAmount(amount);
         transaction.setMerchant(merchant);
         transaction.setCategory(category);
@@ -186,24 +186,31 @@ public class TransactionService {
             Date startDate,
             Date endDate
     ) {
+
+
+        List<Transaction> filteredTransactions;
+
         if (merchant != null && startDate != null && endDate != null) {
-            return transactionRepo.findByUserIdAndMerchantAndDateBetweenOrderByDateDesc(
+            filteredTransactions = transactionRepo.findByUserIdAndMerchantAndTransactionDateBetweenOrderByTransactionDateDesc(
                     userId, merchant, startDate, endDate);
         } else if (category != null && startDate != null && endDate != null) {
-            return transactionRepo.findByUserIdAndCategoryAndDateBetweenOrderByDateDesc(
+            filteredTransactions = transactionRepo.findByUserIdAndCategoryAndTransactionDateBetweenOrderByTransactionDateDesc(
                     userId, category, startDate, endDate);
         } else if (merchant != null) {
-            return transactionRepo.findByUserIdAndMerchantOrderByDateDesc(userId, merchant);
+            filteredTransactions = transactionRepo.findByUserIdAndMerchantOrderByTransactionDateDesc(userId, merchant);
         } else if (category != null) {
-            return transactionRepo.findByUserIdAndCategoryOrderByDateDesc(userId, category);
+            filteredTransactions = transactionRepo.findByUserIdAndCategoryOrderByTransactionDateDesc(userId, category);
         } else if (startDate != null && endDate != null) {
-            return transactionRepo.findByUserIdAndDateBetweenOrderByDateDesc(userId, startDate, endDate);
-        }else{
-            return getTransactionsByUserId(userId); // will be desc
+            filteredTransactions = transactionRepo.findByUserIdAndTransactionDateBetweenOrderByTransactionDateDesc(userId, startDate, endDate);
+        } else {
+            filteredTransactions = getTransactionsByUserId(userId); // will return a sorted list of transactions by userId
         }
+        // If the filtered list is empty throw an exception
+        if (filteredTransactions.isEmpty()) {
+            throw new IllegalArgumentException("No transactions found for the given filters");
+        }
+
+        return filteredTransactions;
     }
-
-
-
 
 }
