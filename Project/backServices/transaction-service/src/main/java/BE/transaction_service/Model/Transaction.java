@@ -1,5 +1,10 @@
 package BE.transaction_service.Model;
 
+
+
+
+
+
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -33,7 +38,8 @@ public class Transaction {
      * The format must me dd/mm/yyyy
      */
     @JsonFormat(pattern = "dd/MM/yyyy")
-    private Date TransactionDate;
+
+    private Date transactionDate;
 
     /**
      * The amount of the transaction.
@@ -110,7 +116,7 @@ public class Transaction {
      * @return the transaction date.
      */
     public Date getTransactionDate() {
-        return TransactionDate;
+        return transactionDate;
     }
 
     /**
@@ -119,7 +125,7 @@ public class Transaction {
      * @param transactionDate the transaction date.
      */
     public void setTransactionDate(Date transactionDate) {
-        this.TransactionDate = transactionDate;
+        this.transactionDate = transactionDate;
     }
 
     /**

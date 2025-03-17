@@ -228,6 +228,34 @@ function App() {
     }
   };
 
+  const handleFilterTransactions = async (userId,filters) => {
+    try {
+      const queryParams = new URLSearchParams();
+
+      // Always include userId
+      queryParams.append('userId', userId);
+
+      // Creating the query with the optional filters
+      if (filters.merchant) queryParams.append('merchant', filters.merchant);
+      if (filters.category) queryParams.append('category', filters.category);
+      if (filters.startDate) queryParams.append('startDate', filters.startDate);
+      if (filters.endDate) queryParams.append('endDate', filters.endDate);
+
+      console.log('Sending filter:', filters);
+
+      const response = await fetch(`http://localhost:8081/transactions/filter?${queryParams.toString()}`);
+      if (!response.ok) {
+        throw new Error('Failed to fetch filtered transactions');
+      }
+
+      const data = await response.json();
+      console.log('Filtered transactions:', data); // log to check for now
+      setTransactions(data)
+    } catch (error) {
+      console.error('Error filtering transactions:', error);
+    }
+  };
+
 
   return (
       <div>
@@ -244,6 +272,7 @@ function App() {
                     saveTransactions = {saveTransactions}
                     handleDeleteTransaction={deleteTransaction}
                     onEditTransaction={handleEditTransaction}
+                    handleFilterTransactions={handleFilterTransactions}
                     onBack={() => setShowTransactionPage(false)} />
             ) : (
                 <MainPage

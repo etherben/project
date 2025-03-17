@@ -12,13 +12,17 @@ const TransactionPage = ({
                              onFileSubmit,
                              handleFetchTransactions,
                              handleFetchBufferedTransactions,
-                             saveTransactions
+                             saveTransactions,
+                             handleFilterTransactions
+
                          }) => {
     const [addTranModal, setTranModalOpen] = useState(false);
     const [manualTranModal, setManualTranModalOpen] = useState(false);
     const [editTranModal, setEditTranModal] = useState(false);
-    const [newTransaction, setNewTransaction] = useState({ userId, TransactionDate: '', merchant: '', amount: '', category: '' });
+    const [newTransaction, setNewTransaction] = useState({ userId, transactionDate: '', merchant: '', amount: '', category: '' });
     const fileInputRef = useRef(null);
+    const [filter, setFilter] = useState({merchant: '', category: '', startDate: '', endDate: ''});
+
 
     const triggerFileInput = () => {
         fileInputRef.current.click();
@@ -70,7 +74,7 @@ const TransactionPage = ({
 
     const handleManualInputChange = (e) => {
         const { name, value } = e.target;
-        if (name === "TransactionDate") {
+        if (name === "transactionDate") {
             //convert date to correct format
             const dateParts = value.split('-');
             const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
@@ -85,12 +89,12 @@ const TransactionPage = ({
     };
 
     const handleAddManualTransaction = async () => {
-        //const dateParts = newTransaction.TransactionDate.split('-');
+        //const dateParts = newTransaction.transactionDate.split('-');
         //const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
         const amount = parseFloat(newTransaction.amount);
         const transactionToSubmit = {
             ...newTransaction,
-           // TransactionDate: formattedDate,
+           // transactionDate: formattedDate,
             amount: amount
         };
 
@@ -102,7 +106,7 @@ const TransactionPage = ({
             console.error('Error manual transaction:', error);
         }
 
-        setNewTransaction({ TransactionDate: '', merchant: '', amount: '', category: '' });
+        setNewTransaction({ transactionDate: '', merchant: '', amount: '', category: '' });
         handleCloseManualModal();
     };
 
@@ -118,7 +122,7 @@ const TransactionPage = ({
     const handleEditTransaction = (transaction) => {
         setNewTransaction({
             id: transaction.id,
-            TransactionDate: transaction.TransactionDate,
+            transactionDate: transaction.transactionDate,
             merchant: transaction.merchant,
             amount: transaction.amount,
             category: transaction.category || ''  // Make sure category is included
@@ -137,25 +141,68 @@ const TransactionPage = ({
         try {
             await onEditTransaction(newTransaction.id, updatedTransaction);
             handleFetchTransactions(userId); // Fetch updated transactions after edit
-            setNewTransaction({ TransactionDate: '', merchant: '', amount: '', category: '' });
+            setNewTransaction({ transactionDate: '', merchant: '', amount: '', category: '' });
             setEditTranModal(false);
         } catch (error) {
             console.error('Error editing transaction:', error);
         }
     };
 
+    const handleFilterSubmit = (e) => {
+        e.preventDefault();
+
+        // Convert startDate and endDate to Date objects
+        const updatedFilter = {
+            ...filter,
+            startDate: new Date(filter.startDate),  //convert to date object
+            endDate: new Date(filter.endDate),
+        };
+
+        console.log('Sending filter:', updatedFilter);
+
+        handleFilterTransactions(userId, updatedFilter);
+    };
+
     const formatDateForInput = (date) => {
         const dateParts = date.split('/');
         return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Convert back to yyyy-mm-dd for edit
+
     };
     return (
         <div className="transaction-container">
             <div className="transaction-header">
                 <button onClick={onBack} className="back-button">Back</button>
+                <div className="filter-section">
+                    <form onSubmit={handleFilterSubmit} className="filter-form">
+                        <input
+                            type="text"
+                            placeholder="Merchant"
+                            value={filter.merchant}
+                            onChange={(e) => setFilter({...filter, merchant: e.target.value})}
+                        />
+                        <input
+                            type="text"
+                            placeholder="Category"
+                            value={filter.category}
+                            onChange={(e) => setFilter({...filter, category: e.target.value})}
+                        />
+                        <input
+                            type="date"
+                            value={filter.startDate}
+                            onChange={(e) => setFilter({...filter, startDate: e.target.value})}
+                        />
+                        <input
+                            type="date"
+                            value={filter.endDate}
+                            onChange={(e) => setFilter({...filter, endDate: e.target.value})}
+                        />
+                        <button type="submit">Filter</button>
+                    </form>
+                </div>
                 <button className="add-transaction-btn" onClick={handleOpenModal}>Add Transaction</button>
             </div>
             <div className="transaction-list">
-                <div className="transaction-row" style={{ fontWeight: 'bold', borderBottom: '2px solid #000' }}>
+                <div className="transaction-row" style={{fontWeight: 'bold', borderBottom: '2px solid #000'}}>
                     <span>Date</span>
                     <span>Merchant</span>
                     <span>Amount</span>
@@ -166,7 +213,7 @@ const TransactionPage = ({
                 ) : (
                     transactions.map((transaction) => (
                         <div key={transaction.id} className="transaction-row">
-                            <span>{transaction.TransactionDate}</span>
+                            <span>{transaction.transactionDate}</span>
                             <span>{transaction.merchant}</span>
                             <span>${transaction.amount}</span>
                             <span>{transaction.category}</span> {/* Display Category */}
@@ -207,7 +254,7 @@ const TransactionPage = ({
                             ) : (
                                 transactionsToAdd.map((transaction, index) => (
                                     <div key={index} className="transaction-row">
-                                        <span>{transaction.TransactionDate}</span>
+                                        <span>{transaction.transactionDate}</span>
                                         <span>{transaction.merchant}</span>
                                         <span>${transaction.amount}</span>
                                         <span>{transaction.category}</span> {/* Display Category */}
@@ -230,9 +277,9 @@ const TransactionPage = ({
                         <h2>Enter Transaction Details</h2>
                         <input
                             type="date"
-                            name="TransactionDate"
+                            name="transactionDate"
                             placeholder="dd/mm/yyyy"
-                            value={formatDateForInput(newTransaction.TransactionDate)} // make sure formatted as yyyy-mm-dd for dropdown box
+                            value={formatDateForInput(newTransaction.transactionDate)} // make sure formatted as yyyy-mm-dd for dropdown box
                             onChange={handleManualInputChange}
                         />
                         <input
@@ -274,8 +321,8 @@ const TransactionPage = ({
                         <h2>Edit Transaction</h2>
                         <input
                             type="date"
-                            name="TransactionDate"
-                            value={formatDateForInput(newTransaction.TransactionDate)}
+                            name="transactionDate"
+                            value={formatDateForInput(newTransaction.transactionDate)}
                             onChange={handleManualInputChange}
                         />
                         <input

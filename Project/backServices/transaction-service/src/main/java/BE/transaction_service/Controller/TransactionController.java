@@ -3,6 +3,7 @@ package BE.transaction_service.Controller;
 import BE.transaction_service.Model.Transaction;
 import BE.transaction_service.Service.TransactionService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -10,6 +11,7 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.bind.annotation.CrossOrigin;
 
 import java.io.IOException;
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -153,6 +155,24 @@ public class TransactionController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
 
+    }
+
+    @GetMapping("/filter")
+    public List<Transaction> filterTransactions(
+            @RequestParam("userId") String userId,
+            @RequestParam(required = false) String merchant,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false)   Date startDate,
+            @RequestParam(required = false)   Date endDate
+
+    ) {
+        System.out.println("Received userId: " + userId);
+        System.out.println("Received merchant: " + merchant);
+        System.out.println("Received category: " + category);
+        System.out.println("Received startDate: " + startDate);
+        System.out.println("Received endDate: " + endDate);
+
+        return transactionService.filterTransactions(userId, merchant, category, startDate, endDate);
     }
 
 

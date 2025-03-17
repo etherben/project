@@ -5,6 +5,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.repository.MongoRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -25,5 +26,14 @@ public interface TransactionRepo extends MongoRepository<Transaction, String> {
       */
      List<Transaction> findByUserId(String userId, Sort sort);
      List<Transaction> findByMerchant(String merchant);
+     List<Transaction> findByUserIdAndCategoryOrderByTransactionDateDesc(String userId, String category);
+     List<Transaction> findByUserIdAndMerchantOrderByTransactionDateDesc(String userId, String merchant);
+     List<Transaction> findByUserIdAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndMerchantAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, String merchant, Date startDate, Date endDate);
+     List<Transaction> findByUserIdAndCategoryAndTransactionDateBetweenOrderByTransactionDateDesc(String userId, String category, Date startDate, Date endDate);
+
+
+
+
 
 }

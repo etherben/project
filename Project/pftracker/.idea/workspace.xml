@@ -4,9 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Changed frontend manual input categories to preset drop down box.">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Front end Filter section and update to work">
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +82,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;automatic-Categorisation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Filter-by-parameter&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -290,6 +289,12 @@
       <workItem from="1741876896676" duration="3668000" />
       <workItem from="1741940872131" duration="2888000" />
       <workItem from="1741944597012" duration="1407000" />
+      <workItem from="1742207218284" duration="10000" />
+      <workItem from="1742207319583" duration="3461000" />
+      <workItem from="1742219503551" duration="2310000" />
+      <workItem from="1742221865358" duration="109000" />
+      <workItem from="1742221988962" duration="494000" />
+      <workItem from="1742222710745" duration="1710000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -643,7 +648,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741942911151</updated>
     </task>
-    <option name="localTasksCounter" value="45" />
+    <task id="LOCAL-00045" summary="Front end Filter section and update to work">
+      <option name="closed" value="true" />
+      <created>1742224398138</created>
+      <option name="number" value="00045" />
+      <option name="presentableId" value="LOCAL-00045" />
+      <option name="project" value="LOCAL" />
+      <updated>1742224398138</updated>
+    </task>
+    <option name="localTasksCounter" value="46" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -676,7 +689,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="changing stylesheets to fit containers properly" />
     <MESSAGE value="Test updates. Aswell as refactoring." />
     <MESSAGE value="Added basic logout button to create a cyclical structure. Fixed tests to accomidate." />
     <MESSAGE value="Restructured Test suite for App.jsx" />
@@ -701,6 +713,7 @@
     <MESSAGE value="Users can manually edit transactions" />
     <MESSAGE value="Fixing previous git commit issues, mainpage should now be upto date" />
     <MESSAGE value="Changed frontend manual input categories to preset drop down box." />
-    <option name="LAST_COMMIT_MESSAGE" value="Changed frontend manual input categories to preset drop down box." />
+    <MESSAGE value="Front end Filter section and update to work" />
+    <option name="LAST_COMMIT_MESSAGE" value="Front end Filter section and update to work" />
   </component>
 </project>
