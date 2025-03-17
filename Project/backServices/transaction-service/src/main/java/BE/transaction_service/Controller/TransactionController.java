@@ -162,8 +162,8 @@ public class TransactionController {
             @RequestParam("userId") String userId,
             @RequestParam(required = false) String merchant,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false)  @DateTimeFormat(pattern = "dd/MM/yyyy") Date startDate,
-            @RequestParam(required = false)  @DateTimeFormat(pattern = "dd/MM/yyyy") Date endDate
+            @RequestParam(required = false)   Date startDate,
+            @RequestParam(required = false)   Date endDate
 
     ) {
         System.out.println("Received userId: " + userId);

@@ -9,7 +9,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
 
     const aggregateTransactions = (transactions) => {
         const monthlyTotal = transactions.reduce((amounts, transaction) => {
-            const [day, month, year] = transaction.TransactionDate.split('/');
+            const [day, month, year] = transaction.transactionDate.split('/');
             const date = new Date(`${year}-${month}-${day}`);
             const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
@@ -86,7 +86,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                         ) : (
                             last10Transactions.map(transaction => (
                                 <div key={transaction.id} className="transaction-row">
-                                    <span>{transaction.TransactionDate}</span> |
+                                    <span>{transaction.transactionDate}</span> |
                                     <span>{transaction.merchant}</span> |
                                     <span>{transaction.amount}</span> |
                                     <span>{transaction.category}</span>

@@ -130,7 +130,7 @@ test('renders chart when transaction data is provided', () => {
     const userId = '12345';
     const transactions = [
         { id: '1', TransactionDate: '2025-01-01', amount: '100.00', merchant: 'Merchant A' },
-        { id: '2', TransactionDate: '2025-01-02', amount: '150.00', merchant: 'Merchant B' },
+        { id: '2', transactionDate: '2025-01-02', amount: '150.00', merchant: 'Merchant B' },
     ];
 
     render(

@@ -5,7 +5,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Changed frontend manual input categories to preset drop down box.">
+      <change beforePath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.test.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -83,7 +87,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;automatic-Categorisation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Filter-by-parameter&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -290,6 +294,12 @@
       <workItem from="1741876896676" duration="3668000" />
       <workItem from="1741940872131" duration="2888000" />
       <workItem from="1741944597012" duration="1407000" />
+      <workItem from="1742207218284" duration="10000" />
+      <workItem from="1742207319583" duration="3461000" />
+      <workItem from="1742219503551" duration="2310000" />
+      <workItem from="1742221865358" duration="109000" />
+      <workItem from="1742221988962" duration="494000" />
+      <workItem from="1742222710745" duration="1669000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
