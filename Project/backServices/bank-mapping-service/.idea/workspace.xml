@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="api call fix">
+      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Dockerfile" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_BRANCH_BY_REPOSITORY">
+      <map>
+        <entry key="$PROJECT_DIR$/../../.." value="main" />
+      </map>
+    </option>
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/../../.." />
+  </component>
+  <component name="GitLabMergeRequestFiltersHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPENED&quot;,
+    &quot;assignee&quot;: {
+      &quot;type&quot;: &quot;org.jetbrains.plugins.gitlab.mergerequest.ui.filters.GitLabMergeRequestsFiltersValue.MergeRequestsMemberFilterValue.MergeRequestsAssigneeFilterValue&quot;,
+      &quot;username&quot;: &quot;zlac163&quot;,
+      &quot;fullname&quot;: &quot;Etheridge Benjamin (2022) ZLAC163&quot;
+    }
+  }
+}</component>
+  <component name="GitLabMergeRequestsSettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;first&quot;: &quot;https://gitlab.cim.rhul.ac.uk/zlac163/PROJECT.git&quot;,
+    &quot;second&quot;: &quot;42f920eb-bb94-4d08-a997-0c7235fce4b3&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 5
+}</component>
+  <component name="ProjectId" id="2ttMqGPKbj0sp2CFQEFH9TTCkYC" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;automatic-Categorisation&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\benet\Desktop\finalp\PROJECT\Project\backServices\bank-mapping-service" />
+    </key>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-28b599e66164-intellij.indexing.shared.core-IU-242.23339.11" />
+        <option value="bundled-js-predefined-d6986cc7102b-5c90d61e3bab-JavaScript-IU-242.23339.11" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="" />
+      <created>1741167106798</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1741167106798</updated>
+      <workItem from="1741167107799" duration="3699000" />
+      <workItem from="1741172006727" duration="1335000" />
+      <workItem from="1741202024445" duration="3721000" />
+      <workItem from="1741250615878" duration="2144000" />
+      <workItem from="1741253798382" duration="46000" />
+      <workItem from="1741260727557" duration="1071000" />
+      <workItem from="1741261918453" duration="102000" />
+      <workItem from="1741946211264" duration="595000" />
+      <workItem from="1741948985909" duration="509000" />
+      <workItem from="1741954146955" duration="719000" />
+      <workItem from="1741955159536" duration="946000" />
+      <workItem from="1741956161730" duration="3000" />
+      <workItem from="1741956214615" duration="271000" />
+      <workItem from="1741956521317" duration="2965000" />
+    </task>
+    <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
+      <option name="closed" value="true" />
+      <created>1741167178743</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1741167178743</updated>
+    </task>
+    <task id="LOCAL-00002" summary="ignore venv folder, will be built in dockerfile">
+      <option name="closed" value="true" />
+      <created>1741170034616</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1741170034616</updated>
+    </task>
+    <task id="LOCAL-00003" summary="ignore venv folder, will be built in dockerfile">
+      <option name="closed" value="true" />
+      <created>1741170219766</created>
+      <option name="number" value="00003" />
+      <option name="presentableId" value="LOCAL-00003" />
+      <option name="project" value="LOCAL" />
+      <updated>1741170219766</updated>
+    </task>
+    <task id="LOCAL-00004" summary="Dockerfile for bank-mapping-service container, should install dependencies with container">
+      <option name="closed" value="true" />
+      <created>1741170811625</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1741170811625</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Front end and docker configuation to call bank-mapping microservice. User can import Starling bank statements to application">
+      <option name="closed" value="true" />
+      <created>1741173126488</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1741173126488</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Deletion of old unused service">
+      <option name="closed" value="true" />
+      <created>1741173189519</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1741173189519</updated>
+    </task>
+    <task id="LOCAL-00007" summary="assigns positive values as income, and gets rid of negative number">
+      <option name="closed" value="true" />
+      <created>1741203454573</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1741203454573</updated>
+    </task>
+    <task id="LOCAL-00008" summary="assigns positive values as income, and gets rid of negative number">
+      <option name="closed" value="true" />
+      <created>1741203536034</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1741203536034</updated>
+    </task>
+    <task id="LOCAL-00009" summary="python script to call api request and maps every category to same as previous ones with the same merchant, or puts it as general if it cant find any.">
+      <option name="closed" value="true" />
+      <created>1741261387695</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1741261387695</updated>
+    </task>
+    <task id="LOCAL-00010" summary="api call fix">
+      <option name="closed" value="true" />
+      <created>1741262019135</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1741262019135</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="UnknownFeatures">
+    <option featureType="com.intellij.fileTypeFactory" implementationName="*.py" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <MESSAGE value="python virtual enviroment, to make bank mapping service" />
+    <MESSAGE value="ignore venv folder, will be built in dockerfile" />
+    <MESSAGE value="Dockerfile for bank-mapping-service container, should install dependencies with container" />
+    <MESSAGE value="Front end and docker configuation to call bank-mapping microservice. User can import Starling bank statements to application" />
+    <MESSAGE value="Deletion of old unused service" />
+    <MESSAGE value="assigns positive values as income, and gets rid of negative number" />
+    <MESSAGE value="python script to call api request and maps every category to same as previous ones with the same merchant, or puts it as general if it cant find any." />
+    <MESSAGE value="api call fix" />
+    <option name="LAST_COMMIT_MESSAGE" value="api call fix" />
+  </component>
+</project>
