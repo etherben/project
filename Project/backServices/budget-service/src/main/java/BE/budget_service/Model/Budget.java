@@ -6,13 +6,19 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document(collection = "budgets")
 public class Budget {
+    public Budget(String userId, String category, double amount) {
+        this.userId = userId;
+        this.category = category;
+        this.amount = amount;
+
+    }
 
     @Id
     private String id;
 
     private String userId;
     private String category;
-    private double budget;
+    private double amount;
 
     public String getId() {
         return id;
@@ -38,11 +44,11 @@ public class Budget {
         this.category = category;
     }
 
-    public double getBudget() {
-        return budget;
+    public double getAmount() {
+        return amount;
     }
 
-    public void setBudget(double budget) {
-        this.budget = budget;
+    public void setAmount(double amount) {
+        this.amount = amount;
     }
 }
