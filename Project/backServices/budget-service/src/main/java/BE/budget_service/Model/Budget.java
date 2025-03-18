@@ -11,12 +11,8 @@ public class Budget {
     private String id;
 
     private String userId;
-    private double totalBudget;
-    private double foodBudget;
-    private double entertainmentBudget;
-    private double shoppingBudget;
-    private double billsBudget;
-    private double vehicleBudget;
+    private String category;
+    private double budget;
 
     public String getId() {
         return id;
@@ -34,51 +30,19 @@ public class Budget {
         this.userId = userId;
     }
 
-    public double getTotalBudget() {
-        return totalBudget;
+    public String getCategory() {
+        return category;
     }
 
-    public void setTotalBudget(double totalBudget) {
-        this.totalBudget = totalBudget;
+    public void setCategory(String category) {
+        this.category = category;
     }
 
-    public double getFoodBudget() {
-        return foodBudget;
+    public double getBudget() {
+        return budget;
     }
 
-    public void setFoodBudget(double foodBudget) {
-        this.foodBudget = foodBudget;
-    }
-
-    public double getEntertainmentBudget() {
-        return entertainmentBudget;
-    }
-
-    public void setEntertainmentBudget(double entertainmentBudget) {
-        this.entertainmentBudget = entertainmentBudget;
-    }
-
-    public double getShoppingBudget() {
-        return shoppingBudget;
-    }
-
-    public void setShoppingBudget(double shoppingBudget) {
-        this.shoppingBudget = shoppingBudget;
-    }
-
-    public double getBillsBudget() {
-        return billsBudget;
-    }
-
-    public void setBillsBudget(double billsBudget) {
-        this.billsBudget = billsBudget;
-    }
-
-    public double getVehicleBudget() {
-        return vehicleBudget;
-    }
-
-    public void setVehicleBudget(double vehicleBudget) {
-        this.vehicleBudget = vehicleBudget;
+    public void setBudget(double budget) {
+        this.budget = budget;
     }
 }
