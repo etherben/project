@@ -257,10 +257,10 @@ function App() {
   };
   const handleSaveBudget = async (userId, category, amount) => {
     try {
-      const response = await fetch(`http://localhost:8082/budget/${userid}`, {
+      const response = await fetch(`http://localhost:8082/budget/${userId}`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(category, amount),
+        body: JSON.stringify({category, amount}),
       });
       if (!response.ok) {
         throw new Error('Failed to save budget');
@@ -272,14 +272,16 @@ function App() {
   };
   const handleGetBudget = async (userId, category) => {
     try {
-      const response = await fetch(`http://localhost:8082/budget/${userid}/${category}`, {
+      const response = await fetch(`http://localhost:8082/budget/${userId}/${category}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
       });
       if (!response.ok) {
         throw new Error('Failed to get budget');
       }
-      console.log('Budget retreived successfully');
+      
+      const data = await response.json()
+      console.log('Budget retreived successfully:', data);
     } catch (error) {
       console.error('Error getting Budget:', error);
     }
