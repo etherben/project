@@ -255,6 +255,35 @@ function App() {
       console.error('Error filtering transactions:', error);
     }
   };
+  const handleSaveBudget = async (userId, category, amount) => {
+    try {
+      const response = await fetch(`http://localhost:8082/budget/${userid}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(category, amount),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to save budget');
+      }
+      console.log('Budget updated successfully');
+    } catch (error) {
+      console.error('Error editing Budget:', error);
+    }
+  };
+  const handleGetBudget = async (userId, category) => {
+    try {
+      const response = await fetch(`http://localhost:8082/budget/${userid}/${category}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+      if (!response.ok) {
+        throw new Error('Failed to get budget');
+      }
+      console.log('Budget retreived successfully');
+    } catch (error) {
+      console.error('Error getting Budget:', error);
+    }
+  };
 
 
   return (
