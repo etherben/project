@@ -4,8 +4,13 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Front end Filter section and update to work">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Api calls for budget getting and setting ready">
+      <change afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../backServices/budget-service/src/main/java/BE/budget_service/Controller/BudgetController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/budget-service/src/main/java/BE/budget_service/Controller/BudgetController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -61,45 +66,45 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Jest.App.test.js.executor": "Run",
-    "Jest.MainPage Component.loads mainpage with userid stored.executor": "Run",
-    "Jest.MainPage Component.loads userId from sessionStorage on mount.executor": "Run",
-    "Jest.MainPage Component.should fake file submit and log the success message.executor": "Run",
-    "Jest.MainPage Component.should fake submit a single transaction and log the success message.executor": "Run",
-    "Jest.MainPage Component.should submit a single transaction successfully.executor": "Run",
-    "Jest.MainPage Component.stores userId in sessionStorage after successful login.executor": "Run",
-    "Jest.MainPage.test.jsx.executor": "Run",
-    "Jest.Signup.test.jsx.executor": "Run",
-    "Jest.calls handleLoginSubmit with correct data.executor": "Run",
-    "Jest.loads userId from sessionStorage from mount.executor": "Run",
-    "Jest.loads userId from sessionStorage on mount.executor": "Run",
-    "Jest.renders MainPage with mock userId and transactions.executor": "Run",
-    "Jest.renders the Signup form initially.executor": "Run",
-    "Jest.should handle error when file upload fails.executor": "Run",
-    "Jest.stores userId in sessionStorage after successful login.executor": "Run",
-    "Jest.switches to Login form when link is clicked.executor": "Run",
-    "Node.js.App.js.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs.jest.jest_package": "C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Libraries",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.2",
-    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
-    "ts.external.directory.path": "C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Jest.App.test.js.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.loads mainpage with userid stored.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.should fake file submit and log the success message.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.should fake submit a single transaction and log the success message.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.should submit a single transaction successfully.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage Component.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.MainPage.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.Signup.test.jsx.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.calls handleLoginSubmit with correct data.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.loads userId from sessionStorage from mount.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.loads userId from sessionStorage on mount.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.renders MainPage with mock userId and transactions.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.renders the Signup form initially.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.should handle error when file upload fails.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.stores userId in sessionStorage after successful login.executor&quot;: &quot;Run&quot;,
+    &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
+    &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Budget&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs.jest.jest_package&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/pftracker/node_modules/react-scripts&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Libraries&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;ts.external.directory.path&quot;: &quot;C:\\Program Files\\JetBrains\\IntelliJ IDEA 2024.2.3\\plugins\\javascript-plugin\\jsLanguageServicesImpl\\external&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RunManager" selected="Jest.MainPage Component.should fake file submit and log the success message">
     <configuration name="MainPage Component.loads mainpage with userid stored" type="JavaScriptTestRunnerJest" temporary="true" nameIsGenerated="true">
       <node-interpreter value="project" />
@@ -295,6 +300,12 @@
       <workItem from="1742221865358" duration="109000" />
       <workItem from="1742221988962" duration="494000" />
       <workItem from="1742222710745" duration="1710000" />
+      <workItem from="1742294608909" duration="1663000" />
+      <workItem from="1742296331395" duration="350000" />
+      <workItem from="1742296848685" duration="6055000" />
+      <workItem from="1742377569103" duration="1514000" />
+      <workItem from="1742381061595" duration="41000" />
+      <workItem from="1742381227465" duration="376000" />
     </task>
     <task id="LOCAL-00001" summary="dockerfile for backend">
       <option name="closed" value="true" />
@@ -656,7 +667,23 @@
       <option name="project" value="LOCAL" />
       <updated>1742224398138</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Api calls for budget getting and setting ready">
+      <option name="closed" value="true" />
+      <created>1742294926169</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1742294926169</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Api calls for budget getting and setting ready">
+      <option name="closed" value="true" />
+      <created>1742295032876</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1742295032876</updated>
+    </task>
+    <option name="localTasksCounter" value="48" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,7 +716,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Test updates. Aswell as refactoring." />
     <MESSAGE value="Added basic logout button to create a cyclical structure. Fixed tests to accomidate." />
     <MESSAGE value="Restructured Test suite for App.jsx" />
     <MESSAGE value="Restructured Test suite and added validation tests for Empty Details" />
@@ -714,6 +740,7 @@
     <MESSAGE value="Fixing previous git commit issues, mainpage should now be upto date" />
     <MESSAGE value="Changed frontend manual input categories to preset drop down box." />
     <MESSAGE value="Front end Filter section and update to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front end Filter section and update to work" />
+    <MESSAGE value="Api calls for budget getting and setting ready" />
+    <option name="LAST_COMMIT_MESSAGE" value="Api calls for budget getting and setting ready" />
   </component>
 </project>

@@ -6,6 +6,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
+@CrossOrigin(origins = "http://localhost:3000")
 @RequestMapping("/budget")
 public class BudgetController {
 
@@ -25,9 +26,8 @@ public class BudgetController {
     // Set or update the budget for a specific user and category
     @PostMapping("/{userId}")
     public ResponseEntity<Budget> setBudget(@PathVariable String userId,
-                                            @RequestParam String category,
-                                            @RequestParam double amount) {
-        Budget updatedBudget = budgetService.setBudget(userId, category, amount);
+                                            @RequestBody Budget budget) {
+        Budget updatedBudget = budgetService.setBudget(userId, budget.getCategory(), budget.getAmount());
         return ResponseEntity.ok(updatedBudget);
     }
 }
