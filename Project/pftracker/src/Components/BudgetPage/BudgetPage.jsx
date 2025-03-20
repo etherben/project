@@ -5,7 +5,6 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
 
     useEffect(() => {
         const presetCategories = [
-            'Overall',
             'General',
             'Food',
             'Entertainment',
@@ -36,11 +35,15 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
         setBudgetData((prevData) =>
             prevData.map((item) =>
                 item.category === category
-                    ? { ...item, currentBudget: setBudget } // Update the currentBudget with the new setBudget value
+                    ? { ...item, currentBudget: setBudget }
                     : item
             )
         );
     };
+
+    // Calculate overall budget rather than let user do it
+    const totalCurrentBudget = budgetData.reduce((sum, item) => sum + item.currentBudget, 0);
+    const totalSetBudget = budgetData.reduce((sum, item) => sum + item.setBudget, 0);
 
     return (
         <div>
@@ -64,7 +67,7 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
                                 value={budget.setBudget}
                                 onChange={(e) => {
                                     const newBudgetData = [...budgetData];
-                                    newBudgetData[index].setBudget = parseFloat(e.target.value);
+                                    newBudgetData[index].setBudget = parseFloat(e.target.value) || 0;
                                     setBudgetData(newBudgetData);
                                 }}
                             />
@@ -74,6 +77,11 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
                         </td>
                     </tr>
                 ))}
+                <tr>
+                    <td><strong>Overall (Total)</strong></td>
+                    <td><strong>{totalCurrentBudget}</strong></td>
+                    <td><strong>{totalSetBudget}</strong></td>
+                </tr>
                 </tbody>
             </table>
             <button onClick={onBack}>Back</button>
