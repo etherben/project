@@ -322,6 +322,7 @@ function App() {
                 <MainPage
                     userId={userId}
                     transactions={transactions}
+                    handleGetBudget={handleGetBudget}
                     onSingleSubmit={handleSingleTransactionSubmit}
                     onFileSubmit={handleFileTransactionSubmit}
                     handleFetchTransactions={handleFetchTransactions}

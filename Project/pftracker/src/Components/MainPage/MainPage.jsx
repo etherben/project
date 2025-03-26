@@ -1,10 +1,10 @@
-import React, {useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget}) => {
+const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget }) => {
     const chartRef = useRef(null);
-
+    const [budgetData, setBudgetData] = useState(null); // Initialize with null to represent no budget
     const last10Transactions = transactions.slice(-10);
 
     const aggregateTransactions = (transactions) => {
@@ -27,14 +27,28 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
     const monthlyData = aggregateTransactions(transactions);
 
     useEffect(() => {
+        const fetchBudget = async () => {
+            const budget = await handleGetBudget(userId, 'overall');
+            if (budget !== 0) {
+                setBudgetData(budget); // Only set budget if it's not 0 (or any other invalid condition)
+            } else {
+                setBudgetData(null); // If no budget exists or is 0, set to null
+            }
+        };
+
+        fetchBudget();
+    }, [userId, handleGetBudget]);
+
+    useEffect(() => {
         const chart = echarts.init(chartRef.current);
 
         const months = monthlyData.map(item => item.month);
         const totals = monthlyData.map(item => item.total);
 
+        // Create a chart configuration
         const chartSettings = {
             title: {
-                text: 'Monthly Transaction Expenditure',
+                text: 'Monthly Transaction Expenditure & Budget',
                 textStyle: {
                     color: '#000000',
                     fontSize: 18,
@@ -64,13 +78,24 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                     lineStyle: {
                         color: 'black',
                     },
+                    name: 'Expenditure',
                 },
-            ],
+                // Add the budget data to the chart data only if valid budgetData exists
+                budgetData !== null && {
+                    data: new Array(months.length).fill(budgetData), // Create a constant budget line
+                    type: 'line',
+                    lineStyle: {
+                        color: 'green',
+                        type: 'dashed',
+                    },
+                    name: 'Budget (Overall)',
+                }
+            ].filter(Boolean), // Filter out the budget series if it's null (i.e., no budget exists)
         };
 
         chart.setOption(chartSettings);
         return () => chart.dispose();
-    }, [monthlyData]);
+    }, [monthlyData, budgetData]); // Re-run chart update when either monthlyData or budgetData changes
 
     return (
         <div className="main-container">
