@@ -1,30 +1,46 @@
-import React, {useRef, useEffect } from 'react';
+import React, { useRef, useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
+const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget }) => {
     const chartRef = useRef(null);
-
+    const [budgetData, setBudgetData] = useState(null); // Initialize with null to represent no budget
     const last10Transactions = transactions.slice(-10);
 
     const aggregateTransactions = (transactions) => {
-        const monthlyTotal = transactions.reduce((amounts, transaction) => {
-            const [day, month, year] = transaction.transactionDate.split('/');
-            const date = new Date(`${year}-${month}-${day}`);
-            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
+        const monthlyTotal = transactions
+            .filter(transaction => transaction.category !== "Income") // Exclude Income category
+            .reduce((amounts, transaction) => {
+                const [day, month, year] = transaction.transactionDate.split('/');
+                const date = new Date(`${year}-${month}-${day}`);
+                const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
-            if (!amounts[monthAndYear]) {
-                amounts[monthAndYear] = 0;
-            }
+                if (!amounts[monthAndYear]) {
+                    amounts[monthAndYear] = 0;
+                }
 
-            amounts[monthAndYear] += parseFloat(transaction.amount);
-            return amounts;
-        }, {});
+                amounts[monthAndYear] += parseFloat(transaction.amount);
+                return amounts;
+            }, {});
 
         return Object.entries(monthlyTotal).map(([month, total]) => ({ month, total }));
     };
 
+
     const monthlyData = aggregateTransactions(transactions);
+
+    useEffect(() => {
+        const fetchBudget = async () => {
+            const budget = await handleGetBudget(userId, 'Overall');
+            if (budget !== 0) {
+                setBudgetData(budget); // Only set budget if it's not 0 (or any other invalid condition)
+            } else {
+                setBudgetData(null); // If no budget exists or is 0, set to null
+            }
+        };
+
+        fetchBudget();
+    }, [userId, handleGetBudget]);
 
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
@@ -32,9 +48,10 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
         const months = monthlyData.map(item => item.month);
         const totals = monthlyData.map(item => item.total);
 
+        // Create a chart configuration
         const chartSettings = {
             title: {
-                text: 'Monthly Transaction Expenditure',
+                text: 'Monthly Transaction Expenditure & Budget',
                 textStyle: {
                     color: '#000000',
                     fontSize: 18,
@@ -64,13 +81,24 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                     lineStyle: {
                         color: 'black',
                     },
+                    name: 'Expenditure',
                 },
-            ],
+                // Add the budget data to the chart data only if valid budgetData exists
+                budgetData !== null && {
+                    data: new Array(months.length).fill(budgetData), // Create a constant budget line
+                    type: 'line',
+                    lineStyle: {
+                        color: 'green',
+                        type: 'dashed',
+                    },
+                    name: 'Budget (Overall)',
+                }
+            ].filter(Boolean), // Filter out the budget series if it's null (i.e., no budget exists)
         };
 
         chart.setOption(chartSettings);
         return () => chart.dispose();
-    }, [monthlyData]);
+    }, [monthlyData, budgetData]); // Re-run chart update when either monthlyData or budgetData changes
 
     return (
         <div className="main-container">
@@ -95,6 +123,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions }) => {
                         )}
                     </div>
                     <button onClick={onViewTransactions} className="view-all-btn">View All Transactions</button>
+                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
                 </div>
                 <div className="rightside">
                     <div className="chart-container">

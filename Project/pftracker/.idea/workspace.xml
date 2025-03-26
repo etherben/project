@@ -4,8 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Front end Filter section and update to work">
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Budget page design and some error logic">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -82,7 +84,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Filter-by-parameter&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;Budget&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -295,14 +297,13 @@
       <workItem from="1742221865358" duration="109000" />
       <workItem from="1742221988962" duration="494000" />
       <workItem from="1742222710745" duration="1710000" />
-    </task>
-    <task id="LOCAL-00001" summary="dockerfile for backend">
-      <option name="closed" value="true" />
-      <created>1731611753058</created>
-      <option name="number" value="00001" />
-      <option name="presentableId" value="LOCAL-00001" />
-      <option name="project" value="LOCAL" />
-      <updated>1731611753058</updated>
+      <workItem from="1742294608909" duration="1663000" />
+      <workItem from="1742296331395" duration="350000" />
+      <workItem from="1742296848685" duration="6055000" />
+      <workItem from="1742377569103" duration="1514000" />
+      <workItem from="1742381061595" duration="41000" />
+      <workItem from="1742381227465" duration="4252000" />
+      <workItem from="1742467611581" duration="1795000" />
     </task>
     <task id="LOCAL-00002" summary="fixing remote connection issue">
       <option name="closed" value="true" />
@@ -656,7 +657,47 @@
       <option name="project" value="LOCAL" />
       <updated>1742224398138</updated>
     </task>
-    <option name="localTasksCounter" value="46" />
+    <task id="LOCAL-00046" summary="Api calls for budget getting and setting ready">
+      <option name="closed" value="true" />
+      <created>1742294926169</created>
+      <option name="number" value="00046" />
+      <option name="presentableId" value="LOCAL-00046" />
+      <option name="project" value="LOCAL" />
+      <updated>1742294926169</updated>
+    </task>
+    <task id="LOCAL-00047" summary="Api calls for budget getting and setting ready">
+      <option name="closed" value="true" />
+      <created>1742295032876</created>
+      <option name="number" value="00047" />
+      <option name="presentableId" value="LOCAL-00047" />
+      <option name="project" value="LOCAL" />
+      <updated>1742295032876</updated>
+    </task>
+    <task id="LOCAL-00048" summary="Basic budget page that can handle the api calls, to update and upload new budgets">
+      <option name="closed" value="true" />
+      <created>1742381734301</created>
+      <option name="number" value="00048" />
+      <option name="presentableId" value="LOCAL-00048" />
+      <option name="project" value="LOCAL" />
+      <updated>1742381734301</updated>
+    </task>
+    <task id="LOCAL-00049" summary="Change overall budget so its calculated as sum of others, rather than user editing">
+      <option name="closed" value="true" />
+      <created>1742467822985</created>
+      <option name="number" value="00049" />
+      <option name="presentableId" value="LOCAL-00049" />
+      <option name="project" value="LOCAL" />
+      <updated>1742467822985</updated>
+    </task>
+    <task id="LOCAL-00050" summary="Column to show percentage of overall budget">
+      <option name="closed" value="true" />
+      <created>1742467900541</created>
+      <option name="number" value="00050" />
+      <option name="presentableId" value="LOCAL-00050" />
+      <option name="project" value="LOCAL" />
+      <updated>1742467900542</updated>
+    </task>
+    <option name="localTasksCounter" value="51" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -689,11 +730,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Test updates. Aswell as refactoring." />
-    <MESSAGE value="Added basic logout button to create a cyclical structure. Fixed tests to accomidate." />
-    <MESSAGE value="Restructured Test suite for App.jsx" />
-    <MESSAGE value="Restructured Test suite and added validation tests for Empty Details" />
-    <MESSAGE value="Added Error message display when login api call fails, also test to check signup renders onSwtich" />
     <MESSAGE value="Signup Error message for empty inputs" />
     <MESSAGE value="Signup test to check no Submit on false email" />
     <MESSAGE value="Redid mainpage render test to accomidate changes" />
@@ -714,6 +750,11 @@
     <MESSAGE value="Fixing previous git commit issues, mainpage should now be upto date" />
     <MESSAGE value="Changed frontend manual input categories to preset drop down box." />
     <MESSAGE value="Front end Filter section and update to work" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front end Filter section and update to work" />
+    <MESSAGE value="Api calls for budget getting and setting ready" />
+    <MESSAGE value="Basic budget page that can handle the api calls, to update and upload new budgets" />
+    <MESSAGE value="Change overall budget so its calculated as sum of others, rather than user editing" />
+    <MESSAGE value="Column to show percentage of overall budget" />
+    <MESSAGE value="Budget page design and some error logic" />
+    <option name="LAST_COMMIT_MESSAGE" value="Budget page design and some error logic" />
   </component>
 </project>

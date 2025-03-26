@@ -113,7 +113,7 @@ const TransactionPage = ({
     const onDeleteTransaction = async (transactionId) => {
         try {
             await handleDeleteTransaction(transactionId);
-            handleFetchTransactions(userId);
+            handleFilterTransactions(userId, filter)
         } catch (error) {
             console.error('Error Deleting:', error);
         }
@@ -151,12 +151,14 @@ const TransactionPage = ({
     const handleFilterSubmit = (e) => {
         e.preventDefault();
 
+
         // Convert startDate and endDate to Date objects
         const updatedFilter = {
             ...filter,
-            startDate: new Date(filter.startDate),  //convert to date object
-            endDate: new Date(filter.endDate),
+            startDate: filter.startDate && !isNaN(new Date(filter.startDate)) ? new Date(filter.startDate) : null,
+            endDate: filter.endDate && !isNaN(new Date(filter.endDate)) ? new Date(filter.endDate) : null,
         };
+
 
         console.log('Sending filter:', updatedFilter);
 

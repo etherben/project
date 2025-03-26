@@ -4,6 +4,7 @@ import Login from "./Components/Login/Login";
 import React, { useCallback, useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 import TransactionPage from "./Components/TransactionPage/TransactionPage";
+import BudgetPage from "./Components/BudgetPage/BudgetPage";
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -11,6 +12,7 @@ function App() {
   const [transactions, setTransactions] = useState([]);
   const [transactionsToAdd, setTransactionsToAdd] = useState([]);
   const [showTransactionPage, setShowTransactionPage] = useState(false);
+  const [showBudgetPage, setShowBudgetPage] = useState(false);
 //use effect for user id
   useEffect(() => {
     const storedUserId = sessionStorage.getItem('id');
@@ -255,6 +257,41 @@ function App() {
       console.error('Error filtering transactions:', error);
     }
   };
+  const handleSaveBudget = async (userId, category, amount) => {
+    try {
+      const response = await fetch(`http://localhost:8082/budget/${userId}`, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({category, amount}),
+      });
+      if (!response.ok) {
+        throw new Error('Failed to save budget');
+      }
+      console.log('Budget updated successfully');
+    } catch (error) {
+      console.error('Error editing Budget:', error);
+    }
+  };
+  const handleGetBudget = useCallback(async (userId, category) => {
+    try {
+      const response = await fetch(`http://localhost:8082/budget/${userId}/${category}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' },
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to get budget');
+      }
+
+      const data = await response.json()
+      console.log('Budget retreived successfully:', data);
+      return data.amount;
+
+    } catch (error) {
+      console.error('Error getting Budget:', error);
+      return 0;
+    }
+  },[]);
 
 
   return (
@@ -274,15 +311,24 @@ function App() {
                     onEditTransaction={handleEditTransaction}
                     handleFilterTransactions={handleFilterTransactions}
                     onBack={() => setShowTransactionPage(false)} />
+            ) : showBudgetPage ? (
+                <BudgetPage
+                    userId={userId}
+                    handleGetBudget={handleGetBudget}
+                    handleSaveBudget={handleSaveBudget}
+                    onBack={() => setShowBudgetPage(false)}
+                />
             ) : (
                 <MainPage
                     userId={userId}
                     transactions={transactions}
+                    handleGetBudget={handleGetBudget}
                     onSingleSubmit={handleSingleTransactionSubmit}
                     onFileSubmit={handleFileTransactionSubmit}
                     handleFetchTransactions={handleFetchTransactions}
                     onLogout={handleLogout}
                     onViewTransactions={() => setShowTransactionPage(true)}
+                    onViewBudget={() => setShowBudgetPage(true)}
                 />
             )
         ) : isSignup ? (
