@@ -12,12 +12,17 @@ public class BudgetService {
 
     // Get the budget for a specific user and category
     public Budget getBudget(String userId, String category) {
-        return budgetRepository.findByUserIdAndCategory(userId, category);
+        System.out.println(category);
+        Budget budget = budgetRepository.findByUserIdAndCategory(userId, category);
+        System.out.println(budget);
+        return budget;
     }
 
     // Set or update the budget for a specific user and category
     public Budget setBudget(String userId, String category, double amount) {
+
         Budget budget = budgetRepository.findByUserIdAndCategory(userId, category);
+
         if (budget == null) {
             // If no existing budget, create a new one
             budget = new Budget(userId, category, amount);

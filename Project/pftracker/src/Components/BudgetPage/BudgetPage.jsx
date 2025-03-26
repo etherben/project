@@ -37,6 +37,7 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
         }
 
         await handleSaveBudget(userId, category, setBudget);
+        await handleSaveBudget(userId, "Overall", totalSetBudget);
         setBudgetData((prevData) =>
             prevData.map((item) =>
                 item.category === category
