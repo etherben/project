@@ -113,7 +113,7 @@ const TransactionPage = ({
     const onDeleteTransaction = async (transactionId) => {
         try {
             await handleDeleteTransaction(transactionId);
-            handleFetchTransactions(userId);
+            handleFilterTransactions(userId, filter)
         } catch (error) {
             console.error('Error Deleting:', error);
         }
