@@ -8,27 +8,30 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
     const last10Transactions = transactions.slice(-10);
 
     const aggregateTransactions = (transactions) => {
-        const monthlyTotal = transactions.reduce((amounts, transaction) => {
-            const [day, month, year] = transaction.transactionDate.split('/');
-            const date = new Date(`${year}-${month}-${day}`);
-            const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
+        const monthlyTotal = transactions
+            .filter(transaction => transaction.category !== "Income") // Exclude Income category
+            .reduce((amounts, transaction) => {
+                const [day, month, year] = transaction.transactionDate.split('/');
+                const date = new Date(`${year}-${month}-${day}`);
+                const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
 
-            if (!amounts[monthAndYear]) {
-                amounts[monthAndYear] = 0;
-            }
+                if (!amounts[monthAndYear]) {
+                    amounts[monthAndYear] = 0;
+                }
 
-            amounts[monthAndYear] += parseFloat(transaction.amount);
-            return amounts;
-        }, {});
+                amounts[monthAndYear] += parseFloat(transaction.amount);
+                return amounts;
+            }, {});
 
         return Object.entries(monthlyTotal).map(([month, total]) => ({ month, total }));
     };
+
 
     const monthlyData = aggregateTransactions(transactions);
 
     useEffect(() => {
         const fetchBudget = async () => {
-            const budget = await handleGetBudget(userId, 'overall');
+            const budget = await handleGetBudget(userId, 'Overall');
             if (budget !== 0) {
                 setBudgetData(budget); // Only set budget if it's not 0 (or any other invalid condition)
             } else {
