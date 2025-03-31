@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget }) => {
+const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget, onViewGraph }) => {
     const chartRef = useRef(null);
     const [budgetData, setBudgetData] = useState(null); // Initialize with null to represent no budget
     const last10Transactions = transactions.slice(-10);
@@ -124,6 +124,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                     </div>
                     <button onClick={onViewTransactions} className="view-all-btn">View All Transactions</button>
                     <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
+                    <button onClick={onViewGraph} className="view-graph-btn">Go to Graph</button>
                 </div>
                 <div className="rightside">
                     <div className="chart-container">

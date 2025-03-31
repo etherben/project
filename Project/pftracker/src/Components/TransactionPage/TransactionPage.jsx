@@ -150,18 +150,13 @@ const TransactionPage = ({
 
     const handleFilterSubmit = (e) => {
         e.preventDefault();
-
-
         // Convert startDate and endDate to Date objects
         const updatedFilter = {
             ...filter,
             startDate: filter.startDate && !isNaN(new Date(filter.startDate)) ? new Date(filter.startDate) : null,
             endDate: filter.endDate && !isNaN(new Date(filter.endDate)) ? new Date(filter.endDate) : null,
         };
-
-
         console.log('Sending filter:', updatedFilter);
-
         handleFilterTransactions(userId, updatedFilter);
     };
 

@@ -4,10 +4,15 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Budget page design and some error logic">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="income taken off chart, so only expenses show up">
+      <change afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/BudgetPage/BudgetPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -21,6 +26,7 @@
         <option value="Class" />
         <option value="JavaScript File" />
         <option value="JSX File" />
+        <option value="TypeScript File" />
         <option value="CSS File" />
       </list>
     </option>
@@ -84,7 +90,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;Budget&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;GraphPage&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -304,6 +310,8 @@
       <workItem from="1742381061595" duration="41000" />
       <workItem from="1742381227465" duration="4252000" />
       <workItem from="1742467611581" duration="1795000" />
+      <workItem from="1743362525511" duration="1152000" />
+      <workItem from="1743415686267" duration="12138000" />
     </task>
     <task id="LOCAL-00002" summary="fixing remote connection issue">
       <option name="closed" value="true" />
@@ -730,7 +738,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Signup Error message for empty inputs" />
     <MESSAGE value="Signup test to check no Submit on false email" />
     <MESSAGE value="Redid mainpage render test to accomidate changes" />
     <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
@@ -755,6 +762,7 @@
     <MESSAGE value="Change overall budget so its calculated as sum of others, rather than user editing" />
     <MESSAGE value="Column to show percentage of overall budget" />
     <MESSAGE value="Budget page design and some error logic" />
-    <option name="LAST_COMMIT_MESSAGE" value="Budget page design and some error logic" />
+    <MESSAGE value="income taken off chart, so only expenses show up" />
+    <option name="LAST_COMMIT_MESSAGE" value="income taken off chart, so only expenses show up" />
   </component>
 </project>

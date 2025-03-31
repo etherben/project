@@ -5,6 +5,7 @@ import React, { useCallback, useEffect, useState } from "react";
 import MainPage from "./Components/MainPage/MainPage";
 import TransactionPage from "./Components/TransactionPage/TransactionPage";
 import BudgetPage from "./Components/BudgetPage/BudgetPage";
+import GraphPage from "./Components/GraphPage/GraphPage";
 
 function App() {
   const [userId, setUserId] = useState(null);
@@ -13,6 +14,7 @@ function App() {
   const [transactionsToAdd, setTransactionsToAdd] = useState([]);
   const [showTransactionPage, setShowTransactionPage] = useState(false);
   const [showBudgetPage, setShowBudgetPage] = useState(false);
+  const [showGraphPage, setShowGraphPage] = useState(false);
 //use effect for user id
   useEffect(() => {
     const storedUserId = sessionStorage.getItem('id');
@@ -318,7 +320,15 @@ function App() {
                     handleSaveBudget={handleSaveBudget}
                     onBack={() => setShowBudgetPage(false)}
                 />
-            ) : (
+            ) : showGraphPage ? (
+                    <GraphPage
+                        userId={userId}
+                        handleGetBudget={handleGetBudget}
+                        transactions={transactions}
+                        handleFilterTransactions={handleFilterTransactions}
+                        onBack={() => setShowGraphPage(false)}
+                    />
+                ):(
                 <MainPage
                     userId={userId}
                     transactions={transactions}
@@ -329,6 +339,7 @@ function App() {
                     onLogout={handleLogout}
                     onViewTransactions={() => setShowTransactionPage(true)}
                     onViewBudget={() => setShowBudgetPage(true)}
+                    onViewGraph={() => setShowGraphPage(true)}
                 />
             )
         ) : isSignup ? (
