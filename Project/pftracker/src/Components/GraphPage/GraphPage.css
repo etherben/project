@@ -1,31 +1,48 @@
 .graph-page {
     display: flex;
-    height: 100vh;
+    height: 80vh;
     padding: 10px;
     gap: 10px;
+    overflow: hidden;
 }
 
 .filter-container {
-    width: 20%; /* Takes up 20% of the page width */
+    width: 20%;
+    min-width: 250px; /* Ensures filter section doesn't get too narrow */
     background: #ffffff;
     padding: 20px;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     display: flex;
     flex-direction: column;
+    height: 70vh;
     gap: 15px;
     border-radius: 8px;
+    align-items: stretch;
 }
 
-.graph-container {
-    width: 80%; /* Takes up 80% of the page width */
-    min-width: 600px;
-    background: #ffffff;
-    padding: 20px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
-    border-radius: 8px;
+h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #333;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #333;
+}
+
+select, input {
+    padding: 10px;
+    font-size: 14px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    background-color: #ffffff;
+    color: #333;
+    width: 100%;
 }
 
 .apply-filters-button {
@@ -36,8 +53,47 @@
     border-radius: 5px;
     cursor: pointer;
     margin-top: 10px;
+    width: 100%;
+    font-size: 16px;
+    transition: background-color 0.3s ease;
 }
 
 .apply-filters-button:hover {
     background-color: #0056b3;
+}
+
+.graph-container {
+    flex-grow: 1; /* Graph takes up remaining space */
+    min-width: 700px; /* Prevents graph from being too narrow */
+    background: #ffffff;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    height: 70vh
+}
+
+/* Responsive Adjustments */
+@media screen and (max-width: 1024px) {
+    .filter-container {
+        width: 25%; /* Slightly larger on medium screens */
+    }
+}
+
+@media screen and (max-width: 768px) {
+    .graph-page {
+        flex-direction: column;
+    }
+
+    .filter-container {
+        width: 100%;
+        min-width: unset;
+    }
+
+    .graph-container {
+        width: 100%;
+        min-width: unset;
+    }
 }
