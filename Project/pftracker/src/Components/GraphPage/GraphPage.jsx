@@ -1,106 +1,117 @@
-import React, { useEffect, useRef, useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import * as echarts from "echarts";
 import "./GraphPage.css";
 
-const GraphPage = ({ userId, transactions, handleGetBudget, handleFilterTransactions }) => {
+const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
     const chartRef = useRef(null);
-    const [budgetData, setBudgetData] = useState(null);
-    const [filters, setFilters] = useState({ startDate: "", endDate: "", category: "", merchant: "" });
-
-    const aggregateTransactions = (transactions) => {
-        const monthlyTotal = transactions
-            .filter(transaction => transaction.category !== "Income") // Exclude Income category
-            .reduce((amounts, transaction) => {
-                const [day, month, year] = transaction.transactionDate.split("/");
-                const date = new Date(`${year}-${month}-${day}`);
-                const monthAndYear = `${date.getMonth() + 1}/${date.getFullYear()}`;
-
-                if (!amounts[monthAndYear]) {
-                    amounts[monthAndYear] = 0;
-                }
-
-                amounts[monthAndYear] += parseFloat(transaction.amount);
-                return amounts;
-            }, {});
-
-        return Object.entries(monthlyTotal).map(([month, total]) => ({ month, total }));
-    };
+    const [budgetData, setBudgetData] = useState([]);
+    const [filters, setFilters] = useState({ year: "", month: "", category: "" });
+    const [filteredTransactions, setFilteredTransactions] = useState([]);
 
     useEffect(() => {
         fetchBudgetData();
-        handleFilterTransactions(userId, filters);
-    }, [filters, userId]);
-
-    useEffect(() => {
-        if (!chartRef.current) return;
-        const chart = echarts.init(chartRef.current);
-
-        const monthlyData = aggregateTransactions(transactions);
-        const months = monthlyData.map(item => item.month);
-        const totals = monthlyData.map(item => item.total);
-
-        const chartSettings = {
-            title: {
-                text: "Monthly Transaction Expenditure & Budget",
-                textStyle: { color: "#000", fontSize: 18 },
-            },
-            xAxis: {
-                type: "category",
-                data: months,
-                axisLabel: { textStyle: { color: "#000" } },
-            },
-            yAxis: {
-                type: "value",
-                axisLabel: { textStyle: { color: "#000" } },
-            },
-            series: [
-                {
-                    data: totals,
-                    type: "line",
-                    lineStyle: { color: "black" },
-                    name: "Expenditure",
-                },
-                budgetData !== null && {
-                    data: new Array(months.length).fill(budgetData),
-                    type: "line",
-                    lineStyle: { color: "green", type: "dashed" },
-                    name: "Budget (Overall)",
-                },
-            ].filter(Boolean),
-        };
-
-        chart.setOption(chartSettings);
-        return () => chart.dispose();
-    }, [transactions, budgetData]);
+        filterTransactions();
+    }, [filters, userId, transactions]);
 
     const fetchBudgetData = async () => {
         try {
-            const budget = await handleGetBudget(userId, "Overall");
-            setBudgetData(budget !== 0 ? budget : null);
+            const categories = ["Food", "Entertainment", "Shopping", "Bills", "Vehicle"];
+            const budgetPromises = categories.map(category => handleGetBudget(userId, category));
+            const budgets = await Promise.all(budgetPromises);
+            setBudgetData(categories.map((category, index) => ({ category, amount: budgets[index] })));
         } catch (error) {
             console.error("Error fetching budget data:", error);
         }
     };
 
-    const handleFilterSubmit = (e) => {
-        e.preventDefault();
-        setFilters(filters);
+    const filterTransactions = () => {
+        if (!filters.year) return;
+
+        const filtered = transactions.filter(transaction => {
+            const [day, month, year] = transaction.transactionDate.split("/");
+
+            if (year !== filters.year) return false;
+            if (filters.month && month !== filters.month) return false;
+            if (filters.category && transaction.category !== filters.category) return false;
+
+            return true;
+        });
+
+        setFilteredTransactions(filtered);
+    };
+
+    useEffect(() => {
+        if (!chartRef.current) return;
+
+        const chart = echarts.init(chartRef.current);
+
+        const groupedData = filters.month
+            ? filteredTransactions.map(tx => ({ date: tx.transactionDate, amount: parseFloat(tx.amount) })) // map amount and date of filtered trans
+            : aggregateTransactions(filteredTransactions);
+
+        const xData = groupedData.map(item => item.date);
+        const yData = groupedData.map(item => item.amount);
+
+        const chartOptions = {
+            title: { text: "Transactions", left: "center" },
+            xAxis: { type: "category", data: xData },
+            yAxis: { type: "value" },
+            series: [{ data: yData, type: "line", name: "Amount" }],
+        };
+
+        chart.setOption(chartOptions);
+        return () => chart.dispose();
+    }, [filteredTransactions]);
+
+    const aggregateTransactions = (transactions) => {
+        const monthlyTotals = transactions.reduce((acc, tx) => {
+            const [day, month, year] = tx.transactionDate.split("/");
+            const key = `${month}/${year}`;
+            acc[key] = (acc[key] || 0) + parseFloat(tx.amount); //aggregate like monthly but can adjust based on user selectrion
+            return acc;
+        }, {});
+
+        return Object.entries(monthlyTotals).map(([date, amount]) => ({ date, amount }));
     };
 
     return (
         <div className="graph-page">
+            <button onClick={onBack} className="back-button">Back</button>
             <div className="filter-container">
                 <h2>Filter Transactions</h2>
-                <form onSubmit={handleFilterSubmit}>
-                    <label>Start Date: <input type="date" value={filters.startDate} onChange={(e) => setFilters({ ...filters, startDate: e.target.value })} /></label>
-                    <label>End Date: <input type="date" value={filters.endDate} onChange={(e) => setFilters({ ...filters, endDate: e.target.value })} /></label>
-                    <label>Category: <input type="text" value={filters.category} onChange={(e) => setFilters({ ...filters, category: e.target.value })} /></label>
-                    <label>Merchant: <input type="text" value={filters.merchant} onChange={(e) => setFilters({ ...filters, merchant: e.target.value })} /></label>
-                    <button type="submit">Filter</button>
-                </form>
+                <label>
+                    Year:
+                    <select value={filters.year} onChange={(e) => setFilters({...filters, year: e.target.value})}>
+                        <option value="">Select Year</option>
+                        {[...new Set(transactions.map(tx => tx.transactionDate.split("/")[2]))].map(year => (
+                            <option key={year} value={year}>{year}</option>  // make to year
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    Month (Optional):
+                    <select value={filters.month} onChange={(e) => setFilters({...filters, month: e.target.value})}>
+                        <option value="">Whole Year</option>
+                        {Array.from({length: 12}, (_, i) => i + 1).map(month => (
+                            <option key={month} value={month.toString().padStart(2, "0")}>
+                                {new Date(0, month - 1).toLocaleString("default", {month: "long"})}
+                            </option>// select by month
+                        ))}
+                    </select>
+                </label>
+                <label>
+                    Category (Optional):
+                    <select value={filters.category}
+                            onChange={(e) => setFilters({...filters, category: e.target.value})}>
+                        <option value="">All Categories</option>
+                        {[...new Set(transactions.map(tx => tx.category))].map(category => (
+                            <option key={category} value={category}>{category}</option> //select by category
+                        ))}
+                    </select>
+                </label>
             </div>
             <div className="graph-container">
-                <div ref={chartRef} style={{ width: "100%", height: "400px" }}></div>
+                <div ref={chartRef} style={{width: "100%", height: "400px"}}></div>
             </div>
         </div>
     );
