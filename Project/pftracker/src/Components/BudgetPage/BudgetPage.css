@@ -1,3 +1,4 @@
+/* General Page Styles */
 body {
     margin: 0;
     font-family: Arial, sans-serif;
@@ -9,7 +10,7 @@ body {
     background-color: #5ba0ff;
 }
 
-.budget-container {
+.budget-page-container {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -27,7 +28,8 @@ h1 {
     margin-bottom: 20px;
 }
 
-.table-container {
+/* Table Container */
+.budget-page-table-container {
     width: 100%;
     max-height: 500px;
     overflow-y: auto;
@@ -37,27 +39,38 @@ h1 {
     margin-bottom: 20px;
 }
 
-table {
+/* Table Styles */
+.budget-page-table {
     width: 100%;
     border-collapse: collapse;
 }
 
-th, td {
+.budget-page-th, .budget-page-td {
     padding: 10px;
-    text-align: left;
+    text-align: center; /* Center content in th and td */
     border: 1px solid #ddd;
 }
 
-th {
+.budget-page-th {
     background-color: #007bff;
     color: white;
 }
 
-tr:hover {
+.budget-page-tr:hover {
     background-color: #f0f0f0;
 }
 
-button {
+input[type="number"] {
+    width: 100%;
+    padding: 5px;
+    margin: 0; /* Remove margin around input */
+    box-sizing: border-box; /* stop overflow */
+    text-align: center; /* Center the input content */
+    font-size: 16px;
+}
+
+/* Action Buttons */
+.budget-page-button {
     padding: 10px 20px;
     background: #007bff;
     color: white;
@@ -67,25 +80,13 @@ button {
     margin-top: 10px;
 }
 
-button:disabled {
+.budget-page-button:disabled {
     background: #ccc;
     cursor: not-allowed;
 }
 
-.common-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 5px;
-}
-
-.common-button:disabled {
-    background: #ccc;
-    cursor: not-allowed;
+.budget-page-actions {
+    margin-top: 20px;
 }
 
 /* Modal Overlay */

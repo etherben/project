@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import './BudgetPage.css';
+
 const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
     const [budgetData, setBudgetData] = useState([]);
     const [saveStatus, setSaveStatus] = useState({});
@@ -30,32 +31,46 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
 
     const formatPercentage = (value) => `${(value * 100).toFixed(1)}%`;
 
-    const handleBudgetSave = async (category, setBudget) => {
+    const handleBudgetSave = async () => {
         if (totalSetBudget === 0) {
             alert("Total Set Budget cannot be 0.");
             return;
         }
 
-        await handleSaveBudget(userId, category, setBudget);
-        await handleSaveBudget(userId, "Overall", totalSetBudget);
-        setBudgetData((prevData) =>
-            prevData.map((item) =>
-                item.category === category
-                    ? { ...item, currentBudget: setBudget }
-                    : item
-            )
+        // Save all changed budgets
+        await Promise.all(
+            budgetData.map(async (budget) => {
+                if (budget.currentBudget !== budget.setBudget) {
+                    await handleSaveBudget(userId, budget.category, budget.setBudget);
+                }
+            })
         );
 
-        setSaveStatus((prev) => ({ ...prev, [category]: 'Saved!' }));
+        // Save total set budget
+        await handleSaveBudget(userId, "Overall", totalSetBudget);
+
+        // Update current budgets with the saved values
+        setBudgetData((prevData) =>
+            prevData.map((item) => ({
+                ...item,
+                currentBudget: item.setBudget
+            }))
+        );
+
+        setSaveStatus('Saved!');
         setTimeout(() => {
-            setSaveStatus((prev) => ({ ...prev, [category]: null }));
+            setSaveStatus(null);
         }, 2000);
     };
 
-    const handleReset = (index) => {
-        const newData = [...budgetData];
-        newData[index].setBudget = newData[index].currentBudget;
-        setBudgetData(newData);
+    const handleResetAll = () => {
+        // Reset all set budgets to current budgets
+        setBudgetData((prevData) =>
+            prevData.map((item) => ({
+                ...item,
+                setBudget: item.currentBudget
+            }))
+        );
     };
 
     const handleAutoSaveChange = (index, value) => {
@@ -64,13 +79,13 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
         setBudgetData(newData);
 
         if (autoSaveEnabled && totalSetBudget > 0) {
-            handleBudgetSave(newData[index].category, value);
+            handleBudgetSave();
         }
     };
 
     return (
-        <div className="budget-container">
-            <h1>Budget Settings</h1>
+        <div className="budget-page-container">
+            <h1 className="budget-page-header">Budget Settings</h1>
             <label>
                 <input
                     type="checkbox"
@@ -79,15 +94,14 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
                 />
                 Enable Auto-Save
             </label>
-            <div className="table-container">
-                <table>
+            <div className="budget-page-table-container">
+                <table className="budget-page-table">
                     <thead>
                     <tr>
-                        <th>Budget Category</th>
-                        <th>Current Budget</th>
-                        <th>Set Budget</th>
-                        <th>% of Total Budget</th>
-                        <th>Actions</th>
+                        <th className="budget-page-th">Budget Category</th>
+                        <th className="budget-page-th">Current Budget</th>
+                        <th className="budget-page-th">Set Budget</th>
+                        <th className="budget-page-th">% of Total Budget</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -98,11 +112,12 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
                         return (
                             <tr
                                 key={index}
+                                className="budget-page-tr"
                                 style={{ backgroundColor: isUnsaved ? '#fff6cc' : 'transparent' }}
                             >
-                                <td>{budget.category}</td>
-                                <td>{budget.currentBudget}</td>
-                                <td>
+                                <td className="budget-page-td">{budget.category}</td>
+                                <td className="budget-page-td">{budget.currentBudget}</td>
+                                <td className="budget-page-td">
                                     <input
                                         type="number"
                                         value={budget.setBudget}
@@ -111,41 +126,39 @@ const BudgetPage = ({ userId, handleGetBudget, handleSaveBudget, onBack }) => {
                                         }
                                     />
                                 </td>
-                                <td>{formatPercentage(portion)}</td>
-                                <td>
-                                    {!autoSaveEnabled && (
-                                        <button
-                                            onClick={() =>
-                                                handleBudgetSave(budget.category, budget.setBudget)
-                                            }
-                                            disabled={totalSetBudget === 0}
-                                        >
-                                            Save
-                                        </button>
-                                    )}
-                                    <button onClick={() => handleReset(index)}>Reset</button>
-                                    {saveStatus[budget.category] && (
-                                        <span style={{ marginLeft: '8px', color: 'green' }}>
-                                                {saveStatus[budget.category]}
-                                            </span>
-                                    )}
-                                </td>
+                                <td className="budget-page-td">{formatPercentage(portion)}</td>
                             </tr>
                         );
                     })}
                     </tbody>
                     <tfoot>
                     <tr style={{ fontWeight: 'bold', backgroundColor: '#f0f0f0' }}>
-                        <td>Overall (Total)</td>
-                        <td>{totalCurrentBudget}</td>
-                        <td>{totalSetBudget}</td>
-                        <td>{formatPercentage(1)}</td>
-                        <td></td>
+                        <td className="budget-page-td">Overall (Total)</td>
+                        <td className="budget-page-td">{totalCurrentBudget}</td>
+                        <td className="budget-page-td">{totalSetBudget}</td>
+                        <td className="budget-page-td">{formatPercentage(1)}</td>
                     </tr>
                     </tfoot>
                 </table>
             </div>
-            <button onClick={onBack} style={{ marginTop: '1rem' }}>Back</button>
+            <div className="budget-page-actions">
+                <button
+                    className="budget-page-button"
+                    onClick={handleBudgetSave}
+                    disabled={totalSetBudget === 0}
+                >
+                    Save Changes
+                </button>
+                <button
+                    className="budget-page-button"
+                    onClick={handleResetAll}
+                >
+                    Reset All
+                </button>
+            </div>
+            <button className="budget-page-button" onClick={onBack} style={{ marginTop: '1rem' }}>
+                Back
+            </button>
         </div>
     );
 };
