@@ -4,10 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Created graph page, applied filter logic from TransactionPage and graph from mainpage for now">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="MainPage transactions modify, for better visualisation">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -306,87 +304,9 @@
       <workItem from="1742381227465" duration="4252000" />
       <workItem from="1742467611581" duration="1795000" />
       <workItem from="1743362525511" duration="1152000" />
-      <workItem from="1743415686267" duration="14935000" />
-    </task>
-    <task id="LOCAL-00003" summary="Same sign up form as previously written, with testing">
-      <option name="closed" value="true" />
-      <created>1731667100033</created>
-      <option name="number" value="00003" />
-      <option name="presentableId" value="LOCAL-00003" />
-      <option name="project" value="LOCAL" />
-      <updated>1731667100033</updated>
-    </task>
-    <task id="LOCAL-00004" summary="Login form renders properly with tests">
-      <option name="closed" value="true" />
-      <created>1731667429238</created>
-      <option name="number" value="00004" />
-      <option name="presentableId" value="LOCAL-00004" />
-      <option name="project" value="LOCAL" />
-      <updated>1731667429238</updated>
-    </task>
-    <task id="LOCAL-00005" summary="Login form sends correct data onSubmit">
-      <option name="closed" value="true" />
-      <created>1731668257409</created>
-      <option name="number" value="00005" />
-      <option name="presentableId" value="LOCAL-00005" />
-      <option name="project" value="LOCAL" />
-      <updated>1731668257409</updated>
-    </task>
-    <task id="LOCAL-00006" summary="Login form sends correct data onSubmit">
-      <option name="closed" value="true" />
-      <created>1731676148479</created>
-      <option name="number" value="00006" />
-      <option name="presentableId" value="LOCAL-00006" />
-      <option name="project" value="LOCAL" />
-      <updated>1731676148479</updated>
-    </task>
-    <task id="LOCAL-00007" summary="Upon mounting, create userId to be stored throughout the session">
-      <option name="closed" value="true" />
-      <created>1732703652484</created>
-      <option name="number" value="00007" />
-      <option name="presentableId" value="LOCAL-00007" />
-      <option name="project" value="LOCAL" />
-      <updated>1732703652484</updated>
-    </task>
-    <task id="LOCAL-00008" summary="once logged in, userid is saved and directs to empty mainpage">
-      <option name="closed" value="true" />
-      <created>1732712829042</created>
-      <option name="number" value="00008" />
-      <option name="presentableId" value="LOCAL-00008" />
-      <option name="project" value="LOCAL" />
-      <updated>1732712829042</updated>
-    </task>
-    <task id="LOCAL-00009" summary="once logged in, userid is saved and directs to empty mainpage">
-      <option name="closed" value="true" />
-      <created>1732714382382</created>
-      <option name="number" value="00009" />
-      <option name="presentableId" value="LOCAL-00009" />
-      <option name="project" value="LOCAL" />
-      <updated>1732714382382</updated>
-    </task>
-    <task id="LOCAL-00010" summary="Created basic mainpage with sections for uploading and loading transactions. No functionality yet.">
-      <option name="closed" value="true" />
-      <created>1732723089608</created>
-      <option name="number" value="00010" />
-      <option name="presentableId" value="LOCAL-00010" />
-      <option name="project" value="LOCAL" />
-      <updated>1732723089608</updated>
-    </task>
-    <task id="LOCAL-00011" summary="User can submit single transaction">
-      <option name="closed" value="true" />
-      <created>1732730732225</created>
-      <option name="number" value="00011" />
-      <option name="presentableId" value="LOCAL-00011" />
-      <option name="project" value="LOCAL" />
-      <updated>1732730732225</updated>
-    </task>
-    <task id="LOCAL-00012" summary="User can submit file, updates database as separate transactions">
-      <option name="closed" value="true" />
-      <created>1732895449815</created>
-      <option name="number" value="00012" />
-      <option name="presentableId" value="LOCAL-00012" />
-      <option name="project" value="LOCAL" />
-      <updated>1732895449815</updated>
+      <workItem from="1743415686267" duration="15585000" />
+      <workItem from="1743491785452" duration="1031000" />
+      <workItem from="1743492859265" duration="6263000" />
     </task>
     <task id="LOCAL-00013" summary="Transactions are fetched and loaded when initially loading mainpage">
       <option name="closed" value="true" />
@@ -700,7 +620,87 @@
       <option name="project" value="LOCAL" />
       <updated>1743436684519</updated>
     </task>
-    <option name="localTasksCounter" value="52" />
+    <task id="LOCAL-00052" summary="Design for graph page">
+      <option name="closed" value="true" />
+      <created>1743439579067</created>
+      <option name="number" value="00052" />
+      <option name="presentableId" value="LOCAL-00052" />
+      <option name="project" value="LOCAL" />
+      <updated>1743439579067</updated>
+    </task>
+    <task id="LOCAL-00053" summary="Modifying graph and filter to adjust based on new parameters, diplay should flex based on filter data.">
+      <option name="closed" value="true" />
+      <created>1743439897394</created>
+      <option name="number" value="00053" />
+      <option name="presentableId" value="LOCAL-00053" />
+      <option name="project" value="LOCAL" />
+      <updated>1743439897394</updated>
+    </task>
+    <task id="LOCAL-00054" summary="Spacing for login and signup modals">
+      <option name="closed" value="true" />
+      <created>1743492947333</created>
+      <option name="number" value="00054" />
+      <option name="presentableId" value="LOCAL-00054" />
+      <option name="project" value="LOCAL" />
+      <updated>1743492947334</updated>
+    </task>
+    <task id="LOCAL-00055" summary="Username on title bar">
+      <option name="closed" value="true" />
+      <created>1743495610054</created>
+      <option name="number" value="00055" />
+      <option name="presentableId" value="LOCAL-00055" />
+      <option name="project" value="LOCAL" />
+      <updated>1743495610054</updated>
+    </task>
+    <task id="LOCAL-00056" summary="css styling for Buttons and list on mainpage">
+      <option name="closed" value="true" />
+      <created>1743495626381</created>
+      <option name="number" value="00056" />
+      <option name="presentableId" value="LOCAL-00056" />
+      <option name="project" value="LOCAL" />
+      <updated>1743495626381</updated>
+    </task>
+    <task id="LOCAL-00057" summary="MainPage chart Modify for last 6 months of transactions">
+      <option name="closed" value="true" />
+      <created>1743496135599</created>
+      <option name="number" value="00057" />
+      <option name="presentableId" value="LOCAL-00057" />
+      <option name="project" value="LOCAL" />
+      <updated>1743496135599</updated>
+    </task>
+    <task id="LOCAL-00058" summary="MainPage chart modify, more interactive">
+      <option name="closed" value="true" />
+      <created>1743496706445</created>
+      <option name="number" value="00058" />
+      <option name="presentableId" value="LOCAL-00058" />
+      <option name="project" value="LOCAL" />
+      <updated>1743496706445</updated>
+    </task>
+    <task id="LOCAL-00059" summary="MainPage chart modify, for better visualisation">
+      <option name="closed" value="true" />
+      <created>1743497246649</created>
+      <option name="number" value="00059" />
+      <option name="presentableId" value="LOCAL-00059" />
+      <option name="project" value="LOCAL" />
+      <updated>1743497246649</updated>
+    </task>
+    <task id="LOCAL-00060" summary="MainPage chart modify, for better visualisation">
+      <option name="closed" value="true" />
+      <created>1743498481719</created>
+      <option name="number" value="00060" />
+      <option name="presentableId" value="LOCAL-00060" />
+      <option name="project" value="LOCAL" />
+      <updated>1743498481719</updated>
+    </task>
+    <task id="LOCAL-00061" summary="MainPage transactions modify, for better visualisation">
+      <option name="closed" value="true" />
+      <created>1743499194830</created>
+      <option name="number" value="00061" />
+      <option name="presentableId" value="LOCAL-00061" />
+      <option name="project" value="LOCAL" />
+      <updated>1743499194830</updated>
+    </task>
+    <option name="localTasksCounter" value="62" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,15 +733,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Redid mainpage render test to accomidate changes" />
-    <MESSAGE value="Added tests from old app.test.js to MainPage.test.jsx" />
-    <MESSAGE value="Creating new services with dockerfiles" />
-    <MESSAGE value="Updated dockerfiles to handle multiple services." />
-    <MESSAGE value="Basic Transaction page to navigate to" />
-    <MESSAGE value="Fixed userControllerTests to call updated backend" />
-    <MESSAGE value="Updated frontend to link to the transaction page, MainPage will only show most recent transactions and summary graph now." />
-    <MESSAGE value="Spacing for transaction page" />
-    <MESSAGE value="Repositioned back button" />
     <MESSAGE value="Graph back in place for mainpage" />
     <MESSAGE value="Added save file option to transaction page" />
     <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
@@ -758,6 +749,27 @@
     <MESSAGE value="Budget page design and some error logic" />
     <MESSAGE value="income taken off chart, so only expenses show up" />
     <MESSAGE value="Created graph page, applied filter logic from TransactionPage and graph from mainpage for now" />
-    <option name="LAST_COMMIT_MESSAGE" value="Created graph page, applied filter logic from TransactionPage and graph from mainpage for now" />
+    <MESSAGE value="Design for graph page" />
+    <MESSAGE value="Modifying graph and filter to adjust based on new parameters, diplay should flex based on filter data." />
+    <MESSAGE value="Spacing for login and signup modals" />
+    <MESSAGE value="Username on title bar" />
+    <MESSAGE value="css styling for Buttons and list on mainpage" />
+    <MESSAGE value="MainPage chart Modify for last 6 months of transactions" />
+    <MESSAGE value="MainPage chart modify, more interactive" />
+    <MESSAGE value="MainPage chart modify, for better visualisation" />
+    <MESSAGE value="MainPage transactions modify, for better visualisation" />
+    <option name="LAST_COMMIT_MESSAGE" value="MainPage transactions modify, for better visualisation" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx</url>
+          <line>47</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
