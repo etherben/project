@@ -43,6 +43,7 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
         fetchBudget();
     }, [userId, handleGetBudget]);
 
+    //Chart Stuff
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
 
