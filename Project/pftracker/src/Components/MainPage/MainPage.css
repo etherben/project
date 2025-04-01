@@ -35,19 +35,35 @@
     border: 1px solid #ccc;
     box-sizing: border-box;
 }
+.recent-list-header {
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-align: center;
+    padding: 10px 0;
+    border-bottom: 2px solid #ccc;
+    margin-bottom: 10px;
+}
 
-.transaction-row {
+
+.transaction-header, .transaction-row {
     display: flex;
     justify-content: space-between;
-    padding: 8px;
-    border-bottom: 1px solid #ddd;
+    padding: 5px 10px;
+    width: 100%;
+}
+
+
+.header-item {
+    font-weight: bold;
+    width: 25%; /* Set each header column width */
+    text-align: center;
 }
 
 .transaction-row:last-child {
     border-bottom: none;
 }
 
-.view-all-btn {
+.view-all-btn, .view-budget-btn, .view-graph-btn{
     margin-top: 10px;
     padding: 10px;
     width: 100%;
@@ -59,7 +75,7 @@
     font-size: 16px;
 }
 
-.view-all-btn:hover {
+.view-all-btn:hover, .view-budget-btn:hover, .view-graph-btn:hover {
     background-color: #0056b3;
 }
 
