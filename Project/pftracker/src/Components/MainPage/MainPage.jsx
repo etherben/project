@@ -45,8 +45,10 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
 
-        const months = monthlyData.map(item => item.month);
-        const totals = monthlyData.map(item => item.total);
+        // Get only the last 6 months for main graph
+        const recentMonthsData = monthlyData.slice(-6);
+        const months = recentMonthsData.map(item => item.month);
+        const totals = recentMonthsData.map(item => item.total);
 
         // Create a chart configuration
         const chartSettings = {
@@ -100,6 +102,7 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
         return () => chart.dispose();
     }, [monthlyData, budgetData]); // Re-run chart update when either monthlyData or budgetData changes
 
+
     return (
         <div className="main-container">
             <div className="main-header">
@@ -138,10 +141,10 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                 </div>
                 <div className="rightside">
                     <div className="chart-container">
-                        <div ref={chartRef} style={{width: '600px', height: '400px'}}></div>
+                        <div ref={chartRef} style={{width: '800px', height: '600px'}}></div>
                     </div>
-                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
                     <button onClick={onViewGraph} className="view-graph-btn">Go to Graph</button>
+                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
                 </div>
             </div>
         </div>
