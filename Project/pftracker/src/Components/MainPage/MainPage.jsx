@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget }) => {
+const MainPage = ({userId, username, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget, onViewGraph }) => {
     const chartRef = useRef(null);
     const [budgetData, setBudgetData] = useState(null); // Initialize with null to represent no budget
     const last10Transactions = transactions.slice(-10);
@@ -20,6 +20,7 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                 }
 
                 amounts[monthAndYear] += parseFloat(transaction.amount);
+                amounts[monthAndYear] = Math.round(amounts[monthAndYear] * 100) / 100; // Round to 2 decimals for pennies
                 return amounts;
             }, {});
 
@@ -42,20 +43,59 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
         fetchBudget();
     }, [userId, handleGetBudget]);
 
+    //Chart Stuff
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
 
-        const months = monthlyData.map(item => item.month);
-        const totals = monthlyData.map(item => item.total);
+        // Get only the last 6 months of data
+        const recentMonthsData = monthlyData.slice(-6);
+        const months = recentMonthsData.map(item => item.month);
+        const totals = recentMonthsData.map(item => item.total);
 
         // Create a chart configuration
         const chartSettings = {
             title: {
-                text: 'Monthly Transaction Expenditure & Budget',
+                text: '6 Most Recent Months',
                 textStyle: {
                     color: '#000000',
-                    fontSize: 18,
+                    fontSize: 24,
                 },
+                left: 'center',
+                top: '5%',
+                textAlign: 'center',
+                textBaseline: 'middle',
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: '#fff',
+                borderColor: '#ccc',
+                borderWidth: 1,
+                padding: 10,
+                textStyle: {
+                    color: '#000',
+                },
+                formatter: function (params) {
+                    const expenditure = params[0].data; // Expenditure data
+                    const budget = budgetData; // Overall budget
+
+                    // Set background color based on Expenditure vs Budget
+                    const tooltipBackgroundColor = expenditure > budget ? 'rgba(255, 99, 71, 0.8)' : 'rgba(144, 238, 144, 0.8)'; // Red if Expenditure > Budget, else green (kept to light colours)
+
+                    return `
+                <div style="background-color:${tooltipBackgroundColor}; padding: 10px; border-radius: 5px;">
+                    <strong>Month: ${params[0].name}</strong><br />
+                    Expenditure: ${expenditure}<br />
+                    Budget: ${budget}
+                </div>
+            `;
+                },
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                top: '15%',
+                bottom: '10%',
+                containLabel: true,
             },
             xAxis: {
                 type: 'category',
@@ -63,6 +103,17 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                 axisLabel: {
                     textStyle: {
                         color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
                     },
                 },
             },
@@ -71,6 +122,22 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                 axisLabel: {
                     textStyle: {
                         color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#ccc',
                     },
                 },
             },
@@ -79,9 +146,12 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                     data: totals,
                     type: 'line',
                     lineStyle: {
-                        color: 'black',
+                        color: 'red',
+                        type: 'dashed',
                     },
-                    name: 'Expenditure',
+                    name: 'Total Spent',
+                    symbol: 'circle', // Optional: Shows circles at data points
+                    symbolSize: 6,
                 },
                 // Add the budget data to the chart data only if valid budgetData exists
                 budgetData !== null && {
@@ -91,44 +161,58 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
                         color: 'green',
                         type: 'dashed',
                     },
-                    name: 'Budget (Overall)',
+                    name: 'Total Budget',
                 }
-            ].filter(Boolean), // Filter out the budget series if it's null (i.e., no budget exists)
+            ].filter(Boolean), // Filter out the budget series if it's null
         };
 
         chart.setOption(chartSettings);
         return () => chart.dispose();
     }, [monthlyData, budgetData]); // Re-run chart update when either monthlyData or budgetData changes
 
+
     return (
         <div className="main-container">
             <div className="main-header">
-                <h1>Welcome, User ID: {userId}</h1>
+                <h1>Welcome, {username}</h1>
                 <button onClick={onLogout}>Logout</button>
             </div>
             <div className="content">
                 <div className="leftside">
                     <div className="transaction-list">
+                        <header className="recent-list-header">Recent Transactions</header>
                         {transactions.length === 0 ? (
                             <p>No transactions yet.</p>
                         ) : (
-                            last10Transactions.map(transaction => (
-                                <div key={transaction.id} className="transaction-row">
-                                    <span>{transaction.transactionDate}</span> |
-                                    <span>{transaction.merchant}</span> |
-                                    <span>{transaction.amount}</span> |
-                                    <span>{transaction.category}</span>
+                            <div className="transaction-table">
+                                {/* Table Header Row */}
+                                <div className="transaction-header">
+                                    <span className="header-item">Date</span>
+                                    <span className="header-item">Merchant</span>
+                                    <span className="header-item">Amount</span>
+                                    <span className="header-item">Category</span>
                                 </div>
-                            ))
+
+                                {/* Transaction Rows */}
+                                {last10Transactions.map(transaction => (
+                                    <div key={transaction.id} className="transaction-row">
+                                    <span>{transaction.transactionDate}</span>
+                                        <span>{transaction.merchant}</span>
+                                        <span>{transaction.amount}</span>
+                                        <span>{transaction.category}</span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                     </div>
                     <button onClick={onViewTransactions} className="view-all-btn">View All Transactions</button>
-                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
                 </div>
                 <div className="rightside">
                     <div className="chart-container">
-                        <div ref={chartRef} style={{ width: '600px', height: '400px' }}></div>
+                        <div ref={chartRef} style={{width: '800px', height: '600px'}}></div>
                     </div>
+                    <button onClick={onViewGraph} className="view-graph-btn">Go to Graph</button>
+                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
                 </div>
             </div>
         </div>
