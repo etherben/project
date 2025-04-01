@@ -1,6 +1,6 @@
 .main-container {
     background-color: #5ba0ff;
-    min-height: 150vh;
+    min-height: 100vh;
     min-width: 1200px;
     padding: 20px;
 }
@@ -30,7 +30,7 @@
     background: #f9f9f9;
     padding: 10px;
     border-radius: 8px;
-    max-height: 600px;
+    height: 600px;
     overflow: hidden;
     border: 1px solid #ccc;
     box-sizing: border-box;

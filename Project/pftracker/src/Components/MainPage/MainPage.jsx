@@ -73,6 +73,21 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                 textStyle: {
                     color: '#000',
                 },
+                formatter: function (params) {
+                    const expenditure = params[0].data; // Expenditure data
+                    const budget = budgetData; // Overall budget
+
+                    // Set background color based on Expenditure vs Budget
+                    const tooltipBackgroundColor = expenditure > budget ? 'rgba(255, 99, 71, 0.8)' : 'rgba(144, 238, 144, 0.8)'; // Red if Expenditure > Budget, else green (kept to light colours)
+
+                    return `
+                <div style="background-color:${tooltipBackgroundColor}; padding: 10px; border-radius: 5px;">
+                    <strong>Month: ${params[0].name}</strong><br />
+                    Expenditure: ${expenditure}<br />
+                    Budget: ${budget}
+                </div>
+            `;
+                },
             },
             grid: {
                 left: '10%',
@@ -133,7 +148,7 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                         color: 'red',
                         type: 'dashed',
                     },
-                    name: 'Expenditure',
+                    name: 'Total Spent',
                     symbol: 'circle', // Optional: Shows circles at data points
                     symbolSize: 6,
                 },
@@ -145,9 +160,9 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                         color: 'green',
                         type: 'dashed',
                     },
-                    name: 'Budget (Overall)',
+                    name: 'Total Budget',
                 }
-            ].filter(Boolean), // Filter out the budget series if it's null (i.e., no budget exists)
+            ].filter(Boolean), // Filter out the budget series if it's null
         };
 
         chart.setOption(chartSettings);
