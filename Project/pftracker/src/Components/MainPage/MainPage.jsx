@@ -20,6 +20,7 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                 }
 
                 amounts[monthAndYear] += parseFloat(transaction.amount);
+                amounts[monthAndYear] = Math.round(amounts[monthAndYear] * 100) / 100; // Round to 2 decimals for pennies
                 return amounts;
             }, {});
 
@@ -45,7 +46,7 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
     useEffect(() => {
         const chart = echarts.init(chartRef.current);
 
-        // Get only the last 6 months for main graph
+        // Get only the last 6 months of data
         const recentMonthsData = monthlyData.slice(-6);
         const months = recentMonthsData.map(item => item.month);
         const totals = recentMonthsData.map(item => item.total);
@@ -59,12 +60,40 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                     fontSize: 18,
                 },
             },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: '#fff',
+                borderColor: '#ccc',
+                borderWidth: 1,
+                padding: 10,
+                textStyle: {
+                    color: '#000',
+                },
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                top: '15%',
+                bottom: '10%',
+                containLabel: true,
+            },
             xAxis: {
                 type: 'category',
                 data: months,
                 axisLabel: {
                     textStyle: {
                         color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
                     },
                 },
             },
@@ -73,6 +102,22 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                 axisLabel: {
                     textStyle: {
                         color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#ccc',
                     },
                 },
             },
@@ -81,9 +126,12 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                     data: totals,
                     type: 'line',
                     lineStyle: {
-                        color: 'black',
+                        color: 'red',
+                        type: 'dashed',
                     },
                     name: 'Expenditure',
+                    symbol: 'circle', // Optional: Shows circles at data points
+                    symbolSize: 6,
                 },
                 // Add the budget data to the chart data only if valid budgetData exists
                 budgetData !== null && {
