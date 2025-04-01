@@ -9,6 +9,7 @@ import GraphPage from "./Components/GraphPage/GraphPage";
 
 function App() {
   const [userId, setUserId] = useState(null);
+  const [username, setUsername] = useState(null)
   const [isSignup, setSignup] = useState(true);
   const [transactions, setTransactions] = useState([]);
   const [transactionsToAdd, setTransactionsToAdd] = useState([]);
@@ -29,6 +30,7 @@ function App() {
 
   const handleLogout = () => {
     setUserId(null);
+    setUsername(null);
     setTransactions([]);
     sessionStorage.removeItem('id');
     console.log("Logged out Successfully");
@@ -97,6 +99,7 @@ function App() {
       const result = await response.json();
       console.log('User signed up:', result);
       setUserId(result.id);
+      setUsername(result.username);
     } catch (error) {
       console.error('Error:', error);
     }
@@ -108,12 +111,14 @@ function App() {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(userLoginData),
+
       });
       if (!response.ok) {
         throw new Error('Login failed');
       }
       const result = await response.json();
       setUserId(result.id);
+      setUsername(result.username);
       sessionStorage.setItem('id', result.id);
       console.log('Login successful:', result);
     } catch (error) {
@@ -331,6 +336,7 @@ function App() {
                 ):(
                 <MainPage
                     userId={userId}
+                    username={username}
                     transactions={transactions}
                     handleGetBudget={handleGetBudget}
                     onSingleSubmit={handleSingleTransactionSubmit}

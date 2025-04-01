@@ -2,7 +2,7 @@ import React, { useRef, useEffect, useState } from 'react';
 import * as echarts from 'echarts';
 import './MainPage.css';
 
-const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget, onViewGraph }) => {
+const MainPage = ({userId, username, transactions, onLogout, onViewTransactions, onViewBudget, handleGetBudget, onViewGraph }) => {
     const chartRef = useRef(null);
     const [budgetData, setBudgetData] = useState(null); // Initialize with null to represent no budget
     const last10Transactions = transactions.slice(-10);
@@ -103,33 +103,45 @@ const MainPage = ({ userId, transactions, onLogout, onViewTransactions, onViewBu
     return (
         <div className="main-container">
             <div className="main-header">
-                <h1>Welcome, User ID: {userId}</h1>
+                <h1>Welcome, {username}</h1>
                 <button onClick={onLogout}>Logout</button>
             </div>
             <div className="content">
                 <div className="leftside">
                     <div className="transaction-list">
+                        <header className="recent-list-header">Recent Transactions</header>
                         {transactions.length === 0 ? (
                             <p>No transactions yet.</p>
                         ) : (
-                            last10Transactions.map(transaction => (
-                                <div key={transaction.id} className="transaction-row">
-                                    <span>{transaction.transactionDate}</span> |
-                                    <span>{transaction.merchant}</span> |
-                                    <span>{transaction.amount}</span> |
-                                    <span>{transaction.category}</span>
+                            <div className="transaction-table">
+                                {/* Table Header Row */}
+                                <div className="transaction-header">
+                                    <span className="header-item">Date</span>
+                                    <span className="header-item">Merchant</span>
+                                    <span className="header-item">Amount</span>
+                                    <span className="header-item">Category</span>
                                 </div>
-                            ))
+
+                                {/* Transaction Rows */}
+                                {last10Transactions.map(transaction => (
+                                    <div key={transaction.id} className="transaction-row">
+                                    <span>{transaction.transactionDate}</span>
+                                        <span>{transaction.merchant}</span>
+                                        <span>{transaction.amount}</span>
+                                        <span>{transaction.category}</span>
+                                    </div>
+                                ))}
+                            </div>
                         )}
                     </div>
                     <button onClick={onViewTransactions} className="view-all-btn">View All Transactions</button>
-                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
-                    <button onClick={onViewGraph} className="view-graph-btn">Go to Graph</button>
                 </div>
                 <div className="rightside">
                     <div className="chart-container">
-                        <div ref={chartRef} style={{ width: '600px', height: '400px' }}></div>
+                        <div ref={chartRef} style={{width: '600px', height: '400px'}}></div>
                     </div>
+                    <button onClick={onViewBudget} className="view-budget-btn">Goto Budgets</button>
+                    <button onClick={onViewGraph} className="view-graph-btn">Go to Graph</button>
                 </div>
             </div>
         </div>
