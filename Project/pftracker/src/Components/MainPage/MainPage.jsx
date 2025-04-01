@@ -54,11 +54,15 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
         // Create a chart configuration
         const chartSettings = {
             title: {
-                text: 'Monthly Transaction Expenditure & Budget',
+                text: '6 Most Recent Months',
                 textStyle: {
                     color: '#000000',
-                    fontSize: 18,
+                    fontSize: 24,
                 },
+                left: 'center',
+                top: '5%',
+                textAlign: 'center',
+                textBaseline: 'middle',
             },
             tooltip: {
                 trigger: 'axis',
