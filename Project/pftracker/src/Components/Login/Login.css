@@ -4,11 +4,14 @@
     border-radius: 25px;
     display: flex;
     flex-direction: column;
-    margin: auto;
+    margin-top: 150px;
+    margin-bottom: 100px;
     width: 600px;
     background: white;  /* White background for the form container */
     padding: 20px;
     box-shadow: 4px 6px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    justify-content: center;
+    height: 60vh;
 }
 
 /* Header section of the container */
