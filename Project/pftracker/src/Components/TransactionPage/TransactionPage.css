@@ -1,115 +1,209 @@
-body {
-    margin: 0;
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start; /* Ensures content starts at the top */
-    align-items: center; /* Centers content horizontally */
-    height: 100vh; /* Full viewport height */
 
-    background-color: #5ba0ff;
-}
+    body {
+        margin: 0;
+        font-family: Arial, sans-serif;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-start; /* Ensures content starts at the top */
+        align-items: center; /* Centers content horizontally */
+        height: 100vh; /* Full viewport height */
+        background-color: #5ba0ff;
+    }
 
-.transaction-container {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    max-width: 2400px; /* Set a max width */
-    min-width: 1200px;
-    margin-top: 100px;
-    margin-bottom: 20px;
-    margin-right: 20px;
-    padding: 20px;
-    background: white;
-    border-radius: 8px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    z-index: 10;
-}
+    .transaction-page-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center; /* Center content horizontally */
+        max-width: 1200px; /* Limit max width */
+        width: 100%;
+        margin-top: 100px;
+        margin-bottom: 20px;
+        padding: 20px;
+        background: white;
+        border-radius: 8px;
+        box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+    }
 
-.transaction-header {
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    margin-bottom: 20px;
-}
+    .transaction-page-header {
+        display: flex;
+        justify-content: space-between;
+        width: 100%;
+        margin-bottom: 20px;
+        padding-bottom: 10px;
+        border-bottom: 1px solid #ddd;
+    }
 
-.transaction-list {
-    width: 100%;
-    max-height: 500px;
-    overflow-y: auto;
-    padding: 20px;
-    margin-right: 20px;
-    background: #f5f5f5;
-    border-radius: 8px;
-}
+    .transaction-page-list {
+        width: 100%;
+        max-height: 500px;
+        overflow-y: auto;
+        padding: 20px;
+        background: #f5f5f5;
+        border-radius: 8px;
+        margin-bottom: 20px;
+    }
 
-.transaction-row {
-    display: flex;
-    justify-content: space-between;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-}
+    .transaction-page-row {
+        display: flex;
+        justify-content: space-between;
+        padding: 12px 20px;
+        border-bottom: 1px solid #ddd;
+        font-size: 14px;
+    }
 
-.transaction-row span {
-    padding: 20px;
-    flex: 1; /* Makes each column take equal width */
-    text-align: left; /* Align text to the left */
-}
+    .transaction-page-row span {
+        padding: 10px;
+        flex: 1; /* Makes each column take equal width */
+        text-align: left; /* Align text to the left */
+    }
 
-.add-transaction-btn {
-    padding: 10px 20px;
-    font-size: 16px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    margin-top: 20px; /* Adds space above the button */
-}
+    .transaction-page-add-btn {
+        font-size: 14px; /* Adjust font size */
+        background: #007bff;
+        max-height: 40px;
+        color: white;
+        padding: 8px 8px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: fit-content;
+    }
 
-.back-button{
-    position: absolute;
-    left: 20px;
-    top: 20px;
-    padding: 10px 20px;
-    cursor: pointer;
-}
+    .transaction-page-save-btn,
+    .transaction-page-close-modal-btn,
+    .add-manual-button,
+    .manual-close-button,
+    .manual-cancel-button{
+        font-size: 16px;
+        padding: 12px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+        width: fit-content;
+    }
 
-.modal-overlay {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    z-index: 20; /* Modal on top of transaction container */
-}
+    .transaction-page-add-btn:hover,
+    .transaction-page-save-btn:hover,
+    .transaction-page-close-modal-btn:hover {
+        background: #0056b3;
+    }
 
-.modal-content {
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
-    z-index: 30; /* Ensure modal content stays above overlay */
-}
+    .transaction-page-back-btn {
+        position: absolute;
+        left: 20px;
+        top: 20px;
+        padding: 12px 20px;
+        font-size: 16px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
 
-.modal-buttons {
-    display: flex;
-    gap: 10px;
-}
+    .transaction-page-back-btn:hover {
+        background: #0056b3;
+    }
 
-.file-input {
-    display: none; /* Hide file input */
-}
+    .transaction-page-modal-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 20; /* Modal on top of transaction container */
+    }
 
-.save-transactions-btn, .close-modal-btn {
-    padding: 10px 20px;
-    background: #007bff;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-}
+    .transaction-page-modal-content {
+        background-color: white;
+        gap: 20px;
+        row-gap:10px ;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 30px;
+        width: 60%;
+        max-width: 800px;
+        border-radius: 8px;
+        box-sizing: border-box;
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+        z-index: 30; /* Ensure modal content above overlay */
+    }
+
+    .transaction-page-modal-buttons,
+    .transaction-page-add-file-btn,
+    .transaction-page-manual-input-btn,
+    .save-edit-btn,
+    .cancel-edit-btn{
+        font-size: 16px;
+        padding: 12px;
+        width: fit-content;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+
+    }
+
+    .transaction-page-file-input {
+        display: none; /* Hide file input */
+    }
+
+    .transaction-page-filter-form {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        justify-content: center;
+        margin-top: 20px;
+    }
+
+    .transaction-page-filter-form input,
+    .transaction-page-filter-form select,
+    .transaction-page-filter-form button {
+        padding: 10px;
+        font-size: 14px;
+        border-radius: 5px;
+        border: 1px solid #ddd;
+    }
+
+    .transaction-page-filter-form button {
+        background: #007bff;
+        color: white;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .transaction-page-filter-form button:hover {
+        background: #0056b3;
+    }
+
+    .transaction-page-filter-form input[type="date"] {
+        width: 160px;
+    }
+
+    .transaction-page-row span button {
+        padding: 6px 12px;
+        font-size: 14px;
+        background: #007bff;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: background 0.3s ease;
+    }
+
+    .transaction-page-row span button:hover {
+        background: #0056b3;
+    }

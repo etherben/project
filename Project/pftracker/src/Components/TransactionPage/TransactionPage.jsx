@@ -14,7 +14,6 @@ const TransactionPage = ({
                              handleFetchBufferedTransactions,
                              saveTransactions,
                              handleFilterTransactions
-
                          }) => {
     const [addTranModal, setTranModalOpen] = useState(false);
     const [manualTranModal, setManualTranModalOpen] = useState(false);
@@ -22,7 +21,6 @@ const TransactionPage = ({
     const [newTransaction, setNewTransaction] = useState({ userId, transactionDate: '', merchant: '', amount: '', category: '' });
     const fileInputRef = useRef(null);
     const [filter, setFilter] = useState({merchant: '', category: '', startDate: '', endDate: ''});
-
 
     const triggerFileInput = () => {
         fileInputRef.current.click();
@@ -89,12 +87,9 @@ const TransactionPage = ({
     };
 
     const handleAddManualTransaction = async () => {
-        //const dateParts = newTransaction.transactionDate.split('-');
-        //const formattedDate = `${dateParts[2]}/${dateParts[1]}/${dateParts[0]}`; // Convert to dd/mm/yyyy
         const amount = parseFloat(newTransaction.amount);
         const transactionToSubmit = {
             ...newTransaction,
-           // transactionDate: formattedDate,
             amount: amount
         };
 
@@ -113,7 +108,7 @@ const TransactionPage = ({
     const onDeleteTransaction = async (transactionId) => {
         try {
             await handleDeleteTransaction(transactionId);
-            handleFilterTransactions(userId, filter)
+            handleFilterTransactions(userId, filter);
         } catch (error) {
             console.error('Error Deleting:', error);
         }
@@ -131,10 +126,8 @@ const TransactionPage = ({
     };
 
     const handleEditSubmit = async () => {
-        //converts date in change now
         const updatedTransaction = {
             ...newTransaction,
-
             amount: parseFloat(newTransaction.amount),
         };
 
@@ -150,7 +143,6 @@ const TransactionPage = ({
 
     const handleFilterSubmit = (e) => {
         e.preventDefault();
-        // Convert startDate and endDate to Date objects
         const updatedFilter = {
             ...filter,
             startDate: filter.startDate && !isNaN(new Date(filter.startDate)) ? new Date(filter.startDate) : null,
@@ -163,14 +155,14 @@ const TransactionPage = ({
     const formatDateForInput = (date) => {
         const dateParts = date.split('/');
         return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Convert back to yyyy-mm-dd for edit
-
     };
+
     return (
-        <div className="transaction-container">
-            <div className="transaction-header">
-                <button onClick={onBack} className="back-button">Back</button>
-                <div className="filter-section">
-                    <form onSubmit={handleFilterSubmit} className="filter-form">
+        <div className="transaction-page-container">
+            <div className="transaction-page-header">
+                <button onClick={onBack} className="transaction-page-back-btn">Back</button>
+                <div className="transaction-page-filter-section">
+                    <form onSubmit={handleFilterSubmit} className="transaction-page-filter-form">
                         <input
                             type="text"
                             placeholder="Merchant"
@@ -196,26 +188,28 @@ const TransactionPage = ({
                         <button type="submit">Filter</button>
                     </form>
                 </div>
-                <button className="add-transaction-btn" onClick={handleOpenModal}>Add Transaction</button>
+                <button className="transaction-page-add-btn" onClick={handleOpenModal}>Add Transaction</button>
             </div>
-            <div className="transaction-list">
-                <div className="transaction-row" style={{fontWeight: 'bold', borderBottom: '2px solid #000'}}>
+            <div className="transaction-page-list">
+                <div className="transaction-page-row transaction-page-header-row">
                     <span>Date</span>
                     <span>Merchant</span>
                     <span>Amount</span>
-                    <span>Category</span> {/* Add Category header */}
+                    <span>Category</span>
+                    <span>        </span>
+                    <span>       </span>
                 </div>
                 {transactions.length === 0 ? (
                     <p>No transactions available.</p>
                 ) : (
                     transactions.map((transaction) => (
-                        <div key={transaction.id} className="transaction-row">
+                        <div key={transaction.id} className="transaction-page-row">
                             <span>{transaction.transactionDate}</span>
                             <span>{transaction.merchant}</span>
                             <span>${transaction.amount}</span>
-                            <span>{transaction.category}</span> {/* Display Category */}
-                            <span><button className="edit-btn" onClick={() => handleEditTransaction(transaction)}>Edit</button></span>
-                            <span><button className="delete-btn" onClick={() => onDeleteTransaction(transaction.id)}>Delete</button></span>
+                            <span>{transaction.category}</span>
+                            <span><button className="transaction-page-edit-btn" onClick={() => handleEditTransaction(transaction)}>Edit</button></span>
+                            <span><button className="transaction-page-delete-btn" onClick={() => onDeleteTransaction(transaction.id)}>Delete</button></span>
                         </div>
                     ))
                 )}
@@ -223,62 +217,64 @@ const TransactionPage = ({
 
             {/* Modal for Adding Transactions */}
             {addTranModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
+                <div className="transaction-page-modal-overlay">
+                    <div className="transaction-page-modal-content">
                         <h2>Transactions to be Added</h2>
-                        <div className="modal-buttons">
-                            <button onClick={triggerFileInput}>Add File</button>
+                        <div className="transaction-page-modal-buttons">
+                            <button className="transaction-page-add-file-btn" onClick={triggerFileInput}>Add File</button>
                             <input
                                 type="file"
                                 accept=".csv"
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
-                                className="file-input"
+                                className="transaction-page-file-input"
                                 style={{ display: 'none' }}
                             />
-                            <button className="manual-input-btn" onClick={handleOpenManualModal}>Manual Input</button>
+                            <button className="transaction-page-manual-input-btn" onClick={handleOpenManualModal}>Manual Input</button>
                         </div>
 
-                        <div className="transaction-list">
-                            <div className="transaction-row header-row">
+                        <div className="transaction-page-list">
+                            <div className="transaction-page-row transaction-page-header-row">
                                 <span>Date</span>
                                 <span>Merchant</span>
                                 <span>Amount</span>
-                                <span>Category</span> {/* Add Category header */}
+                                <span>Category</span>
                             </div>
                             {transactionsToAdd.length === 0 ? (
                                 <p>No transactions ready to add.</p>
                             ) : (
                                 transactionsToAdd.map((transaction, index) => (
-                                    <div key={index} className="transaction-row">
+                                    <div key={index} className="transaction-page-row">
                                         <span>{transaction.transactionDate}</span>
                                         <span>{transaction.merchant}</span>
                                         <span>${transaction.amount}</span>
-                                        <span>{transaction.category}</span> {/* Display Category */}
+                                        <span>{transaction.category}</span>
                                     </div>
                                 ))
                             )}
                         </div>
-                        <button onClick={addTransactions} className="save-transactions-btn">
+                        <button onClick={addTransactions} className="transaction-page-save-btn">
                             Save Transactions
                         </button>
-                        <button onClick={handleCloseModal} className="close-modal-btn">Close</button>
+                        <button onClick={handleCloseModal} className="transaction-page-close-modal-btn">Close</button>
                     </div>
                 </div>
             )}
 
             {/* Modal for Manual Transaction Input */}
             {manualTranModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
+                <div className="transaction-page-modal-overlay">
+                    <div className="transaction-page-modal-content">
                         <h2>Enter Transaction Details</h2>
+                        <h3>Date:</h3>
                         <input
                             type="date"
                             name="transactionDate"
                             placeholder="dd/mm/yyyy"
-                            value={formatDateForInput(newTransaction.transactionDate)} // make sure formatted as yyyy-mm-dd for dropdown box
+                            value={formatDateForInput(newTransaction.transactionDate)}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Merchant:</h3>
                         <input
                             type="text"
                             name="merchant"
@@ -286,6 +282,7 @@ const TransactionPage = ({
                             value={newTransaction.merchant}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Amount:</h3>
                         <input
                             type="number"
                             name="amount"
@@ -293,6 +290,7 @@ const TransactionPage = ({
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Category:</h3>
                         <select
                             name="category"
                             value={newTransaction.category}
@@ -305,35 +303,40 @@ const TransactionPage = ({
                             <option value="Bills">Bills</option>
                             <option value="Vehicle">Vehicle</option>
                         </select>
-                        <button onClick={handleAddManualTransaction}>Add Transaction</button>
-                        <button onClick={handleCloseManualModal}>Cancel</button>
+                        <button className="add-manual-button" onClick={handleAddManualTransaction}>Add Transaction
+                        </button>
+                        <button className="manual-cancel-button" onClick={handleCloseManualModal}>Cancel</button>
                     </div>
                 </div>
             )}
 
             {/* Modal for Editing Transaction */}
             {editTranModal && (
-                <div className="modal-overlay">
-                    <div className="modal-content">
+                <div className="transaction-page-modal-overlay">
+                    <div className="transaction-page-modal-content">
                         <h2>Edit Transaction</h2>
+                        <h3>Date:</h3>
                         <input
                             type="date"
                             name="transactionDate"
                             value={formatDateForInput(newTransaction.transactionDate)}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Merchant:</h3>
                         <input
                             type="text"
                             name="merchant"
                             value={newTransaction.merchant}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Amount:</h3>
                         <input
                             type="number"
                             name="amount"
                             value={newTransaction.amount}
                             onChange={handleManualInputChange}
                         />
+                        <h3>Category:</h3>
                         <select
                             name="category"
                             value={newTransaction.category}
@@ -348,8 +351,8 @@ const TransactionPage = ({
                             <option value="Vehicle">Vehicle</option>
                         </select>
 
-                        <button onClick={handleEditSubmit}>Save Changes</button>
-                        <button onClick={handleCloseEditModal}>Cancel</button>
+                        <button className="save-edit-btn" onClick={handleEditSubmit}>Save Changes</button>
+                        <button className="cancel-edit-btn"  onClick={handleCloseEditModal}>Cancel</button>
                     </div>
                 </div>
             )}
@@ -358,3 +361,4 @@ const TransactionPage = ({
 };
 
 export default TransactionPage;
+

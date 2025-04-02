@@ -30,45 +30,51 @@
 
 .transaction-list {
     background: #f9f9f9;
-    padding: 10px;
+    padding: 20px;
     border-radius: 8px;
     height: 600px;
-    overflow: hidden;
+    overflow-y: auto;
     border: 1px solid #ccc;
     box-sizing: border-box;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
+
 .recent-list-header {
     font-size: 1.5rem;
     font-weight: bold;
     text-align: center;
     padding: 10px 0;
     border-bottom: 2px solid #ccc;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
-
 
 .transaction-header, .transaction-row {
     display: flex;
     justify-content: space-between;
-    padding: 5px 10px;
+    padding: 10px;
     width: 100%;
+    border-bottom: 1px solid #ddd;
 }
-
 
 .header-item {
     font-weight: bold;
-    width: 25%; /* Set each header column width */
-    text-align: center;
+    width: 23%; /* Set each header column width */
+    text-align: left;
+}
+
+.transaction-row span {
+    flex: 1; /* Ensures each item takes equal space */
+    text-align: left;
+    padding: 8px;
 }
 
 .transaction-row:last-child {
     border-bottom: none;
 }
 
-.view-all-btn, .view-budget-btn, .view-graph-btn{
-    margin-top: 10px;
-    padding: 10px;
+.view-all-btn, .view-budget-btn, .view-graph-btn {
+    margin-top: 20px;
+    padding: 12px;
     width: 100%;
     background-color: #007bff;
     color: white;
