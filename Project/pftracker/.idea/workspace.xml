@@ -4,8 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Update to transactionpage layout">
-      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Graphpage, graph updated to look similar to mainpage">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -307,15 +308,7 @@
       <workItem from="1743415686267" duration="15585000" />
       <workItem from="1743491785452" duration="1031000" />
       <workItem from="1743492859265" duration="6263000" />
-      <workItem from="1743578964561" duration="8889000" />
-    </task>
-    <task id="LOCAL-00015" summary="Added merchant param to front including in transaction list and adding transactions">
-      <option name="closed" value="true" />
-      <created>1733080254905</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1733080254905</updated>
+      <workItem from="1743578964561" duration="10784000" />
     </task>
     <task id="LOCAL-00016" summary="Front end file creating for graph">
       <option name="closed" value="true" />
@@ -701,7 +694,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743588482912</updated>
     </task>
-    <option name="localTasksCounter" value="64" />
+    <task id="LOCAL-00064" summary="Graphpage, graph updated to look similar to mainpage">
+      <option name="closed" value="true" />
+      <created>1743588888474</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1743588888474</updated>
+    </task>
+    <option name="localTasksCounter" value="65" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -734,7 +735,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
     <MESSAGE value="Added manual transaction to transaction page" />
     <MESSAGE value="Users can manually delete transactions" />
     <MESSAGE value="Users can manually edit transactions" />
@@ -759,6 +759,7 @@
     <MESSAGE value="MainPage transactions modify, for better visualisation" />
     <MESSAGE value="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments" />
     <MESSAGE value="Update to transactionpage layout" />
-    <option name="LAST_COMMIT_MESSAGE" value="Update to transactionpage layout" />
+    <MESSAGE value="Graphpage, graph updated to look similar to mainpage" />
+    <option name="LAST_COMMIT_MESSAGE" value="Graphpage, graph updated to look similar to mainpage" />
   </component>
 </project>

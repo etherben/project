@@ -155,7 +155,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                     symbolSize: 6,
                 },
                 budgetData && {
-                    data: new Array(months.length).fill(budgetData["Food"]), // Example with one category "Food"
+                    data: new Array(months.length).fill(budgetData["Food"]),
                     type: 'line',
                     lineStyle: {
                         color: 'green',
@@ -179,8 +179,16 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
             return acc;
         }, {});
 
-        return Object.entries(monthlyTotals).map(([date, amount]) => ({ date, amount }));
+        // Sort the dates in ascending order
+        const sortedEntries = Object.entries(monthlyTotals).sort((a, b) => {
+            const [monthA, yearA] = a[0].split('/');
+            const [monthB, yearB] = b[0].split('/');
+            return new Date(yearA, monthA - 1) - new Date(yearB, monthB - 1);
+        });
+
+        return sortedEntries.map(([date, amount]) => ({ date, amount }));
     };
+
 
     return (
         <div className="graph-page">
