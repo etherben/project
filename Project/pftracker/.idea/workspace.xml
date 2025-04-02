@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Update to transactionpage layout">
+      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -310,15 +307,7 @@
       <workItem from="1743415686267" duration="15585000" />
       <workItem from="1743491785452" duration="1031000" />
       <workItem from="1743492859265" duration="6263000" />
-      <workItem from="1743578964561" duration="8707000" />
-    </task>
-    <task id="LOCAL-00014" summary="formatted transactions to display properly">
-      <option name="closed" value="true" />
-      <created>1733076598461</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733076598461</updated>
+      <workItem from="1743578964561" duration="8889000" />
     </task>
     <task id="LOCAL-00015" summary="Added merchant param to front including in transaction list and adding transactions">
       <option name="closed" value="true" />
@@ -704,7 +693,15 @@
       <option name="project" value="LOCAL" />
       <updated>1743504073892</updated>
     </task>
-    <option name="localTasksCounter" value="63" />
+    <task id="LOCAL-00063" summary="Update to transactionpage layout">
+      <option name="closed" value="true" />
+      <created>1743588482911</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1743588482912</updated>
+    </task>
+    <option name="localTasksCounter" value="64" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -737,7 +734,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Added save file option to transaction page" />
     <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
     <MESSAGE value="Added manual transaction to transaction page" />
     <MESSAGE value="Users can manually delete transactions" />
@@ -762,6 +758,7 @@
     <MESSAGE value="MainPage chart modify, for better visualisation" />
     <MESSAGE value="MainPage transactions modify, for better visualisation" />
     <MESSAGE value="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments" />
-    <option name="LAST_COMMIT_MESSAGE" value="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments" />
+    <MESSAGE value="Update to transactionpage layout" />
+    <option name="LAST_COMMIT_MESSAGE" value="Update to transactionpage layout" />
   </component>
 </project>

@@ -4,7 +4,7 @@ import "./GraphPage.css";
 
 const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
     const chartRef = useRef(null);
-    const [budgetData, setBudgetData] = useState([]);
+    const [budgetData, setBudgetData] = useState(null); // Changed to null to match condition
     const [filters, setFilters] = useState({ year: "", month: "", category: "" });
     const [filteredTransactions, setFilteredTransactions] = useState([]);
 
@@ -18,7 +18,10 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
             const categories = ["Food", "Entertainment", "Shopping", "Bills", "Vehicle"];
             const budgetPromises = categories.map(category => handleGetBudget(userId, category));
             const budgets = await Promise.all(budgetPromises);
-            setBudgetData(categories.map((category, index) => ({ category, amount: budgets[index] })));
+            setBudgetData(budgets.reduce((acc, amount, index) => {
+                acc[categories[index]] = amount;
+                return acc;
+            }, {})); // Store budget data for each category
         } catch (error) {
             console.error("Error fetching budget data:", error);
         }
@@ -46,28 +49,133 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
         const chart = echarts.init(chartRef.current);
 
         const groupedData = filters.month
-            ? filteredTransactions.map(tx => ({ date: tx.transactionDate, amount: parseFloat(tx.amount) })) // map amount and date of filtered trans
+            ? filteredTransactions.map(tx => ({ date: tx.transactionDate, amount: parseFloat(tx.amount) }))
             : aggregateTransactions(filteredTransactions);
 
-        const xData = groupedData.map(item => item.date);
-        const yData = groupedData.map(item => item.amount);
+        const months = groupedData.map(item => item.date);
+        const totals = groupedData.map(item => item.amount);
 
-        const chartOptions = {
-            title: { text: "Transactions", left: "center" },
-            xAxis: { type: "category", data: xData },
-            yAxis: { type: "value" },
-            series: [{ data: yData, type: "line", name: "Amount" }],
+        const chartSettings = {
+            title: {
+                text: '6 Most Recent Months',
+                textStyle: {
+                    color: '#000000',
+                    fontSize: 24,
+                },
+                left: 'center',
+                top: '5%',
+                textAlign: 'center',
+                textBaseline: 'middle',
+            },
+            tooltip: {
+                trigger: 'axis',
+                backgroundColor: '#fff',
+                borderColor: '#ccc',
+                borderWidth: 1,
+                padding: 10,
+                textStyle: {
+                    color: '#000',
+                },
+                formatter: function (params) {
+                    const expenditure = params[0].data;
+                    const budget = budgetData ? budgetData["Food"] : 0; // Use budget for the category (e.g., Food)
+
+                    const tooltipBackgroundColor = expenditure > budget ? 'rgba(255, 99, 71, 0.8)' : 'rgba(144, 238, 144, 0.8)';
+
+                    return `
+                        <div style="background-color:${tooltipBackgroundColor}; padding: 10px; border-radius: 5px;">
+                            <strong>Month: ${params[0].name}</strong><br />
+                            Expenditure: ${expenditure}<br />
+                            Budget: ${budget}
+                        </div>
+                    `;
+                },
+            },
+            grid: {
+                left: '10%',
+                right: '10%',
+                top: '15%',
+                bottom: '10%',
+                containLabel: true,
+            },
+            xAxis: {
+                type: 'category',
+                data: months,
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+            },
+            yAxis: {
+                type: 'value',
+                axisLabel: {
+                    textStyle: {
+                        color: '#000000',
+                        fontSize: 16,
+                    },
+                },
+                axisLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                axisTick: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+                splitLine: {
+                    lineStyle: {
+                        color: '#ccc',
+                    },
+                },
+            },
+            series: [
+                {
+                    data: totals,
+                    type: 'line',
+                    lineStyle: {
+                        color: 'red',
+                        type: 'dashed',
+                    },
+                    name: 'Total Spent',
+                    symbol: 'circle',
+                    symbolSize: 6,
+                },
+                budgetData && {
+                    data: new Array(months.length).fill(budgetData["Food"]), // Example with one category "Food"
+                    type: 'line',
+                    lineStyle: {
+                        color: 'green',
+                        type: 'dashed',
+                    },
+                    name: 'Total Budget',
+                }
+            ].filter(Boolean), // Remove null values
         };
 
-        chart.setOption(chartOptions);
+        chart.setOption(chartSettings);
+
         return () => chart.dispose();
-    }, [filteredTransactions]);
+    }, [filteredTransactions, budgetData]);
 
     const aggregateTransactions = (transactions) => {
         const monthlyTotals = transactions.reduce((acc, tx) => {
             const [day, month, year] = tx.transactionDate.split("/");
             const key = `${month}/${year}`;
-            acc[key] = (acc[key] || 0) + parseFloat(tx.amount); //aggregate like monthly but can adjust based on user selectrion
+            acc[key] = (acc[key] || 0) + parseFloat(tx.amount);
             return acc;
         }, {});
 
@@ -84,7 +192,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                     <select value={filters.year} onChange={(e) => setFilters({...filters, year: e.target.value})}>
                         <option value="">Select Year</option>
                         {[...new Set(transactions.map(tx => tx.transactionDate.split("/")[2]))].map(year => (
-                            <option key={year} value={year}>{year}</option>  // make to year
+                            <option key={year} value={year}>{year}</option>
                         ))}
                     </select>
                 </label>
@@ -95,7 +203,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                         {Array.from({length: 12}, (_, i) => i + 1).map(month => (
                             <option key={month} value={month.toString().padStart(2, "0")}>
                                 {new Date(0, month - 1).toLocaleString("default", {month: "long"})}
-                            </option>// select by month
+                            </option>
                         ))}
                     </select>
                 </label>
@@ -105,13 +213,13 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                             onChange={(e) => setFilters({...filters, category: e.target.value})}>
                         <option value="">All Categories</option>
                         {[...new Set(transactions.map(tx => tx.category))].map(category => (
-                            <option key={category} value={category}>{category}</option> //select by category
+                            <option key={category} value={category}>{category}</option>
                         ))}
                     </select>
                 </label>
             </div>
             <div className="graph-container">
-                <div ref={chartRef} style={{width: "100%", height: "400px"}}></div>
+                <div ref={chartRef} style={{width: "1200px", height: "800px"}}></div>
             </div>
         </div>
     );
