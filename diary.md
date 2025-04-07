@@ -94,6 +94,31 @@ Not much done this week, basic bug fixing and test building.
 Research into Machine Learning algorithm to automatically categorise transactions, might not be doable in timeframe
 Redesign and building of transactionpage to handle file submits
 
+22/02 - 30/02
+Decieded against a machine learning algorithm, not enough time and just used basic highest chosen for autmatic categorisation
+Finished off CRUD operations for transactions aswell as general bug fixes for transaction page and login page
+
+01/03 - 07/03 
+Created the bankmapping service, users can actually add bank statements from starling bank and it will process into transactions,
+Uses hashmap counter to find most popular category with same merchant in order to decided on which category for bulk imports
+
+08/03-18/03 
+Nothing done this week, I had other priorities with other courseworks
+
+19/03 - 26/03
+Enabled filtering by parameters, users can now filter their transactions to show the ones they want
+
+27/03 - 30/03 
+Budget setting page, users can set budgets for each category
+Overall budget is also applied to general chart 
+
+31/03 - 02/04
+Charting page, just uses filter and charting already created so it is sorting design and structure.
+Users can apply filters to chart to view different parts such as yearly food transactions.
+
+03/04-10/04
+Finalising report and also improving general design and bug fixes
+
 
 
 
