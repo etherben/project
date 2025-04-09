@@ -40,5 +40,5 @@ Once built, there is no need to build again unless changes are made.
 Or press ctrl + c in the command line
 
 ## Importing Mock Transactions:
-There is a pre-made file named InterimMockTransactions.csv that contains 40 mock transactions. This file can be imported into the application once it's running.
+There is a pre-made file named MockTransactions.csv that contains one years worth of mock transactions. This file can be imported into the application once it's running.
 
