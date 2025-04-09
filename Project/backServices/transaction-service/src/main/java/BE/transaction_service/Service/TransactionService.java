@@ -11,25 +11,49 @@ import java.io.*;
 import java.text.SimpleDateFormat;
 import java.util.*;
 
+/**
+ * Service class to handle operations related to transactions for users.
+ * Provides functionality for adding, updating, deleting, retrieving, and filtering transactions.
+ */
 @Service
 public class TransactionService {
 
     private List<Transaction> transactions = new ArrayList<>();
     private TransactionRepo transactionRepo;
 
+    /**
+     * Constructor to initialize the TransactionService with a TransactionRepo.
+     *
+     * @param transactionRepo The repository used for saving and retrieving transactions.
+     */
     @Autowired
     public TransactionService(TransactionRepo transactionRepo) {
         this.transactionRepo = transactionRepo;
     }
 
+    /**
+     * Retrieves all transactions currently in memory.
+     *
+     * @return A list of all transactions.
+     */
     public List<Transaction> getTransactions() {
         return transactions;
     }
 
+    /**
+     * Clears the transaction buffer, typically used when closing the add transaction modal.
+     */
     public void clearTransactions() {
-        transactions.clear(); //Resets the buffer list for when closing the add transaction modal
+        transactions.clear();
     }
 
+    /**
+     * Retrieves all transactions for a specific user, sorted by transaction date in descending order.
+     *
+     * @param userId The ID of the user whose transactions are to be retrieved.
+     * @return A list of transactions for the specified user.
+     * @throws IllegalArgumentException if the userId is null or empty, or if no transactions are found.
+     */
     public List<Transaction> getTransactionsByUserId(String userId) {
         if (userId == null || userId.isEmpty()) {
             throw new IllegalArgumentException("User id is null or empty");
@@ -41,6 +65,13 @@ public class TransactionService {
         return list;
     }
 
+    /**
+     * Adds a new transaction to the transaction list after validation.
+     *
+     * @param transaction The transaction object to be added.
+     * @return The added transaction.
+     * @throws IllegalArgumentException if any field in the transaction is invalid.
+     */
     public Transaction addTransaction(Transaction transaction) {
         if (transaction.getTransactionDate() == null) {
             throw new IllegalArgumentException("Transaction date cannot be null");
@@ -56,6 +87,13 @@ public class TransactionService {
         }
     }
 
+    /**
+     * Parses a date string in the format "dd/MM/yyyy" into a Date object.
+     *
+     * @param dateStr The date string to be parsed.
+     * @return The parsed Date object.
+     * @throws IllegalArgumentException if the date cannot be parsed.
+     */
     public Date parseDate(String dateStr) throws IllegalArgumentException {
         SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
         dateFormat.setLenient(false);
@@ -66,6 +104,13 @@ public class TransactionService {
         }
     }
 
+    /**
+     * Parses a CSV transaction line into a Transaction object.
+     *
+     * @param line The CSV line representing a transaction.
+     * @return The parsed Transaction object.
+     * @throws IllegalArgumentException if the CSV line is in an invalid format.
+     */
     public Transaction parseTransaction(String line) throws IllegalArgumentException {
         String[] parts = line.split(",");
         if (parts.length != 4) {
@@ -88,6 +133,15 @@ public class TransactionService {
         return transaction;
     }
 
+    /**
+     * Parses a CSV file into a list of transactions and associates them with a user.
+     *
+     * @param file The CSV file containing transaction data.
+     * @param userId The user ID to associate with the transactions.
+     * @return A list of parsed transactions.
+     * @throws IOException If there is an issue reading the file.
+     * @throws IllegalArgumentException If the file format is invalid.
+     */
     public List<Transaction> parseFile(MultipartFile file, String userId) throws IOException, IllegalArgumentException {
         if (!file.getContentType().equals("text/csv")) {
             throw new IllegalArgumentException("Invalid file format. Not CSV");
@@ -107,6 +161,9 @@ public class TransactionService {
         return lines;
     }
 
+    /**
+     * Persists the current transactions to the database and clears the in-memory transaction list.
+     */
     public void persistTransaction() {
         try {
             List<Transaction> savedTransactions = transactionRepo.saveAll(transactions);
@@ -116,6 +173,12 @@ public class TransactionService {
         }
     }
 
+    /**
+     * Deletes a single transaction by its ID.
+     *
+     * @param transactionId The ID of the transaction to be deleted.
+     * @throws IllegalArgumentException If the transaction could not be deleted.
+     */
     public void deleteSingle(String transactionId) {
         try {
             transactionRepo.deleteById(transactionId);
@@ -124,6 +187,14 @@ public class TransactionService {
         }
     }
 
+    /**
+     * Updates an existing transaction with new details.
+     *
+     * @param transactionId The ID of the transaction to be updated.
+     * @param updatedTransaction The transaction object containing the updated details.
+     * @return The updated transaction.
+     * @throws IllegalArgumentException If the transaction could not be found or updated.
+     */
     public Transaction updateTransaction(String transactionId, Transaction updatedTransaction) {
         Transaction existingTransaction = transactionRepo.findById(transactionId)
                 .orElseThrow(() -> new IllegalArgumentException("Transaction not found"));
@@ -144,30 +215,27 @@ public class TransactionService {
         return transactionRepo.save(existingTransaction);
     }
 
+    /**
+     * Retrieves the most popular category for a specific merchant based on transaction history.
+     *
+     * @param merchant The merchant for which to find the most popular category.
+     * @return The most popular category for the specified merchant.
+     */
     public String getMostPopularCategoryForMerchant(String merchant) {
-        // Get transactions for this merchant
         merchant = merchant.trim();
         List<Transaction> merchantTransactions = transactionRepo.findByMerchant(merchant);
 
         if (merchantTransactions.isEmpty()) {
             System.out.println("No transactions found for merchant: " + merchant);
-           return "General"; // Default category if no transactions found
+            return "General"; // Default category if no transactions found
         }
 
-        System.out.println("Found " + merchantTransactions.size() + " transactions for merchant: " + merchant);
-
-        // Create a map to count category occurrences
         Map<String, Integer> categoryCounts = new HashMap<>();
 
-        // Count occurrences of each category
         for (Transaction transaction : merchantTransactions) {
             String category = transaction.getCategory();
-            System.out.println("Merchant: " + merchant + ", Category: " + category); // Log merchant and category
             categoryCounts.put(category, categoryCounts.getOrDefault(category, 0) + 1);
         }
-
-        // Log category counts
-        System.out.println("Category counts: " + categoryCounts);
 
         String currentHighest = "";
         int highestCount = 0;
@@ -178,11 +246,20 @@ public class TransactionService {
             }
         }
 
-        // Return the most popular category, or "General" if none found
-        System.out.println("Most popular category for merchant " + merchant + ": " + currentHighest);
         return currentHighest;
     }
 
+    /**
+     * Filters transactions based on the provided criteria.
+     *
+     * @param userId The user ID for which to filter transactions.
+     * @param merchant The merchant name to filter by (optional).
+     * @param category The category to filter by (optional).
+     * @param startDate The start date for filtering transactions (optional).
+     * @param endDate The end date for filtering transactions (optional).
+     * @return A list of filtered transactions based on the provided criteria.
+     * @throws IllegalArgumentException If no transactions match the filter criteria.
+     */
     public List<Transaction> filterTransactions(
             String userId,
             String merchant,
@@ -190,8 +267,6 @@ public class TransactionService {
             Date startDate,
             Date endDate
     ) {
-
-
         List<Transaction> filteredTransactions;
 
         if (merchant != null && startDate != null && endDate != null) {
@@ -207,9 +282,9 @@ public class TransactionService {
         } else if (startDate != null && endDate != null) {
             filteredTransactions = transactionRepo.findByUserIdAndTransactionDateBetweenOrderByTransactionDateDesc(userId, startDate, endDate);
         } else {
-            filteredTransactions = getTransactionsByUserId(userId); // will return a sorted list of transactions by userId
+            filteredTransactions = getTransactionsByUserId(userId);
         }
-        // If the filtered list is empty throw an exception
+
         if (filteredTransactions.isEmpty()) {
             throw new IllegalArgumentException("No transactions found for the given filters");
         }

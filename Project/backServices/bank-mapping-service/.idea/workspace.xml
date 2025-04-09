@@ -4,7 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="testfixc" />
+    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="testfixc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -100,6 +102,7 @@
       <workItem from="1741956521317" duration="2965000" />
       <workItem from="1744195788731" duration="881000" />
       <workItem from="1744218370521" duration="41000" />
+      <workItem from="1744219571005" duration="2349000" />
     </task>
     <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
       <option name="closed" value="true" />
