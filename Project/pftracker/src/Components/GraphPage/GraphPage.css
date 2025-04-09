@@ -21,14 +21,6 @@
     align-items: stretch;
 }
 
-h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
 label {
     font-size: 14px;
     font-weight: 500;
@@ -46,20 +38,19 @@ select, input {
     width: 100%;
 }
 
-.apply-filters-button {
+.back-button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin: 10px 0; /* Align button at top left without stretching */
 }
 
-.apply-filters-button:hover {
+.back-button:hover {
     background-color: #0056b3;
 }
 

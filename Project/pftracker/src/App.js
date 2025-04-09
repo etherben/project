@@ -300,7 +300,6 @@ function App() {
     }
   },[]);
 
-
   return (
       <div>
         {userId ? (

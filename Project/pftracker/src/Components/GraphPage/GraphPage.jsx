@@ -15,13 +15,15 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
 
     const fetchBudgetData = async () => {
         try {
-            const categories = ["Food", "Entertainment", "Shopping", "Bills", "Vehicle"];
+            const categories = ["Food", "Entertainment", "Shopping", "Bills", "Vehicle", "General"];
             const budgetPromises = categories.map(category => handleGetBudget(userId, category));
+            const overallBudget = await handleGetBudget(userId, "Overall"); // Fetch the overall budget
             const budgets = await Promise.all(budgetPromises);
+
             setBudgetData(budgets.reduce((acc, amount, index) => {
                 acc[categories[index]] = amount;
                 return acc;
-            }, {})); // Store budget data for each category
+            }, { overall: overallBudget })); // Store budget data for each category and overall
         } catch (error) {
             console.error("Error fetching budget data:", error);
         }
@@ -55,15 +57,33 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
         const months = groupedData.map(item => item.date);
         const totals = groupedData.map(item => item.amount);
 
+        // Get the budget based on selected category or default to overall budget
+        const budget = filters.category && budgetData
+            ? budgetData[filters.category]
+            : budgetData?.overall || 0;
+
+        // If a month is selected, adjust the budget to represent a daily budget (divide by 30)
+        const dailyBudget = filters.month ? budget / 30 : budget;
+
+        const getTitleText = () => {
+            if (filters.month && filters.year) {
+                const monthName = new Date(0, parseInt(filters.month) - 1).toLocaleString("default", { month: "long" });
+                return `Transactions for ${monthName} ${filters.year}`;
+            } else if (filters.year) {
+                return `Transactions for ${filters.year}`;
+            }
+            return "";
+        };
+
         const chartSettings = {
             title: {
-                text: '6 Most Recent Months',
+                text: getTitleText(),
                 textStyle: {
                     color: '#000000',
                     fontSize: 24,
                 },
                 left: 'center',
-                top: '5%',
+                top: '10%',
                 textAlign: 'center',
                 textBaseline: 'middle',
             },
@@ -78,15 +98,16 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                 },
                 formatter: function (params) {
                     const expenditure = params[0].data;
-                    const budget = budgetData ? budgetData["Food"] : 0; // Use budget for the category (e.g., Food)
 
-                    const tooltipBackgroundColor = expenditure > budget ? 'rgba(255, 99, 71, 0.8)' : 'rgba(144, 238, 144, 0.8)';
+                    const tooltipBackgroundColor = expenditure > dailyBudget
+                        ? 'rgba(255, 99, 71, 0.8)' // Red for overspending
+                        : 'rgba(144, 238, 144, 0.8)'; // Green for within budget
 
                     return `
                         <div style="background-color:${tooltipBackgroundColor}; padding: 10px; border-radius: 5px;">
                             <strong>Month: ${params[0].name}</strong><br />
                             Expenditure: ${expenditure}<br />
-                            Budget: ${budget}
+                            Budget: ${dailyBudget.toFixed(2)}
                         </div>
                     `;
                 },
@@ -155,7 +176,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                     symbolSize: 6,
                 },
                 budgetData && {
-                    data: new Array(months.length).fill(budgetData["Food"]),
+                    data: new Array(months.length).fill(dailyBudget), // Use daily budget
                     type: 'line',
                     lineStyle: {
                         color: 'green',
@@ -169,7 +190,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
         chart.setOption(chartSettings);
 
         return () => chart.dispose();
-    }, [filteredTransactions, budgetData]);
+    }, [filteredTransactions, budgetData, filters]);
 
     const aggregateTransactions = (transactions) => {
         const monthlyTotals = transactions.reduce((acc, tx) => {
@@ -179,22 +200,16 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
             return acc;
         }, {});
 
-        // Sort the dates in ascending order
-        const sortedEntries = Object.entries(monthlyTotals).sort((a, b) => {
-            const [monthA, yearA] = a[0].split('/');
-            const [monthB, yearB] = b[0].split('/');
-            return new Date(yearA, monthA - 1) - new Date(yearB, monthB - 1);
-        });
-
-        return sortedEntries.map(([date, amount]) => ({ date, amount }));
+        return Object.entries(monthlyTotals).map(([date, amount]) => ({ date, amount }));
     };
-
 
     return (
         <div className="graph-page">
-            <button onClick={onBack} className="back-button">Back</button>
+            <div className="header-container">
+                <button onClick={onBack} className="back-button">Back</button>
+            </div>
             <div className="filter-container">
-                <h2>Filter Transactions</h2>
+                <h3>Filter Transactions</h3>
                 <label>
                     Year:
                     <select value={filters.year} onChange={(e) => setFilters({...filters, year: e.target.value})}>
@@ -230,6 +245,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                 <div ref={chartRef} style={{width: "1200px", height: "800px"}}></div>
             </div>
         </div>
+
     );
 };
 
