@@ -56,6 +56,21 @@ function App() {
     }
   }
 
+  const handleClearBufferedTransactions = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/transactions/clear', {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+      });
+      if (!response.ok){
+        throw new Error('FAIL')
+      }
+      const clearResponse = await response.text();
+      console.log(clearResponse);
+    } catch (error) {
+      console.error('Error clearing Transactions: ', error);
+    }
+  }
 
 
 // This is for getting all transactions from user in DATABASE
@@ -316,6 +331,7 @@ function App() {
                     handleDeleteTransaction={deleteTransaction}
                     onEditTransaction={handleEditTransaction}
                     handleFilterTransactions={handleFilterTransactions}
+                    handleClearBufferedTransactions={handleClearBufferedTransactions}
                     onBack={() => setShowTransactionPage(false)} />
             ) : showBudgetPage ? (
                 <BudgetPage

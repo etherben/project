@@ -13,7 +13,8 @@ const TransactionPage = ({
                              handleFetchTransactions,
                              handleFetchBufferedTransactions,
                              saveTransactions,
-                             handleFilterTransactions
+                             handleFilterTransactions,
+                             handleClearBufferedTransactions
                          }) => {
     const [addTranModal, setTranModalOpen] = useState(false);
     const [manualTranModal, setManualTranModalOpen] = useState(false);
@@ -55,10 +56,12 @@ const TransactionPage = ({
     };
 
     const handleOpenModal = () => {
+        handleFetchBufferedTransactions(); //
         setTranModalOpen(true);
     };
 
     const handleCloseModal = () => {
+        handleClearBufferedTransactions();
         setTranModalOpen(false);
     };
 

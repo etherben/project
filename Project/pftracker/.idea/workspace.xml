@@ -6,6 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="back button will fetch all transactions to fix filter affecting rest of page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -312,6 +314,8 @@
       <workItem from="1744064031938" duration="1047000" />
       <workItem from="1744129703519" duration="2750000" />
       <workItem from="1744184360462" duration="2016000" />
+      <workItem from="1744186961712" duration="2051000" />
+      <workItem from="1744190045512" duration="391000" />
     </task>
     <task id="LOCAL-00020" summary="changing stylesheets to fit containers properly">
       <option name="closed" value="true" />
