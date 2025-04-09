@@ -72,7 +72,19 @@
     border-bottom: none;
 }
 
-.view-all-btn, .view-budget-btn, .view-graph-btn {
+.logout-btn{
+    font-size: 16px;
+    padding: 12px;
+    width: fit-content;
+    background: #007bff;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+.view-all-btn, .view-budget-btn, .view-graph-btn{
     margin-top: 20px;
     padding: 12px;
     width: 100%;
@@ -84,7 +96,7 @@
     font-size: 16px;
 }
 
-.view-all-btn:hover, .view-budget-btn:hover, .view-graph-btn:hover {
+.view-all-btn:hover, .view-budget-btn:hover, .view-graph-btn:hover, .logout-btn{
     background-color: #0056b3;
 }
 
