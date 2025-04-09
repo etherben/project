@@ -40,5 +40,6 @@ Once built, there is no need to build again unless changes are made.
 Or press ctrl + c in the command line
 
 ## Importing Mock Transactions:
-There is a pre-made file named MockTransactions.csv that contains one years worth of mock transactions. This file can be imported into the application once it's running.
+There is a pre-made Folder named Mock Transactions that contains one years worth of mock bank statements in the Starling Bank format. This file can be imported into the application once it's running.
 
+Please select rememeer to select starling when uploading
