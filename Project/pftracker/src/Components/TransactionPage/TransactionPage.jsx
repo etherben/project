@@ -22,6 +22,7 @@ const TransactionPage = ({
     const [newTransaction, setNewTransaction] = useState({ userId, transactionDate: '', merchant: '', amount: '', category: '' });
     const fileInputRef = useRef(null);
     const [filter, setFilter] = useState({merchant: '', category: '', startDate: '', endDate: ''});
+    const [bank, setBank] = useState('')
 
     const triggerFileInput = () => {
         fileInputRef.current.click();
@@ -30,14 +31,14 @@ const TransactionPage = ({
     const handleFileChange = (e) => {
         const file = e.target.files[0];
         if (file) {
-            handleFileUpload(file);
+            handleFileUpload(file, bank);
         }
     };
 
-    const handleFileUpload = async (file) => {
+    const handleFileUpload = async (file, bank) => {
         if (file) {
             try {
-                await onFileSubmit(file);
+                await onFileSubmit(file, bank);
                 handleFetchBufferedTransactions();
                 console.log('Big Success is nice');
             } catch (error) {
@@ -165,6 +166,10 @@ const TransactionPage = ({
         onBack();
     };
 
+    const handleChangeBank = (e) =>{
+        setBank(e.target.value);
+    }
+
     return (
         <div className="transaction-page-container">
             <div className="transaction-page-header">
@@ -228,6 +233,15 @@ const TransactionPage = ({
                 <div className="transaction-page-modal-overlay">
                     <div className="transaction-page-modal-content">
                         <h2>Transactions to be Added</h2>
+                        <select
+                            name="bankchoice-sel"
+                            value={bank}
+                            onChange={handleChangeBank}
+                        >
+                            <option value="">Select Bank</option>
+                            <option value="Starling">Starling</option>
+                            <option value="Monzo">Monzo</option>
+                        </select>
                         <div className="transaction-page-modal-buttons">
                             <button className="transaction-page-add-file-btn" onClick={triggerFileInput}>Add File</button>
                             <input
@@ -236,9 +250,11 @@ const TransactionPage = ({
                                 ref={fileInputRef}
                                 onChange={handleFileChange}
                                 className="transaction-page-file-input"
-                                style={{ display: 'none' }}
+                                style={{display: 'none'}}
                             />
-                            <button className="transaction-page-manual-input-btn" onClick={handleOpenManualModal}>Manual Input</button>
+                            <button className="transaction-page-manual-input-btn"
+                                    onClick={handleOpenManualModal}>Manual Input
+                            </button>
                         </div>
 
                         <div className="transaction-page-list">

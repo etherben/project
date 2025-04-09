@@ -164,11 +164,11 @@ function App() {
 
 
   //HERE WE GO
-  const handleFileTransactionSubmit = async (file) => {
-    console.log("Submitting file", file);
+  const handleFileTransactionSubmit = async (file, bank) => {
+    console.log("Submitting file", file, bank);
     const formData = new FormData();
     formData.append('csv_file', file);
-    formData.append('bank_name', 'Starling');   //Starling is only one mapped currently
+    formData.append('bank_name', bank);   //Starling is only one mapped currently
     try {
       const mappingResponse = await fetch(`http://localhost:5000/map-bank-statement`, {
         method: 'POST',

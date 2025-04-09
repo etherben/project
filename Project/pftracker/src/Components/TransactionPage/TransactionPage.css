@@ -140,7 +140,13 @@
         z-index: 30; /* Ensure modal content above overlay */
     }
 
-    .transaction-page-modal-buttons,
+    .transaction-page-modal-buttons{
+        align-items: center;
+        display: flex;
+        gap: 20px;
+    }
+
+
     .transaction-page-add-file-btn,
     .transaction-page-manual-input-btn,
     .save-edit-btn,
