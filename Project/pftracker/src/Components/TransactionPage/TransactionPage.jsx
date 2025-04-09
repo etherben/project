@@ -219,7 +219,7 @@ const TransactionPage = ({
                         <div key={transaction.id} className="transaction-page-row">
                             <span>{transaction.transactionDate}</span>
                             <span>{transaction.merchant}</span>
-                            <span>${transaction.amount}</span>
+                            <span>£{transaction.amount}</span>
                             <span>{transaction.category}</span>
                             <span><button className="transaction-page-edit-btn" onClick={() => handleEditTransaction(transaction)}>Edit</button></span>
                             <span><button className="transaction-page-delete-btn" onClick={() => onDeleteTransaction(transaction.id)}>Delete</button></span>
