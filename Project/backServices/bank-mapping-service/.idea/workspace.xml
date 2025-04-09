@@ -5,9 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="api call fix">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -54,20 +53,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;automatic-Categorisation&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "git-widget-placeholder": "VisualAndBugfix",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\benet\Desktop\finalp\PROJECT\Project\backServices\bank-mapping-service" />
@@ -103,6 +102,7 @@
       <workItem from="1741956161730" duration="3000" />
       <workItem from="1741956214615" duration="271000" />
       <workItem from="1741956521317" duration="2965000" />
+      <workItem from="1744195788731" duration="660000" />
     </task>
     <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
       <option name="closed" value="true" />
