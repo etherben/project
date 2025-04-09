@@ -71,7 +71,7 @@ class UserServiceTest {
 
         when(userRepo.findByUsername("test")).thenReturn(Optional.of(storedUser));
 
-        User result = userService.loginUser("test", "testpass");
+        User result = userService.loginUser("test", "testpasswrog");
 
         assertNull(result);
     }
