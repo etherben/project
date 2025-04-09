@@ -37,6 +37,17 @@ select, input {
     color: #333;
     width: 100%;
 }
+.no-filters-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #b8b2bc;
+    border: 2px dashed #ffffff;
+    border-radius: 10px;
+    background-color: #f9f9f9;
+}
+
 
 .back-button {
     background-color: #007bff;

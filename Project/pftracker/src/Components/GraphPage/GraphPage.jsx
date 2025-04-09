@@ -34,6 +34,7 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
 
         const filtered = transactions.filter(transaction => {
             const [day, month, year] = transaction.transactionDate.split("/");
+            if (transaction.category === "Income") return false; // exclude income
 
             if (year !== filters.year) return false;
             if (filters.month && month !== filters.month) return false;
@@ -200,8 +201,17 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
             return acc;
         }, {});
 
-        return Object.entries(monthlyTotals).map(([date, amount]) => ({ date, amount }));
+        return Object.entries(monthlyTotals)
+            .sort(([aMonthYear], [bMonthYear]) => {
+                const [aMonth, aYear] = aMonthYear.split("/").map(Number);
+                const [bMonth, bYear] = bMonthYear.split("/").map(Number);
+
+                if (aYear !== bYear) return aYear - bYear;
+                return aMonth - bMonth;
+            })
+            .map(([date, amount]) => ({ date, amount }));
     };
+
 
     return (
         <div className="graph-page">
@@ -242,7 +252,13 @@ const GraphPage = ({ userId, transactions, handleGetBudget, onBack }) => {
                 </label>
             </div>
             <div className="graph-container">
-                <div ref={chartRef} style={{width: "1200px", height: "800px"}}></div>
+                {!filters.year ? (
+                    <div className="no-filters-message">
+                        <p>Please select filters to view the graph</p>
+                    </div>
+                ) : (
+                    <div ref={chartRef} style={{width: "1200px", height: "800px"}}></div>
+                )}
             </div>
         </div>
 

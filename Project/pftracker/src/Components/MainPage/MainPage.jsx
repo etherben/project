@@ -20,11 +20,17 @@ const MainPage = ({userId, username, transactions, onLogout, onViewTransactions,
                 }
 
                 amounts[monthAndYear] += parseFloat(transaction.amount);
-                amounts[monthAndYear] = Math.round(amounts[monthAndYear] * 100) / 100; // Round to 2 decimals for pennies
+                amounts[monthAndYear] = Math.round(amounts[monthAndYear] * 100) / 100; // Round to 2 decimals
                 return amounts;
             }, {});
 
-        return Object.entries(monthlyTotal).map(([month, total]) => ({ month, total }));
+        return Object.entries(monthlyTotal)
+            .sort(([a], [b]) => {
+                const [aMonth, aYear] = a.split('/').map(Number);
+                const [bMonth, bYear] = b.split('/').map(Number);
+                return aYear !== bYear ? aYear - bYear : aMonth - bMonth;
+            })
+            .map(([month, total]) => ({ month, total }));
     };
 
 
