@@ -4,8 +4,12 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="Front end fucntions to map monzo bank">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="xml">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -314,14 +318,7 @@
       <workItem from="1744184360462" duration="2016000" />
       <workItem from="1744186961712" duration="2051000" />
       <workItem from="1744190045512" duration="3496000" />
-    </task>
-    <task id="LOCAL-00022" summary="Added basic logout button to create a cyclical structure. Fixed tests to accomidate.">
-      <option name="closed" value="true" />
-      <created>1737401675847</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1737401675847</updated>
+      <workItem from="1744196680737" duration="1047000" />
     </task>
     <task id="LOCAL-00023" summary="Restructured Test suite for App.jsx">
       <option name="closed" value="true" />
@@ -707,7 +704,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744195775514</updated>
     </task>
-    <option name="localTasksCounter" value="71" />
+    <task id="LOCAL-00071" summary="xml">
+      <option name="closed" value="true" />
+      <created>1744196706073</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1744196706073</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -740,7 +745,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Api calls for budget getting and setting ready" />
     <MESSAGE value="Basic budget page that can handle the api calls, to update and upload new budgets" />
     <MESSAGE value="Change overall budget so its calculated as sum of others, rather than user editing" />
     <MESSAGE value="Column to show percentage of overall budget" />
@@ -765,6 +769,7 @@
     <MESSAGE value="back button will fetch all transactions to fix filter affecting rest of page" />
     <MESSAGE value="Clear add transaction modal after closing it" />
     <MESSAGE value="Front end fucntions to map monzo bank" />
-    <option name="LAST_COMMIT_MESSAGE" value="Front end fucntions to map monzo bank" />
+    <MESSAGE value="xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml" />
   </component>
 </project>
