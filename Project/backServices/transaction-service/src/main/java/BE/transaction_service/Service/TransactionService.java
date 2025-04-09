@@ -26,6 +26,10 @@ public class TransactionService {
         return transactions;
     }
 
+    public void clearTransactions() {
+        transactions.clear(); //Resets the buffer list for when closing the add transaction modal
+    }
+
     public List<Transaction> getTransactionsByUserId(String userId) {
         if (userId == null || userId.isEmpty()) {
             throw new IllegalArgumentException("User id is null or empty");

@@ -175,5 +175,11 @@ public class TransactionController {
         return transactionService.filterTransactions(userId, merchant, category, startDate, endDate);
     }
 
+    @GetMapping("/clear")
+    public ResponseEntity<String> clearAllTransactions() {
+        transactionService.clearTransactions();
+        return ResponseEntity.status(HttpStatus.CREATED).body("All transactions cleared");
+    }
+
 
 }

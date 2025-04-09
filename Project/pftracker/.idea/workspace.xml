@@ -4,14 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="sort dates in adc order">
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="back button will fetch all transactions to fix filter affecting rest of page">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/TransactionPage/TransactionPage.jsx" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,31 +311,7 @@
       <workItem from="1744060885424" duration="1000" />
       <workItem from="1744064031938" duration="1047000" />
       <workItem from="1744129703519" duration="2750000" />
-      <workItem from="1744184360462" duration="1706000" />
-    </task>
-    <task id="LOCAL-00017" summary="Function to parse date from string, ready to sort.">
-      <option name="closed" value="true" />
-      <created>1733351092360</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1733351092360</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Changed to just show aggregated list on the mainpage.Ready to translate into graph.">
-      <option name="closed" value="true" />
-      <created>1733410314215</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1733410314215</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Replaced list with basic line chart">
-      <option name="closed" value="true" />
-      <created>1733413322740</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1733413322740</updated>
+      <workItem from="1744184360462" duration="2016000" />
     </task>
     <task id="LOCAL-00020" summary="changing stylesheets to fit containers properly">
       <option name="closed" value="true" />
@@ -711,7 +681,31 @@
       <option name="project" value="LOCAL" />
       <updated>1743590679956</updated>
     </task>
-    <option name="localTasksCounter" value="66" />
+    <task id="LOCAL-00066" summary="Updated graph logic">
+      <option name="closed" value="true" />
+      <created>1744186664377</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186664377</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Fixed logout button css">
+      <option name="closed" value="true" />
+      <created>1744186688890</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186688890</updated>
+    </task>
+    <task id="LOCAL-00068" summary="back button will fetch all transactions to fix filter affecting rest of page">
+      <option name="closed" value="true" />
+      <created>1744186742296</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186742296</updated>
+    </task>
+    <option name="localTasksCounter" value="69" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -744,9 +738,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Users can manually delete transactions" />
-    <MESSAGE value="Users can manually edit transactions" />
-    <MESSAGE value="Fixing previous git commit issues, mainpage should now be upto date" />
     <MESSAGE value="Changed frontend manual input categories to preset drop down box." />
     <MESSAGE value="Front end Filter section and update to work" />
     <MESSAGE value="Api calls for budget getting and setting ready" />
@@ -769,6 +760,9 @@
     <MESSAGE value="Update to transactionpage layout" />
     <MESSAGE value="Graphpage, graph updated to look similar to mainpage" />
     <MESSAGE value="sort dates in adc order" />
-    <option name="LAST_COMMIT_MESSAGE" value="sort dates in adc order" />
+    <MESSAGE value="Updated graph logic" />
+    <MESSAGE value="Fixed logout button css" />
+    <MESSAGE value="back button will fetch all transactions to fix filter affecting rest of page" />
+    <option name="LAST_COMMIT_MESSAGE" value="back button will fetch all transactions to fix filter affecting rest of page" />
   </component>
 </project>
