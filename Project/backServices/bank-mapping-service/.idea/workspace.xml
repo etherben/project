@@ -4,11 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="api call fix">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" afterDir="false" />
-    </list>
+    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="Mapping for monzo bank added" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -102,7 +98,7 @@
       <workItem from="1741956161730" duration="3000" />
       <workItem from="1741956214615" duration="271000" />
       <workItem from="1741956521317" duration="2965000" />
-      <workItem from="1744195788731" duration="660000" />
+      <workItem from="1744195788731" duration="881000" />
     </task>
     <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
       <option name="closed" value="true" />
@@ -184,7 +180,15 @@
       <option name="project" value="LOCAL" />
       <updated>1741262019135</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Mapping for monzo bank added">
+      <option name="closed" value="true" />
+      <created>1744196660972</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744196660972</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +206,7 @@
     <MESSAGE value="assigns positive values as income, and gets rid of negative number" />
     <MESSAGE value="python script to call api request and maps every category to same as previous ones with the same merchant, or puts it as general if it cant find any." />
     <MESSAGE value="api call fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="api call fix" />
+    <MESSAGE value="Mapping for monzo bank added" />
+    <option name="LAST_COMMIT_MESSAGE" value="Mapping for monzo bank added" />
   </component>
 </project>
