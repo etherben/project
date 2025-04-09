@@ -9,8 +9,8 @@ app = Flask(__name__)
 CORS(app)
 
 bank_mappings = {
-    "BankA": {"Date": "TransactionDate", "Merchant": "Merchant", "Amount": "Amount"},
-    "BankB": {"TransDate": "TransactionDate", "Vendor": "Merchant", "Amount": "Amount"},  #Test banks
+    "BankA": {"Date": "TransactionDate", "Merchant": "Merchant", "Amount": "Amount"},#Test banks
+    "Monzo": {"Date": "TransactionDate", "Name": "Merchant", "Amount":"Amount","Category":"Category" },
     "Starling": {"Date": "TransactionDate", "Counter Party": "Merchant", "Amount (GBP)": "Amount", "Spending Category": "Category"}
 }
 

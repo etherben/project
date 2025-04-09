@@ -126,6 +126,12 @@ public class TransactionController {
         }
     }
 
+    /**
+     * Deletes a single transaction by its ID.
+     *
+     * @param transactionId The ID of the transaction to be deleted.
+     * @return ResponseEntity with a success message or error details.
+     */
     @DeleteMapping("/{transactionId}")
     public ResponseEntity<String> deleteSingleTransaction(@PathVariable String transactionId) {
         try {
@@ -135,6 +141,14 @@ public class TransactionController {
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
         }
     }
+
+    /**
+     * Updates an existing transaction by its ID.
+     *
+     * @param transactionId The ID of the transaction to be updated.
+     * @param updatedTransaction The transaction object containing updated details.
+     * @return ResponseEntity with the updated transaction or error details.
+     */
     @PutMapping("/{transactionId}")
     public ResponseEntity<?> updateTransaction(@PathVariable String transactionId, @RequestBody Transaction updatedTransaction) {
         try {
@@ -145,26 +159,39 @@ public class TransactionController {
         }
     }
 
+    /**
+     * Retrieves the most popular category for a specific merchant.
+     *
+     * @param Merchant The name of the merchant.
+     * @return ResponseEntity with the most popular category or an error message.
+     */
     @GetMapping("/category/{Merchant}")
     public ResponseEntity<String> getMostPopularCategoryForMerchant(@PathVariable String Merchant) {
-
         try {
             String category = transactionService.getMostPopularCategoryForMerchant(Merchant);
             return ResponseEntity.ok(category);
         } catch (Exception e) {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(e.getMessage());
         }
-
     }
 
+    /**
+     * Filters transactions based on various parameters such as user ID, merchant, category, start date, and end date.
+     *
+     * @param userId The ID of the user whose transactions are being queried.
+     * @param merchant The merchant to filter transactions by (optional).
+     * @param category The category to filter transactions by (optional).
+     * @param startDate The start date to filter transactions (optional).
+     * @param endDate The end date to filter transactions (optional).
+     * @return A list of filtered transactions.
+     */
     @GetMapping("/filter")
     public List<Transaction> filterTransactions(
             @RequestParam("userId") String userId,
             @RequestParam(required = false) String merchant,
             @RequestParam(required = false) String category,
-            @RequestParam(required = false)   Date startDate,
-            @RequestParam(required = false)   Date endDate
-
+            @RequestParam(required = false) Date startDate,
+            @RequestParam(required = false) Date endDate
     ) {
         System.out.println("Received userId: " + userId);
         System.out.println("Received merchant: " + merchant);
@@ -175,5 +202,14 @@ public class TransactionController {
         return transactionService.filterTransactions(userId, merchant, category, startDate, endDate);
     }
 
-
+    /**
+     * Clears all transactions from the transaction service.
+     *
+     * @return ResponseEntity with a message confirming that all transactions were cleared.
+     */
+    @GetMapping("/clear")
+    public ResponseEntity<String> clearAllTransactions() {
+        transactionService.clearTransactions();
+        return ResponseEntity.status(HttpStatus.CREATED).body("All transactions cleared");
+    }
 }

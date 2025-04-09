@@ -4,11 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="api call fix">
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Controller/TransactionController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" beforeDir="false" afterPath="$PROJECT_DIR$/../transaction-service/src/main/java/BE/transaction_service/Service/TransactionService.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../../pftracker/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="testfixc">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -57,7 +54,7 @@
   <component name="PropertiesComponent">{
   &quot;keyToString&quot;: {
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;automatic-Categorisation&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;VisualAndBugfix&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
@@ -103,6 +100,9 @@
       <workItem from="1741956161730" duration="3000" />
       <workItem from="1741956214615" duration="271000" />
       <workItem from="1741956521317" duration="2965000" />
+      <workItem from="1744195788731" duration="881000" />
+      <workItem from="1744218370521" duration="41000" />
+      <workItem from="1744219571005" duration="2349000" />
     </task>
     <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
       <option name="closed" value="true" />
@@ -184,7 +184,23 @@
       <option name="project" value="LOCAL" />
       <updated>1741262019135</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Mapping for monzo bank added">
+      <option name="closed" value="true" />
+      <created>1744196660972</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1744196660972</updated>
+    </task>
+    <task id="LOCAL-00012" summary="testfixc">
+      <option name="closed" value="true" />
+      <created>1744218379179</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744218379179</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -202,6 +218,8 @@
     <MESSAGE value="assigns positive values as income, and gets rid of negative number" />
     <MESSAGE value="python script to call api request and maps every category to same as previous ones with the same merchant, or puts it as general if it cant find any." />
     <MESSAGE value="api call fix" />
-    <option name="LAST_COMMIT_MESSAGE" value="api call fix" />
+    <MESSAGE value="Mapping for monzo bank added" />
+    <MESSAGE value="testfixc" />
+    <option name="LAST_COMMIT_MESSAGE" value="testfixc" />
   </component>
 </project>

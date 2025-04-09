@@ -4,8 +4,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="MainPage transactions modify, for better visualisation">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="xml">
+      <change beforePath="$PROJECT_DIR$/../backServices/bank-mapping-service/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/bank-mapping-service/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -83,7 +83,7 @@
     &quot;Jest.switches to Login form when link is clicked.executor&quot;: &quot;Run&quot;,
     &quot;Node.js.App.js.executor&quot;: &quot;Run&quot;,
     &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;GraphPage&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;VisualAndBugfix&quot;,
     &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
     &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
@@ -307,86 +307,16 @@
       <workItem from="1743415686267" duration="15585000" />
       <workItem from="1743491785452" duration="1031000" />
       <workItem from="1743492859265" duration="6263000" />
-    </task>
-    <task id="LOCAL-00013" summary="Transactions are fetched and loaded when initially loading mainpage">
-      <option name="closed" value="true" />
-      <created>1733052338812</created>
-      <option name="number" value="00013" />
-      <option name="presentableId" value="LOCAL-00013" />
-      <option name="project" value="LOCAL" />
-      <updated>1733052338812</updated>
-    </task>
-    <task id="LOCAL-00014" summary="formatted transactions to display properly">
-      <option name="closed" value="true" />
-      <created>1733076598461</created>
-      <option name="number" value="00014" />
-      <option name="presentableId" value="LOCAL-00014" />
-      <option name="project" value="LOCAL" />
-      <updated>1733076598461</updated>
-    </task>
-    <task id="LOCAL-00015" summary="Added merchant param to front including in transaction list and adding transactions">
-      <option name="closed" value="true" />
-      <created>1733080254905</created>
-      <option name="number" value="00015" />
-      <option name="presentableId" value="LOCAL-00015" />
-      <option name="project" value="LOCAL" />
-      <updated>1733080254905</updated>
-    </task>
-    <task id="LOCAL-00016" summary="Front end file creating for graph">
-      <option name="closed" value="true" />
-      <created>1733350800063</created>
-      <option name="number" value="00016" />
-      <option name="presentableId" value="LOCAL-00016" />
-      <option name="project" value="LOCAL" />
-      <updated>1733350800063</updated>
-    </task>
-    <task id="LOCAL-00017" summary="Function to parse date from string, ready to sort.">
-      <option name="closed" value="true" />
-      <created>1733351092360</created>
-      <option name="number" value="00017" />
-      <option name="presentableId" value="LOCAL-00017" />
-      <option name="project" value="LOCAL" />
-      <updated>1733351092360</updated>
-    </task>
-    <task id="LOCAL-00018" summary="Changed to just show aggregated list on the mainpage.Ready to translate into graph.">
-      <option name="closed" value="true" />
-      <created>1733410314215</created>
-      <option name="number" value="00018" />
-      <option name="presentableId" value="LOCAL-00018" />
-      <option name="project" value="LOCAL" />
-      <updated>1733410314215</updated>
-    </task>
-    <task id="LOCAL-00019" summary="Replaced list with basic line chart">
-      <option name="closed" value="true" />
-      <created>1733413322740</created>
-      <option name="number" value="00019" />
-      <option name="presentableId" value="LOCAL-00019" />
-      <option name="project" value="LOCAL" />
-      <updated>1733413322740</updated>
-    </task>
-    <task id="LOCAL-00020" summary="changing stylesheets to fit containers properly">
-      <option name="closed" value="true" />
-      <created>1733423457933</created>
-      <option name="number" value="00020" />
-      <option name="presentableId" value="LOCAL-00020" />
-      <option name="project" value="LOCAL" />
-      <updated>1733423457933</updated>
-    </task>
-    <task id="LOCAL-00021" summary="Test updates. Aswell as refactoring.">
-      <option name="closed" value="true" />
-      <created>1734016975666</created>
-      <option name="number" value="00021" />
-      <option name="presentableId" value="LOCAL-00021" />
-      <option name="project" value="LOCAL" />
-      <updated>1734016975666</updated>
-    </task>
-    <task id="LOCAL-00022" summary="Added basic logout button to create a cyclical structure. Fixed tests to accomidate.">
-      <option name="closed" value="true" />
-      <created>1737401675847</created>
-      <option name="number" value="00022" />
-      <option name="presentableId" value="LOCAL-00022" />
-      <option name="project" value="LOCAL" />
-      <updated>1737401675847</updated>
+      <workItem from="1743578964561" duration="19061000" />
+      <workItem from="1744060885424" duration="1000" />
+      <workItem from="1744064031938" duration="1047000" />
+      <workItem from="1744129703519" duration="2750000" />
+      <workItem from="1744184360462" duration="2016000" />
+      <workItem from="1744186961712" duration="2051000" />
+      <workItem from="1744190045512" duration="3496000" />
+      <workItem from="1744196680737" duration="1047000" />
+      <workItem from="1744215045228" duration="732000" />
+      <workItem from="1744228250347" duration="53000" />
     </task>
     <task id="LOCAL-00023" summary="Restructured Test suite for App.jsx">
       <option name="closed" value="true" />
@@ -700,7 +630,87 @@
       <option name="project" value="LOCAL" />
       <updated>1743499194830</updated>
     </task>
-    <option name="localTasksCounter" value="62" />
+    <task id="LOCAL-00062" summary="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments">
+      <option name="closed" value="true" />
+      <created>1743504073892</created>
+      <option name="number" value="00062" />
+      <option name="presentableId" value="LOCAL-00062" />
+      <option name="project" value="LOCAL" />
+      <updated>1743504073892</updated>
+    </task>
+    <task id="LOCAL-00063" summary="Update to transactionpage layout">
+      <option name="closed" value="true" />
+      <created>1743588482911</created>
+      <option name="number" value="00063" />
+      <option name="presentableId" value="LOCAL-00063" />
+      <option name="project" value="LOCAL" />
+      <updated>1743588482912</updated>
+    </task>
+    <task id="LOCAL-00064" summary="Graphpage, graph updated to look similar to mainpage">
+      <option name="closed" value="true" />
+      <created>1743588888474</created>
+      <option name="number" value="00064" />
+      <option name="presentableId" value="LOCAL-00064" />
+      <option name="project" value="LOCAL" />
+      <updated>1743588888474</updated>
+    </task>
+    <task id="LOCAL-00065" summary="sort dates in adc order">
+      <option name="closed" value="true" />
+      <created>1743590679956</created>
+      <option name="number" value="00065" />
+      <option name="presentableId" value="LOCAL-00065" />
+      <option name="project" value="LOCAL" />
+      <updated>1743590679956</updated>
+    </task>
+    <task id="LOCAL-00066" summary="Updated graph logic">
+      <option name="closed" value="true" />
+      <created>1744186664377</created>
+      <option name="number" value="00066" />
+      <option name="presentableId" value="LOCAL-00066" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186664377</updated>
+    </task>
+    <task id="LOCAL-00067" summary="Fixed logout button css">
+      <option name="closed" value="true" />
+      <created>1744186688890</created>
+      <option name="number" value="00067" />
+      <option name="presentableId" value="LOCAL-00067" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186688890</updated>
+    </task>
+    <task id="LOCAL-00068" summary="back button will fetch all transactions to fix filter affecting rest of page">
+      <option name="closed" value="true" />
+      <created>1744186742296</created>
+      <option name="number" value="00068" />
+      <option name="presentableId" value="LOCAL-00068" />
+      <option name="project" value="LOCAL" />
+      <updated>1744186742296</updated>
+    </task>
+    <task id="LOCAL-00069" summary="Clear add transaction modal after closing it">
+      <option name="closed" value="true" />
+      <created>1744190725557</created>
+      <option name="number" value="00069" />
+      <option name="presentableId" value="LOCAL-00069" />
+      <option name="project" value="LOCAL" />
+      <updated>1744190725557</updated>
+    </task>
+    <task id="LOCAL-00070" summary="Front end fucntions to map monzo bank">
+      <option name="closed" value="true" />
+      <created>1744195775513</created>
+      <option name="number" value="00070" />
+      <option name="presentableId" value="LOCAL-00070" />
+      <option name="project" value="LOCAL" />
+      <updated>1744195775514</updated>
+    </task>
+    <task id="LOCAL-00071" summary="xml">
+      <option name="closed" value="true" />
+      <created>1744196706073</created>
+      <option name="number" value="00071" />
+      <option name="presentableId" value="LOCAL-00071" />
+      <option name="project" value="LOCAL" />
+      <updated>1744196706073</updated>
+    </task>
+    <option name="localTasksCounter" value="72" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -733,16 +743,6 @@
     <ignored-roots>
       <path value="$PROJECT_DIR$/.." />
     </ignored-roots>
-    <MESSAGE value="Graph back in place for mainpage" />
-    <MESSAGE value="Added save file option to transaction page" />
-    <MESSAGE value="Pop up modal appears ontop of transaction page, rather than below. Once transactions are saved the transactions to be added list clears" />
-    <MESSAGE value="Added manual transaction to transaction page" />
-    <MESSAGE value="Users can manually delete transactions" />
-    <MESSAGE value="Users can manually edit transactions" />
-    <MESSAGE value="Fixing previous git commit issues, mainpage should now be upto date" />
-    <MESSAGE value="Changed frontend manual input categories to preset drop down box." />
-    <MESSAGE value="Front end Filter section and update to work" />
-    <MESSAGE value="Api calls for budget getting and setting ready" />
     <MESSAGE value="Basic budget page that can handle the api calls, to update and upload new budgets" />
     <MESSAGE value="Change overall budget so its calculated as sum of others, rather than user editing" />
     <MESSAGE value="Column to show percentage of overall budget" />
@@ -758,18 +758,16 @@
     <MESSAGE value="MainPage chart modify, more interactive" />
     <MESSAGE value="MainPage chart modify, for better visualisation" />
     <MESSAGE value="MainPage transactions modify, for better visualisation" />
-    <option name="LAST_COMMIT_MESSAGE" value="MainPage transactions modify, for better visualisation" />
-  </component>
-  <component name="XDebuggerManager">
-    <breakpoint-manager>
-      <breakpoints>
-        <line-breakpoint enabled="true" type="javascript">
-          <url>file://$PROJECT_DIR$/src/Components/MainPage/MainPage.jsx</url>
-          <line>47</line>
-          <properties lambdaOrdinal="-1" />
-          <option name="timeStamp" value="1" />
-        </line-breakpoint>
-      </breakpoints>
-    </breakpoint-manager>
+    <MESSAGE value="Better class name asigmnet for budgetpage, helps with css styling. Minor spacing adjustments" />
+    <MESSAGE value="Update to transactionpage layout" />
+    <MESSAGE value="Graphpage, graph updated to look similar to mainpage" />
+    <MESSAGE value="sort dates in adc order" />
+    <MESSAGE value="Updated graph logic" />
+    <MESSAGE value="Fixed logout button css" />
+    <MESSAGE value="back button will fetch all transactions to fix filter affecting rest of page" />
+    <MESSAGE value="Clear add transaction modal after closing it" />
+    <MESSAGE value="Front end fucntions to map monzo bank" />
+    <MESSAGE value="xml" />
+    <option name="LAST_COMMIT_MESSAGE" value="xml" />
   </component>
 </project>

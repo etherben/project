@@ -56,6 +56,21 @@ function App() {
     }
   }
 
+  const handleClearBufferedTransactions = async () => {
+    try {
+      const response = await fetch('http://localhost:8081/transactions/clear', {
+        method: 'GET',
+        headers: {'Content-Type': 'application/json'},
+      });
+      if (!response.ok){
+        throw new Error('FAIL')
+      }
+      const clearResponse = await response.text();
+      console.log(clearResponse);
+    } catch (error) {
+      console.error('Error clearing Transactions: ', error);
+    }
+  }
 
 
 // This is for getting all transactions from user in DATABASE
@@ -149,11 +164,11 @@ function App() {
 
 
   //HERE WE GO
-  const handleFileTransactionSubmit = async (file) => {
-    console.log("Submitting file", file);
+  const handleFileTransactionSubmit = async (file, bank) => {
+    console.log("Submitting file", file, bank);
     const formData = new FormData();
     formData.append('csv_file', file);
-    formData.append('bank_name', 'Starling');   //Starling is only one mapped currently
+    formData.append('bank_name', bank);   //Starling is only one mapped currently
     try {
       const mappingResponse = await fetch(`http://localhost:5000/map-bank-statement`, {
         method: 'POST',
@@ -300,7 +315,6 @@ function App() {
     }
   },[]);
 
-
   return (
       <div>
         {userId ? (
@@ -317,6 +331,7 @@ function App() {
                     handleDeleteTransaction={deleteTransaction}
                     onEditTransaction={handleEditTransaction}
                     handleFilterTransactions={handleFilterTransactions}
+                    handleClearBufferedTransactions={handleClearBufferedTransactions}
                     onBack={() => setShowTransactionPage(false)} />
             ) : showBudgetPage ? (
                 <BudgetPage

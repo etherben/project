@@ -1,6 +1,7 @@
 .graph-page {
     display: flex;
-    height: 80vh;
+    height: 100vh;
+    width: 90%;
     padding: 10px;
     gap: 10px;
     overflow: hidden;
@@ -20,14 +21,6 @@
     align-items: stretch;
 }
 
-h2 {
-    font-size: 20px;
-    font-weight: 600;
-    color: #333;
-    text-align: center;
-    margin-bottom: 10px;
-}
-
 label {
     font-size: 14px;
     font-weight: 500;
@@ -44,27 +37,38 @@ select, input {
     color: #333;
     width: 100%;
 }
+.no-filters-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: #000000;
+    border: 2px dashed #ffffff;
+    border-radius: 10px;
+    background-color: #ffffff;
+}
 
-.apply-filters-button {
+
+.back-button {
     background-color: #007bff;
     color: white;
     border: none;
     padding: 10px;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 10px;
-    width: 100%;
     font-size: 16px;
     transition: background-color 0.3s ease;
+    margin: 10px 0; /* Align button at top left without stretching */
 }
 
-.apply-filters-button:hover {
+.back-button:hover {
     background-color: #0056b3;
 }
 
 .graph-container {
     flex-grow: 1; /* Graph takes up remaining space */
     min-width: 700px; /* Prevents graph from being too narrow */
+    width: 80%;
     background: #ffffff;
     padding: 20px;
     display: flex;
@@ -78,7 +82,7 @@ select, input {
 /* Responsive Adjustments */
 @media screen and (max-width: 1024px) {
     .filter-container {
-        width: 25%; /* Slightly larger on medium screens */
+        width: 20%; /* Slightly larger on medium screens */
     }
 }
 

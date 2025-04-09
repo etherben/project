@@ -22,7 +22,7 @@ public class UserService {
      * Repository instance for performing database operations on User entities.
      */
     @Autowired
-    private UserRepo userRepo;
+    public UserRepo userRepo;
 
     /**
      * Creates a new user and saves it to the database.
