@@ -1,4 +1,5 @@
 package BE.budget_service.Service;
+
 import BE.budget_service.Model.Budget;
 import BE.budget_service.Repo.BudgetRepo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class BudgetService {
 
     @Autowired
-    private BudgetRepo budgetRepository;
+    public BudgetRepo budgetRepository;
 
     // Get the budget for a specific user and category
     public Budget getBudget(String userId, String category) {

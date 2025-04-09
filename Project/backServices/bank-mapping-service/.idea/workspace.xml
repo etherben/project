@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="Mapping for monzo bank added" />
+    <list default="true" id="1bf58a0e-57dc-44f5-901d-9e67fc7fdaac" name="Changes" comment="testfixc" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -49,20 +49,20 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "git-widget-placeholder": "VisualAndBugfix",
-    "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;VisualAndBugfix&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/benet/Desktop/finalp/PROJECT/Project/backServices/bank-mapping-service&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="C:\Users\benet\Desktop\finalp\PROJECT\Project\backServices\bank-mapping-service" />
@@ -99,6 +99,7 @@
       <workItem from="1741956214615" duration="271000" />
       <workItem from="1741956521317" duration="2965000" />
       <workItem from="1744195788731" duration="881000" />
+      <workItem from="1744218370521" duration="41000" />
     </task>
     <task id="LOCAL-00001" summary="python virtual enviroment, to make bank mapping service">
       <option name="closed" value="true" />
@@ -188,7 +189,15 @@
       <option name="project" value="LOCAL" />
       <updated>1744196660972</updated>
     </task>
-    <option name="localTasksCounter" value="12" />
+    <task id="LOCAL-00012" summary="testfixc">
+      <option name="closed" value="true" />
+      <created>1744218379179</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1744218379179</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -207,6 +216,7 @@
     <MESSAGE value="python script to call api request and maps every category to same as previous ones with the same merchant, or puts it as general if it cant find any." />
     <MESSAGE value="api call fix" />
     <MESSAGE value="Mapping for monzo bank added" />
-    <option name="LAST_COMMIT_MESSAGE" value="Mapping for monzo bank added" />
+    <MESSAGE value="testfixc" />
+    <option name="LAST_COMMIT_MESSAGE" value="testfixc" />
   </component>
 </project>
