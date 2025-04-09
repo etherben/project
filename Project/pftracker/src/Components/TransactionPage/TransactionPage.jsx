@@ -157,10 +157,15 @@ const TransactionPage = ({
         return `${dateParts[2]}-${dateParts[1]}-${dateParts[0]}`; // Convert back to yyyy-mm-dd for edit
     };
 
+    const handleBack = ()=> {
+        handleFetchTransactions(userId);
+        onBack();
+    };
+
     return (
         <div className="transaction-page-container">
             <div className="transaction-page-header">
-                <button onClick={onBack} className="transaction-page-back-btn">Back</button>
+                <button onClick={handleBack} className="transaction-page-back-btn">Back</button>
                 <div className="transaction-page-filter-section">
                     <form onSubmit={handleFilterSubmit} className="transaction-page-filter-form">
                         <input
