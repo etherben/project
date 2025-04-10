@@ -6,6 +6,9 @@
   <component name="ChangeListManager">
     <list default="true" id="3808a845-00f8-47c8-a6fd-22aece1e725f" name="Changes" comment="xml">
       <change beforePath="$PROJECT_DIR$/../backServices/bank-mapping-service/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../backServices/bank-mapping-service/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/GraphPage/GraphPage.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/Components/SignUp/Signup.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/Components/SignUp/Signup.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -317,6 +320,7 @@
       <workItem from="1744196680737" duration="1047000" />
       <workItem from="1744215045228" duration="732000" />
       <workItem from="1744228250347" duration="53000" />
+      <workItem from="1744284300638" duration="231000" />
     </task>
     <task id="LOCAL-00023" summary="Restructured Test suite for App.jsx">
       <option name="closed" value="true" />
