@@ -58,7 +58,9 @@ select, input {
     cursor: pointer;
     font-size: 16px;
     transition: background-color 0.3s ease;
-    margin: 10px 0; /* Align button at top left without stretching */
+    margin: 0 0 10px 0; /* Bottom margin only */
+    align-self: flex-start;
+    max-width: 150px;
 }
 
 .back-button:hover {
@@ -90,6 +92,15 @@ select, input {
     .graph-page {
         flex-direction: column;
     }
+
+    @media screen and (max-width: 768px) {
+        .back-button {
+            width: 100%; /* Make it span the full container width on small screens */
+            max-width: unset;
+            align-self: stretch;
+        }
+    }
+
 
     .filter-container {
         width: 100%;
